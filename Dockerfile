@@ -1,8 +1,3 @@
-FROM composer as builder
-WORKDIR /app/
-COPY composer.* ./
-RUN composer install
-
 FROM php:7.4-fpm
 
 # Arguments defined in docker-compose.yml
@@ -37,4 +32,4 @@ RUN mkdir -p /home/$user/.composer && \
 WORKDIR /var/www
 
 USER $user
-COPY --from=builder /app/vendor /var/www/vendor
+# COPY --from=builder /app/vendor /var/www/vendor
