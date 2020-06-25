@@ -33,6 +33,6 @@ WORKDIR /var/www
 
 USER $user
 
-RUN composer install \
-    php artisan key:generate \
-    php artisan migrate
+RUN composer install 
+RUN php artisan key:generate 
+RUN php artisan migrate
