@@ -18,7 +18,7 @@ header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
     return $request->user();
 });*/
 
-Route::group(['namespace' => 'Api', 'middleware' => '', 'prefix' => 'v1'], function (){
+Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function (){
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
