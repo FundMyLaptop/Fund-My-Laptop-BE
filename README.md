@@ -12,7 +12,7 @@ HNGi7 Project by Team Avengers
     a. Fill in the DB details in the .env file (which you can create by renaming a copy of the .env.example file)
 4. Run the following commands from the project root
 
-    a. `composer install`
+    a. `smile`
     
     b. `php artisan key:generate`
     
