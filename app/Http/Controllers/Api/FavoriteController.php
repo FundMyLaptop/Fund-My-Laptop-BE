@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Favorite;
 
-class TransactionController extends Controller
+class FavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
