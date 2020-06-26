@@ -21,13 +21,13 @@ class UsersTableSeeder extends Seeder
             \App\User::create([
                 'firstName' => $faker->name,
                 'lastName' => $faker->name,
-                'email' => $faker->safeEmail,
+                'email' => $faker->unique()->safeEmail,
                 'password' => $password,
                 'phone' => $faker->e164PhoneNumber,
                 'address' => $faker->address,
                 'role' => $role,
-                'email_verified_at' => dateTimeThisYear($max = 'now', $timezone = 'Africa/Lagos'),
-                'remember_token' => str_random(40),
+                'email_verified_at' => $faker->dateTimeThisYear($max = 'now', $timezone = 'Africa/Lagos'),
+                'remember_token' => $faker->regexify('[A-Za-z0-9]{40}')
             ]);
         }
     }
