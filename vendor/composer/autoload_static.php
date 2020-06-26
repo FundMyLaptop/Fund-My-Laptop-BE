@@ -411,10 +411,9 @@ class ComposerStaticInitffa4087a2b93130807b712a5ead54401
     );
 
     public static $classMap = array (
-        'App\\Accrual' => __DIR__ . '/../..' . '/app/Accrual.php',
+        'App\\BankAccount' => __DIR__ . '/../..' . '/app/BankAccount.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Favorite' => __DIR__ . '/../..' . '/app/Favorite.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -435,11 +434,7 @@ class ComposerStaticInitffa4087a2b93130807b712a5ead54401
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'App\\Recommendation' => __DIR__ . '/../..' . '/app/Recommendation.php',
-        'App\\Request' => __DIR__ . '/../..' . '/app/Request.php',
-        'App\\Transaction' => __DIR__ . '/../..' . '/app/Transaction.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
-        'App\\Verification' => __DIR__ . '/../..' . '/app/Verification.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',
         'Carbon\\CarbonInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterface.php',
