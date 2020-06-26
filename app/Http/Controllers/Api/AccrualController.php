@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Accrual;
 
-class AdminController extends Controller
+class AccrualController extends Controller
 {
     /**
      * Display a listing of the resource.

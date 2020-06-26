@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Recommendation;
 
-class BankAccountController extends Controller
+class RecommendationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +16,7 @@ class BankAccountController extends Controller
     public function index()
     {
         //
+        return response()->json(['message' => 'All recommendations returned successfully.'], 200);
     }
 
     /**
@@ -34,7 +37,7 @@ class BankAccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate input before processing
     }
 
     /**
