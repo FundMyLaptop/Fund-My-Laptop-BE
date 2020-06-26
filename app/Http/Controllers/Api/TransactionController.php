@@ -47,7 +47,7 @@ class TransactionController extends Controller
                 'response_code' => 'required|int',
             ]);
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);}
+            return response()->json(['error'=>$validator->errors()], 400);}
         $transaction =  new Transaction();
         $transaction->request_id = $request->request_id;
         $transaction->transaction_ref = $request->transaction_ref;
