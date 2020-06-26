@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\User;
+use App\Favorite;
+use App\BackAccount;
+use App\Recommendation;
+use Illuminate\Http\Request;
+use App\Request as FundRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -45,9 +50,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getUserDetails($id)
     {
-        //
+
+
+        //$user = Auth::user()->id;
+
+        $userDetails = User::with('request','favorite','bank_account','recommendation')->where('id',1)->first();
+
+        if($userDetails){
+            return response()->json(['message'=>$userDetails],201);
+        }else{
+            return response()->json(['message'=>'Could not the details of this user'],400);
+        }
+
     }
 
     /**

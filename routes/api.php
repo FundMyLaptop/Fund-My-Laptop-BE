@@ -22,7 +22,8 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function (){
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
-	Route::get('recommendations','RecommendationController@index');
+    Route::get('recommendations','RecommendationController@index');
+    Route::get('userDetail/{id}', 'UserController@getUserDetails');
 	///all other routes should be defined under this line using the format of line 25 (above)
 });
 
