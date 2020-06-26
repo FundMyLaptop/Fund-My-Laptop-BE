@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Carbon\Carbon;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -26,8 +26,8 @@ class UsersTableSeeder extends Seeder
                 'phone' => $faker->e164PhoneNumber,
                 'address' => $faker->address,
                 'role' => $role,
-                'email_verified_at' => dateTimeThisYear($max = 'now', $timezone = 'Africa/Lagos'),
-                'remember_token' => str_random(40),
+                'email_verified_at' => $faker->dateTimeThisYear($max = 'now', $timezone = 'Africa/Lagos'),
+                'remember_token' => $faker->randomAscii,
             ]);
         }
     }

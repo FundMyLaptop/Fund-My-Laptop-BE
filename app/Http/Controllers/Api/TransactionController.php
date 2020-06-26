@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request as TransactionRequest;
 use App\Http\Controllers\Controller;
 use App\Transaction;
+use Validator;
 
 class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -31,13 +33,35 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param TransactionRequest $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
+        $validator = Validator::make($request->all(),
+            [
+                'request_id' => 'required|int',
+                'transaction_ref' => 'required',
+                'amount' => 'required|numeric',
+                'status' => 'required',
+                'response_code' => 'required|int',
+            ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);}
+        $transaction =  new Transaction();
+        $transaction->request_id = $request->request_id;
+        $transaction->transaction_ref = $request->transaction_ref;
+        $transaction->amount = $request->amount;
+        $transaction->status= $request->status;
+        $transaction->response_code = $request->response_code;
+            $transaction->save();
+        return response()->json([
+                "message" => "transaction record created"
+            ], 201);
+
+        }
+
         //
-    }
 
     /**
      * Display the specified resource.
@@ -64,11 +88,11 @@ class TransactionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param TransactionRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransactionRequest $request, $id)
     {
         //
     }

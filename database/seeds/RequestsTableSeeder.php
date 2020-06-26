@@ -18,7 +18,7 @@ class RequestsTableSeeder extends Seeder
         for($i = 0; $i < 1500; $i++){
             \App\Request::create([
                 'user_id' => $faker->numberBetween($min = 1, $max = 500),
-                'title' => $faker->text,
+                'title' => $faker->text($maxNbChars = 100),
                 'description' => $faker->text($maxNbChars = 150),
                 'photoURL' => $faker->imageUrl($width = 640, $height = 480),
                 'currency' => $cur,
