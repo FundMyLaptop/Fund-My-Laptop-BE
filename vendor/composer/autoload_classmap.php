@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AccrualsTableSeeder' => $baseDir . '/database/seeds/AccrualsTableSeeder.php',
     'App\\Accrual' => $baseDir . '/app/Accrual.php',
     'App\\BankAccount' => $baseDir . '/app/BankAccount.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
@@ -857,6 +858,7 @@ return array(
     'Faker\\Provider\\zh_TW\\Text' => $vendorDir . '/fzaninotto/faker/src/Faker/Provider/zh_TW/Text.php',
     'Faker\\UniqueGenerator' => $vendorDir . '/fzaninotto/faker/src/Faker/UniqueGenerator.php',
     'Faker\\ValidGenerator' => $vendorDir . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
+    'FavoriteTableSeeder' => $baseDir . '/database/seeds/FavoriteTableSeeder.php',
     'Fideloper\\Proxy\\TrustProxies' => $vendorDir . '/fideloper/proxy/src/TrustProxies.php',
     'Fideloper\\Proxy\\TrustedProxyServiceProvider' => $vendorDir . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
     'Hamcrest\\Arrays\\IsArray' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
@@ -3255,6 +3257,8 @@ return array(
     'Ramsey\\Uuid\\UuidFactory' => $vendorDir . '/ramsey/uuid/src/UuidFactory.php',
     'Ramsey\\Uuid\\UuidFactoryInterface' => $vendorDir . '/ramsey/uuid/src/UuidFactoryInterface.php',
     'Ramsey\\Uuid\\UuidInterface' => $vendorDir . '/ramsey/uuid/src/UuidInterface.php',
+    'RecommendationTableSeeder' => $baseDir . '/database/seeds/RecommendationTableSeeder.php',
+    'RequestsTableSeeder' => $baseDir . '/database/seeds/RequestsTableSeeder.php',
     'SebastianBergmann\\CodeCoverage\\CodeCoverage' => $vendorDir . '/phpunit/php-code-coverage/src/CodeCoverage.php',
     'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/Driver.php',
@@ -4111,7 +4115,9 @@ return array(
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
     'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => $vendorDir . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+    'UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
     'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+    'VerificationTableSeeder' => $baseDir . '/database/seeds/VerificationTableSeeder.php',
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
     'Webmozart\\Assert\\Mixin' => $vendorDir . '/webmozart/assert/src/Mixin.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
