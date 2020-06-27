@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -22,12 +22,14 @@ class ResetPasswordController extends Controller
 
     use ResetsPasswords;
 
+    //Response when it passes
     protected function sendResetResponse(Request $request, $response)
     {
         return response(['message' => trans($response)]);
     }
 
 
+    //Response whn it fails
     protected function sendResetFailedResponse(Request $request, $response)
     {
         return response(['error' => trans($response)], 422);
