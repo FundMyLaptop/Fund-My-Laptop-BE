@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Accrual extends Model
 {
-    protected $table = 'accruals';
-    
-    
+	protected $table = 'accruals';
 	
 	protected $fillable = ['request_id','rate','amount'];
 
