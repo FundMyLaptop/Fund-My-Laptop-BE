@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Faker\Factory;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -12,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         \App\User::truncate();
-        $faker = \Faker\Factory::create();
+        $faker = Factory::create();
         $password = Hash::make('test123');
         $role = array_rand(array('user','admin'));
 

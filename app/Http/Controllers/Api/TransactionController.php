@@ -89,11 +89,39 @@ class TransactionController extends Controller
      *
      * @param TransactionRequest $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function update(TransactionRequest $request, $id)
     {
         //
+        $validator = Validator::make($request->all(),
+            [
+                'request_id' => 'required|int',
+                'transaction_ref' => 'required',
+                'amount' => 'required|numeric',
+                'status' => 'required',
+                'response_code' => 'required|int',
+            ]);
+        if($validator->fails()){
+            return response()->json(['message'=> $validator->errors()],400);
+        };
+        $transaction_exist = Transaction::query()->where('id',$id)->exists();
+        if($transaction_exist){
+//            update transaction
+            $update = Transaction::query()->where('id',$id)->update([
+               'transaction_ref'=>$request->transaction_ref,
+                'amount'=>$request->amount,
+                'status'=>$request->status,
+                'response_code'=>$request->response_code
+            ]);
+            if($update){
+                return response()->json(['message'=> 'transaction updated'],201);
+            }else{
+                return response()->json(['message'=> 'unable to update the transaction'],400);
+            }
+        }else{
+            return response()->json(['message'=> 'transaction does not exist '],400);
+        }
     }
 
     /**
