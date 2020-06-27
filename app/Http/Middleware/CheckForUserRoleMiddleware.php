@@ -18,7 +18,7 @@ class CheckForUserRoleMiddleware
     {
         if (Auth::guard($guard)->check()) {
             if(Auth::user()->role != 1){
-                return redirect()->route('dashboard'); //hoping the user dashboard route exist
+                return response()->json(['message' => 'You do not have authorization to access this route'], 401);
             }
         }
 
