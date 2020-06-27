@@ -23,7 +23,9 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function (){
     	return $request->user();
 	});*/
 	Route::get('recommendations','RecommendationController@index');
-	///all other routes should be defined under this line using the format of line 25 (above)
+    ///all other routes should be defined under this line using the format of line 25 (above)
+
+    Route::post('requests','RequestController@store');
 });
 
 Route::fallback(function(){
