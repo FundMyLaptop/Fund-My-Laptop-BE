@@ -38,10 +38,6 @@ class RequestController extends Controller
     public function store(Request $request)
     {
         //
-        //return "got here";
-        //$postdata = $request->post('title');
-
-        //print_r($request->input('title'));
         try
         {
             $userid = $request->post('userId') ?? "";
@@ -57,18 +53,21 @@ class RequestController extends Controller
 
 
             //check if user exit
-            //User::findOrFail($userid);
+            $user = User::find($userid);
+            if($user == ""){
+                return response()->json(['message' => 'User does not exist'], 404);
+            }
 
             $fundreq = new FundRequest();
-            $fundreq->userId = htmlspecialchars($userid); //$request->input('userId') ?? "";
-            $fundreq->title = htmlspecialchars($title); //$request->input('title') ?? "";
-            $fundreq->description = htmlspecialchars($description); //$request->input('description') ?? "";
-            $fundreq->photoURL = htmlspecialchars($photoURL); //$request->input('photoURL') ?? "";
-            $fundreq->currency = htmlspecialchars($currency); //$request->input('currency') ?? "";
-            $fundreq->amount = htmlspecialchars($amount); //$request->input('amount') ?? "";
-            $fundreq->isFunded = htmlspecialchars($isFunded); //$request->input('isFunded') ?? "";
-            $fundreq->isSuspended = htmlspecialchars($isSuspended); //$request->input('isSuspended') ?? "";
-            $fundreq->isActive = htmlspecialchars($isActive); //$request->input('isActive') ?? "";
+            $fundreq->userId = htmlspecialchars($userid);
+            $fundreq->title = htmlspecialchars($title);
+            $fundreq->description = htmlspecialchars($description);
+            $fundreq->photoURL = htmlspecialchars($photoURL);
+            $fundreq->currency = htmlspecialchars($currency);
+            $fundreq->amount = htmlspecialchars($amount);
+            $fundreq->isFunded = htmlspecialchars($isFunded);
+            $fundreq->isSuspended = htmlspecialchars($isSuspended);
+            $fundreq->isActive = htmlspecialchars($isActive);
 
             $save = $fundreq->save();
 
