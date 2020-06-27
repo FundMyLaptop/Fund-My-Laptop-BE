@@ -14,10 +14,10 @@ class UsersTableSeeder extends Seeder
         \App\User::truncate();
         $faker = \Faker\Factory::create();
         $password = Hash::make('test123');
-        $role = array_rand(array('user','admin'));
+        $roles = array('user','admin');
 
         for($i = 0; $i < 500; $i++){
-
+            $role = $roles[mt_rand(0,count($roles) - 1)];
             \App\User::create([
                 'firstName' => $faker->name,
                 'lastName' => $faker->name,
@@ -26,8 +26,8 @@ class UsersTableSeeder extends Seeder
                 'phone' => $faker->e164PhoneNumber,
                 'address' => $faker->address,
                 'role' => $role,
-                'email_verified_at' => dateTimeThisYear($max = 'now', $timezone = 'Africa/Lagos'),
-                'remember_token' => str_random(40),
+                'email_verified_at' => $faker->dateTimeThisYear($max = 'now', $timezone = 'Africa/Lagos'),
+                'remember_token' => Str::random(40),
             ]);
         }
     }
