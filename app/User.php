@@ -52,4 +52,7 @@ class User extends Authenticatable
     public function bank_account() {
         return $this->hasOne('App\BankAccount');
     }
+    public function transactions(){
+        return $this->hasMany('App\Transaction');
+    }
 }

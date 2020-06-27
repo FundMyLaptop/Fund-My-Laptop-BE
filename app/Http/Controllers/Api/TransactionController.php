@@ -41,6 +41,7 @@ class TransactionController extends Controller
         $validator = Validator::make($request->all(),
             [
                 'request_id' => 'required|int',
+                'user_id' => 'required|int',
                 'transaction_ref' => 'required',
                 'amount' => 'required|numeric',
                 'status' => 'required',
@@ -50,6 +51,7 @@ class TransactionController extends Controller
             return response()->json(['error'=>$validator->errors()], 400);}
         $transaction =  new Transaction();
         $transaction->request_id = $request->request_id;
+        $transaction->user_id = $request->user_id;
         $transaction->transaction_ref = $request->transaction_ref;
         $transaction->amount = $request->amount;
         $transaction->status= $request->status;
@@ -97,6 +99,7 @@ class TransactionController extends Controller
         $validator = Validator::make($request->all(),
             [
                 'request_id' => 'required|int',
+                'user_id' => 'required|inf',
                 'transaction_ref' => 'required',
                 'amount' => 'required|numeric',
                 'status' => 'required',
@@ -110,6 +113,8 @@ class TransactionController extends Controller
 //            update transaction
             $update = Transaction::query()->where('id',$id)->update([
                'transaction_ref'=>$request->transaction_ref,
+                'request_id'=>$request->request_id,
+                'user_id'=>$request->user_id,
                 'amount'=>$request->amount,
                 'status'=>$request->status,
                 'response_code'=>$request->response_code
