@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function recommendation() {
         return $this->hasMany('App\Recommendation');
     }
+
+    public function bank_account() {
+        return $this->hasOne('App\BankAccount');
+    }
 }

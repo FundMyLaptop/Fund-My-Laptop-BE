@@ -15,7 +15,7 @@ class CreateAccrualsTable extends Migration
     {
         Schema::create('accruals', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('requestId');
+            $table->integer('request_id');
             $table->decimal('rate');
             $table->decimal('amount');
             $table->timestamps();
