@@ -20,6 +20,10 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
     return $request->user();
 });*/
 
+// Authentication
+Route::post('login', 'API\UserController@login');
+Route::post('register', 'API\UserController@register');
+
 Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
     /*Route::get('/user', function (Request $request) {
         return $request->user();
