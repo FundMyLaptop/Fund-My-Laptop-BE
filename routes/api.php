@@ -23,6 +23,9 @@ Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
 
 
+
+
+
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function (){
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
