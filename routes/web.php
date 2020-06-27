@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
+    //$post = ['administrative','admin'];
     return view('welcome');
 });
+
+Route::get('/recommendation/{rec}', 'RecommendationsController@show');
