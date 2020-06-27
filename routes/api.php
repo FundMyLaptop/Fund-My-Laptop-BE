@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function (){
 	});*/
 	Route::get('recommendations','RecommendationController@index');
 	///all other routes should be defined under this line using the format of line 25 (above)
+	Route::get('request-favorites/{userId}','FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
 });
 
 Route::fallback(function(){

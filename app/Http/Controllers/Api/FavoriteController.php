@@ -83,4 +83,18 @@ class FavoriteController extends Controller
     {
         //
     }
+    public function userFavoriteRequest($userId)
+    {
+
+        //Fetching all requests marked as favorite controller
+
+        if(Favorite::where('user_id', $userId)->exists()) {
+            $favorites = Favorite::where('user_id', $userId)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($favorites, 200);
+        } else {
+            return response()->json([
+            "message" => "Request not Found or Marked as Favorite"
+            ], 404);
+        }
+    }
 }
