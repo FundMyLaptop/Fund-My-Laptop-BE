@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -16,6 +18,16 @@ class UserController extends Controller
     public function index()
     {
         //
+    }
+
+    public function verified()
+    {
+        if(Auth::user())
+        $users = DB::table('users')
+                ->whereNotNull("email_verified_at")
+                ->select('firstname', 'lastname','email','id')
+                ->get();
+         return json_encode($users);
     }
 
     /**
@@ -47,7 +59,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        //Admin can view all verified account
+        // $verified = DB::table('users')
+        //             ->whereNotNull('email_verified_at')
+        //             ->get();
+
+        //  return json_encode($verified);
+
+
     }
 
     /**
