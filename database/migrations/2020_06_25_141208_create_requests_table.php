@@ -15,7 +15,7 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('userId');
+            $table->integer('user_id');
             $table->string('title');
             $table->text('description');
             $table->string('photoURL');

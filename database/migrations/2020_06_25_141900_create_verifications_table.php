@@ -15,7 +15,7 @@ class CreateVerificationsTable extends Migration
     {
         Schema::create('verifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('userId');
+            $table->integer('user_id');
             $table->string('photoURL');
             $table->string('videoURL');
             $table->boolean('status')->default(0);
