@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\User;
 use App\Favorite;
 use App\BackAccount;
 use App\Recommendation;
 use Illuminate\Http\Request;
 use App\Request as FundRequest;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -119,7 +119,6 @@ class UserController extends Controller
         $user = Auth::user()->id;
 
         $userDetails = User::with('request','favorite','bank_account','recommendation')->where('id',$user)->first();
-
         if($userDetails){
             return response()->json(['message'=>$userDetails],201);
         }else{
