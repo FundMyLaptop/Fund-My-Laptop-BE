@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('user/varification/status/{id}','FundeeVerificationController@userVerified')->name('user-verification-status');

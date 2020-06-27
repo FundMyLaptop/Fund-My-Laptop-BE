@@ -52,4 +52,9 @@ class User extends Authenticatable
     public function bank_account() {
         return $this->hasOne('App\BankAccount');
     }
+
+
+    public function userExist(){
+        return $this->hasOne(Verification::class);
+    }
 }
