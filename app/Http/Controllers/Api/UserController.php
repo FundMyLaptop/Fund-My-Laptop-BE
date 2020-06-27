@@ -56,7 +56,7 @@ class UserController extends Controller
 
         //$user = Auth::user()->id;
 
-        $userDetails = User::with('request','favorite','bank_account','recommendation')->where('id',1)->first();
+        $userDetails = User::with('request','favorite','bank_account','recommendation')->where('id',$id)->first();
 
         if($userDetails){
             return response()->json(['message'=>$userDetails],201);
