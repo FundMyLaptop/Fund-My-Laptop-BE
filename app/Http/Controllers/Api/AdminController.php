@@ -81,6 +81,20 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        //delete User account
+        if(User::where('id', $id)->exists()) {
+            $user = User::find($id);
+            $user->delete();
+    
+            return response()->json([
+              "message" => "User account successfully deleted"
+            ], 202);
+          } else {
+            return response()->json([
+              "message" => "User account not found"
+            ], 404);
+          }
     }
+    
 }
