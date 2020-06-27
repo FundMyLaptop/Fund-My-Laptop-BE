@@ -15,7 +15,14 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
+        //$data = [];
+        $query = FundRequest::all();
+           return response()->json([
+            'message' => 'Requests retrieved',
+            'data' => $query
+        ], 201); 
+        
+        
     }
 
     /**
