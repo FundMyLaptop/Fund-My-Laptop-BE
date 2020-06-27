@@ -89,12 +89,6 @@ class UserController extends Controller
             ],
             200
         );
-
-        $success['name'] =  $user->firstName;
-        $success['name'] =  $user->firstName;
-        $success['name'] =  $user->firstName;
-
-        return response()->json(['success'=>$success], 200);
     }
 
     /**
