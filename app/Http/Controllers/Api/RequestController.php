@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Request as FundRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -40,20 +41,20 @@ class RequestController extends Controller
         //
         try
         {
-            $userid = $request->post('userId') ?? "";
-            $title = $request->post('title') ?? "";
-            $description = $request->post('description') ?? "";
-            $photoURL = $request->post('photoURL') ?? "";
-            $currency = $request->post('currency') ?? "";
-            $amount = $request->post('amount') ?? "";
-            $isFunded = $request->post('isFunded') ?? "";
-            $isSuspended = $request->post('isSuspended') ?? "";
-            $isActive = $request->post('isActive') ?? "";
+           
+            $title = $request->title ?? "";
+            $description = $request->description ?? "";
+            $photoURL = $request->photoURL ?? "";
+            $currency = $request->currency?? "";
+            $amount = $request->amount ?? "";
+            $isFunded = $request->isFunded ?? "";
+            $isSuspended = $request->isSuspended ?? "";
+            $isActive = $request->isActive ?? "";
 
 
 
             //check if user exit
-            $user = Auth::user()->id;
+            $userid = Auth::user()->id;
             //$user = User::find($userid);
             if($user == ""){
                 return response()->json(['message' => 'User does not exist'], 404);
@@ -81,6 +82,8 @@ class RequestController extends Controller
 
             $save = $fundreq->save();
 
+            $submission = ['user id'=> $userid, 'title'=>$title, 'description'=>$description, 'photo URL'=>$photoURL, 'currency'=>$currency,'Amount' => $amount, 'isFunded'=>$isFunded, 'isSuspended'=>$isSuspended,'isActive'=>$isActive];
+
             if ($save == 1)
             {
                 return response()->json(['message' => 'Request save successfully'], 202);
@@ -93,7 +96,7 @@ class RequestController extends Controller
                 return $message; */
             } else
             {
-                return response()->json(['message' => 'Request cannot be saved. Contact administrator'], 202);
+                return response()->json([$submission,'message' => 'Request cannot be saved. Contact administrator'], 202);
                 /*
                 $message = [
                     'status' => 'failure',
