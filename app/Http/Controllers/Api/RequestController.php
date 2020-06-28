@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Request as FundRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
@@ -15,7 +16,14 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $query = FundRequest::all();
+        
+        return response()->json([
+            'user_info' => $user,
+            'message' => 'Requests retrieved',
+            'data' => $query
+        ], 201);
     }
 
     /**
