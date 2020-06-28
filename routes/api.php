@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 header('Access-Control-Allow-Origin: *');
 header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
@@ -31,6 +31,11 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	///all other routes should be defined under this line using the format of line 25 (above)
 });
 
+Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
+Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
+
 Route::fallback(function(){
     return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
+
+
