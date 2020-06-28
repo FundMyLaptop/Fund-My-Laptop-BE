@@ -34,21 +34,21 @@ class UserController extends Controller
         //
     }
 
-    public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+    public function login()
+    {
+        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $token = $user->createToken('FundMyLaptop')->accessToken;
             return response()->json(
                 [
                     'status' => 'success',
-                    'token' => $token,
-                    'data' => $user
+                    'data' => $user,
+                    'token' => $token
                 ],
                 200
             );
-        }
-        else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
     }
 
@@ -66,7 +66,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
+            return response()->json(['error' => $validator->errors()], 401);
         }
 
         # Exclude The Password Again field from going to db
@@ -91,7 +91,7 @@ class UserController extends Controller
                 ),
                 'user_id' => $user->id
             ],
-            200
+            201
         );
     }
 
@@ -116,13 +116,12 @@ class UserController extends Controller
     {
         $user = Auth::user()->id;
 
-        $userDetails = User::with('request','favorite','bank_account','recommendation')->where('id',$user)->first();
-        if($userDetails){
-            return response()->json(['message'=>$userDetails],201);
-        }else{
-            return response()->json(['message'=>'Could not the details of this user'],400);
+        $userDetails = User::with('request', 'favorite', 'bank_account', 'recommendation')->where('id', $user)->first();
+        if ($userDetails) {
+            return response()->json(['message' => $userDetails], 201);
+        } else {
+            return response()->json(['message' => 'Could not the details of this user'], 400);
         }
-
     }
 
     /**
