@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\BankAccount;
+use Illuminate\Support\Facades\Auth;
 
 class BankAccountController extends Controller
 {
@@ -27,13 +28,12 @@ class BankAccountController extends Controller
     public function create()
     {
         $account_data = request()->validate([
-            'user_id' => 'required',
             'bank_name' => 'required',
             'account_name' => 'required',
             'account_number' => 'required'
         ]);
 
-        $id = request()->user_id;
+        $id = $user = Auth::user()->id;
         $bank_details_exist = BankAccount::query()->where('user_id', $id)->exists();
         if ($bank_details_exist) {
             // Update bank account information record
@@ -45,7 +45,7 @@ class BankAccountController extends Controller
             } else {
                 return response()->json([
                     'message' => 'Bank account information could not be updated'
-                ], 404);
+                ], 401);
             }
         } else {
             // Create bank account information record
@@ -57,7 +57,7 @@ class BankAccountController extends Controller
             } else {
                 return response()->json([
                     'message' => 'Bank account information upload failed'
-                ], 404);
+                ], 401);
             }
         }
     }
