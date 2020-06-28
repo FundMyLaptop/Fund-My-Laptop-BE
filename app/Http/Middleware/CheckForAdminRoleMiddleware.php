@@ -17,7 +17,7 @@ class CheckForAdminRoleMiddleware
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            if(Auth::guard($guard)->user()->role != 0){
+            if(Auth::guard($guard)->user()->role != 2){
                 return response()->json(['message' => 'You do not have authorization to access this route'], 401);
             }
         }
