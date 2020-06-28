@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('my-profile', 'UserController@getMyProfile');
     Route::post('transaction/store','TransactionController@store');
     Route::post('transaction/update/{id}','TransactionController@update');
+    Route::get('/requests', 'RequestController@index');
 	///all other routes should be defined under this line using the format of line 25 (above)
 });
 
