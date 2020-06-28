@@ -17,8 +17,9 @@ class VerificationController extends Controller
     {
         //
     }
-
+    //verify bvn 
     public function verifyBvn(Request $request){
+
     $curl = curl_init();
 
      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
@@ -49,12 +50,9 @@ class VerificationController extends Controller
      
      $response = curl_exec($curl);
      $err = curl_error($curl);
-     
      curl_close($curl);
-  
      return response()->json($response);
-
-    }
+     }
 
     /**
      * Show the form for creating a new resource.
