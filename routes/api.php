@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+
 header('Access-Control-Allow-Origin: *');
-header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
+header('Access-Control-Allow-Headers: Authorization, Content-Type');
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,10 +21,10 @@ header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
 });*/
 
 // Authentication
-Route::post('login', 'API\UserController@login');
-Route::post('register', 'API\UserController@register');
+Route::post('login', 'Api\UserController@login');
+Route::post('register', 'Api\UserController@register');
 
-Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function (){
+Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
@@ -33,13 +35,15 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('user-details', 'UserController@getUserDetails');
     Route::get('my-profile', 'UserController@getMyProfile');
 	///all other routes should be defined under this line using the format of line 25 (above)
+	Route::get('my-profile', 'UserController@getMyProfile');
+    Route::get('requests', 'RequestController@index');
+    Route::get('requests/{id}', 'RequestController@show');
+    Route::post('bank-accounts', 'BankAccountController@create');
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
 
-Route::fallback(function(){
-    return response()->json(['message' => 'Not Found'], 404);
+Route::fallback(function () {
+	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
-
-

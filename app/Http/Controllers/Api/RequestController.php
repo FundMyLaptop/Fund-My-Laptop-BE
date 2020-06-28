@@ -7,9 +7,15 @@ use App\Request as FundRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class RequestController extends Controller
 {
+    public function __construct()
+    {
+        //allows only authenticated user
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,13 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $query = FundRequest::with('user')->get();
+        
+        return response()->json([
+            'message' => 'Requests retrieved',
+            'data' => $query
+        ], 201);
     }
 
     /**
@@ -41,7 +53,7 @@ class RequestController extends Controller
         //
         try
         {
-           
+
             $title = $request->title ?? "";
             $description = $request->description ?? "";
             $photoURL = $request->photoURL ?? "";
@@ -51,23 +63,19 @@ class RequestController extends Controller
             $isSuspended = $request->isSuspended ?? "";
             $isActive = $request->isActive ?? "";
 
+            //get authenticated user id
+            $userid = Auth::id;
 
+            
+            //if (!Auth::check()) {
+                // The user is logged in...
+            //    return response()->json(['message' => 'User does not exist'], 404);
+            //}
 
-            //check if user exit
-            $userid = Auth::user()->id;
-            //$user = User::find($userid);
-            if($user == ""){
-                return response()->json(['message' => 'User does not exist'], 404);
-            }
             if($amount < 0)
             {
                 return response()->json(['message' => 'Amount cannot be less than zero'], 304);
             }
-            /*if(substr($photoURL,0,7) != 'http://' || substr($photoURL,0,8) != 'https://')
-            {
-                $photoURL .= 'http://';
-                return response()->json(['messae' => 'Amount cannot be less than zero'], 304);
-            } */
 
             $fundreq = new FundRequest();
             $fundreq->userId = htmlspecialchars($userid);
@@ -82,21 +90,14 @@ class RequestController extends Controller
 
             $save = $fundreq->save();
 
-            $submission = ['user id'=> $userid, 'title'=>$title, 'description'=>$description, 'photo URL'=>$photoURL, 'currency'=>$currency,'Amount' => $amount, 'isFunded'=>$isFunded, 'isSuspended'=>$isSuspended,'isActive'=>$isActive];
 
             if ($save == 1)
             {
-                return response()->json(['message' => 'Request save successfully'], 202);
-                /*$message = [
-                    'status' => 'success',
-                    'data' => [
-                        'message' => 'Request save successfully.',
-                    ],
-                ];
-                return $message; */
+                return response()->json(['message' => 'Request save successfully'], 200);
+                
             } else
             {
-                return response()->json([$submission,'message' => 'Request cannot be saved. Contact administrator'], 202);
+                return response()->json([$submission,'message' => 'Request could not saved. Contact administrator'], 405);
                 /*
                 $message = [
                     'status' => 'failure',
@@ -108,8 +109,7 @@ class RequestController extends Controller
             }
 
         } catch (Exception $ex) {
-            return response()->json(['message' => back()->withError($ex->getmessage())->withInput()], 202);
-            //return back()->withError($ex->getmessage())->withInput();
+            return response()->json(['message' => back()->withError($ex->getmessage())->withInput()], 406);
         }
 
     }
@@ -122,7 +122,13 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+       $user = Auth::user();
+          $request = FundRequest::where('id', $id)->with('user')->get();
+            return response()->json([
+                'message' => 'Request retrived',
+                'data' => $request
+            ], 200);
+
     }
 
     /**
