@@ -17,10 +17,9 @@ class RequestController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $query = FundRequest::all();
+        $query = FundRequest::with('user')->get();
         
         return response()->json([
-            'user_info' => $user,
             'message' => 'Requests retrieved',
             'data' => $query
         ], 201);
