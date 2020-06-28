@@ -99,7 +99,7 @@ class TransactionController extends Controller
         $validator = Validator::make($request->all(),
             [
                 'request_id' => 'required|int',
-                'user_id' => 'required|inf',
+                'user_id' => 'required|int',
                 'transaction_ref' => 'required',
                 'amount' => 'required|numeric',
                 'status' => 'required',

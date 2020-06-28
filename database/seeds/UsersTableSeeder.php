@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
-use Faker\Factory;
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -13,7 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         \App\User::truncate();
-        $faker = Factory::create();
+        $faker = \Faker\Factory::create();
         $password = Hash::make('test123');
         $role = array_rand(array('user','admin'));
 
@@ -22,13 +21,13 @@ class UsersTableSeeder extends Seeder
             \App\User::create([
                 'firstName' => $faker->name,
                 'lastName' => $faker->name,
-                'email' => $faker->safeEmail,
+                'email' => $faker->unique()->safeEmail,
                 'password' => $password,
                 'phone' => $faker->e164PhoneNumber,
                 'address' => $faker->address,
                 'role' => $role,
                 'email_verified_at' => $faker->dateTimeThisYear($max = 'now', $timezone = 'Africa/Lagos'),
-                'remember_token' => $faker->randomAscii,
+                'remember_token' => $faker->regexify('[A-Za-z0-9]{40}')
             ]);
         }
     }

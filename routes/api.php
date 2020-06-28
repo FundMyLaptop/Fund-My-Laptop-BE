@@ -18,11 +18,16 @@ header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
     return $request->user();
 });*/
 
-Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function (){
+// Authentication
+Route::post('login', 'Api\UserController@login');
+Route::get('register', 'Api\UserController@register');
+
+Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function (){
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
-	Route::get('recommendations','RecommendationController@index');
+    Route::get('recommendations','RecommendationController@index');
+    Route::get('user-details', 'UserController@getUserDetails');
 	///all other routes should be defined under this line using the format of line 25 (above)
     Route::post('transaction/store','TransactionController@store');
     Route::put('transaction/update/{id}','TransactionController@update');
