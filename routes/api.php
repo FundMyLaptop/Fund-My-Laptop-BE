@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 header('Access-Control-Allow-Origin: *');
@@ -27,12 +28,15 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
-
 	///all other routes should be defined under this line using the format of line 25 (above)
 	Route::get('recommendations', 'RecommendationController@index');
+	Route::get('my-profile', 'UserController@getMyProfile');
 	Route::get('user-details', 'UserController@getUserDetails');
 	Route::get('/requests', 'RequestController@index');
 });
+
+Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
+Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
 
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
