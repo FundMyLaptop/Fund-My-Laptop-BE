@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Favorite;
+use App\BackAccount;
+use App\Recommendation;
 use Illuminate\Http\Request;
+use App\Request as FundRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -106,11 +110,19 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function getUserDetails()
     {
-        //
+        $user = Auth::user()->id;
+
+        $userDetails = User::with('request','favorite','bank_account','recommendation')->where('id',$user)->first();
+        if($userDetails){
+            return response()->json(['message'=>$userDetails],201);
+        }else{
+            return response()->json(['message'=>'Could not the details of this user'],400);
+        }
+
     }
 
     /**
