@@ -30,15 +30,11 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	});*/
 	///all other routes should be defined under this line using the format of line 25 (above)
 
-	
-
 	Route::get('recommendations', 'RecommendationController@index');
 	Route::get('my-profile', 'UserController@getMyProfile');
-    Route::get('requests', 'RequestController@index');
-    Route::get('requests/{id}', 'RequestController@show');
-	Route::post('bank-accounts', 'BankAccountController@create');
-	Route::delete('users/{id}','AdminController@destroy');
-
+	Route::get('user-details', 'UserController@getUserDetails');
+	Route::get('/requests', 'RequestController@index');
+    Route::delete('users/{id}','AdminController@destroy');
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
