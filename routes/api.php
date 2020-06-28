@@ -18,14 +18,24 @@ header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
     return $request->user();
 });*/
 
-Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function (){
+// Authentication
+Route::post('login', 'API\UserController@login');
+Route::post('register', 'API\UserController@register');
+
+Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function (){
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
+<<<<<<< HEAD
 	Route::get('recommendations','RecommendationController@index');
     ///all other routes should be defined under this line using the format of line 25 (above)
 
     Route::post('requests','RequestController@store');
+=======
+    Route::get('recommendations','RecommendationController@index');
+    Route::get('user-details', 'UserController@getUserDetails');
+	///all other routes should be defined under this line using the format of line 25 (above)
+>>>>>>> 211e8e921c9b78891ffe19a52927d07bb998b93b
 });
 
 <<<<<<< HEAD

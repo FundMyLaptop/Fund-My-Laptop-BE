@@ -53,7 +53,8 @@ class RequestController extends Controller
 
 
             //check if user exit
-            $user = User::find($userid);
+            $user = Auth::user()->id;
+            //$user = User::find($userid);
             if($user == ""){
                 return response()->json(['message' => 'User does not exist'], 404);
             }
