@@ -5,7 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
+use App\Notifications\PasswordResetNotification;
+
 use Laravel\Passport\HasApiTokens;
+
 
 class User extends Authenticatable
 {
@@ -38,6 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //Password Reset Notification
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
+
     public function request() {
         return $this->hasMany('App\Request');
     }
@@ -56,6 +66,6 @@ class User extends Authenticatable
 
 
     public function userExist(){
-        return $this->hasOne(Verification::class);
+        return $this->hasOne('App\Verification');
     }
 }
