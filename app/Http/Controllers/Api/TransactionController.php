@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request as TransactionRequest;
 use App\Http\Controllers\Controller;
 use App\Transaction;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class TransactionController extends Controller
@@ -38,10 +39,10 @@ class TransactionController extends Controller
      */
     public function store(TransactionRequest $request)
     {
+        $user_id = Auth::user()->id;
         $validator = Validator::make($request->all(),
             [
                 'request_id' => 'required|int',
-                'user_id' => 'required|int',
                 'transaction_ref' => 'required',
                 'amount' => 'required|numeric',
                 'status' => 'required',
@@ -51,7 +52,7 @@ class TransactionController extends Controller
             return response()->json(['error'=>$validator->errors()], 400);}
         $transaction =  new Transaction();
         $transaction->request_id = $request->request_id;
-        $transaction->user_id = $request->user_id;
+        $transaction->user_id = $user_id;
         $transaction->transaction_ref = $request->transaction_ref;
         $transaction->amount = $request->amount;
         $transaction->status= $request->status;
@@ -96,10 +97,10 @@ class TransactionController extends Controller
     public function update(TransactionRequest $request, $id)
     {
         //
+        $user_id = Auth::user()->id;
         $validator = Validator::make($request->all(),
             [
                 'request_id' => 'required|int',
-                'user_id' => 'required|int',
                 'transaction_ref' => 'required',
                 'amount' => 'required|numeric',
                 'status' => 'required',
@@ -114,7 +115,6 @@ class TransactionController extends Controller
             $update = Transaction::query()->where('id',$id)->update([
                'transaction_ref'=>$request->transaction_ref,
                 'request_id'=>$request->request_id,
-                'user_id'=>$request->user_id,
                 'amount'=>$request->amount,
                 'status'=>$request->status,
                 'response_code'=>$request->response_code
