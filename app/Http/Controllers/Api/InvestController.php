@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Request as FundRequest;
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 class InvestController extends Controller
 {
     /*
@@ -30,22 +30,18 @@ class InvestController extends Controller
         $request_id=$request->query('request_id');
         $amount_invested=$request->query('amount_invested');
         $amount_requested=FundRequest::find($request_id)['amount'];
-        //  $funder_email=Auth::user()->email;
-        $funder_email='olayemi289@gmail.com';
+        $funder_email=Auth::user()->email;
+        
     
        if($amount_invested==$amount_requested){
- $txref = uniqid('transaction');
+ $txref = uniqid(rand(0,1000));
 $curl = curl_init();
 
 $customer_email = $funder_email;
 $amount = $amount_requested;  
 $currency = "NGN";
-
- // ensure you generate unique references per transaction.
-$PBFPubKey = "FLWPUBK_TEST-cc5d921b45a6eade343203276b926967-X"; 
+$PBFPubKey = "FLWPUBK_TEST-fa644489d18ab5f318b1eb6c4de3cdb2-X"; 
 $redirect_url = url('api/v1/invest/redirect/'.$request_id);
-
-
 curl_setopt_array($curl, array(
   CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
   CURLOPT_RETURNTRANSFER => true,
@@ -81,23 +77,25 @@ if(!$transaction->data && !$transaction->data->link){
 
 // redirect to page so User can pay
 return redirect($transaction->data->link);
-
-
-       }else{
+ }else{
         return response()->json(['message' => "Amounts don't match"], 404);
        }
     }
     
+
+
    /**
      * Handle successfull or failed transactions
      *
-     * @param  Request $request
+     * @param \Illuminate\Http\Request $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function redirect($request_id,Request $request)
     {
 
         if(isset($request['cancelled'])){
+          
             return response()->json(['message' => "Transaction was cancelled"], 400);
         }
 
@@ -109,7 +107,7 @@ return redirect($transaction->data->link);
             $currency = "NGN"; 
     
             $query = array(
-                "SECKEY" => "FLWSECK_TEST-03a945bfd231d60cf50c2e4da3060898-X",
+                "SECKEY" => "FLWSECK_TEST-ae987ee41e85e430f0cb188ffcd79594-X",
                 "txref" => $ref
             );
     
@@ -123,10 +121,7 @@ return redirect($transaction->data->link);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
     
             $response = curl_exec($ch);
-    
-            $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-            $header = substr($response, 0, $header_size);
-            $body = substr($response, $header_size);
+
     
             curl_close($ch);
     
@@ -136,11 +131,29 @@ return redirect($transaction->data->link);
             $chargeResponsecode = $resp['data']['chargecode'];
             $chargeAmount = $resp['data']['amount'];
             $chargeCurrency = $resp['data']['currency'];
+          	
+    $query = array(
+                "request_id" => "FLWSECK_TEST-03a945bfd231d60cf50c2e4da3060898-X",
+                "transaction_ref" => $ref,
+                "amount"  =>  $chargeAmount,
+                "status"  =>  $paymentStatus,
+                "response_code"  => $chargeResponsecode
+
+            );
     
+            $data_string = json_encode($query);
             if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
-            return 'success';
+                $store = curl_init(url('api/v1/transaction/store'));                                                                      
+                curl_setopt($store, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($store, CURLOPT_POSTFIELDS, $data_string);                                              
+                curl_setopt($store, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($store, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($store, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                $response = curl_exec($store);
+                curl_close($store);
+                return $response;
             } else {
-               return 'failure';
+                return response()->json(['message' => "Transaction failed"], 400);
             }
         }
     
