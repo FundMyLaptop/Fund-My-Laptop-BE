@@ -20,24 +20,14 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
     return $request->user();
 });*/
 
-// Authentication
-Route::post('login', 'API\UserController@login');
-Route::post('register', 'API\UserController@register');
-
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
+  Route::get('recommendations', 'RecommendationController@index');
 	///all other routes should be defined under this line using the format of line 25 (above)
-	Route::get('recommendations', 'RecommendationController@index');
-	Route::get('my-profile', 'UserController@getMyProfile');
-	Route::get('user-details', 'UserController@getUserDetails');
-    Route::get('/requests', 'RequestController@index');
-    Route::get('requests/{id}', 'RequestController@show');
+  Route::post('bank-accounts', 'BankAccountController@create');
 });
-
-Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
-Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
 
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
