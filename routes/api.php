@@ -28,8 +28,14 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function (){
     Route::post('requests','RequestController@store');
 });
 
+<<<<<<< HEAD
 Route::fallback(function(){
     return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
 
+=======
+Route::post('v1/request', 'RequestsController@insert');
+
+Route::post('v1/order', 'RequestsController@create');
+>>>>>>> Fixes #7
 
