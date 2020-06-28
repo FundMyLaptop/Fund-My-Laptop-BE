@@ -33,7 +33,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
-    Route::post('bank-accounts', 'BankAccountController@create');
+	Route::post('bank-accounts', 'BankAccountController@create');
+	Route::get('marked-requests-favorite/{userId}', 'Api\FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
