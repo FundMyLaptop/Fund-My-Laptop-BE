@@ -20,6 +20,8 @@ class VerificationController extends Controller
     //verify bvn 
     public function verifyBvn(Request $request){
 
+    $FirstName = $request->FirstName;
+    $LastName = $request->LastName;
     $curl = curl_init();
 
      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
@@ -51,7 +53,18 @@ class VerificationController extends Controller
      $response = curl_exec($curl);
      $err = curl_error($curl);
      curl_close($curl);
-     return response()->json($response);
+
+     $resp = json_decode($response, true);
+
+    $FirstNameFromBvn = $resp['FirstName'];
+    $LastNameFromBvn = $resp['LastName'];
+
+    if(($FirstName == $FirstNameFromBvn) && ($LastName == $LastNameFromBvn)){
+        return response()->json(['message' => 'Firstname and Lastname match BVN information'], 201);
+    } else{
+        return response()->json([
+            'message' => 'Firstname and Lastname do not match BVN information'], 404);
+    }
      }
 
     /**
