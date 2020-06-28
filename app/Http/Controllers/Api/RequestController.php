@@ -54,7 +54,13 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+       $user = Auth::user();
+          $request = FundRequest::where('id', $id)->with('user')->get();
+            return response()->json([
+                'message' => 'Request retrived',
+                'data' => $request
+            ], 200);
+
     }
 
     /**
