@@ -57,6 +57,15 @@ class RequestController extends Controller
             if($user == ""){
                 return response()->json(['message' => 'User does not exist'], 404);
             }
+            if($amount < 0)
+            {
+                return response()->json(['message' => 'Amount cannot be less than zero'], 304);
+            }
+            /*if(substr($photoURL,0,7) != 'http://' || substr($photoURL,0,8) != 'https://')
+            {
+                $photoURL .= 'http://';
+                return response()->json(['messae' => 'Amount cannot be less than zero'], 304);
+            } */
 
             $fundreq = new FundRequest();
             $fundreq->userId = htmlspecialchars($userid);
