@@ -34,7 +34,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
 	Route::post('bank-accounts', 'BankAccountController@create');
-	Route::get('completed-requests', 'AdminController@index');
+	
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
@@ -43,3 +43,6 @@ Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For rese
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
+
+Route::get('completed-requests', 'AdminController@index');
+
