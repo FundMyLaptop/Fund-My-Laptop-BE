@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ce830bcf59fc1f6022517aac2ea787e14f90652
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Verification;
 
 class VerificationController extends Controller
@@ -17,7 +22,22 @@ class VerificationController extends Controller
      */
     public function index($id)
     {
+<<<<<<< HEAD
 
+=======
+        //
+        // only admin can view verified accounts
+        if (Auth::check() && Auth::user()->role == 2) {
+    
+            $verified = DB::table('verifications')
+            ->where("status" == 1)
+            ->get();
+            return json_encode($verified);
+        }
+        else{
+            return json_encode("message", "You do not have permission");
+        };
+>>>>>>> 5ce830bcf59fc1f6022517aac2ea787e14f90652
     }
 
     /**
