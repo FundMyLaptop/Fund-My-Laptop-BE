@@ -37,9 +37,10 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
-	Route::post('bank-accounts', 'BankAccountController@create');
-
-
+    Route::post('bank-accounts', 'BankAccountController@create');
+    Route::get('completed-requests', 'AdminController@index');
+    Route::post('transaction/store','TransactionController@store');
+    Route::post('transaction/update/{id}','TransactionController@update');
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
