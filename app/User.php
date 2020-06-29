@@ -65,7 +65,7 @@ class User extends Authenticatable
     }
 
 
-    public function userExist(){
-        return $this->hasOne('App\Verification');
-    }
+    public function verification(){
+	     return $this->hasOne('App\Verification');
+     }
 }

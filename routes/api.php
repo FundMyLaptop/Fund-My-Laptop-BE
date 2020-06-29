@@ -33,14 +33,11 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
-<<<<<<< HEAD
     Route::post('bank-accounts', 'BankAccountController@create');
-		Route::get('save-verification-file/{id}','VerificationController@index');
-=======
+		Route::post('save-verification-file','VerificationController@store');
 	Route::post('bank-accounts', 'BankAccountController@create');
 	Route::get('completed-requests', 'AdminController@index');
-	
->>>>>>> 7cd4d0cf909d13bc068feac2ecf661501165fca9
+
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
@@ -49,6 +46,3 @@ Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For rese
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
-
-
-
