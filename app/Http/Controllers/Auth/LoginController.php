@@ -33,6 +33,11 @@ class LoginController extends Controller
      *
      * @return void
      */
+    protected function credentials(\illuminate\Http\Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+        return array_add($credentials, 'status', '1');
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
