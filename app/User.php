@@ -66,6 +66,10 @@ class User extends Authenticatable
 
     public function verification(){
 	     return $this->hasOne('App\Verification');
+<<<<<<< HEAD
      }
+=======
+    }
+>>>>>>> 5608d25a28bd0b6b54169775a7cfd48f410d1b5d
 
 }
