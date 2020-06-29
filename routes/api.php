@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
+		Route::get('save-verification-file/{id}','VerificationController@index');
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link

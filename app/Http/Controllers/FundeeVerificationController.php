@@ -12,7 +12,7 @@ class FundeeVerificationController extends Controller
       //dd($userExist);
       if($userExist) {
           if($userExist->userExist) {
-              $verificationRecord = Verification::find($userExist->userExist->id);
+              $verificationRecord = Verification::find($userExist->s->id);
               dd($verificationRecord);
               Verification::findOrFail($verificationRecord->id)->update([
                   'status' => 1,
