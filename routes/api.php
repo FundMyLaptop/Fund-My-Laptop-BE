@@ -28,7 +28,11 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
-	///all other routes should be defined under this line using the format of line 25 (above)
+	Route::get('recommendations','RecommendationController@index');
+
+    ///all other routes should be defined under this line using the format of line 25 (above)
+    Route::get('verified-users', 'VerificationController@index');
+
 	Route::get('recommendations', 'RecommendationController@index');
 	Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');
@@ -46,5 +50,5 @@ Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
 
-
+Route::get('completed-requests', 'AdminController@index');
 
