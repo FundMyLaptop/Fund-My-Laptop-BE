@@ -51,7 +51,7 @@ class SocialController extends Controller
         }else{
              $name = explode(" ",$getInfo->name);
             $firstname = $name[1];
-            $lastname = $name[2];
+            $lastname = $name[0];
             try{
                 return User::create([
                     'firstName' => $firstname,
