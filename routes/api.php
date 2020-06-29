@@ -28,17 +28,27 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
+<<<<<<< HEAD
+	///all other routes should be defined under this line using the format of line 25 (above)
+=======
 	Route::get('recommendations','RecommendationController@index');
 
     ///all other routes should be defined under this line using the format of line 25 (above)
     Route::get('verified-users', 'VerificationController@index');
 
+>>>>>>> 6149de680f20639e917cb071527dde50b88c5065
 	Route::get('recommendations', 'RecommendationController@index');
 	Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
+    Route::post('bank-accounts', 'BankAccountController@create');
+		Route::post('save-verification-file','VerificationController@store');
 	Route::post('bank-accounts', 'BankAccountController@create');
+<<<<<<< HEAD
+	Route::get('completed-requests', 'AdminController@index');
+=======
 
+>>>>>>> 6149de680f20639e917cb071527dde50b88c5065
 
 });
 
@@ -48,6 +58,3 @@ Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For rese
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
-
-Route::get('completed-requests', 'AdminController@index');
-
