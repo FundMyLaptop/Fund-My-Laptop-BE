@@ -10,7 +10,7 @@ use App\Request as FundRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Validator;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -23,6 +23,8 @@ class UserController extends Controller
     {
         //
     }
+
+
 
     /**
      * Show the form for creating a new resource.
