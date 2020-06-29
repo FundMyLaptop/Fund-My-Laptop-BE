@@ -20,7 +20,7 @@ class VerificationController extends Controller
     {
         //
         // only admin can view verified accounts
-        if (Auth::check() && Auth::user()->role == 1) {
+        if (Auth::check() && Auth::user()->role == 2) {
     
             $verified = DB::table('verifications')
             ->where("status" == 1)
