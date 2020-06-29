@@ -64,4 +64,8 @@ class User extends Authenticatable
         return $this->hasOne('App\BankAccount');
     }
 
+    public function verification() {
+        return $this->hasOne('App\Verification');
+    }
+
 }

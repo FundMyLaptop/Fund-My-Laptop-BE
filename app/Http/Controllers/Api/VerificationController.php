@@ -21,15 +21,13 @@ class VerificationController extends Controller
         //
         // only admin can view verified accounts
         if (Auth::check() && Auth::user()->role == 2) {
-    
-            $verified = DB::table('verifications')
-            ->where("status" == 1)
-            ->get();
-            return json_encode($verified);
+
+            $verified = Verification::with('user')->where('status',1)->get();
+            return response()->json(['data' => $verified], 200);
         }
         else{
-            return json_encode("message", "You do not have permission");
-        };
+            return response()->json(['data' => 'You do not have permission'], 200);
+        }
     }
 
     /**
