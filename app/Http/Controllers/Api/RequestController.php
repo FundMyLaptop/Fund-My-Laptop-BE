@@ -99,9 +99,10 @@ class RequestController extends Controller
     public function fetch_uncompleted_requests(Request $request)
     {
         $request = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->get();
-
+        $count = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->count();
         return response()->json([
             'message' => 'Request retrieved',
+            'count' => $count,
             'data' => $request
         ], 200);
     }
