@@ -63,5 +63,7 @@ class User extends Authenticatable
     public function bank_account() {
         return $this->hasOne('App\BankAccount');
     }
-
-}
+    public function findForPassport($identifier){
+        return User::orWhere('email', $identifier)
+            ->where('status', 1)->first();    }
+    }
