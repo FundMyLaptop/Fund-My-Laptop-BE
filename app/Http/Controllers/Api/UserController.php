@@ -20,10 +20,7 @@ class UserController extends Controller
         //
     }
 
-    public function verified()
-    {
-      
-    }
+
 
     /**
      * Show the form for creating a new resource.
