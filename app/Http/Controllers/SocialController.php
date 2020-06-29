@@ -65,7 +65,7 @@ class SocialController extends Controller
                     'role' => 0,
                 ]);
             }catch (\Exception $e){
-                throw new Exception($e->getMessage());
+                throw new \Exception($e->getMessage());
             }
         }
 
