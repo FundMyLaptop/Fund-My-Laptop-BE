@@ -29,7 +29,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	Route::get('recommendations','RecommendationController@index');
 
     ///all other routes should be defined under this line using the format of line 25 (above)
-    Route::get('verified_users', 'UserController@verified');
+    Route::get('verified', 'VerificationController@index');
 });
 
 Route::fallback(function(){

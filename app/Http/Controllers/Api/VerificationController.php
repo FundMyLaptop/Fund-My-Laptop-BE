@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Verification;
 
 class VerificationController extends Controller
@@ -16,6 +19,17 @@ class VerificationController extends Controller
     public function index()
     {
         //
+        // only admin can view verified accounts
+        if (Auth::check() && Auth::user()->role == 1) {
+    
+            $verified = DB::table('verifications')
+            ->where("status" == 1)
+            ->get();
+            return json_encode($verified);
+        }
+        else{
+            return json_encode("message", "You do not have permission");
+        };
     }
 
     /**
