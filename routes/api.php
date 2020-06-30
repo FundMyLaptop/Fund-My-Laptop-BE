@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('completed-requests', 'AdminController@index');
     Route::post('transaction/store','TransactionController@store');
     Route::post('transaction/update/{id}','TransactionController@update');
+    Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
