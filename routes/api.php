@@ -29,12 +29,12 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     	return $request->user();
 	});*/
 	Route::get('recommendations','RecommendationController@index');
-
     ///all other routes should be defined under this line using the format of line 25 (above)
     Route::get('verified-users', 'VerificationController@index');
     Route::get('recommendations', 'RecommendationController@index');
     Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');
+    Route::post('requests/store', 'RequestController@store');
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
     Route::get('completed-requests', 'AdminController@index');
