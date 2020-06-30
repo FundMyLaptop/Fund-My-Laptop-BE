@@ -39,7 +39,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
     Route::get('completed-requests', 'AdminController@index');
-    Route::get('transaction/funder/{id}', 'Api\TransactionController@getFunderHistory');
+    Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('transaction/store', 'TransactionController@store');
     Route::post('transaction/update/{id}','TransactionController@update');
 });
