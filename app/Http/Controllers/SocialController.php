@@ -42,7 +42,7 @@ class SocialController extends Controller
         }
     }
     function createUser($getInfo,$provider){
-        $user_id = User::where('provider_id', $getInfo->id)->first();
+        $user_id = User::where('provider_id', $getInfo->id)->where('provider' ,$provider)->first();
         if($getInfo->email){
             $user_email = User::where('email',$getInfo->email)->first();
         }else{
