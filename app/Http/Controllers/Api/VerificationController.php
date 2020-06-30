@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Verification;
 
 class VerificationController extends Controller
@@ -47,7 +48,7 @@ class VerificationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     //verify bvn 
+     //verify bvn
     public function verifyBvn(Request $request){
 
     $FirstName = $request->FirstName;
@@ -67,19 +68,19 @@ class VerificationController extends Controller
        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
        CURLOPT_CUSTOMREQUEST => "POST",
        CURLOPT_POSTFIELDS => json_encode([
-         
+
          'bvn'=> $request->bvn,
          'dateOfBirth'=> $request->dateOfBirth,
          'secretKey'=> 'hfucj5jatq8h',
-         
+
        ]),
-      
+
        CURLOPT_HTTPHEADER => array(
          "Content-Type: application/json",
          "Authorization: Bearer uvjqzm5xl6bw"
        ),
      ));
-     
+
      $response = curl_exec($curl);
      $err = curl_error($curl);
      curl_close($curl);
@@ -96,26 +97,34 @@ class VerificationController extends Controller
             'message' => 'Firstname and Lastname do not match BVN information'], 404);
     }
      }
-     
+
     public function store(Request $request)
     {
         //Upload user id or video and verify their account
-        $data = $request-> validate([
-            'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
-            'video' => ['required', 'file', 'mimes:mp4', 'max:10048']
-          ]);
-  
-          $imageURL = $data['image']->store('uploads/images', 'public');
-          $videoURL = $data['video']->store('uploads/videos', 'public');
-          return auth()->user()->verification()->create([
-              'photoURL' => $imageURL,
-              'videoURL' => $videoURL,
-              'status' => 1
-          ]);
-        return response()->json([
-          'message' => 'Verification Successful',
-          'data' => $result
-        ], 201);
+          $validate = Validator::make($request->all(), [
+               'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
+               'video' => ['required', 'file', 'mimes:mp4', 'max:10048']
+             ]);
+
+           if($validate->fails()){
+               return response()->json([
+                   'message' => 'Verification Failed',
+                   'data' => $validate->errors()
+               ]);
+           }else{
+
+               $imageURL = $request->file('image')->store('uploads/images', 'public');
+               $videoURL = $request->file('video')->store('uploads/videos', 'public');
+               $result =  auth()->user()->verification()->create([
+                   'photoURL' => $imageURL,
+                   'videoURL' => $videoURL,
+                   'status' => 1
+               ]);
+               return response()->json([
+               'message' => 'Verification Successful',
+               'data' => $result
+               ], 201);
+             }
     }
 
     /**
