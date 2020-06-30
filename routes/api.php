@@ -45,7 +45,9 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::delete('users/delete/{id}','AdminController@destroy');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('verify-bvn', 'VerificationController@verifyBvn');
-
+Route::post('invest', 'InvestController@index');
+	Route::get('invest/redirect/{id}', 'InvestController@redirect');
+	Route::post('invest/redirect/{id}', 'InvestController@redirect');
 
 
     // Commented out by Eromosele
