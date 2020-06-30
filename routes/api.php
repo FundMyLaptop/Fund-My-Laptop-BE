@@ -35,15 +35,35 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 
 	Route::get('recommendations', 'RecommendationController@index');
 	Route::get('my-profile', 'UserController@getMyProfile');
+
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
     Route::get('completed-requests', 'AdminController@index');
+
+    Route::post('transaction/store','TransactionController@store');
+	Route::post('transaction/update/{id}','TransactionController@update');
+	Route::delete('users/{id}','AdminController@destroy');
+
+	Route::get('user-details', 'UserController@getUserDetails');
+	Route::get('/requests', 'RequestController@index');
+  Route::get('requests', 'RequestController@index');
+  Route::get('requests/{id}', 'RequestController@show');
+	Route::post('bank-accounts', 'BankAccountController@create');
+	Route::get('completed-requests', 'AdminController@index');
+  Route::delete('users/{id}','AdminController@destroy');
+
+
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
+    Route::post('transaction/store', 'TransactionController@store');
+    Route::post('transaction/update/{id}','TransactionController@update');
+
+
 
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
     //Route::post('transaction/update/{id}','TransactionController@update');
+
 });
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
@@ -53,4 +73,3 @@ Route::fallback(function () {
 })->name('api.fallback.404');
 
 Route::get('completed-requests', 'AdminController@index');
-
