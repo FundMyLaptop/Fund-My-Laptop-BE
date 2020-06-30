@@ -15,6 +15,6 @@ class Favorite extends Model
     }
 
     public function request() {
-        return $this->hasOne('App\Request');
+        return $this->belongsTo('App\Request');
     }
 }
