@@ -46,7 +46,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('verify-bvn', 'VerificationController@verifyBvn');
     Route::post('save-verification-file','VerificationController@store');
-
+    Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
 
 
     // Commented out by Eromosele
@@ -60,4 +60,8 @@ Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
 
-Route::get('completed-requests', 'AdminController@index');
+
+
+
+//commentted by onifade the method index in this contoller has an error
+//Route::get('completed-requests', 'AdminController@index');
