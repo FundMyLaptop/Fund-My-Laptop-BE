@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    //$post = ['administrative','admin'];
+    
     return view('welcome');
 });
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
