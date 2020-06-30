@@ -42,10 +42,14 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('requests', 'RequestController@index');
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
+<<<<<<< HEAD
     Route::get('completed-requests', 'AdminController@index');
     Route::post('transaction/store','TransactionController@store');
     Route::post('transaction/update/{id}','TransactionController@update');
 
+=======
+    Route::post('verify-bvn', 'VerificationController@verifyBvn');
+>>>>>>> 7b5e18dd289724bbbd4de0df446f7b78b6a774de
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
