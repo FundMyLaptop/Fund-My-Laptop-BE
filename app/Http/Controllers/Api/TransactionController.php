@@ -49,7 +49,9 @@ class TransactionController extends Controller
                 'response_code' => 'required|int',
             ]);
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);}
+            return response()->json(['error'=>$validator->errors()], 400);
+        }
+
         $transaction =  new Transaction();
         $transaction->request_id = $request->request_id;
         $transaction->user_id = $user_id;
@@ -57,7 +59,8 @@ class TransactionController extends Controller
         $transaction->amount = $request->amount;
         $transaction->status= $request->status;
         $transaction->response_code = $request->response_code;
-            $transaction->save();
+        $transaction->save();
+
         return response()->json([
                 "message" => "transaction record created"
             ], 201);
@@ -111,7 +114,7 @@ class TransactionController extends Controller
         };
         $transaction_exist = Transaction::query()->where('id',$id)->exists();
         if($transaction_exist){
-//            update transaction
+
             $update = Transaction::query()->where('id',$id)->update([
                'transaction_ref'=>$request->transaction_ref,
                 'request_id'=>$request->request_id,
