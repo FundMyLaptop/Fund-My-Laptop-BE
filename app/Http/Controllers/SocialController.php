@@ -25,10 +25,8 @@ class SocialController extends Controller
         try{
             if($provider == 'twitter'){
                 $getInfo = Socialite::driver($provider)->user();
-                dd($getInfo);
             }else{
                 $getInfo = Socialite::driver($provider)->stateless()->user();
-
             }
             $user = $this->createUser($getInfo,$provider);
             Auth::login($user);
@@ -48,7 +46,7 @@ class SocialController extends Controller
         }
     }
     function createUser($getInfo,$provider){
-        $user_id = User::where('provider_id', $getInfo->id)->first();
+        $user_id = User::where('provider_id', $getInfo->id)->where('provider' ,$provider)->first();
         if($getInfo->email){
             $user_email = User::where('email',$getInfo->email)->first();
         }else{
@@ -62,6 +60,8 @@ class SocialController extends Controller
             $name = explode(" ",$getInfo->name);
             switch ($provider){
                 case "twitter":
+                    $firstname = $name[0];
+                    $lastname = $name[0];
                 case "facebook":
                     $firstname = $name[1];
                     $lastname = $name[0];
