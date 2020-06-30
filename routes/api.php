@@ -59,4 +59,6 @@ Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
 
-Route::get('completed-requests', 'AdminController@index');
+
+//commentted by onifade the method index in this contoller has an error
+//Route::get('completed-requests', 'AdminController@index');
