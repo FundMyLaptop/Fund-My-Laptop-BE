@@ -48,11 +48,10 @@ class SocialController extends Controller
         }else{
             $user_email = false;
         }
-        if($user_id ){
-            return $user_id;
-        }elseif ($user_email){
-            $update = User::query()->where('email',$getInfo->email)->update(['provider_id'=>$getInfo->id]);
+        if($user_email){
             return $user_email;
+        }elseif ($user_id){
+            return $user_id;
         }else{
             $name = explode(" ",$getInfo->name);
             $firstname = $name[1];
@@ -62,9 +61,6 @@ class SocialController extends Controller
                     'firstName' => $firstname,
                     'lastName' => $lastname,
                     'email' => $getInfo->email,
-                    'password' => null,
-                    'phone' => null,
-                    'address' => null,
                     'provider' => $provider,
                     'provider_id' => $getInfo->id,
                     'role' => 0,
