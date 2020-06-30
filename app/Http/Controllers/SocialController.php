@@ -13,13 +13,17 @@ class SocialController extends Controller
 {
     //
     public function redirect($provider)
-    {
-        return Socialite::driver($provider)->redirect();
+    {   try{
+            return Socialite::driver($provider)->redirect();
+        }catch (\Exception $exception){
+            return response()->json(['error' => 'Unauthorized', 'message'=>$exception->getMessage()], 401);
+    }
+
     }
     public function callback($provider)
     {
-        $getInfo = Socialite::driver($provider)->stateless()->user();
         try{
+            $getInfo = Socialite::driver($provider)->stateless()->user();
             $user = $this->createUser($getInfo,$provider);
             Auth::login($user);
             $user = Auth::user();
@@ -44,13 +48,13 @@ class SocialController extends Controller
         }else{
             $user_email = false;
         }
-
         if($user_id ){
             return $user_id;
         }elseif ($user_email){
+            $update = User::query()->where('email',$getInfo->email)->update(['provider_id'=>$getInfo->id]);
             return $user_email;
         }else{
-             $name = explode(" ",$getInfo->name);
+            $name = explode(" ",$getInfo->name);
             $firstname = $name[1];
             $lastname = $name[0];
             try{
