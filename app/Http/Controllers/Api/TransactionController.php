@@ -50,7 +50,9 @@ class TransactionController extends Controller
                 'response_code' => 'required|int',
             ]);
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);}
+            return response()->json(['error'=>$validator->errors()], 400);
+        }
+
         $transaction =  new Transaction();
         $transaction->request_id = $request->request_id;
         $transaction->user_id = $user_id;
@@ -58,7 +60,8 @@ class TransactionController extends Controller
         $transaction->amount = $request->amount;
         $transaction->status= $request->status;
         $transaction->response_code = $request->response_code;
-            $transaction->save();
+        $transaction->save();
+
         return response()->json([
                 "message" => "transaction record created"
             ], 201);
@@ -78,14 +81,10 @@ class TransactionController extends Controller
     }
     // Show a funder's funding history
     public function getFunderHistory($id){
+        Auth::user();
+        $transaction = Transaction::with('request', 'user')->where('user_id', $id)->get();
 
-        $user = User::find($id);
-        $num_rows = count($user->transaction);
-        if($num_rows > 0){
-            return response()->json(['transactions'=>$user->transaction],200);
-        }else{
-            return response()->json(['message'=>'This user has made no funding transaction'],200);
-        }
+        return response()->json(['transactions' => $transaction],200);
     }
 
     /**
@@ -120,10 +119,10 @@ class TransactionController extends Controller
             ]);
         if($validator->fails()){
             return response()->json(['message'=> $validator->errors()],400);
-        };
+        }
         $transaction_exist = Transaction::query()->where('id',$id)->exists();
         if($transaction_exist){
-//            update transaction
+
             $update = Transaction::query()->where('id',$id)->update([
                'transaction_ref'=>$request->transaction_ref,
                 'request_id'=>$request->request_id,
