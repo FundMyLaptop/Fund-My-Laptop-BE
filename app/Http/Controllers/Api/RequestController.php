@@ -25,7 +25,7 @@ class RequestController extends Controller
     {
         $user = Auth::user();
         $query = FundRequest::with('user')->get();
-        
+
         return response()->json([
             'message' => 'Requests retrieved',
             'data' => $query
@@ -66,7 +66,7 @@ class RequestController extends Controller
             //get authenticated user id
             $userid = Auth::id;
 
-            
+
             //if (!Auth::check()) {
                 // The user is logged in...
             //    return response()->json(['message' => 'User does not exist'], 404);
@@ -94,7 +94,7 @@ class RequestController extends Controller
             if ($save == 1)
             {
                 return response()->json(['message' => 'Request save successfully'], 200);
-                
+
             } else
             {
                 return response()->json([$submission,'message' => 'Request could not saved. Contact administrator'], 405);
