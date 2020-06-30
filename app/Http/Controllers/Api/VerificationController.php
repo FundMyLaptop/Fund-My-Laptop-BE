@@ -99,7 +99,23 @@ class VerificationController extends Controller
      
     public function store(Request $request)
     {
-        //
+        //Upload user id or video and verify their account
+        $data = $request-> validate([
+            'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
+            'video' => ['required', 'file', 'mimes:mp4', 'max:10048']
+          ]);
+  
+          $imageURL = $data['image']->store('uploads/images', 'public');
+          $videoURL = $data['video']->store('uploads/videos', 'public');
+          return auth()->user()->verification()->create([
+              'photoURL' => $imageURL,
+              'videoURL' => $videoURL,
+              'status' => 1
+          ]);
+        return response()->json([
+          'message' => 'Verification Successful',
+          'data' => $result
+        ], 201);
     }
 
     /**
