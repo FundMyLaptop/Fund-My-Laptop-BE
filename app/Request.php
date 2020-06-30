@@ -22,7 +22,11 @@ class Request extends Model
         return $this->belongsTo('App\Accrual');
     }
 
-    public transaction(){
+    public function transaction(){
         return $this->hasMany('App\Request');
+    }
+
+    public function repayment(){
+        return $this->hasMany('App\Repayment');
     }
 }
