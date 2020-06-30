@@ -4,7 +4,11 @@
 
 namespace Composer\Autoload;
 
+<<<<<<< HEAD
 class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
+=======
+class ComposerStaticInitffa4087a2b93130807b712a5ead54401
+>>>>>>> c00f9a911386017953807ae14d0a5b37a0c3696d
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -411,6 +415,7 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
     );
 
     public static $classMap = array (
+<<<<<<< HEAD
         'AccrualsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AccrualsTableSeeder.php',
         'App\\Accrual' => __DIR__ . '/../..' . '/app/Accrual.php',
         'App\\BankAccount' => __DIR__ . '/../..' . '/app/BankAccount.php',
@@ -426,6 +431,12 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'App\\Http\\Controllers\\Api\\TransactionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/TransactionController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
         'App\\Http\\Controllers\\Api\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/VerificationController.php',
+=======
+        'App\\Accrual' => __DIR__ . '/../..' . '/app/Accrual.php',
+        'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Favorite' => __DIR__ . '/../..' . '/app/Favorite.php',
+>>>>>>> c00f9a911386017953807ae14d0a5b37a0c3696d
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -1263,7 +1274,10 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'Faker\\Provider\\zh_TW\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/zh_TW/Text.php',
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
+<<<<<<< HEAD
         'FavoriteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FavoriteTableSeeder.php',
+=======
+>>>>>>> c00f9a911386017953807ae14d0a5b37a0c3696d
         'Fideloper\\Proxy\\TrustProxies' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustProxies.php',
         'Fideloper\\Proxy\\TrustedProxyServiceProvider' => __DIR__ . '/..' . '/fideloper/proxy/src/TrustedProxyServiceProvider.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
@@ -3662,8 +3676,11 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'Ramsey\\Uuid\\UuidFactory' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactory.php',
         'Ramsey\\Uuid\\UuidFactoryInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactoryInterface.php',
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
+<<<<<<< HEAD
         'RecommendationTableSeeder' => __DIR__ . '/../..' . '/database/seeds/RecommendationTableSeeder.php',
         'RequestsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/RequestsTableSeeder.php',
+=======
+>>>>>>> c00f9a911386017953807ae14d0a5b37a0c3696d
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',
@@ -4520,9 +4537,13 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+<<<<<<< HEAD
         'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'VerificationTableSeeder' => __DIR__ . '/../..' . '/database/seeds/VerificationTableSeeder.php',
+=======
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+>>>>>>> c00f9a911386017953807ae14d0a5b37a0c3696d
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
@@ -4626,10 +4647,17 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+<<<<<<< HEAD
             $loader->prefixLengthsPsr4 = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$classMap;
+=======
+            $loader->prefixLengthsPsr4 = ComposerStaticInitffa4087a2b93130807b712a5ead54401::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitffa4087a2b93130807b712a5ead54401::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitffa4087a2b93130807b712a5ead54401::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitffa4087a2b93130807b712a5ead54401::$classMap;
+>>>>>>> c00f9a911386017953807ae14d0a5b37a0c3696d
 
         }, null, ClassLoader::class);
     }
