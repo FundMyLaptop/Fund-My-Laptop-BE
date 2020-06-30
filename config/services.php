@@ -39,5 +39,4 @@ return [
         'client_secret' => 'bKBJ22OMX5Jf3Ajv',
         'redirect' => 'https://fml-onifs10.herokuapp.com/callback/linkedin',
     ],
-
 ];
