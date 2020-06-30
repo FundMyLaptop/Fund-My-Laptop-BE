@@ -54,8 +54,20 @@ class SocialController extends Controller
             return $user_id;
         }else{
             $name = explode(" ",$getInfo->name);
-            $firstname = $name[1];
-            $lastname = $name[0];
+            switch ($provider){
+                case "facebook":
+                    $firstname = $name[1];
+                    $lastname = $name[0];
+                    break;
+                case "linkedin":
+                    $firstname = $name[0];
+                    $lastname = $name[1];
+                    break;
+                default:
+                    throw new \Exception('Unknown redirect ');
+            };
+
+
             try{
                 return User::create([
                     'firstName' => $firstname,
