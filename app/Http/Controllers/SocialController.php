@@ -25,6 +25,7 @@ class SocialController extends Controller
         try{
             if($provider == 'twitter'){
                 $getInfo = Socialite::driver($provider)->user();
+                dd($getInfo);
             }else{
                 $getInfo = Socialite::driver($provider)->stateless()->user();
 
