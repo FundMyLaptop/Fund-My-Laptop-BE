@@ -6,7 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use mysql_xdevapi\Exception;
+use PHPUnit\Exception;
+
 
 class SocialController extends Controller
 {
@@ -17,7 +18,7 @@ class SocialController extends Controller
     }
     public function callback($provider)
     {
-        $getInfo = Socialite::driver($provider)->user();
+        $getInfo = Socialite::driver($provider)->stateless()->user();
         try{
             $user = $this->createUser($getInfo,$provider);
             Auth::login($user);
