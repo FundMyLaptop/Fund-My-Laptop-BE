@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Auth\Middleware\Authenticate;
+use Validator;
 
 class RequestController extends Controller
 {
@@ -24,7 +25,7 @@ class RequestController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $query = FundRequest::with('user')->get();
+        $query = FundRequest::with('user')->where('user_id' )->get();
 
         return response()->json([
             'message' => 'Requests retrieved',
@@ -53,18 +54,29 @@ class RequestController extends Controller
         //
         try
         {
+            $validator = Validator::make($request->all(),
+                [
+                    'title' => 'required',
+                    'description' => 'required',
+                    'photoURL' => 'required',
+                    'currency' => 'required',
+                    'amount' => 'required',
+                ]);
+            if ($validator->fails()) {
+                return response()->json(['error'=>$validator->errors()], 400);
+            }
 
             $title = $request->title ?? "";
             $description = $request->description ?? "";
             $photoURL = $request->photoURL ?? "";
             $currency = $request->currency?? "";
             $amount = $request->amount ?? "";
-            $isFunded = $request->isFunded ?? "";
-            $isSuspended = $request->isSuspended ?? "";
-            $isActive = $request->isActive ?? "";
+            $isFunded = 0;
+            $isSuspended = 0;
+            $isActive = 0;
 
             //get authenticated user id
-            $userid = Auth::id;
+            $userid = Auth::id();
 
 
             //if (!Auth::check()) {
@@ -82,7 +94,7 @@ class RequestController extends Controller
             } */
 
             $fundreq = new FundRequest();
-            $fundreq->userId = htmlspecialchars($userid);
+            $fundreq->user_id = htmlspecialchars($userid);
             $fundreq->title = htmlspecialchars($title);
             $fundreq->description = htmlspecialchars($description);
             $fundreq->photoURL = htmlspecialchars($photoURL);
@@ -95,25 +107,17 @@ class RequestController extends Controller
             $save = $fundreq->save();
 
 
-            if ($save == 1)
+            if ($save)
             {
                 return response()->json(['message' => 'Request save successfully'], 200);
 
             } else
             {
-                return response()->json([$submission,'message' => 'Request could not saved. Contact administrator'], 405);
-                /*
-                $message = [
-                    'status' => 'failure',
-                    'data' => [
-                        'message' => 'Request cannot be saved. Contact administrator',
-                    ],
-                ];
-                return $message; */
+                return response()->json(['message' => 'Request could not saved. Contact administrator'], 405);
             }
 
-        } catch (Exception $ex) {
-            return response()->json(['message' => back()->withError($ex->getmessage())->withInput()], 406);
+        } catch (\Exception $ex) {
+            return response()->json(['message' => $ex->getMessage()], 406);
         }
 
     }
