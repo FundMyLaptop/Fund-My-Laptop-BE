@@ -44,7 +44,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	  Route::get('completed-requests', 'AdminController@index');
     Route::delete('users/delete/{id}','AdminController@destroy');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
-    Route::post('save-verification-file','VerificationController@store');
+    Route::post('verify-bvn', 'VerificationController@verifyBvn');
 
 
 
