@@ -34,5 +34,10 @@ return [
         'client_secret' => '5a5d5c9709d11235c313d92a7c8530a9',
         'redirect' => 'https://fml-onifs10.herokuapp.com/callback/facebook',
     ],
+    'linkedin' => [
+        'client_id' => '78e0g1t966o601',
+        'client_secret' => 'bKBJ22OMX5Jf3Ajv',
+        'redirect' => 'https://fml-onifs10.herokuapp.com/callback/linkedin',
+    ],
 
 ];
