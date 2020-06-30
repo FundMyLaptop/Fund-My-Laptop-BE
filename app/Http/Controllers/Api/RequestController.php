@@ -71,11 +71,6 @@ class RequestController extends Controller
                 // The user is logged in...
             //    return response()->json(['message' => 'User does not exist'], 404);
             //}
-
-            if($amount < 0)
-            {
-                return response()->json(['message' => 'Amount cannot be less than zero'], 304);
-            }
             if($amount < 0)
             {
                 return response()->json(['message' => 'Amount cannot be less than zero'], 304);
