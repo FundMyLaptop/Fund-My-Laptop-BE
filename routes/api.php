@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('bank-accounts', 'BankAccountController@create');
     Route::get('completed-requests', 'AdminController@index');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
+    Route::post('verify-bvn', 'VerificationController@verifyBvn');
 
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
