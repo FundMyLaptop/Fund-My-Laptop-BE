@@ -62,6 +62,7 @@ class SocialController extends Controller
                 case "twitter":
                     $firstname = $name[0];
                     $lastname = $name[0];
+                    break;
                 case "facebook":
                     $firstname = $name[1];
                     $lastname = $name[0];
