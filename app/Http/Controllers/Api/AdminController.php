@@ -22,7 +22,7 @@ class AdminController extends Controller
 
             // Fetch completed requests
 
-            $completed_requests = DB::table('users')->where('isFunded', '=', 1)->get(); // Commented by onifade this line is wrong
+            $completed_requests = DB::table('requests')->where('isFunded', '=', 1)->get();
 
             // Count completed requests
 

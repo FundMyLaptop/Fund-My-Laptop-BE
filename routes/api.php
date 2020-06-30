@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::delete('users/delete/{id}','AdminController@destroy');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('verify-bvn', 'VerificationController@verifyBvn');
-
+    Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
 
 
     // Commented out by Eromosele
@@ -58,6 +58,8 @@ Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For rese
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
+
+
 
 
 //commentted by onifade the method index in this contoller has an error
