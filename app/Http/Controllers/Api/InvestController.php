@@ -93,7 +93,7 @@ return redirect($transaction->data->link);
      */
     public function redirect($request_id,Request $request)
     {
-
+ 
         if(isset($request['cancelled'])){
           
             return response()->json(['message' => "Transaction was cancelled"], 400);
@@ -133,11 +133,11 @@ return redirect($transaction->data->link);
             $chargeCurrency = $resp['data']['currency'];
           	
     $query = array(
-                "request_id" => "FLWSECK_TEST-03a945bfd231d60cf50c2e4da3060898-X",
+                "request_id" => $request_id,
                 "transaction_ref" => $ref,
                 "amount"  =>  $chargeAmount,
                 "status"  =>  $paymentStatus,
-                "response_code"  => $chargeResponsecode
+                "response_code"  => intval($chargeResponsecode)
 
             );
     
