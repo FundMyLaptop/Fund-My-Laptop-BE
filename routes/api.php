@@ -48,8 +48,6 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
 
 
-
-
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
     //Route::post('transaction/update/{id}','TransactionController@update');
@@ -60,6 +58,8 @@ Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For rese
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
+
+
 
 
 //commentted by onifade the method index in this contoller has an error
