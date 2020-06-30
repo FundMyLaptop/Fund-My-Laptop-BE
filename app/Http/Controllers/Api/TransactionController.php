@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request as TransactionRequest;
 use App\Http\Controllers\Controller;
 use App\Transaction;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -77,6 +78,17 @@ class TransactionController extends Controller
     public function show($id)
     {
         //
+    }
+    // Show a funder's funding history
+    public function getFunderHistory($id){
+
+        $user = User::find($id);
+        $num_rows = count($user->transaction);
+        if($num_rows > 0){
+            return response()->json(['transactions'=>$user->transaction],200);
+        }else{
+            return response()->json(['message'=>'This user has made no funding transaction'],200);
+        }
     }
 
     /**
