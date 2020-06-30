@@ -82,7 +82,7 @@ class TransactionController extends Controller
     // Show a funder's funding history
     public function getFunderHistory($id){
         Auth::user();
-        $transaction = Transaction::with('request', 'user')->where('user_id', 1)->get();
+        $transaction = Transaction::with('request', 'user')->where('user_id', $id)->get();
 
         return response()->json(['transactions' => $transaction],200);
     }
