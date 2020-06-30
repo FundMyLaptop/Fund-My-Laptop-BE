@@ -81,14 +81,10 @@ class TransactionController extends Controller
     }
     // Show a funder's funding history
     public function getFunderHistory($id){
+        Auth::user();
+        $transaction = Transaction::with('request', 'user')->where('user_id', 1)->get();
 
-        $user = User::find($id);
-        $num_rows = count($user->transaction);
-        if($num_rows > 0){
-            return response()->json(['transactions'=>$user->transaction],200);
-        }else{
-            return response()->json(['message'=>'This user has made no funding transaction'],200);
-        }
+        return response()->json(['transactions' => $transaction],200);
     }
 
     /**
@@ -123,7 +119,7 @@ class TransactionController extends Controller
             ]);
         if($validator->fails()){
             return response()->json(['message'=> $validator->errors()],400);
-        };
+        }
         $transaction_exist = Transaction::query()->where('id',$id)->exists();
         if($transaction_exist){
 
