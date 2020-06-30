@@ -39,4 +39,9 @@ return [
         'client_secret' => env('LI_CLIENT_KEY'),
         'redirect' => env('LI_REDIRECT_URL'),
     ],
+    'twitter' => [
+        'client_id' => env('TWT_CLIENT_ID'),
+        'client_secret' => env('TWT_CLIENT_KEY'),
+        'redirect' => env('TWT_REDIRECT_URL'),
+    ],
 ];

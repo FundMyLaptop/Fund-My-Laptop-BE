@@ -55,6 +55,7 @@ class SocialController extends Controller
         }else{
             $name = explode(" ",$getInfo->name);
             switch ($provider){
+                case "twitter":
                 case "facebook":
                     $firstname = $name[1];
                     $lastname = $name[0];
