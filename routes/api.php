@@ -29,10 +29,10 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     	return $request->user();
 	});*/
 	Route::get('recommendations','RecommendationController@index');
-<<<<<<< HEAD
+
 	///all other routes should be defined under this line using the format of line 25 (above)
 	Route::post('verify-bvn', 'VerificationController@verifyBvn');
-=======
+
 
     ///all other routes should be defined under this line using the format of line 25 (above)
     Route::get('verified-users', 'VerificationController@index');
@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('completed-requests', 'AdminController@index');
     Route::post('transaction/store','TransactionController@store');
     Route::post('transaction/update/{id}','TransactionController@update');
->>>>>>> 5608d25a28bd0b6b54169775a7cfd48f410d1b5d
+
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
