@@ -43,8 +43,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('verify-bvn', 'VerificationController@verifyBvn');
     Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
     Route::post('invest', 'InvestController@index');
-	  Route::get('invest/redirect/{id}', 'InvestController@redirect');
-	  Route::post('invest/redirect/{id}', 'InvestController@redirect');
+    Route::get('invest/redirect/{id}', 'InvestController@redirect');
+    Route::post('invest/redirect/{id}', 'InvestController@redirect');
 
 
     // Commented out by Eromosele
