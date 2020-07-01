@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Support\Facades\Route;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +52,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof NotFoundException && $request->isJson()) {
+            return Route::respondWithRoute('api.fallback.404');
+        }
+
         return parent::render($request, $exception);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+        return redirect()->guest(route($login));
     }
 }
