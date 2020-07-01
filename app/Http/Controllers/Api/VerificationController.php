@@ -22,9 +22,10 @@ class VerificationController extends Controller
         // only admin can view verified accounts
         if (Auth::check() && Auth::user()->role == 2) {
 
-            $verified = Verification::with('user')->where('status', 1)->get();
+            $verified = Verification::with('user')->where('status',1)->get();
             return response()->json(['data' => $verified], 200);
-        } else {
+        }
+        else{
             return response()->json(['data' => 'You do not have permission'], 200);
         }
     }
@@ -42,60 +43,9 @@ class VerificationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-
-    //verify bvn
-    public function verifyBvn(Request $request)
-    {
-
-        $FirstName = $request->FirstName;
-        $LastName = $request->LastName;
-        $curl = curl_init();
-
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://sandbox.wallets.africa/self/verifybvn",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode([
-                'bvn' => $request->bvn,
-                'dateOfBirth' => $request->dateOfBirth,
-                'secretKey' => 'hfucj5jatq8h',
-            ]),
-
-            CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/json",
-                "Authorization: Bearer uvjqzm5xl6bw"
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
-
-        $resp = json_decode($response, true);
-
-        $FirstNameFromBvn = $resp['FirstName'];
-        $LastNameFromBvn = $resp['LastName'];
-
-        if (($FirstName == $FirstNameFromBvn) && ($LastName == $LastNameFromBvn)) {
-            return response()->json(['message' => 'Firstname and Lastname match BVN information'], 201);
-        } else {
-            return response()->json([
-                'message' => 'Firstname and Lastname do not match BVN information'
-            ], 400);
-        }
-    }
-
     public function store(Request $request)
     {
         //
@@ -104,7 +54,7 @@ class VerificationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -115,7 +65,7 @@ class VerificationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -126,8 +76,8 @@ class VerificationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -138,7 +88,7 @@ class VerificationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
