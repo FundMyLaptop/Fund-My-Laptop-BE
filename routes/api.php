@@ -29,10 +29,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     	return $request->user();
 	});*/
 	Route::get('recommendations','RecommendationController@index');
-<<<<<<< HEAD
-	///all other routes should be defined under this line using the format of line 25 (above)
 	Route::any('process-recurring-payments', 'RepaymentController@process');
-=======
     ///all other routes should be defined under this line using the format of line 25 (above)
     Route::get('verified-users', 'VerificationController@index');
     Route::get('recommendations', 'RecommendationController@index');
@@ -55,7 +52,6 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
     //Route::post('transaction/update/{id}','TransactionController@update');
->>>>>>> 7007b3db7c5548e9a22383e27045ffcfe0ae8781
 });
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
