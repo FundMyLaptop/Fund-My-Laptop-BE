@@ -48,7 +48,7 @@ class SocialController extends Controller
     }
     function createUser($getInfo,$provider){
         try{
-            $social = socialAccount::where(['provider_id' => str($getInfo->id), 'provider' => $provider])->first();
+            $social = socialAccount::where(['provider_id' => $getInfo->id, 'provider' => $provider])->first();
             if($social){
                 return $social->User;
             }else {
@@ -57,7 +57,7 @@ class SocialController extends Controller
                     if ($user) {
                         $social = socialAccount::create([
                             'user_id' => $user->id,
-                            'provider_id' => str($getInfo->id),
+                            'provider_id' => $getInfo->id,
                             'provider' => $provider
                         ]);
                         return $user;
@@ -71,7 +71,7 @@ class SocialController extends Controller
                         socialAccount::create([
                             'user_id' => $user->id,
                             'provider' => $provider,
-                            'provider_id' => str($getInfo->id),
+                            'provider_id' => $getInfo->id,
                         ]);
                         return $user;
                     };
@@ -85,7 +85,7 @@ class SocialController extends Controller
                     socialAccount::create([
                         'user_id' => $user->id,
                         'provider' => $provider,
-                        'provider_id' => str($getInfo->id),
+                        'provider_id' => $getInfo->id,
                     ]);
                     return $user;
                 }
