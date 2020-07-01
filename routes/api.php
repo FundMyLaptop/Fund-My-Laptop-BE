@@ -46,7 +46,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('verify-bvn', 'VerificationController@verifyBvn');
     Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
-    Route::patch('users/block/{id}', 'AdminController@block');  // block users
+    Route::put('users/block/{id}', 'AdminController@block');  // block users
 
 
     // Commented out by Eromosele
