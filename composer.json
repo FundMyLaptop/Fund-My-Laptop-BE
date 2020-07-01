@@ -12,7 +12,6 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/passport": "^9.2",
-        "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "ext-curl": "*",
         "ext-json": "*"
