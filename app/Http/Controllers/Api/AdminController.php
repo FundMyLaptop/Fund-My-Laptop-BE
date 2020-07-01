@@ -110,6 +110,30 @@ class AdminController extends Controller
 
                 return response()->json([
                     "message" => "User account successfully deleted"
+                ], 200);
+            } else {
+                return response()->json([
+                    "message" => "User account not found"
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'message' => 'You do not have permission to perform this action'
+            ]);
+        }
+    }
+
+
+     public function block($id)
+    {
+        // admin can block users
+          if (Auth::check() && Auth::user()->role == 2) {
+            if(User::where('id', $id)->exists()) {
+                $user = User::find($id);
+                $user->banned_until();
+
+                return response()->json([
+                    "message" => "User account blocked"
                 ], 202);
             } else {
                 return response()->json([
@@ -121,6 +145,7 @@ class AdminController extends Controller
                 'message' => 'You do not have permission to perform this action'
             ]);
         }
+        
     }
 
 }

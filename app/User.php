@@ -42,6 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    protected $fillable = [
+        'id', 'email', 'password', 'banned_until'
+    ];
+
+    protected $dates = [
+        'banned_until'
+    ];
+
+
     //Password Reset Notification
     public function sendPasswordResetNotification($token)
     {
