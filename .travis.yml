@@ -16,10 +16,10 @@ cache:
 
 before_script:
   - cp .env.travis .env
-  - sudo mysql -e 'CREATE DATABASE newAvengers;'
+  - sudo mysql -e 'CREATE DATABASE fundmylaptop;'
   - composer self-update
   - composer install --no-interaction
   - php artisan migrate --no-interaction -vvv
 
 script:
-  - ./vendor/bin/phpunit tests/ --debug
+  - vendor/bin/phpunit

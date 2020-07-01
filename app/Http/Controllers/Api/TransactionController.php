@@ -82,7 +82,7 @@ class TransactionController extends Controller
     }
     // Show a funder's funding history
     public function getFunderHistory($id){
-        Auth::user();
+        //Auth::user();
         $transaction = Transaction::with('request', 'user')->where('user_id', $id)->get();
 
         return response()->json(['transactions' => $transaction],200);
@@ -101,20 +101,13 @@ class TransactionController extends Controller
 
     /**
      * Update the specified resource in storage.
-<<<<<<< HEAD
      * @param  \Illuminate\Http\Request  $request
-=======
-     *
      * @param TransactionRequest $request
->>>>>>> 7007b3db7c5548e9a22383e27045ffcfe0ae8781
      * @param  int  $id
      * @return JsonResponse
      */
-<<<<<<< HEAD
-    public function update()
-=======
+
     public function update(TransactionRequest $request, $id)
->>>>>>> 7007b3db7c5548e9a22383e27045ffcfe0ae8781
     {
         //
         $user_id = Auth::user()->id;
