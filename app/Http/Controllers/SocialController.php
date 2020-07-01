@@ -68,7 +68,7 @@ class SocialController extends Controller
                             'role' => 0
                         ]);
 
-                        socialAccount::creat([
+                        socialAccount::create([
                             'user_id' => $user->id,
                             'provider' => $provider,
                             'provider_id' => $getInfo->id,
@@ -82,7 +82,7 @@ class SocialController extends Controller
                         'role' => 0
                     ]);
 
-                    socialAccount::creat([
+                    socialAccount::create([
                         'user_id' => $user->id,
                         'provider' => $provider,
                         'provider_id' => $getInfo->id,
