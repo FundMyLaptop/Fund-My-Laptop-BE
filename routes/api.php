@@ -32,7 +32,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	Route::get('recommendations', 'RecommendationController@index');
 	Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');
-    Route::get('requests/{id}', 'RequestController@show');
+	Route::get('requests/{id}', 'RequestController@show');
+	Route::get('uncompleted-requests', 'RequestController@fetch_uncompleted_requests');
     Route::post('bank-accounts', 'BankAccountController@create');
 });
 
