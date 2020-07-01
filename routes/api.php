@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('invest', 'InvestController@index');
     Route::get('invest/redirect/{id}', 'InvestController@redirect');
     Route::post('invest/redirect/{id}', 'InvestController@redirect');
+    Route::get('users-all','UserController@index');
 
 
     // Commented out by Eromosele

@@ -114,25 +114,10 @@ class RequestController extends Controller
             } else
             {
                 return response()->json(['message' => 'Request could not saved. Contact administrator'], 405);
-<<<<<<< HEAD
-                /*
-                $message = [
-                    'status' => 'failure',
-                    'data' => [
-                        'message' => 'Request cannot be saved. Contact administrator',
-                    ],
-                ];
-                return $message; */
-            }
-
-        } catch (\Exception $ex) {
-            return response()->json(['message' => back()->withError($ex->getmessage())->withInput()], 406);
-=======
             }
 
         } catch (\Exception $ex) {
             return response()->json(['message' => $ex->getMessage()], 406);
->>>>>>> fcaa0cb593811c8d7e46007db1a0df70aa8deb38
         }
 
     }
