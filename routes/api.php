@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('invest', 'InvestController@index');
     Route::get('invest/redirect/{id}', 'InvestController@redirect');
     Route::post('invest/redirect/{id}', 'InvestController@redirect');
+		Route::post('save-verification-file','VerificationController@store');
 
 
     // Commented out by Eromosele
