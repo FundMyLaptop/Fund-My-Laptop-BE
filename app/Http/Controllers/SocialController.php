@@ -50,7 +50,7 @@ class SocialController extends Controller
         try{
             $social = socialAccount::where(['provider_id' => $getInfo->id, 'provider' => $provider])->first();
             if($social){
-                return $social->user_id;
+                return $social->User;
             }else {
                 if ($getInfo->email) {
                     $user = User::where('email', $getInfo->email)->first();
@@ -60,7 +60,7 @@ class SocialController extends Controller
                             'provider_id' => $getInfo->id,
                             'provider' => $provider
                         ]);
-                        return $user->id;
+                        return $user;
                     } else {
                         $user = User::create([
                             'email' => $getInfo->email,
@@ -73,7 +73,7 @@ class SocialController extends Controller
                             'provider' => $provider,
                             'provider_id' => $getInfo->id,
                         ]);
-                        return $user->id;
+                        return $user;
                     };
                 } else {
                     $user = User::create([
@@ -87,7 +87,7 @@ class SocialController extends Controller
                         'provider' => $provider,
                         'provider_id' => $getInfo->id,
                     ]);
-                    return $user->id;
+                    return $user;
                 }
             }
             }catch (\Exception $e){
