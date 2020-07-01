@@ -29,6 +29,9 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     	return $request->user();
 	});*/
 
+	///all other routes should be defined under this line using the format of line 25 (above)
+	Route::post('recommendations', 'RecommendationController@store');
+    ///all other routes should be defined under this line using the format of line 25 (above)
     Route::get('verified-users', 'VerificationController@index');
 	  Route::get('recommendations', 'RecommendationController@index');
 	  Route::get('my-profile', 'UserController@getMyProfile');

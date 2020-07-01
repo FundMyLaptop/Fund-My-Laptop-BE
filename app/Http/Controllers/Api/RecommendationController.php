@@ -37,7 +37,17 @@ class RecommendationController extends Controller
      */
     public function store(Request $request)
     {
-        //validate input before processing
+        // check if user email exist and is verified then log recommendation in db
+        // @author : https://github.com/oyedotunsodiq045
+        // hasVerifiedEmail() returns true (if 'email' passed is identical and 'email_verified_at' is not null)
+        if ($request->user()->hasVerifiedEmail()) {
+            $recommendation = new Recommendation;
+            $recommendation->user_id = $request->user()->id;
+            $recommendation->statement = $request->statement;
+            $recommendation->save();
+            return response()->json(['message' => 'recommendation record created' ], 201);
+        }
+        return response()->json(['error' => 'recommendation record not created, you have to be registered and verified'], 403);
     }
 
     /**
