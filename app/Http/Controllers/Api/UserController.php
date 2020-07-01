@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Favorite;
 use App\BackAccount;
 use App\Recommendation;
+use Validator;
 use Illuminate\Http\Request;
 use App\Request as FundRequest;
 use App\Http\Controllers\Controller;

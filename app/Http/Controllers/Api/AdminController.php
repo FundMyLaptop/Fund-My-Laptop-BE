@@ -22,7 +22,7 @@ class AdminController extends Controller
 
             // Fetch completed requests
 
-            $completed_requests = DB::table('users')->where('isFunded', '=', 1)->get();
+            $completed_requests = DB::table('requests')->where('isFunded', '=', 1)->get();
 
             // Count completed requests
 
@@ -33,8 +33,8 @@ class AdminController extends Controller
                 'count_completed' => $count_completed], 200);
         } else {
             return response()->json([
-                'message' => 'Requested resource could be fetched'
-            ], 200);
+                'message' => 'Requested resource could not be fetched'
+            ], 400);
         }
     }
 
