@@ -28,27 +28,23 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
-	Route::get('recommendations','RecommendationController@index');
-    ///all other routes should be defined under this line using the format of line 25 (above)
+
     Route::get('verified-users', 'VerificationController@index');
-	Route::get('recommendations', 'RecommendationController@index');
-	Route::get('my-profile', 'UserController@getMyProfile');
-    Route::get('recommendations', 'RecommendationController@index');
-    Route::get('my-profile', 'UserController@getMyProfile');
+	  Route::get('recommendations', 'RecommendationController@index');
+	  Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');  // this is an admin role should be passed through is admin auth
     Route::post('requests/store', 'RequestController@store');
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
     Route::get('completed-requests', 'AdminController@index');
-	Route::post('bank-accounts', 'BankAccountController@create');
-	Route::get('completed-requests', 'AdminController@index');
     Route::delete('users/delete/{id}','AdminController@destroy');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('transaction/update/{id}','TransactionController@update');
-    Route::delete('users/delete/{id}','AdminController@destroy');
-    Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('verify-bvn', 'VerificationController@verifyBvn');
     Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
+    Route::post('invest', 'InvestController@index');
+	  Route::get('invest/redirect/{id}', 'InvestController@redirect');
+	  Route::post('invest/redirect/{id}', 'InvestController@redirect');
 
 
     // Commented out by Eromosele
