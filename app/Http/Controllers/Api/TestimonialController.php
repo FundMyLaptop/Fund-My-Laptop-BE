@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Recommendation;
+use Illuminate\Http\Request;
 
-class RecommendationController extends Controller
+class TestimonialController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         //
-        return response()->json(['message' => 'All recommendations returned successfully.'], 200);
     }
 
     /**
@@ -33,21 +31,11 @@ class RecommendationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // check if user email exist and is verified then log recommendation in db
-        // @author : https://github.com/oyedotunsodiq045
-        // hasVerifiedEmail() returns true (if 'email' passed is identical and 'email_verified_at' is not null)
-        if ($request->user()->hasVerifiedEmail()) {
-            $recommendation = new Recommendation;
-            $recommendation->user_id = $request->user()->id;
-            $recommendation->statement = $request->statement;
-            $recommendation->save();
-            return response()->json(['message' => 'recommendation record created' ], 201);
-        }
-        return response()->json(['error' => 'recommendation record not created, you have to be registered and verified'], 403);
+        //
     }
 
     /**
