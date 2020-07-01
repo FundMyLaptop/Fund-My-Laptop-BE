@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Favorite;
+use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
@@ -83,4 +84,29 @@ class FavoriteController extends Controller
     {
         //
     }
+    
+    public function userFavoriteRequest($userId)
+    {
+        //Fetching all requests marked as favorite controller
+        //Auth() checks to enable only autheticated users only have access to endpoint
+        if(Auth::check()){
+            if(Favorite::where('user_id', $userId)->exists()) {
+                $favorites = Favorite::where('user_id', $userId)->with('request')->get();
+                return response()->json([
+                    "message" => "Favorite requests retrived",
+                    "data" => $favorites
+                ], 200);
+            } else {
+                return response()->json([
+                "message" => "Request not Found or Marked as Favorite"
+                ], 404);
+              }
+            }
+        //Returns 401 error for non Authenticated users  
+        else {
+            return response()->json([
+            "error" => "Unauthorized"
+            ], 401);
+            }
+        }
 }

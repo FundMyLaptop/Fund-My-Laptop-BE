@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
