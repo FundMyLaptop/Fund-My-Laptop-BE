@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request as TransactionRequest;
 use App\Http\Controllers\Controller;
 use App\Transaction;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -49,7 +50,9 @@ class TransactionController extends Controller
                 'response_code' => 'required|int',
             ]);
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);}
+            return response()->json(['error'=>$validator->errors()], 400);
+        }
+
         $transaction =  new Transaction();
         $transaction->request_id = $request->request_id;
         $transaction->user_id = $user_id;
@@ -57,7 +60,8 @@ class TransactionController extends Controller
         $transaction->amount = $request->amount;
         $transaction->status= $request->status;
         $transaction->response_code = $request->response_code;
-            $transaction->save();
+        $transaction->save();
+
         return response()->json([
                 "message" => "transaction record created"
             ], 201);
@@ -74,6 +78,13 @@ class TransactionController extends Controller
     public function show($id)
     {
         //
+    }
+    // Show a funder's funding history
+    public function getFunderHistory($id){
+        Auth::user();
+        $transaction = Transaction::with('request', 'user')->where('user_id', $id)->get();
+
+        return response()->json(['transactions' => $transaction],200);
     }
 
     /**
@@ -108,10 +119,10 @@ class TransactionController extends Controller
             ]);
         if($validator->fails()){
             return response()->json(['message'=> $validator->errors()],400);
-        };
+        }
         $transaction_exist = Transaction::query()->where('id',$id)->exists();
         if($transaction_exist){
-//            update transaction
+
             $update = Transaction::query()->where('id',$id)->update([
                'transaction_ref'=>$request->transaction_ref,
                 'request_id'=>$request->request_id,
