@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Verification;
+use Validator;
 
 class VerificationController extends Controller
 {
@@ -44,78 +45,35 @@ class VerificationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-
-     //verify bvn 
-    public function verifyBvn(Request $request){
-
-    $FirstName = $request->FirstName;
-    $LastName = $request->LastName;
-    $curl = curl_init();
-
-     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-     curl_setopt_array($curl, array(
-       CURLOPT_URL => "https://sandbox.wallets.africa/self/verifybvn",
-       CURLOPT_RETURNTRANSFER => true,
-       CURLOPT_ENCODING => "",
-       CURLOPT_MAXREDIRS => 10,
-       CURLOPT_TIMEOUT => 0,
-       CURLOPT_FOLLOWLOCATION => true,
-       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-       CURLOPT_CUSTOMREQUEST => "POST",
-       CURLOPT_POSTFIELDS => json_encode([
-         
-         'bvn'=> $request->bvn,
-         'dateOfBirth'=> $request->dateOfBirth,
-         'secretKey'=> 'hfucj5jatq8h',
-         
-       ]),
-      
-       CURLOPT_HTTPHEADER => array(
-         "Content-Type: application/json",
-         "Authorization: Bearer uvjqzm5xl6bw"
-       ),
-     ));
-     
-     $response = curl_exec($curl);
-     $err = curl_error($curl);
-     curl_close($curl);
-
-     $resp = json_decode($response, true);
-
-    $FirstNameFromBvn = $resp['FirstName'];
-    $LastNameFromBvn = $resp['LastName'];
-
-    if(($FirstName == $FirstNameFromBvn) && ($LastName == $LastNameFromBvn)){
-        return response()->json(['message' => 'Firstname and Lastname match BVN information'], 201);
-    } else{
-        return response()->json([
-            'message' => 'Firstname and Lastname do not match BVN information'], 404);
-    }
-     }
-     
     public function store(Request $request)
     {
-        //Upload user id or video and verify their account
-        $data = $request-> validate([
-            'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
-            'video' => ['required', 'file', 'mimes:mp4', 'max:10048']
-          ]);
-  
-          $imageURL = $data['image']->store('uploads/images', 'public');
-          $videoURL = $data['video']->store('uploads/videos', 'public');
-          return auth()->user()->verification()->create([
-              'photoURL' => $imageURL,
-              'videoURL' => $videoURL,
-              'status' => 1
-          ]);
-        return response()->json([
-          'message' => 'Verification Successful',
-          'data' => $result
-        ], 201);
+        //Verify and upload id, video
+        $validate = Validator::make($request->all(), [
+             'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
+             'video' => ['required', 'file', 'mimes:mp4', 'max:10048']
+           ]);
+
+         if($validate->fails()){
+             return response()->json([
+                 'message' => 'Verification Failed',
+                 'data' => $validate->errors()
+             ]);
+         }else{
+
+             $imageURL = $request->file('image')->store('uploads/images', 'public');
+             $videoURL = $request->file('video')->store('uploads/videos', 'public');
+             $result =  auth()->user()->verification()->create([
+                 'photoURL' => $imageURL,
+                 'videoURL' => $videoURL,
+                 'status' => 1
+             ]);
+             return response()->json([
+             'message' => 'Verification Successful',
+             'data' => $result
+             ], 201);
+           }
     }
 
     /**
