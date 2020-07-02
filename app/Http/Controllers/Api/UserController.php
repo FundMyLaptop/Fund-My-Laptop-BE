@@ -15,14 +15,37 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+    //private variable to store user
+    private $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //fetch all users.
+        $users = $this->user->all();
+
+        if($user){
+            return response()->json([
+                'message' => 'All users retrieved.',
+                'data' => $users
+            ], 200);
+        }else{
+            return response()->json([
+                'message' => 'Failed to fetch users.',
+                'data' => $users
+            ], 404);
+        }
+
     }
 
 

@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
     Route::post('invest', 'InvestController@index');
     Route::get('invest/redirect/{id}', 'InvestController@redirect');
+    Route::get('users','UserController@index');
     Route::post('save-verification-file','VerificationController@store');
 
     // Commented out by Eromosele
