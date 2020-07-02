@@ -156,8 +156,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function logOut(Request $request)
     {
-        //
+        //LogOut User
+
+        if (Auth::check()) {
+            $token = Auth::user()->token();
+            $token->revoke();
+            return response()->json(['message' => 'User logged out'], 201);
+        } 
+        else{ 
+            return response()->json(['message' => 'Unauthorised'], 401);
+        } 
+
     }
 }

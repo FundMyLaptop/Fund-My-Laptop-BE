@@ -23,6 +23,7 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 // Authentication
 Route::post('login', 'Api\UserController@login');
 Route::post('register', 'Api\UserController@register');
+Route::post('logout', 'Api\UserController@logOut');
 
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
 	/*Route::get('/user', function (Request $request) {
