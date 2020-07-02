@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Request as FundRequest;
 
 class AdminController extends Controller
 {
@@ -22,7 +24,8 @@ class AdminController extends Controller
 
             // Fetch completed requests
 
-            $completed_requests = DB::table('requests')->where('isFunded', '=', 1)->get();
+            //$completed_requests = DB::table('requests')->where('isFunded', '=', 1)->get();
+            $completed_requests = FundRequest::with('user')->where('isFunded', 1)->get();
 
             // Count completed requests
 

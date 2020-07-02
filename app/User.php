@@ -70,4 +70,11 @@ class User extends Authenticatable
     public function transaction(){
         return $this->hasMany('App\Transaction');
     }
+
+    public function testimonial(){
+        return $this->hasMany('App\Testimonial');
+    }
+    public function socialAccount(){
+        return $this->hasMany('App\socialAccount');
+    }
 }
