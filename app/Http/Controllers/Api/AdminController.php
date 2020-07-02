@@ -20,7 +20,27 @@ class AdminController extends Controller
     {
         //Check if user is Admin
 
+        if (Auth::check() && Auth::user()->role == 2) {
+
+            // Fetch completed requests
+
+            //$completed_requests = DB::table('requests')->where('isFunded', '=', 1)->get();
+            $completed_requests = FundRequest::with('user')->where('isFunded', 1)->get();
+
+            // Count completed requests
+
+            $count_completed = count($completed_requests);
+            return response()->json([
+                'message' => 'Completed requests fetched successfully',
+                'completed_requests' => $completed_requests,
+                'count_completed' => $count_completed], 200);
+        } else {
+            return response()->json([
+                'message' => 'Requested resource could not be fetched'
+            ], 400);
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.
