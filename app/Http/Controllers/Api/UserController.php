@@ -32,9 +32,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //fetch all users.
-        $users = $this->user->all();
+        //$= users = $this->user->all();//
+        $users = User::with('request', 'favorite', 'recommendation', 'bank_account')->get();
 
-        if($user){
+        if($users){
             return response()->json([
                 'message' => 'All users retrieved.',
                 'data' => $users
