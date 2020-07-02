@@ -17,11 +17,16 @@ $account = new SocialGoogleAccount([
                 'provider_user_id' => $providerUser->getId(),
                 'provider' => 'google'
             ]);
-$user = User::whereEmail($providerUser->getEmail())->first();
+$user = User::whereEmail($providerUser->getEmail())->first();}
 if (!$user) {
 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
+                    'firstName' => null,
+                    'lastName' => null,
+                    'phone' => null,
+                    'address' => null,
+                    'role' => null,
                     'password' => md5(rand(1,10000)),
                 ]);
             }
@@ -29,5 +34,5 @@ $account->user()->associate($user);
             $account->save();
 return $user;
         }
+        
     }
-}
