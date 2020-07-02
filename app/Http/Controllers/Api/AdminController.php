@@ -1,17 +1,14 @@
 <?php
+
 namespace App\Http\Controllers\Api;
-use App\User;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use App\Request as FundRequest;
+
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin.role');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,20 +17,27 @@ class AdminController extends Controller
     public function index()
     {
         //Check if user is Admin
+
+        if (Auth::check() && Auth::user()->role == 2) {
+
             // Fetch completed requests
-            $completed_requests = FundRequest::with('user')->get();
+
+            $completed_requests = DB::table('requests')->where('isFunded', '=', 1)->get();
+
+            // Count completed requests
+
             $count_completed = count($completed_requests);
-            if($completed_requests ||  $count_completed ){
-                return response()->json([
-                    'message' => 'Completed requests fetched successfully',
-                    'completed_requests' => $completed_requests,
-                    'count_completed' => $count_completed], 201);
-            } else {
-                return response()->json([
-                    'message' => 'Requested resource could be fetched'
-                ], 400);
-            }
+            return response()->json([
+                'message' => 'Completed requests fetched successfully',
+                'completed_requests' => $completed_requests,
+                'count_completed' => $count_completed], 200);
+        } else {
+            return response()->json([
+                'message' => 'Requested resource could not be fetched'
+            ], 400);
+        }
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,6 +47,7 @@ class AdminController extends Controller
     {
         //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -53,6 +58,7 @@ class AdminController extends Controller
     {
         //
     }
+
     /**
      * Display the specified resource.
      *
@@ -63,6 +69,7 @@ class AdminController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,6 +80,7 @@ class AdminController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -84,11 +92,12 @@ class AdminController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -113,4 +122,5 @@ class AdminController extends Controller
             ]);
         }
     }
+
 }
