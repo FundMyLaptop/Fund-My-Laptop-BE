@@ -24,7 +24,7 @@ class SocialController extends Controller
     public function callback($provider)
     {
         $headers = apache_request_headers();
-
+        dd($headers);
         try{
             if($provider == 'twitter'){
                 $getInfo = Socialite::driver($provider)->user();
