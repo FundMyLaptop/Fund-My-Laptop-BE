@@ -4,9 +4,12 @@
 /storage/*.key
 .env
 .env.backup
+/database/database.sqlite
+/config/database.php
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea
+/.history
