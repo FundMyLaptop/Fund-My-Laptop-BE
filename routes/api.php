@@ -22,36 +22,47 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 
 // Authentication
 Route::post('login', 'Api\UserController@login');
+Route::get('logout', 'Api\UserController@logout');
 Route::post('register', 'Api\UserController@register');
 
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
-	Route::get('recommendations','RecommendationController@index');
-    ///all other routes should be defined under this line using the format of line 25 (above)
+
+	///all other routes should be defined under this line using the format of line 25 (above)
+	Route::post('recommendations', 'RecommendationController@store');
     Route::get('verified-users', 'VerificationController@index');
     Route::get('recommendations', 'RecommendationController@index');
     Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');  // this is an admin role should be passed through is admin auth
-    Route::post('requests/store', 'RequestController@store');
+	Route::get('unattended-requests', 'RequestController@availableFundingRequest');
+	Route::post('requests/store', 'RequestController@store');
     Route::get('requests/{id}', 'RequestController@show');
+	Route::get('uncompleted-requests', 'RequestController@fetch_uncompleted_requests');
     Route::post('bank-accounts', 'BankAccountController@create');
-    Route::get('completed-requests', 'AdminController@index');
-    Route::post('transaction/store','TransactionController@store');
-    Route::post('transaction/update/{id}','TransactionController@update');
-    Route::post('bank-accounts', 'BankAccountController@create');
-    Route::get('completed-requests', 'AdminController@index');
+
     Route::delete('users/delete/{id}','AdminController@destroy');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
+    Route::post('transaction/update/{id}','TransactionController@update');
     Route::post('verify-bvn', 'VerificationController@verifyBvn');
     Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
+
     Route::put('users/block/{id}', 'AdminController@block');  // block users
+
+    Route::post('invest', 'InvestController@index');
+    Route::get('invest/redirect/{id}', 'InvestController@redirect');
+    Route::get('users','UserController@index');
+    Route::post('save-verification-file','VerificationController@store');
+    Route::get('completed-requests', 'AdminController@index');
+   Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
+
 
 
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
     //Route::post('transaction/update/{id}','TransactionController@update');
+
 });
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password

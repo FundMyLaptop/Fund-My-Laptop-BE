@@ -8,9 +8,16 @@
     ],
     "license": "MIT",
     "require": {
+
         "php": "^7.3",
         "cybercog/laravel-ban": "^4.2",
+
+        "php": "^7.2",
+        "ext-curl": "*",
+        "ext-json": "*",
+
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "^6.2",
         "laravel/passport": "^9.3",
         "laravel/socialite": "^4.4",
