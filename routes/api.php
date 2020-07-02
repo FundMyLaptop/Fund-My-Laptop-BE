@@ -49,6 +49,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('invest/redirect/{id}', 'InvestController@redirect');
     Route::get('users','UserController@index');
     Route::post('save-verification-file','VerificationController@store');
+    Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
 
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
