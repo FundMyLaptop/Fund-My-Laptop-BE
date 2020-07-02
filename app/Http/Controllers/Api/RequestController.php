@@ -25,12 +25,27 @@ class RequestController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $query = FundRequest::with('user')->where('user_id' )->get();
+        $query = FundRequest::with('user')->where('user_id')->get();
 
         return response()->json([
             'message' => 'Requests retrieved',
             'data' => $query
-        ], 201);
+        ], 200);
+    }
+
+    /**
+     * Display a listing of the unattended fundees requests.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function availableFundingRequest()
+    {
+        $unattendedFundingRequest = FundRequest::with('user')->where('isFunded', 0)->get();
+
+        return response()->json([
+            'message' => 'Unattended Requests Retrieved',
+            'data' => $unattendedFundingRequest
+        ], 200);
     }
 
     /**
@@ -47,29 +62,30 @@ class RequestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         //
-        try
-        {
-            $validator = Validator::make($request->all(),
+        try {
+            $validator = Validator::make(
+                $request->all(),
                 [
                     'title' => 'required',
                     'description' => 'required',
                     'photoURL' => 'required',
                     'currency' => 'required',
                     'amount' => 'required',
-                ]);
+                ]
+            );
             if ($validator->fails()) {
-                return response()->json(['error'=>$validator->errors()], 400);
+                return response()->json(['error' => $validator->errors()], 400);
             }
 
             $title = $request->title ?? "";
             $description = $request->description ?? "";
             $photoURL = $request->photoURL ?? "";
-            $currency = $request->currency?? "";
+            $currency = $request->currency ?? "";
             $amount = $request->amount ?? "";
             $isFunded = 0;
             $isSuspended = 0;
@@ -80,11 +96,10 @@ class RequestController extends Controller
 
 
             //if (!Auth::check()) {
-                // The user is logged in...
+            // The user is logged in...
             //    return response()->json(['message' => 'User does not exist'], 404);
             //}
-            if($amount < 0)
-            {
+            if ($amount < 0) {
                 return response()->json(['message' => 'Amount cannot be less than zero'], 304);
             }
             /*if(substr($photoURL,0,7) != 'http://' || substr($photoURL,0,8) != 'https://')
@@ -107,36 +122,33 @@ class RequestController extends Controller
             $save = $fundreq->save();
 
 
-            if ($save)
-            {
+            if ($save) {
                 return response()->json(['message' => 'Request save successfully'], 200);
-
-            } else
-            {
+            } else {
                 return response()->json(['message' => 'Request could not saved. Contact administrator'], 405);
             }
-
         } catch (\Exception $ex) {
             return response()->json(['message' => $ex->getMessage()], 406);
         }
-
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-       $user = Auth::user();
+        $user = Auth::user();
+        if (Auth::check() && Auth::user()->role == 2) {
           $request = FundRequest::where('id', $id)->with('user')->get();
-            return response()->json([
-                'message' => 'Request retrived',
-                'data' => $request
-            ], 200);
+          return response()->json([
 
+              'message' => 'Request retrieved',
+              'data' => $request
+          ], 200); 
+        }
     }
 
     /**
@@ -171,5 +183,16 @@ class RequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fetch_uncompleted_requests(Request $request)
+    {
+        $request = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->get();
+        $count = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->count();
+        return response()->json([
+            'message' => 'Request retrieved',
+            'count' => $count,
+            'data' => $request
+        ], 200);
     }
 }
