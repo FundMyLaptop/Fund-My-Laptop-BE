@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Verification;
+use Validator;
 
 class VerificationController extends Controller
 {
@@ -99,23 +100,29 @@ class VerificationController extends Controller
 
     public function store(Request $request)
     {
-        //Upload user id or video and verify their account
-        $data = $request-> validate([
+        //Verify and upload id, video
+        $validate = Validator::make($request->all(), [
             'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
             'video' => ['required', 'file', 'mimes:mp4', 'max:10048']
         ]);
-
-        $imageURL = $data['image']->store('uploads/images', 'public');
-        $videoURL = $data['video']->store('uploads/videos', 'public');
-        $result = auth()->user()->verification()->create([
-            'photoURL' => $imageURL,
-            'videoURL' => $videoURL,
-            'status' => 1
-        ]);
-        return response()->json([
-            'message' => 'Verification Successful',
-            'data' => $result
-        ], 201);
+        if($validate->fails()){
+            return response()->json([
+                'message' => 'Verification Failed',
+                'data' => $validate->errors()
+            ]);
+        }else{
+            $imageURL = $request->file('image')->store('uploads/images', 'public');
+            $videoURL = $request->file('video')->store('uploads/videos', 'public');
+            $result =  auth()->user()->verification()->create([
+                'photoURL' => $imageURL,
+                'videoURL' => $videoURL,
+                'status' => 1
+            ]);
+            return response()->json([
+                'message' => 'Verification Successful',
+                'data' => $result
+            ], 201);
+        }
     }
 
     /**
