@@ -29,6 +29,14 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+
+    'google' => [
+    'client_id' => env('GOOGLE_CLIENT_ID'),
+    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+    'redirect' => env('GOOGLE_REDIRECT'),
+  ],
+
     'facebook' => [
         'client_id' => env('FB_CLIENT_ID'),
         'client_secret' => env('FB_CLIENT_KEY'),
@@ -44,4 +52,5 @@ return [
         'client_secret' => env('TWT_CLIENT_KEY'),
         'redirect' => env('TWT_REDIRECT_URL'),
     ],
+
 ];
