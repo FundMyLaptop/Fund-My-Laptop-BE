@@ -10,10 +10,14 @@ class SocialAuthGoogleController extends Controller
    *
    * @return void
    */
-    public function redirect()
-    {
-        return Socialite::driver('google')->redirect();
-    }
+
+      public function redirect(){
+        return Socialite::driver('google')
+            ->stateless()
+            ->redirect();
+          }
+    
+
 /**
      * Return a callback method from google api.
      *
@@ -21,7 +25,7 @@ class SocialAuthGoogleController extends Controller
      */
     public function callback(SocialGoogleAccountService $service)
     {
-        $user = $service->createOrGetUser(Socialite::driver('google')->user());
+        $user = $service->createOrGetUser(Socialite::driver('google')->stateless()->user());
         auth()->login($user);
         return redirect()->to('/home');
     }
