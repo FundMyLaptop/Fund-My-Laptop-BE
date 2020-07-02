@@ -82,7 +82,7 @@ class TestimonialController extends Controller
     public function deleteTestimonial($testimonial_id)
     {
 
-        //delete testimonial
+        //Admin delete testimonial
         if (Auth::check() && Auth::user()->role == 2) {
             if(Testimonial::where('id', $testimonial_id)->exists()) {
                 $testimonial = Testimonial::find($testimonial_id);
