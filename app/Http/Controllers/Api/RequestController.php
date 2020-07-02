@@ -32,7 +32,11 @@ class RequestController extends Controller
             'data' => $query
         ], 201);
     }
-
+    /**
+     * Display a listing of the unattended fundees requests.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function availablefundingrequest()
     {
         $unattendedFundingRequest = Request::where('isFunded', 0)->get();
