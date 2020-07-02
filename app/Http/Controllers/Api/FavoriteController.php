@@ -82,8 +82,8 @@ class FavoriteController extends Controller
      */
     public function destroy($id)
     {
-        if(Favorite::where('id', $id)->exists()) {
-            $favoritesToDelete = Favorite::find($id);
+        if(Favorite::where('userId', $id)->exists()) {
+            $favoritesToDelete = Favorite::where('userId', $id)->with('request');
             $favoritesToDelete->delete();
     
             return response()->json([
