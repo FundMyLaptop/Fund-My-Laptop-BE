@@ -54,7 +54,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('completed-requests', 'AdminController@index');
 
    Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
-   Route::delete('testimonials/{id}','TestimonialController@index');
+   Route::get('testimonials/{id}','TestimonialController@index');
 
 
     // Commented out by Eromosele
