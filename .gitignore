@@ -6,7 +6,7 @@
 .env.backup
 /database/database.sqlite
 /config/database.php
-/vendor
+#/vendor
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
