@@ -141,11 +141,14 @@ class RequestController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $request = FundRequest::where('id', $id)->with('user')->get();
-        return response()->json([
-            'message' => 'Request retrived',
-            'data' => $request
-        ], 200);
+        if (Auth::check() && Auth::user()->role == 2) {
+          $request = FundRequest::where('id', $id)->with('user')->get();
+          return response()->json([
+
+              'message' => 'Request retrieved',
+              'data' => $request
+          ], 200); 
+        }
     }
 
     /**
@@ -180,5 +183,16 @@ class RequestController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fetch_uncompleted_requests(Request $request)
+    {
+        $request = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->get();
+        $count = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->count();
+        return response()->json([
+            'message' => 'Request retrieved',
+            'count' => $count,
+            'data' => $request
+        ], 200);
     }
 }
