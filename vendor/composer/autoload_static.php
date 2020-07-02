@@ -561,11 +561,17 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'App\\Http\\Controllers\\Api\\BankAccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/BankAccountController.php',
         'App\\Http\\Controllers\\Api\\FavoriteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/FavoriteController.php',
         'App\\Http\\Controllers\\Api\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ForgotPasswordController.php',
+<<<<<<< HEAD
+        'App\\Http\\Controllers\\Api\\RecommendationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RecommendationController.php',
+        'App\\Http\\Controllers\\Api\\RequestController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RequestController.php',
+        'App\\Http\\Controllers\\Api\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ResetPasswordController.php',
+=======
         'App\\Http\\Controllers\\Api\\InvestController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/InvestController.php',
         'App\\Http\\Controllers\\Api\\RecommendationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RecommendationController.php',
         'App\\Http\\Controllers\\Api\\RequestController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RequestController.php',
         'App\\Http\\Controllers\\Api\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ResetPasswordController.php',
         'App\\Http\\Controllers\\Api\\TestimonialController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/TestimonialController.php',
+>>>>>>> 17a2a3e0bef6ba5885619b34c77e12c93e35bb99
         'App\\Http\\Controllers\\Api\\TransactionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/TransactionController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
         'App\\Http\\Controllers\\Api\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/VerificationController.php',

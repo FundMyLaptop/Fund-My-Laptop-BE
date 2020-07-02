@@ -36,7 +36,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('recommendations', 'RecommendationController@index');
     Route::get('my-profile', 'UserController@getMyProfile');
     Route::get('requests', 'RequestController@index');  // this is an admin role should be passed through is admin auth
-    Route::post('requests/store', 'RequestController@store');
+	Route::get('/unattendedrequests', 'RequestController@availablefundingrequest');
+	Route::post('requests/store', 'RequestController@store');
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
 
