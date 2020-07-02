@@ -6,17 +6,22 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Notifications\PasswordResetNotification;
+
+use Laravel\Passport\HasApiTokens;
+
+
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
+    protected $guarded = [
+        'id',
     ];
 
     /**
@@ -36,4 +41,40 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Password Reset Notification
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
+
+    public function request() {
+        return $this->hasMany('App\Request');
+    }
+
+    public function favorite() {
+        return $this->hasMany('App\Favorite');
+    }
+
+    public function recommendation() {
+        return $this->hasMany('App\Recommendation');
+    }
+
+    public function bank_account() {
+        return $this->hasOne('App\BankAccount');
+    }
+
+    public function verification(){
+	     return $this->hasOne('App\Verification');
+    }
+    public function transaction(){
+        return $this->hasMany('App\Transaction');
+    }
+
+    public function testimonial(){
+        return $this->hasMany('App\Testimonial');
+    }
+    public function socialAccount(){
+        return $this->hasMany('App\socialAccount');
+    }
 }
