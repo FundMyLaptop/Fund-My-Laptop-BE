@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Thirdparty\Flutterwave;
 use Illuminate\Support\Str;
+use DB;
+use Carbon\Carbon as Carbon;
+use Validator;
 
 class RepaymentController extends Controller
 {
@@ -39,8 +42,9 @@ class RepaymentController extends Controller
     public function process(Request $request)
     {
     	$flutter = new Flutterwave();
+    	
     	if (isset($request->id)) {
-
+    		
         //1) Ensure the user role is Admin
         if (!\Auth::user()->role == 'user') {
             return response()->json(['error'=>'You are not authorized to view this endpoint'],403);
@@ -58,45 +62,86 @@ class RepaymentController extends Controller
         	$amount_paid = $detail->amount_paid;
         	$repayments_left = $detail->num_repayments_left;
         }
+        $userId = $userDetails->id;
      	$fname = $userDetails->firstName;
         $lname = $userDetails->lastName;
         $email = $userDetails->email;
         $phone = $userDetails->phone;
         $txRef = strtoupper(md5(Str::random(15)));
         $cust_name = $fname . ' ' . $lname;
-        if ($amount_paid === "0.00") {
-        	$data = array("amount" => $amount, "name" => "FundMyLaptop Repayment Plan for {$cust_name}", "interval" => "monthly", "duration" => $repayments_left);
+        if ($amount_paid === "0.00" AND $planID === null AND $plan === null) {
+        	$data = array("name" => "FundMyLaptop Repayment Plan for {$cust_name}", "amount" => $amount, "interval" => "monthly", "duration" => $repayments_left);
         	///Create a subscription plan for the dude
-        	$res = $flutter->createPaymentPlan($data);
-        	//return json_encode($res);
-        	///update the info in the repayments table
+        	$res = json_decode($flutter->createPaymentPlan($data), true);
+        	
+        	if ($res['status'] === 'success') {
+        		$planID = $res['data']['id'];
+        		///update the info in the repayments table
+	        	$update = \App\Repayment::query()->where('request_id',$request->id)->update([
+	               'subscription_plan_id'=> $planID,
+	               'subscription_plan'=> "FundMyLaptop Repayment Plan for {$cust_name}",
+	            ]);
+        	}
         }
-        
         $data = array(
+        	"PBFPubKey"=> config('flutterwave.public_key'),
   			"cardno"=> "4556052704172643",
   			"cvv"=>"899",
   			"expirymonth"=> "01",
   			"expiryyear"=> "21",
-        	'payment_plan' => "13",
+  			"currency"=> "NGN",
+		  	"country"=> "NG",
+        	'payment_plan' => $planID,
 	        'amount' => $amount,
-	        'firstname' => $fname,
-	        'lastname' => $lname,
 	        'email' => $email,
 	        'phonenumber' => $phone,
+	        'firstname' => $fname,
+	        'lastname' => $lname,
+	        "IP" => "69.123.8.9",
 	        "txRef" => 'FML-'.$txRef,
-	        "ip" => "69.123.8.9",
+	        "meta"=> array(
+		      array("metaname"=> "FMLRequestID", "metavalue"=> $request->id)
+		    ),
 	        "redirect_url"=> "http://127.0.0.1/process-recurring-payments",
   			"device_fingerprint"=> "69e6b7f0b72037aa8428b70fbe03986c"
         );
-        $endpoint = 'payments';
+        $endpoint = 'charge';
         //3) Initiate repayment on Fundee Account
         $paymentResponse = $flutter->sendRequest(json_encode($data),$endpoint);
-        return json_encode($paymentResponse);
-        //4) Process Response and ;
-        $response = json_decode($paymentResponse, true);
-        //return $response;
+        //4) Process Response and :
+        $result = json_decode($paymentResponse, true);
+        //if suggested_auth returns pin, add pin and suggested_auth to your payload again, re-encrypt
+        if($result['data']['suggested_auth'] === 'PIN'){
+        	///these have to be changed to real values
+		    $data['pin'] = '3310';//fetch card real details
+		    $data["suggested_auth"] = "PIN";
+		}
+		if($result['data']['suggested_auth'] === 'NOAUTH_INTERNATIONAL' ||
+		$result['data']['suggested_auth'] === 'AVS_VBVSECURECODE'){
+			///these have to be changed to real values
+		  $data['suggested_auth'] = 'AVS_VBVSECURECODE/NOAUTH_INTERNATIONAL';
+		  $data['billingzip'] = '07205';
+		  $data['billingcity'] = 'Hillside';
+		  $data['billingaddress'] = '470 Mundet PI';
+		  $data['billingstate'] = 'NJ';
+		  $data['billingcountry'] = 'US';
+		}
+		$response = $flutter->sendRequest(json_encode($data),$endpoint);
+		$response = json_decode($response, true);
         //a) Update Accruals/Repayments/Transactions table
-        //b) if num of repayments left = 0, suspend campaign on the requests table
+        //Assuming a sharing formula of 70-30 on the interest (which is 20% of requested amount)
+        $rate = 0.2 * 0.3;
+        $accrualAmount = $amount * $rate;
+        $repaysleft = $repayments_left - 1;
+        $amount = $response['data']['amount'];
+        $code = $response['data']['chargeResponseCode'];
+        $paymentDate = Carbon::parse($response['data']['createdAt'])->format('Y-m-d H:i:s');
+        $status = $response['data']['status'];
+	    DB::table('accruals')->insert(['request_id' => $request->id, 'rate' => $rate, 'amount' => $accrualAmount]);
+	    DB::table('repayments')->where('request_id',$request->id)->update(['amount_paid' =>$amount, 'num_repayments_left' => $repaysleft, 'last_payment_date'=> $paymentDate]);
+	    DB::table('transactions')->insert(['request_id' => $request->id, 'transaction_ref' => $txRef, 'amount' => $amount, 'response_code' => $code, 'status' => $status, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+
+        return response()->json(['status' => 'Repayment processed successfully'], 200);
        }
     }
 
