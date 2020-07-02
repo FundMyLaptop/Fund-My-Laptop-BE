@@ -41,7 +41,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     public function authenticate(){
-
+/* Logs out a user*/
         return  Auth::logout(); Session::flush();
 
        }
