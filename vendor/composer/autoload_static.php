@@ -411,7 +411,6 @@ class ComposerStaticInitffa4087a2b93130807b712a5ead54401
     );
 
     public static $classMap = array (
-        'App\\BankAccount' => __DIR__ . '/../..' . '/app/BankAccount.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
