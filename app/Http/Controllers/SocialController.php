@@ -23,11 +23,12 @@ class SocialController extends Controller
     }
     public function callback($provider)
     {
+        dd($provider);
         try{
             if($provider == 'twitter'){
                 $getInfo = Socialite::driver($provider)->user();
             }else{
-                $getInfo = Socialite::driver($provider)->user();
+                $getInfo = Socialite::driver($provider)->stateless()->user();
             }
             $user = $this->createUser($getInfo,$provider);
             Auth::login($user);
