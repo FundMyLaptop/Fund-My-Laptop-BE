@@ -33,9 +33,9 @@ class RequestController extends Controller
         ], 201);
     }
 
-    public function availablefundingrequest()
+    public function availableFundingRequest()
     {
-        $unattendedFundingRequest = Request::where('isFunded', 0)->get();
+        $unattendedFundingRequest = FundRequest::with('user')->where('isFunded', 0)->get();
 
         return response()->json([
             'message' => 'Unattended Requests Retrieved',
@@ -57,7 +57,7 @@ class RequestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -131,7 +131,7 @@ class RequestController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
