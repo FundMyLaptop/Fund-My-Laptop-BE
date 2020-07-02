@@ -50,6 +50,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('users','UserController@index');
     Route::post('save-verification-file','VerificationController@store');
     Route::get('completed-requests', 'AdminController@index');
+   Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
+
 
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
