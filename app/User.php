@@ -40,9 +40,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'banned' => 'int',
     ];
 
-
+    /**
     protected $fillable = [
         'id', 'email', 'password', 'banned_until'
     ];
@@ -50,6 +51,8 @@ class User extends Authenticatable
     protected $dates = [
         'banned_until'
     ];
+    
+    **/
 
 
     //Password Reset Notification
@@ -81,3 +84,4 @@ class User extends Authenticatable
         return $this->hasMany('App\Transaction');
     }
 }
+

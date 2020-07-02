@@ -130,8 +130,13 @@ class AdminController extends Controller
           if (Auth::check() && Auth::user()->role == 2) {
             if(User::where('id', $id)->exists()) {
                 $user = User::find($id);
-                $user->banned_until();
+                $user-> banned = 1;
+                $user->save();
+                
+                //
+                //$user->banned_until();
 
+        
                 return response()->json([
                     "message" => "User account blocked"
                 ], 202);

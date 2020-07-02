@@ -9,9 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "cybercog/laravel-ban": "^4.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
-        "laravel/passport": "^9.2",
+        "laravel/passport": "^9.3",
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0"
     },

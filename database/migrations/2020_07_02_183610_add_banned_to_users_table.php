@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBannedUntilToUsersTable extends Migration
+class AddBannedToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddBannedUntilToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->timestamp('banned_until')->nullable();
+         $table->integer('banned');
+            //
         });
     }
 
@@ -26,6 +27,7 @@ class AddBannedUntilToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+        $table->integer('banned');
             //
         });
     }
