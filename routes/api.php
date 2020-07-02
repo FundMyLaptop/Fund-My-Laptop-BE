@@ -22,6 +22,7 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 
 // Authentication
 Route::post('login', 'Api\UserController@login');
+Route::get('logout', 'Api\UserController@logout');
 Route::post('register', 'Api\UserController@register');
 
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
@@ -39,7 +40,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	Route::post('requests/store', 'RequestController@store');
     Route::get('requests/{id}', 'RequestController@show');
     Route::post('bank-accounts', 'BankAccountController@create');
-    Route::get('completed-requests', 'AdminController@index');
+
     Route::delete('users/delete/{id}','AdminController@destroy');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
     Route::post('transaction/update/{id}','TransactionController@update');
@@ -47,7 +48,9 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('marked-requests-favorite/{userId}', 'FavoriteController@userFavoriteRequest'); //Fetching all requests marked as favorite route
     Route::post('invest', 'InvestController@index');
     Route::get('invest/redirect/{id}', 'InvestController@redirect');
+    Route::get('users','UserController@index');
     Route::post('save-verification-file','VerificationController@store');
+    Route::get('completed-requests', 'AdminController@index');
 
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
