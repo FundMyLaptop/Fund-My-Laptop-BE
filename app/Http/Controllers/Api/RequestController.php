@@ -25,6 +25,15 @@ class RequestController extends Controller
         ], 201);
     }
 
+    public function availablefundingrequest()
+    {
+        $unattendedRequest = Request::where('isFunded', 0)->get();
+        return response()->json([
+            'message' => 'Unattended Requests Retrieved',
+            'data' => $unattendedRequest
+        ], 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

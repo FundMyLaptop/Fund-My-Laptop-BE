@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	Route::get('my-profile', 'UserController@getMyProfile');
 	Route::get('user-details', 'UserController@getUserDetails');
 	Route::get('/requests', 'RequestController@index');
+	Route::get('/unattendedrequests', 'RequestController@availablefundingrequest');
 });
 
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
