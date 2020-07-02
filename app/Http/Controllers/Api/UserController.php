@@ -99,6 +99,22 @@ class UserController extends Controller
     }
 
     /**
+     * Logout user (Revoke the token)
+     *
+     * @return [string] message
+     */
+    public function logout(Request $request)
+    {
+        if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
+        }
+        return response()->json([
+            'status' => true,
+            'message' => 'Logged User Out'
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
