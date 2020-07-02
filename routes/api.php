@@ -49,7 +49,6 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('users','UserController@index');
     Route::post('save-verification-file','VerificationController@store');
 
-
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
     //Route::post('transaction/update/{id}','TransactionController@update');
