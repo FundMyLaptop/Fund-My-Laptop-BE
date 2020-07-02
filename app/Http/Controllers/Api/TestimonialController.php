@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Testimonial as Testimonial;
+use Illuminate\Support\Facades\Auth;
 
 class TestimonialController extends Controller
 {
@@ -90,10 +91,29 @@ class TestimonialController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function deleteTestimonial($testimonial_id)
     {
-        //
+
+        //Admin delete testimonial
+        if (Auth::check() && Auth::user()->role == 2) {
+            if(Testimonial::where('id', $testimonial_id)->exists()) {
+                $testimonial = Testimonial::find($testimonial_id);
+                $testimonial->delete();
+
+                return response()->json([
+                    "message" => "Testimonial successfully deleted"
+                ], 202);
+            } else {
+                return response()->json([
+                    "message" => "Testimonial doesn't exist"
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'message' => 'You do not have permission to perform this action'
+            ]);
+        }
     }
 }
