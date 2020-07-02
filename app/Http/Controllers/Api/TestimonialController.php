@@ -25,6 +25,16 @@ class TestimonialController extends Controller
         } else return response()->json(['data' => 'You do not have permission to perform this action']);
     }
 
+    public function myTestimonials(){
+        //Fetch logged in user testimonials
+        $user_id = Auth::user()->id;
+        $testimonials = Testimonial::table('testimonial')
+            ->where('user_id', $user_id)
+            ->get();
+        return response()->json(['data' => $testimonials], 200);
+    }
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -55,7 +65,6 @@ class TestimonialController extends Controller
      */
     public function show($id)
     {
-        //
 
     }
 
