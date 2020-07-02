@@ -96,5 +96,8 @@ class SocialController extends Controller
                 throw new \Exception($e->getMessage());
             }
         }
+        public function Facebook(){
+
+        }
 
     }
