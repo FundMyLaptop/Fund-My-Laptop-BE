@@ -53,12 +53,12 @@ class TestimonialController extends Controller
             $fetch_testimonal = Testimonial::get();
             if($fetch_testimonal) {
                 return response()->json([
-                    'message' => 'Request retrieved',
+                    'message' => 'Testimonials record retrieved',
                     'data' => $fetch_testimonal
                 ], 200);
             } else {
                 return response()->json([
-                    'message' => 'Failed to fetch users.',
+                    'message' => 'Failed to fetch testimonials.',
                     'data' => $fetch_testimonal
                 ], 404);
             }
