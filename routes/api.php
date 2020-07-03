@@ -58,7 +58,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
     Route::get('testimonials/user/{id}','TestimonialController@userTestimonials'); //admin access needed 
     Route::get('testimonials/{id}','TestimonialController@myTestimonials'); //user access
-
+   Route::post('users/block','AdminController@block');
 
 
     // Commented out by Eromosele
