@@ -21,3 +21,4 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
+Route::get('/testify/{testimonial_id}', 'testifyController@delete');

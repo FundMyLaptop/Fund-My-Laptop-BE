@@ -93,7 +93,7 @@ class TestimonialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteTestimonial($testimonial_id)
+    public function delete($testimonial_id)
     {
 
         //Admin delete testimonial
