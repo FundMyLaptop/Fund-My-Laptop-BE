@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\Api\\TransactionController' => $baseDir . '/app/Http/Controllers/Api/TransactionController.php',
     'App\\Http\\Controllers\\Api\\UserController' => $baseDir . '/app/Http/Controllers/Api/UserController.php',
     'App\\Http\\Controllers\\Api\\VerificationController' => $baseDir . '/app/Http/Controllers/Api/VerificationController.php',
+    'App\\Http\\Controllers\\Api\\VerifyEmailController' => $baseDir . '/app/Http/Controllers/Api/VerifyEmailController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
