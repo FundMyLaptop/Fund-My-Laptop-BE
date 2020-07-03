@@ -21,6 +21,7 @@ return array(
     'App\\Http\\Controllers\\Api\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Api/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Api\\InvestController' => $baseDir . '/app/Http/Controllers/Api/InvestController.php',
     'App\\Http\\Controllers\\Api\\RecommendationController' => $baseDir . '/app/Http/Controllers/Api/RecommendationController.php',
+    'App\\Http\\Controllers\\Api\\RepaymentController' => $baseDir . '/app/Http/Controllers/Api/RepaymentController.php',
     'App\\Http\\Controllers\\Api\\RequestController' => $baseDir . '/app/Http/Controllers/Api/RequestController.php',
     'App\\Http\\Controllers\\Api\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Api/ResetPasswordController.php',
     'App\\Http\\Controllers\\Api\\TestimonialController' => $baseDir . '/app/Http/Controllers/Api/TestimonialController.php',
@@ -53,10 +54,17 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Recommendation' => $baseDir . '/app/Recommendation.php',
+    'App\\Repayment' => $baseDir . '/app/Repayment.php',
     'App\\Request' => $baseDir . '/app/Request.php',
+
+
+    'App\\ThirdParty\\Flutterwave' => $baseDir . '/app/Thirdparty/Flutterwave.php',
+
     'App\\Services\\SocialGoogleAccountService' => $baseDir . '/app/Services/SocialGoogleAccountService.php',
     'App\\SocialGoogleAccount' => $baseDir . '/app/SocialGoogleAccount.php',
+
     'App\\Testimonial' => $baseDir . '/app/Testimonial.php',
+
     'App\\Transaction' => $baseDir . '/app/Transaction.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Verification' => $baseDir . '/app/Verification.php',
@@ -4901,6 +4909,7 @@ return array(
     'Symfony\\Polyfill\\Php72\\Php72' => $vendorDir . '/symfony/polyfill-php72/Php72.php',
     'Symfony\\Polyfill\\Php73\\Php73' => $vendorDir . '/symfony/polyfill-php73/Php73.php',
     'Symfony\\Polyfill\\Php80\\Php80' => $vendorDir . '/symfony/polyfill-php80/Php80.php',
+    'TestimonialsTableSeeder' => $baseDir . '/database/seeds/TestimonialsTableSeeder.php',
     'Tests\\CreatesApplication' => $baseDir . '/tests/CreatesApplication.php',
     'Tests\\Feature\\ExampleTest' => $baseDir . '/tests/Feature/ExampleTest.php',
     'Tests\\TestCase' => $baseDir . '/tests/TestCase.php',

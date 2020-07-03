@@ -29,6 +29,9 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
+	Route::post('testimonial','TestimonialController@store');
+	Route::any('process-recurring-payments', 'RepaymentController@process');
+    ///all other routes should be defined under this line using the format of line 25 (above)
 
 	///all other routes should be defined under this line using the format of line 25 (above)
 	Route::post('recommendations', 'RecommendationController@store');
@@ -52,10 +55,10 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('users','UserController@index');
     Route::post('save-verification-file','VerificationController@store');
     Route::get('completed-requests', 'AdminController@index');
-
    Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
-   Route::get('testimonials/{id}','TestimonialController@index');
+   Route::get('testimonials/user{id}','TestimonialController@userTestimonials');
    Route::get('testimonials/{id}','TestimonialController@myTestimonials');
+   Route::post('users/block','AdminController@block');
 
 
     // Commented out by Eromosele
@@ -70,7 +73,7 @@ Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
 
-
+Route::get('testimonials/all', 'TestimonialController@index');
 
 
 //commentted by onifade the method index in this contoller has an error
