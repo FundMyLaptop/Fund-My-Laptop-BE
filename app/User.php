@@ -6,12 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 use App\Notifications\PasswordResetNotification;
+use App\Notifications\EmailVerificationNotification;
 
 use Laravel\Passport\HasApiTokens;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, HasApiTokens;
 
@@ -48,33 +50,47 @@ class User extends Authenticatable
         $this->notify(new PasswordResetNotification($token));
     }
 
-    public function request() {
+    //Email Verification Notification
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerificationNotification); // my notification
+    }
+
+    public function request()
+    {
         return $this->hasMany('App\Request');
     }
 
-    public function favorite() {
+    public function favorite()
+    {
         return $this->hasMany('App\Favorite');
     }
 
-    public function recommendation() {
+    public function recommendation()
+    {
         return $this->hasMany('App\Recommendation');
     }
 
-    public function bank_account() {
+    public function bank_account()
+    {
         return $this->hasOne('App\BankAccount');
     }
 
-    public function verification(){
-	     return $this->hasOne('App\Verification');
+    public function verification()
+    {
+        return $this->hasOne('App\Verification');
     }
-    public function transaction(){
+    public function transaction()
+    {
         return $this->hasMany('App\Transaction');
     }
 
-    public function testimonial(){
+    public function testimonial()
+    {
         return $this->hasMany('App\Testimonial');
     }
-    public function socialAccount(){
+    public function socialAccount()
+    {
         return $this->hasMany('App\socialAccount');
     }
 }

@@ -62,6 +62,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 });
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
+Route::get('email/verify/{id}/{hash}', 'Api\VerifyEmailController@verify')->name('verification.verify'); //verify email
+Route::get('email/resend', 'Api\VerifyEmailController@resend')->name('verification.resend'); //resend email
 
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
