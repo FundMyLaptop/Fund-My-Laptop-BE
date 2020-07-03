@@ -13,9 +13,14 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Auth\Events\Verified;
+
 class UserController extends Controller
 {
 
+    use VerifiesEmails;
+    public $successStatus = 200;
     //private variable to store user
     private $user;
 
@@ -35,18 +40,17 @@ class UserController extends Controller
         //$= users = $this->user->all();//
         $users = User::with('request', 'favorite', 'recommendation', 'bank_account')->get();
 
-        if($users){
+        if ($users) {
             return response()->json([
                 'message' => 'All users retrieved.',
                 'data' => $users
             ], 200);
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Failed to fetch users.',
                 'data' => $users
             ], 404);
         }
-
     }
 
 
@@ -66,14 +70,27 @@ class UserController extends Controller
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $token = $user->createToken('FundMyLaptop')->accessToken;
-            return response()->json(
-                [
-                    'status' => 'success',
-                    'data' => $user,
-                    'token' => $token
-                ],
-                200
-            );
+            if ($user->email_verified_at !== NULL) {
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'token' => $token,
+                        'email verification status' => 'Email verified.',
+                        'data' => $user,
+                    ],
+                    200
+                );
+            } else {
+                return response()->json(
+                    [
+                        'status' => 'success',
+                        'token' => $token,
+                        'email verification status' => 'Email not verified. Please verify your email.', 
+                        'data' => $user
+                    ],
+                    200
+                );
+            }
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -103,11 +120,12 @@ class UserController extends Controller
         $input['password'] = bcrypt($input['password']);
 
         $user = User::create($input);
+        $user->sendEmailVerificationNotification();
         $token =  $user->createToken('FundMyLaptop')->accessToken;
         return response()->json(
             [
                 'status' => 'success',
-                'response' => 'Account Created Successfully',
+                'response' => 'Account Created Successfully. Please check your inbox and confirm your email address.',
                 'token' => $token,
                 'data' => array(
                     'firstName' => $request->firstName,
@@ -120,6 +138,15 @@ class UserController extends Controller
             ],
             201
         );
+    }
+
+    public function details()
+    {
+        $user = Auth::user();
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
+        ], 201);
     }
 
     /**
