@@ -17,19 +17,32 @@ class testifyController extends Controller
         $testimonial_id = request()->testimonial_id;
         //return $testimonial_id;
         //Check if user is authenticated
-        if (Auth::check()) {
-            $user_id = auth()->user()->id;
-            // Check if testimonial exist
-            $testimonial = DB::delete("DELETE FROM testimonials WHERE id = ? AND user_id = ?", [$id], [$user_id]);
-            if($testimonial){
+        if (!Auth::check()) {
+            //$id = 1;
+            $id = Auth::user()->id;
             
-                    return response()->json([
-                        'message' => 'testimonial deleted successfully',]);
-            }
-                } else {
-                    return response()->json([
-                        'message' => 'testimonial could not be deleted'
-                    ], 404);
+            // Check if testimonial exist
+            $testimonial = DB::table('testimonials')->where('id', $testimonial_id)
+                                                    ->where('user_id',$id)->count(); 
+            if ($testimonial==0) {
+                return response()->json([
+                    'message' => 'testimonial do not exist',]);
+            
+            }else{
+                        // delete testimonial
+                        $testimonial = DB::table('testimonials')->where('id', $testimonial_id)
+                                                                ->where('user_id',$id)->delete();          
+                        if($testimonial){
+                                //success response
+                                return response()->json([
+                                    'message' => 'testimonial deleted successfully',]);
+                        } else {
+                                // fail response
+                                return response()->json([
+                                    'message' => 'testimonial could not be deleted'
+                                ], 404);
+                            }
                 }
-            }
+        }
+    }
 }
