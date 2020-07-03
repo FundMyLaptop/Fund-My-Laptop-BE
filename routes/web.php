@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');

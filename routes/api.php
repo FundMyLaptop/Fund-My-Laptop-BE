@@ -41,6 +41,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::get('requests/{id}', 'RequestController@show');
 	Route::get('uncompleted-requests', 'RequestController@fetch_uncompleted_requests');
     Route::post('bank-accounts', 'BankAccountController@create');
+    Route::get('featured-requests/{id}', 'RequestController@set_featured');
+    Route::get('all-featured-requests', 'RequestController@fetch_featured_requests');
 
     Route::delete('users/delete/{id}','AdminController@destroy');
     Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');

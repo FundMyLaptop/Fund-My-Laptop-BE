@@ -195,4 +195,46 @@ class RequestController extends Controller
             'data' => $request
         ], 200);
     }
+
+   
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param FeaturedRequest $request
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function set_featured(Request $request, $id)
+    {
+        //
+        if (Auth::check() && Auth::user()->role == 2) {
+            $featured_exist = FundRequest::query()->where('id',$id)->exists();
+            if($featured_exist){
+
+                $update = FundRequest::query()->where('id',$id)->update([
+                'isFeatured'=>'1',
+                ]);
+                if($update){
+                    return response()->json(['message'=> 'request feature updated'],201);
+                }else{
+                    return response()->json(['message'=> 'unable to update the reqyest feature'],400);
+                }
+            }else{
+                return response()->json(['message'=> 'Request does not exist '],400);
+            }
+        }
+    }
+
+    public function fetch_featured_requests(Request $request)
+    {
+        //
+        if (Auth::check() && Auth::user()->role == 2) {
+            $request = FundRequest::where('isFeatured', 1)->get();
+            return response()->json([
+                'message' => 'Request retrieved',
+                'data' => $request
+            ], 200);
+        }
+    }
 }
