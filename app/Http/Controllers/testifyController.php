@@ -17,7 +17,7 @@ class testifyController extends Controller
         $testimonial_id = request()->testimonial_id;
         //return $testimonial_id;
         //Check if user is authenticated
-        if (!Auth::check()) {
+        if (Auth::check()) {
             //$id = 1;
             $id = Auth::user()->id;
             
