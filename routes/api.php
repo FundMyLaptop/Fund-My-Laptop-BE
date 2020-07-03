@@ -56,7 +56,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('save-verification-file','VerificationController@store');
     Route::get('completed-requests', 'AdminController@index');
    Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
-   Route::put('users/block','AdminController@block');
+   Route::post('users/block','AdminController@block');
 
 
     // Commented out by Eromosele
@@ -66,12 +66,14 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 });
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); //For sending email link
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
+Route::get('email/verify/{id}/{hash}', 'Api\VerifyEmailController@verify')->name('verification.verify'); //verify email
+Route::get('email/resend', 'Api\VerifyEmailController@resend')->name('verification.resend'); //resend email
 
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
 
-
+Route::get('testimonials/all', 'TestimonialController@index');
 
 
 //commentted by onifade the method index in this contoller has an error

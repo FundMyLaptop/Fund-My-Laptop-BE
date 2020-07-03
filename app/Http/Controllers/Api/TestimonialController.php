@@ -17,7 +17,11 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+        $testimonial = Testimonial::with('user')->get();
+        return response()->json([
+            'status' => true,
+            'testimonial' => $testimonial
+        ], 200);
     }
 
     /**

@@ -23,26 +23,27 @@ class AdminController extends Controller
     }
 
     public function block(Request $request){
-        if(Auth::check() && Auth::user()->role == 2)
-        {
-            if(User::where('id',$request->id)->exists()){
+        if(Auth::check() && Auth::user()->role == 1) {
+            if (User::where('id', $request->id)->exists()) {
                 $user = User::find($request->id);
                 $user->isBlocked = 1;
-                $user->blocked_until = $request->blocked_until;
+                // $user->blocked_until = $request->blocked_until;
                 $user->save();
 
                 return response()->json([
-                "message"=>'User account blocked'
-                ],202);
-        }
-        else
+                    "message" => 'User account blocked'
+                ], 202);
+            } else {
+                return response()->json([
+                    "message" => 'User does not exist'
+                ]);
+            }
+        } else
         {
             return response()->json([
-                "message"=>"This user does not exist"
+                'message' => 'You do not have permission to perform this action'
             ],404);
         }
-    }
-
     }
 
     /**
