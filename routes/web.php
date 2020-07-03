@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/deletetestify/{id}', 'testimonialController@delete_testimonial');
