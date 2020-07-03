@@ -55,6 +55,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('save-verification-file','VerificationController@store');
     Route::get('completed-requests', 'AdminController@index');
    Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
+    Route::get('fetch-testimonials', 'TestimonialController@fetch');
 
 
     // Commented out by Eromosele
