@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request as TransactionRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Transaction;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -100,11 +101,12 @@ class TransactionController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @param TransactionRequest $request
      * @param  int  $id
      * @return JsonResponse
      */
+
     public function update(TransactionRequest $request, $id)
     {
         //

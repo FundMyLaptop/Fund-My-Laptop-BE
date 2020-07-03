@@ -29,6 +29,9 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
 	});*/
+	Route::post('testimonial','TestimonialController@store');
+	Route::any('process-recurring-payments', 'RepaymentController@process');
+    ///all other routes should be defined under this line using the format of line 25 (above)
 
 	///all other routes should be defined under this line using the format of line 25 (above)
 	Route::post('recommendations', 'RecommendationController@store');
