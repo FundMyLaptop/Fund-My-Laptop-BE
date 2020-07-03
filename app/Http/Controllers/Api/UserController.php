@@ -90,7 +90,6 @@ class UserController extends Controller
                     ],
                     200
                 );
-                return response()->json(['error' => 'Please verify your email'], 401);
             }
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);
