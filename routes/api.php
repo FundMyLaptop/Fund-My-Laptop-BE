@@ -71,7 +71,7 @@ Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
 
-
+Route::get('testimonials/all', 'TestimonialController@index');
 
 
 //commentted by onifade the method index in this contoller has an error
