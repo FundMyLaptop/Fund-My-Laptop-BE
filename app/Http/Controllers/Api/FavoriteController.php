@@ -81,9 +81,28 @@ class FavoriteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+
+    { if(Auth::check()){
+        if(Favorite::where('requestId', $id)->first()) {
+           $favorites = Favorite::where('requestId', $id)->where('userId', Auth::id() )->first();
+            $favorites->delete();
+
+            return response()->json([
+                "message" => "Favorite successfully deleted"
+            ], 200);
+        } else {
+            return response()->json([
+            "message" => "Request is neither found, best guess is, it is not marked as Favorite by you."
+            ], 404);
+          }
+        }
+    //Returns 401 error for non Authenticated users  
+    else {
+        return response()->json([
+        "error" => "Unauthorized to perform operation"
+        ], 401);
     }
+}
     
     public function userFavoriteRequest($userId)
     {
