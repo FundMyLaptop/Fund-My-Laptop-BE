@@ -84,7 +84,7 @@ class FavoriteController extends Controller
 
     { if(Auth::check()){
         if(Favorite::where('requestId', $id)->first()) {
-            $favorites = Favorite::where('requestId', $id)->first();
+           $favorites = Favorite::where('requestId', $id)->where('userId', Auth::id() )->first();
             $favorites->delete();
 
             return response()->json([
