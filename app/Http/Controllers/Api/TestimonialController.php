@@ -83,9 +83,24 @@ public function index()
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function fetch(Request $request)
     {
         //
+        if (Auth::check() && Auth::user()->role == 2) {
+            $fetch_testimonal = Testimonial::get();
+            if($fetch_testimonal) {
+                return response()->json([
+                    'message' => 'Testimonials record retrieved',
+                    'data' => $fetch_testimonal
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => 'Failed to fetch testimonials.',
+                    'data' => $fetch_testimonal
+                ], 404);
+            }
+
+        }
     }
 
     /**
