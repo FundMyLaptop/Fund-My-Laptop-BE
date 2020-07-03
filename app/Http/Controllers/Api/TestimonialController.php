@@ -21,7 +21,7 @@ public function index()
 }
     
 
-    public function userTestimonial($user_id)
+    public function userTestimonials($user_id)
     {
         //Admin fetch all a particular user testimonial
         if (Auth::check() && Auth::user()->role == 2) {
