@@ -56,7 +56,8 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('save-verification-file','VerificationController@store');
     Route::get('completed-requests', 'AdminController@index');
     Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
-    Route::get('testimonials/user/{id}','TestimonialController@index'); //admin access needed Route::get('testimonials/{id}','TestimonialController@myTestimonials'); //user access
+    Route::get('testimonials/user/{id}','TestimonialController@userTestimonials'); //admin access needed 
+    Route::get('testimonials/{id}','TestimonialController@myTestimonials'); //user access
 
 
 
