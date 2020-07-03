@@ -109,4 +109,33 @@ class FavoriteController extends Controller
             ], 401);
             }
         }
+
+        public function saveAsFavorite(Request $request){
+
+            $validator = Validator::make($request->all(), [
+                'user_id' => 'required',
+                'request_id' => 'required'
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()], 401);
+            }
+
+            if(Auth::check()){
+                if(Favorite::create(['user_id' => $request->input('user_id'), 'request_id' => $request->input('request_id')])){
+                    return response()->json([
+                        "message" => "Request saved as favorite"
+                    ], 200);
+                }else{
+                    return response()->json([
+                        "error" => "Request could not be saved as Favorite"
+                        ], 404);
+                }
+            } else {
+                return response()->json([
+                "error" => "Unauthorized"
+                ], 401);
+            }
+            
+        }
 }

@@ -53,7 +53,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
     Route::post('save-verification-file','VerificationController@store');
     Route::get('completed-requests', 'AdminController@index');
    Route::delete('testimonials/delete/{id}','TestimonialController@deleteTestimonial');
-
+    Route::post('set-as-favorite','FavoriteController@saveAsFavorite'); //Set a request as favorite for the funder
 
     // Commented out by Eromosele
     //Route::post('transaction/store', 'TransactionController@store');
