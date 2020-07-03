@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Validator;
+use Validacotor;
 use App\Testimonial as Testimonial;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,16 +15,14 @@ class TestimonialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $testimonial = Testimonial::with('user')->get();
-        return response()->json([
-            'status' => true,
-            'testimonial' => $testimonial
-        ], 200);
-    }
 
-    public function userTestimonials($user_id){
+public function index()
+{
+}
+
+
+    public function userTestimonials($user_id)
+    {
         //Admin fetch all a particular user testimonial
         if (Auth::check() && Auth::user()->role == 2) {
             $testimonials = Testimonial::table('testimonial')
@@ -36,14 +34,15 @@ class TestimonialController extends Controller
 
     public function myTestimonials(){
         //Fetch logged in user testimonials
-        $user_id = Auth::user()->id;
+      if (Auth::check()){
+        $user_id = Auth::id();
         $testimonials = Testimonial::table('testimonial')
             ->where('user_id', $user_id)
             ->get();
         return response()->json(['data' => $testimonials], 200);
+    } else return response()->json(['message' => 'You need to be logged in perform this action']);
+
     }
-
-
 
     /**
      * Show the form for creating a new resource.
