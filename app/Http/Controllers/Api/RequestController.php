@@ -182,8 +182,43 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //destroy method 
+        if (Auth::check() && Auth::user()->role == 2) {
+           if(FundRequest::where('id', $id)->exists()) {
+               $fundRequest = FundRequest::find($id);
+               $fundRequest->delete();
+               return response()->json([
+                  "message" => "Request deleted"
+               ], 202);
+            } else {
+               return response()->json([
+                  "message" => "Request doesn't exist"
+               ], 404);
+            }
+         } else {
+            return response()->json([
+               'message' => 'You do not have permission to perform this action'
+            ]);
+         }
     }
+
+    public function deleteMyRequest($id)
+    //request owner can delete request
+   {
+      $userId = Auth::user()->id;
+      $fundRequest = FundRequest::where('id', $id)->first();
+      if ($userId == $fundRequest->user_id) {
+          $fundRequest = FundRequest::find($id);
+          $fundRequest->delete();
+          return response()->json([
+              "message" => "Request deleted"
+          ], 202);
+      } else {
+          return response()->json([
+              "message" => "You do not have access to delete this request"
+          ], 200);
+      }
+   }
 
     public function fetch_uncompleted_requests(Request $request)
     {
