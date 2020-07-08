@@ -13,12 +13,11 @@ class BlogsTableSeeder extends Seeder
     {
         
             
-      $status = ['success', 'failed'];
-      $response_code = [201, 404];
+      
     
             $faker = Faker\Factory::create();
             for ($i = 0; $i < 1000; $i++) {
-                $rand_index = array_rand($status);
+               
                 $blog = new Blog();
                 $blog->user_id = $faker->numberBetween(1, 450);
                 $blog->title = $faker->words($nb = 6, $asText = true);
