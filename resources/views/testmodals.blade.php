@@ -1,6 +1,6 @@
-@extends('layout.app');
+@extends('layout.app')
 
-@section('content');
+@section('content')
 
 <div style="display: flex;
 flex-direction: column;
