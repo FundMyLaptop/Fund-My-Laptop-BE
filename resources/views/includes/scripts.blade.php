@@ -3,4 +3,3 @@
 <script src="{{asset('js/bootstrap-js/popper.js')}}"></script>
 <script src="{{asset('js/custom-js/navBar.js')}}"></script>
 
-@stack('scripts')
