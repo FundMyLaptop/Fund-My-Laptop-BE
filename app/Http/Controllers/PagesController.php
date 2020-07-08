@@ -35,4 +35,9 @@ class PagesController extends Controller
     {
         return view('faq');
     }
+
+    public function payment()
+    {
+        return view('payment');
+    }
 }
