@@ -20,4 +20,8 @@ class PagesController extends Controller
     {
         return view('campaign');
     }
+    public function blogList()
+    {
+        return view('blog-list');
+    }
 }
