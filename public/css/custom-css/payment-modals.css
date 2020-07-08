@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+
+div#paymentFailedModal.show,
+div#paymentSuccessModal.show {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+div.modal-content {
+  margin-top: 0.5rem !important;
+  max-height: 650px;
+  max-width: 500px;
+  width: max-content;
+  height: 80%;
+  border-radius: 20px;
+  box-shadow: -30px -30px 50px rgba(0, 0, 0, 0.05),
+    30px 30px 50px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+div.modal-content .modal__logo {
+  margin: 3rem auto;
+}
+
+.modal-content h3,
+.modal-content p {
+  font-family: "Roboto";
+  margin-bottom: 1rem;
+}
+
+div.modal-content h2 {
+  font-size: 2.25rem;
+}
+
+div.modal-content h3 {
+  font-size: 1.5rem;
+}
+
+div.modal-content h3:nth-of-type(2) {
+  margin-top: 1.0625rem;
+}
+
+div.modal-content p {
+  font-size: 18px;
+  max-width: 331px;
+  line-height: 21px;
+}
+
+div.modal-content button {
+  position: relative;
+  margin: 1rem auto 2rem !important;
+  font-weight: bold;
+}
+
+div.modal-content .modal-button__icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+div#paymentSuccessModal div.modal-content button {
+  position: relative;
+  padding-right: 28px;
+  margin: 1rem auto 4.1875rem;
+}
+
+div#paymentSuccessModal div.modal-content button:hover svg path {
+  fill: #fff;
+}
+
+@media screen and (max-width: 500px) {
+  div.modal-content {
+    /* max-height: 90vh; */
+    max-width: 90vw;
+  }
+
+  div.modal-content .modal__logo {
+    margin: 2rem auto 2.5rem;
+    width: 150px;
+    height: 150px;
+  }
+
+  div.modal-content h2 {
+    font-size: 2rem;
+  }
+
+  div.modal-content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+  }
+
+  div.modal-content button {
+    margin: 0.5rem auto 2rem;
+  }
+
+  div#paymentSuccessModal div.modal-content button {
+    position: relative;
+    padding-right: 28px;
+    margin: 0 auto 2rem !important;
+  }
+}

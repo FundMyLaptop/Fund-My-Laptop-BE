@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    
+
     return view('welcome');
 });
 
@@ -26,3 +26,6 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
+
+
+Route::get('terms-and-conditions', 'PagesController@termsAndConditions');

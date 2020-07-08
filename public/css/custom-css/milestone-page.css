@@ -1,0 +1,106 @@
+:root {
+  box-sizing: border-box;
+}
+
+*, 
+*::before, 
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #E5E5E5;
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif
+}
+
+.milestoneHeader {
+  /* Optional property using a hosted image */
+  /* background: linear-gradient( #04172a80, #04172a80 ), url(https://bit.ly/3icP4wo) no-repeat; */
+  background: linear-gradient( #04172a80, #04172a80 ), url(../../img/milestone-banner.svg) no-repeat;
+  background-size: cover;
+  height: 296.89px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.milestoneHeader div {
+  margin-top: 7.2em;
+}
+
+.milestoneHeader h1 {
+  margin-bottom: .75em;
+}
+
+.milestoneHeader p {
+  font-size: 1.2rem;
+}
+
+hr.headerHr {
+  border: 10px solid #FB3F5C;
+  width: 30.8%;
+  margin-top: -3em;
+}
+
+.headLink {
+  font-weight: bold;
+  cursor: pointer;
+  color: #04172a;
+  text-decoration: underline;
+}
+
+.grid2x2 {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.grid2x2 > div {
+  display: flex; 
+  flex-basis: calc(50% - 40px);  
+  justify-content: center;
+  flex-direction: column;
+}
+.grid2x2 > div > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.box { margin: 20px; }
+
+.card-img-overlay p {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.cardOne h5{
+  font-size: 3em;
+  border-bottom: 8px solid #FB3F5C;
+}
+
+.cardTwo h5{
+  font-size: 3em;
+  border-bottom: 8px solid #FB3F5C;
+}
+
+.cardThree h5{
+  font-size: 3em;
+  border-bottom: 8px solid #FB3F5C;
+}
+
+.cardFour h5{
+  font-size: 3em;
+  border-bottom: 8px solid #FB3F5C;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .grid2x2 {
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
