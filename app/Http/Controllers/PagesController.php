@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PagesController extends Controller
 {
@@ -75,6 +77,7 @@ class PagesController extends Controller
     {
         return view('404');
     }
+
     public function error500Page()
     {
         return view('500');
@@ -108,6 +111,25 @@ class PagesController extends Controller
     public function contact()
     {
         return view('contact');
+    }
+
+    public function contactStore(Request $request)
+    {
+        $data = [
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'mobile' => 'required|min:11',
+            'subject' => 'required|min:5',
+            'message' => 'required|min:10'
+        ];
+        if (!$request->validate($data)) {
+            return redirect()->back()->withInput($data);
+        } else {
+            $data = $request->validate($data);
+            Mail::to('test@test.com')->send(new ContactFormMail($data));
+
+            return redirect('contact')->with('status', 'Thanks for your message!. We will be in touch.');
+        }
     }
 
     public function blogList()

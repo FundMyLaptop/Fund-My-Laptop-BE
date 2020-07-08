@@ -54,31 +54,51 @@
                                 <p class="contact-item__title">Send a Message</p>
                                 <span class="contact-item__num">Do you have anything you want to tell us? Get in touch with us today.</span>
                             </div>
-                            <form class="form-field">
+                            @if(session('status'))
+                                <div class="alert alert-success mt-3">{{ session('status') }}</div>
+                            @endif
+                            <form class="form-field" method="post" action="/contact">
                                 <div class="row m-0 d-flex justify-content-between">
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Full Name</label>
-                                        <input type="text" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input full name">
+                                        <input type="text" name="name" class="contact-item__num py-4 form-control"
+                                               id="exampleFormControlInput1" placeholder="Input full name"
+                                               value="{{ old('name') }}">
+                                        <p class="text-danger">@error('name'){{ $message }} @enderror</p>
                                     </div>
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Email Address</label>
-                                        <input type="email" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input email">
+                                        <input type="email" name="email" class="contact-item__num py-4 form-control"
+                                               id="exampleFormControlInput1" placeholder="Input email"
+                                               value="{{ old('email') }}">
+                                        <p class="text-danger">@error('email'){{ $message }} @enderror</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 d-flex justify-content-between">
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Phone Number</label>
-                                        <input type="phone" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input phone number">
+                                        <input type="phone" name="mobile" class="contact-item__num py-4 form-control"
+                                               id="exampleFormControlInput1" placeholder="Input phone number"
+                                               value="{{ old('mobile') }}">
+                                        <p class="text-danger">@error('mobile'){{ $message }} @enderror</p>
                                     </div>
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Subject</label>
-                                        <input type="text" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input subject">
+                                        <input type="text" name="subject" class="contact-item__num py-4 form-control"
+                                               id="exampleFormControlInput1" placeholder="Input subject"
+                                               value="{{ old('subject') }}">
+                                        <p class="text-danger">@error('subject'){{ $message }} @enderror</p>
                                     </div>
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="exampleFormControlTextarea1">Message</label>
-                                    <textarea class="pt-3 form-item--text-area contact-item__num form-control" id="exampleFormControlTextarea1" rows="" placeholder="Input message"></textarea>
+                                    <textarea name="message"
+                                              class="pt-3 form-item--text-area contact-item__num form-control"
+                                              id="exampleFormControlTextarea1" rows=""
+                                              placeholder="Input message">{{ old('message') }}</textarea>
+                                    <p class="text-danger">@error('message'){{ $message }} @enderror</p>
                                 </div>
+                                @csrf
                                 <button class="form-submit" type="submit">Send Message</button>
                             </form>
                         </div>
