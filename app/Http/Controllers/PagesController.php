@@ -109,4 +109,9 @@ class PagesController extends Controller
     {
         return view('contact');
     }
+
+    public function blogList()
+    {
+        return view('blog-list');
+    }
 }
