@@ -25,17 +25,22 @@ class RequestController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $query = FundRequest::with('user')->where('user_id')->get();
+        $query = FundRequest::with('user')->paginate(30);
 
         return response()->json([
             'message' => 'Requests retrieved',
             'data' => $query
-        ], 201);
+        ], 200);
     }
 
-    public function availablefundingrequest()
+    /**
+     * Display a listing of the unattended fundees requests.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function availableFundingRequest()
     {
-        $unattendedFundingRequest = Request::where('isFunded', 0)->get();
+        $unattendedFundingRequest = FundRequest::with('user')->where('isFunded', 0)->get();
 
         return response()->json([
             'message' => 'Unattended Requests Retrieved',
@@ -57,7 +62,7 @@ class RequestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -131,16 +136,19 @@ class RequestController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         $user = Auth::user();
-        $request = FundRequest::where('id', $id)->with('user')->get();
-        return response()->json([
-            'message' => 'Request retrived',
-            'data' => $request
-        ], 200);
+        if (Auth::check() && Auth::user()->role == 2) {
+          $request = FundRequest::where('id', $id)->with('user')->get();
+          return response()->json([
+
+              'message' => 'Request retrieved',
+              'data' => $request
+          ], 200); 
+        }
     }
 
     /**
@@ -174,6 +182,94 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
+        //destroy method 
+        if (Auth::check() && Auth::user()->role == 2) {
+           if(FundRequest::where('id', $id)->exists()) {
+               $fundRequest = FundRequest::find($id);
+               $fundRequest->delete();
+               return response()->json([
+                  "message" => "Request deleted"
+               ], 202);
+            } else {
+               return response()->json([
+                  "message" => "Request doesn't exist"
+               ], 404);
+            }
+         } else {
+            return response()->json([
+               'message' => 'You do not have permission to perform this action'
+            ]);
+         }
+    }
+
+    public function deleteMyRequest($id)
+    //request owner can delete request
+   {
+      $userId = Auth::user()->id;
+      $fundRequest = FundRequest::where('id', $id)->first();
+      if ($userId == $fundRequest->user_id) {
+          $fundRequest = FundRequest::find($id);
+          $fundRequest->delete();
+          return response()->json([
+              "message" => "Request deleted"
+          ], 202);
+      } else {
+          return response()->json([
+              "message" => "You do not have access to delete this request"
+          ], 200);
+      }
+   }
+
+    public function fetch_uncompleted_requests(Request $request)
+    {
+        $request = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->get();
+        $count = FundRequest::where('isActive', 1)->where('isSuspended', 0)->where('isFunded', 0)->count();
+        return response()->json([
+            'message' => 'Request retrieved',
+            'count' => $count,
+            'data' => $request
+        ], 200);
+    }
+
+   
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param FeaturedRequest $request
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function set_featured(Request $request, $id)
+    {
         //
+        if (Auth::check() && Auth::user()->role == 2) {
+            $featured_exist = FundRequest::query()->where('id',$id)->exists();
+            if($featured_exist){
+
+                $update = FundRequest::query()->where('id',$id)->update([
+                'isFeatured'=>'1',
+                ]);
+                if($update){
+                    return response()->json(['message'=> 'request feature updated'],201);
+                }else{
+                    return response()->json(['message'=> 'unable to update the reqyest feature'],400);
+                }
+            }else{
+                return response()->json(['message'=> 'Request does not exist '],400);
+            }
+        }
+    }
+
+    public function fetch_featured_requests(Request $request)
+    {
+        //
+        if (Auth::check() && Auth::user()->role == 2) {
+            $request = FundRequest::where('isFeatured', 1)->get();
+            return response()->json([
+                'message' => 'Request retrieved',
+                'data' => $request
+            ], 200);
+        }
     }
 }

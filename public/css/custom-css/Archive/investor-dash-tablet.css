@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* welcome section */
+.welcome span {
+    color: #FB3F5C;
+}
+
+
+.toggle-details {
+    position: relative;
+    display: inline-block;
+    width: 33px;
+    height: 20px;
+}
+      
+    
+.toggle-details input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+      
+.slide-toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    border: 1px solid;
+    border-radius: 55px;
+    transition: .5s;
+}
+      
+      .slide-toggle:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 1.5px;
+        bottom: 1px;
+        background-color: #000;
+        transition: .5s;
+        border-radius: 50%;
+      }
+      
+      input:checked + .slide-toggle {
+        background-color: #000;
+
+      }
+      
+      input:focus + .slide-toggle {
+        box-shadow: 0 0 1px #fff;
+      }
+      
+      input:checked + .slide-toggle:before {
+        transform: translateX(12px);
+        background: #fff;
+      }
+
+      .slide-toggle {
+        border-radius: 45px;
+      }
+      
+      .slide-toggle:before {
+        border-radius: 50%;
+      }
+
+      .intern .card {
+          height: 240px;
+          width: 270px;
+          padding: 8px;
+      } 
+
+      .details {
+          margin-left: 19%;
+      }
+      
+      .row-stack .card {
+          width: 190px;
+          height: 110px;
+      }
+
+      .row-stack > div {
+          margin-left: -36%;
+      }
+
+      .card-title .intern-name {
+          margin-left: -20%;
+          font-size: 17px;
+      }
+      
+      progress[value] {
+          width: 65%;
+          height: 15px;
+          -webkit-appearance: none;
+          appearance: none;
+      }
+
+      progress[value]::-webkit-progress-value {
+        border-radius: 2px;
+        background: #04172A;
+      }
+
+      progress[value]::-webkit-progress-bar {
+          background: #eee;
+          width: 190px;
+          padding-right: 3%;
+      }
+
+      .amount-funded {
+          margin-left: 8%;
+      }
+
+      .amount-funded p {
+          font-size: 12px;
+      }
+
+      .intern-btn {
+          width: 120px;
+          height: 37px;
+          font-size: 17px;
+          background: #FB3F5C;
+          color: #fff;
+          text-transform: capitalize;
+          border-radius: 4px;
+          text-align: center;
+          box-shadow: 0px 4px 15px rgba(251, 63, 92, 0.2);
+      }
+
+      .intern-btn:hover {
+          transition: all ease-in .8s;
+          background: #04172A;
+          color: #fff;
+          cursor: pointer;
+      }
+
+      /* intern section ends here */
+
+      /* inestment table starts here */
+      thead {
+          background: #FB3F5C;
+          color: #fff;
+      }
+
+      /* investment section ends here */
+
+      ::-webkit-scrollbar {
+          height: 7px;
+          width: 8px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+          background: #04172A;
+          border-radius: 5px;
+      }
+
+      tbody tr:hover {
+          background: #eee;
+          cursor: pointer;
+      }
+
+      .card-title .intern-name {
+        margin-top: 1%;
+        margin-left: 10%;
+    }
+
+    .amount-funded > div {
+        display: inline-block;
+        padding-left: 0px;
+    }
+
+    .amount-funded .left {
+        padding-left: 56px;
+    }
+
+    .investments {
+        overflow: scroll;
+    }
+
+    table {
+        border-collapse: collapse;
+        font-size: 12px;
+    }
+
+
+    
+      @media only screen and (max-width: 576px) {
+         .container {
+             margin: 0 auto;
+             width: 100%;
+             margin-left: -8px;
+         }
+
+         .welcome h1 {
+             font-size: 26px;
+         }
+
+         .campaign, .none, .row-stack {
+             display: none;
+         }
+
+         .card-title .intern-name {
+             margin-top: -29%;
+             padding-left: 30%;
+         }
+
+         .intern .card {
+             margin-top: 3%;
+             height: 100%;
+             width: 300px;
+         }
+
+         .card-title, .amount-funded {
+             width: 100%;
+         }
+
+         .card p {
+             font-size: 12px;
+         }
+
+         .intern-img {
+             height: 45px;
+         }
+         
+         .amount-funded > div p {
+             font-size: 8px;
+         }
+    
+        .amount-funded .left {
+            margin-left: 3px;
+        }
+
+        progress[value]::-webkit-progress-bar {
+            width: 130%;
+        }
+
+      }
+
+
+      @media only screen and (min-width: 768px) {
+        .card-title .intern-name {
+            margin-top: 1%;
+            margin-left: 18%;
+        }
+
+
+        .intern .card {
+            height: 100%;
+        }
+
+        progress[value]::-webkit-progress-bar {
+            width: 130%;
+        }
+      }

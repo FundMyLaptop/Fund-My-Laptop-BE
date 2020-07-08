@@ -1,0 +1,220 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+}
+  .custom-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .top {
+    position: absolute;
+    z-index: -1;
+    min-width: 100%;
+    min-height: 350px;
+    background: #04172A;
+    clip-path: polygon(50% 0%, 100% 0, 100% 100%, 100% 60%, 0 100%, 0 50%, 0 0);
+}
+
+.heading-text {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 52px;
+    color: white;
+}
+
+.page {
+    height: 100%;
+    width: 100%;
+    box-shadow: 8px 2px 20px rgba(191, 191, 191, 0.2);
+}
+
+.page-header-1 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    color: #04172A;
+}
+
+.page-paragraph {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #04172A;
+}
+
+
+
+
+@media only screen and (min-width: 700px){
+    .page-paragraph {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1em;
+        color: #04172A;
+    }
+
+    .page-header-1 {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 23px;
+        color: #04172A;
+    }
+
+    .heading-text {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 52px;
+        color: white;
+    }
+
+    .paragraph-font {
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 31px;
+        color: #04172A;
+    }
+}
+
+
+.page-header-2 {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    /* font-size: 14px; */
+    line-height: 31px;
+    color: #04172A;
+}
+.heading {
+    min-height: 150px;
+}
+
+
+/* Header styles */
+/* Nav Bar start here */
+#navbarDropdown, #nav-link{
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 21px;
+    color: #04172A;
+}
+  /* NavBar buttons */
+    .btn-sign-in{
+        border: 1px solid #FB3F5C;
+        box-sizing: border-box;
+        width: 98px;
+        color: #FB3F5C;
+        background-color: white;
+        border-radius: 10px;
+    }
+    .btn-start{
+        background: #FB3F5C;
+        width: 177px;
+        color: #FFFFFF;
+        border-radius: 10px;
+    }
+  /* end nabars button */
+
+/* ***** Nav bar end here ***** */
+
+/* Header content start  Here */
+.jumbotron{
+    margin-top: 5.5rem;
+    background: url(/img/HeaderHero-.png) center  no-repeat;
+    background-size: cover;
+    min-height: 400px;
+
+}
+.header-text>p{
+    font-size: 24px;
+    line-height: 31px;
+    
+    color:  rgba(255, 255, 255, 0.9);
+}
+.header-form{
+    box-shadow: 0px 4px 8px rgba(251, 63, 92, 0.07);
+    border-radius: 8px;
+    }
+.btn-form{
+    width: 100%;
+    height: 48px;
+    background: #FB3F5C;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    color: white;
+}
+/* header content finish here */
+
+
+  /*footer styles */
+/* Foooter start here */
+.news-letter{
+    background: url(/img/newsLetter.png) center  no-repeat;
+    background-size: cover;
+    min-height: 578px;
+}
+.news-letter-text>p{
+    font-size: 24px;
+    line-height: 35px;
+    color: white;
+    width: 75%;
+}
+#subscribe-input{
+    width: 100%;
+    height: 80px;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    background: transparent;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    color: white;
+    font-size: 32px;
+    line-height: 42px
+}
+#subscribe-input::placeholder{
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 42px;
+    color: rgba(255, 255, 255, 0.5);
+ 
+}
+.subscribe-btn{
+    width: 100%;
+    height: 80px;
+    background: #FB3F5C;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 42px;
+    color: white;
+
+}
+.page-footer{
+    background: #04172A;
+    color: white;
+}
+.page-footer a{
+    font-size: 18px;
+    line-height: 24px;
+}

@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    height: 10px !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #37456c !important;
+    border-radius: 10px;
+}
+
+::-moz-scrollbar {
+    width: 6px !important;
+}
+
+::-moz-scrollbar-track {
+    background-color: #DDDDDD;
+}
+
+::-moz-scrollbar-thumb {
+    background: #37456c !important;
+}
+
+.w-60 {
+    width: 60%;
+}
+
+.mt-14 {
+    margin-top: 30px;
+}
+
+.mh-30 {
+    max-height: 30em;
+}
+
+.card {
+    border-radius: 11px;
+    margin-bottom: 10%;
+}
+
+.tconds h4 {
+    padding-left: 9%;
+}
+
+.blue-bg {
+    position: absolute;
+    left: 0px;
+
+}
+
+.btn-tc {
+    font-size: 20px;
+    padding: 14px 52px;
+    border-radius: 5px;
+    margin: 2px 17px;
+    border: 2px solid #FB3F5C;
+    color: #3D3838;
+
+}
+
+.btn-tc:hover {
+    background: #FB3F5C;
+    color: white;
+    box-shadow: 0px 2.76726px 2.21381px rgba(42, 58, 100, 0.0196802), 0px 6.6501px 5.32008px rgba(42, 58, 100, 0.0282725), 0px 12.5216px 10.0172px rgba(42, 58, 100, 0.035), 0px 22.3363px 17.869px rgba(42, 58, 100, 0.0417275), 0px 41.7776px 33.4221px rgba(42, 58, 100, 0.0503198), 0px 100px 80px rgba(42, 58, 100, 0.07);
+}
+
+.btn-tc:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 780px) {
+    .blue-bg {
+        display: none;
+    }
+
+    .tconds {
+        margin-left: 0 !important;
+    }
+
+    .tconds h4 {
+        color: #37456C;
+        padding: 0;
+
+    }
+
+    .card-title h2 {
+        text-align: center;
+    }
+
+    .card {
+        width: 80% !important;
+    }
+
+    .card-body {
+        width: 85% !important;
+        max-height: 20em;
+    }
+
+    .card h2 {
+        font-size: 1.4em;
+    }
+
+    .card-footer {
+        margin-right: 0 !important;
+    }
+
+    .btn-tc {
+        font-size: 18px;
+        background: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        border: 2px solid #FB3F5C;
+        color: #3D3838;
+        margin: 2px 12px;
+    }
+
+    .btn-tc:hover {
+        background: #FB3F5C;
+        color: white;
+        box-shadow: 0px 2.76726px 2.21381px rgba(42, 58, 100, 0.0196802), 0px 6.6501px 5.32008px rgba(42, 58, 100, 0.0282725), 0px 12.5216px 10.0172px rgba(42, 58, 100, 0.035), 0px 22.3363px 17.869px rgba(42, 58, 100, 0.0417275), 0px 41.7776px 33.4221px rgba(42, 58, 100, 0.0503198), 0px 100px 80px rgba(42, 58, 100, 0.07);
+    }
+
+    .btn-tc:focus {
+        outline: #04172a;
+    }
+}

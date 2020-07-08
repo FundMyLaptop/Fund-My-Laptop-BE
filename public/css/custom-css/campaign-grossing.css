@@ -1,0 +1,242 @@
+body {
+    color: rgba(4, 23, 42, 0.8);
+    overflow-x: hidden;
+    font-family: "DM Sans" sans-serif;
+  }
+  
+  main {
+    background: #fafafa;
+    position: relative;
+  }
+
+.campaign_gross_heading {
+  background: url(../../img/grossingBG.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  margin-bottom: 3em;
+  position: relative;
+}
+.campaign_gross_heading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.575);
+  z-index: 1;
+}
+
+.heading  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  padding: 20px 100px;
+}
+
+
+.heading h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 47px;
+  color: rgba(4, 23, 42, 0.8);
+}
+
+.heading p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 47px;
+  color: rgba(4, 23, 42, 0.8);
+}
+
+  .page-links {
+    margin-top: 2em;
+    padding: 20px 50px;
+  }
+  
+  .page-links a {
+    font-size: 24px;
+    line-height: 31px;
+    color: rgba(4, 23, 42, 0.8);
+    text-decoration: none;
+  }
+  
+  .page-links span{
+    font-size: 24px;
+    line-height: 31px;
+    color: rgba(4, 23, 42, 0.8);
+  }
+
+  .profile_title {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 7px;
+  }
+
+  .profile_image_container {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .profile_image_container img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .gross {
+      padding: 20px;
+  }
+
+  .subdetail{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 31px;
+    margin-bottom: 0;
+    color: rgba(4, 23, 42, 0.8);
+  }
+
+  .description a {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+    margin-bottom: 0;
+    color: rgba(4, 23, 42, 0.8);
+  }
+
+  .description-text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 36px;
+    color: rgba(4, 23, 42, 0.8);
+  }
+  
+  .no_of_recommmendations {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: justify;
+    margin: auto;
+    margin-bottom: 5px;
+  }
+
+  .amount_raised p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 36px;
+    text-align: justify;
+    margin: auto;
+    margin: 10px 0;
+    letter-spacing: 1px;
+  }
+
+  .grossings {
+    position: relative;
+  }
+
+  .pagination-container {
+    position: relative;
+    margin: 50px 0;
+    width: 100%;
+  }
+
+  .pagination-container .pagination {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 1%;
+  }
+
+  .pagination li a {
+    font-size: 14px;
+  }
+
+  @media only screen and (max-width: 480px) {
+
+    .pagination li a {
+      font-size: 14px;
+    }
+
+    .page-links {
+      margin-top: 5em;
+      padding: 5px 0;
+    }
+
+    .page-links a, .page-links span {
+      font-size: 14px;
+    }
+
+    .heading {
+      padding: 5px;
+    }
+
+    .heading h2 {
+      font-size: 28px;
+    }
+
+    .heading p {
+      font-size: 20px;
+    }
+
+    .container {
+      padding: 0 2em;
+    }
+  }
+
+  @media only screen and (min-width: 481px) and (max-width: 800px) {
+    .heading {
+      padding: 25px;
+    }
+
+    .heading h2 {
+      font-size: 30px;
+    }
+
+    .container {
+      padding: 0 0.3em;
+    }
+
+    .heading p {
+      font-size: 23px;
+    }
+
+    .profile_title p {
+      font-size: 18px;
+    }
+
+    .description a {
+      font-size: 20px;
+      line-height: 30px;
+      margin-bottom: 10px;
+    }
+
+    .no_of_recommmendations {
+      font-size: 16px;
+      text-align: left;
+      line-height: 20px;
+    }
+
+    .amount_raised p {
+      word-spacing: normal;
+      text-align: left;
+      font-size: 20px;
+    }
+  }
+
+  @media only screen and (min-width: 800px) and (max-width: 990px) {
+    .container {
+      padding: 0 10px;
+    }
+  }

@@ -1,0 +1,152 @@
+/* .footer {
+  background: #04172a;
+  color: #ffffff;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.footer-li {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+.footer-li li {
+  color: #ffffff;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.footer-li h4 {
+  color: #ffffff;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
+}
+
+li.list-item {
+  margin-top: 1.5rem;
+  line-height: inherit;
+  font-size: inherit;
+}
+
+.social-item{
+  background: rgba(255, 255, 255, 0.1);
+  padding: .75rem 1rem;
+  border-radius: 100%;
+}
+.mob-hr{
+  display: none;
+}
+@media (max-width: 640px) {
+  footer{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  li.list-item{
+    margin-top: .75rem;
+  }
+
+  .mob-hr{
+    display: block;
+  }
+
+  .footer-icons{
+    width: 80%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .resources{
+    justify-content: center;
+  }
+} */
+.footer {
+  background: #04172a;
+  color: #ffffff;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.footer-li {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+.footer-li li {
+  color: #ffffff;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.footer-li h4 {
+  color: #ffffff;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
+}
+
+li.list-item {
+  margin-top: 1.5rem;
+  line-height: inherit;
+  font-size: inherit;
+}
+
+.social-item{
+  background: rgba(255, 255, 255, 0.1);
+  padding: .75rem 1rem;
+  border-radius: 100%;
+}
+.mob-hr{
+  display: none;
+}
+@media (max-width: 640px) {
+  footer{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  li.list-item{
+    margin-top: .75rem;
+  }
+
+  .mob-hr{
+    display: block;
+  }
+
+  .footer-icons{
+    width: 80%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .resources{
+    justify-content: center;
+  }
+
+  .credits{
+    flex-flow: column-reverse;
+  }
+
+  .credits-list{
+    flex-flow: column;
+  }
+}
