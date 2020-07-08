@@ -23,28 +23,18 @@
                         <div class="page bg-white border-0 mt-md-4 p-lg-5 p-md-3 p-sm-3">
                             <div class="row pt-3 mx-auto text-center">
                                 <div class="col text-center mx-auto">
-                                    <h1 class="page-header-1">Last updated: 23rd June, 2020.</h1>
+                                    <h1 class="page-header-1">Last updated: 8th July, 2020.</h1>
                                 </div>
                             </div>
                             <div class="row px-2 pt-2 mx-auto">
                                 <div class="col page-paragraph text-left">
                                     <p>
-                                        Fund my Laptop operates http://www.mysite.com (change this) (the "Site").
-                                        This
-                                        page
-                                        informs
-                                        you
-                                        of our policies regarding the collection, use and disclosure of Personal
-                                        Information we
-                                        receive
-                                        from users of the Site.
+                                        Fund my Laptop operates http://www.fundmylaptop.com (the "Site").
+                                        This page informs you of our policies regarding the collection, use and disclosure of Personal
+                                        Information we receive from users of the Site.
                                     </p>
                                     <p> We use your Personal Information only for providing and improving the Site.
-                                        By
-                                        using the
-                                        Site,
-                                        you
-                                        agree to the collection and use of information in accordance with this
+                                        By using the Site, you agree to the collection and use of information in accordance with this
                                         policy.
                                     </p>
                                 </div>
