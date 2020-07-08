@@ -35,3 +35,4 @@ Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
 Route::get('payment', 'PagesController@payment');
+Route::get('benefit', 'PagesController@benefit');

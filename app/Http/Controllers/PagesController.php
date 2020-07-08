@@ -40,4 +40,9 @@ class PagesController extends Controller
     {
         return view('payment');
     }
+
+    public function benefit()
+    {
+        return view('benefits');
+    }
 }

@@ -120,7 +120,6 @@ h1 {
 .benefits {
   background-color: #EEE;
   padding: 100px 15px 70px;
-  margin-top: 2em;
 }
 
 .benefits .container .row .title h1::before {
