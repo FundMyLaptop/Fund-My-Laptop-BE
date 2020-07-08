@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Blog;
 class PagesController extends Controller
 {
     public function termsAndConditions()
@@ -61,9 +61,15 @@ class PagesController extends Controller
         return view('milestones');
     }
 
-    public function blogRead()
+    public function blogRead($title)
     {
-        return view('blog-read');
+        
+        $title=urldecode($title);
+        $blog =Blog::where('title',$title)->first();
+        if(!$blog){
+            return view('404');
+        }
+        return view('blog-read')->with('blog', $blog);
     }
 
     public function blog()
