@@ -104,4 +104,14 @@ class PagesController extends Controller
     {
         return view('complaint-form');
     }
+
+    public function blogList()
+    {
+        return view('blog-list');
+    }
+
+    public function contactUs()
+    {
+        return view('contact-us');
+    }
 }
