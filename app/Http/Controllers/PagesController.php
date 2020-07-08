@@ -104,4 +104,9 @@ class PagesController extends Controller
     {
         return view('complaint-form');
     }
+
+    public function contact()
+    {
+        return view('contact');
+    }
 }
