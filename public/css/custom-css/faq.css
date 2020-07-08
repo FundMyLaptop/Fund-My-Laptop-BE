@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+#main{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+body{
+    font-family: 'DM Sans', sans-serif !important;
+    color: #04172A;
+    font-weight: 500;
+}
+
+#titi h3{
+    font-family: inherit;
+    font-style: normal;
+    font-size: 32px !important;
+    line-height: 42px;
+}
+
+.search-bar{
+    max-width: 49.7%;
+    margin: auto;
+    box-sizing: border-box;
+    
+}
+
+.form-control{
+    border: 2px solid #04172A;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+input::placeholder{
+    font-size: 20px;
+    line-height: 26px;
+    color: rgba(4, 23, 42, 0.2);
+   
+}
+
+input:focus{
+    color: rgba(4, 23, 42, 0.2);
+    outline: none;
+}
+.fa-search{
+    position: relative;
+    top: -2rem;
+    bottom: 2rem;
+    left: 94%;
+    right: 94%;
+}
+
+p.lead{
+    font-size: 24px !important;
+    line-height: 31px;
+
+    color: #92A0AF;
+}
+
+#main-content{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+aside header{
+    color: #2A3A64;
+    font-size: inherit;
+}
+
+li.list-item {
+    margin-top: 1.5rem;
+    line-height: inherit;
+    font-size: inherit;
+}
+
+a{
+    text-decoration: none;
+    color: #E1E1E1 !important;
+}
+
+a:hover{
+    text-decoration: underline;
+    opacity: 1;
+}
+
+.accordion{
+    background: #FFFFFF;
+    border-radius: 0px 0px 5px 5px;
+    
+}
+
+
+.accordion a:hover .card-title{
+    color: #FFFFFF;
+}
+.accordion p{
+    color: #848484;
+    font-size: 18px;
+    font-weight: 300;
+    white-space: normal;
+    word-break: break-all;
+}
+.accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+    cursor: pointer;
+    color: #FB3F5C;
+}
+.accordion .card-header.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f067"; 
+}
+
+.fa-chevron-right{
+    font-size: 16px;
+    margin-top: 3px;
+}
+
+h4{
+    font-size: 40px;
+    line-height: 52px;
+}
+
+.btn-faq{
+    text-align: right !important;
+    font-size: 24px;
+}
+
+.inactive{
+    color: #E1E1E1;
+}
+
+@media (max-width: 640px) {
+    .search-bar{
+        max-width: 100%;
+    }
+
+    li.list-item.row{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+

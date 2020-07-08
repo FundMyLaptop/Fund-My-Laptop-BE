@@ -1,0 +1,193 @@
+ * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
+            color: #04172A;
+        }
+
+        main {
+            padding: 0 20px;
+        }
+
+        .secondaryColor {
+            color: #FB3F5C;
+        }
+
+        .welcomeSection {
+            margin-top: 110px;
+        }
+
+        .welcome,
+        .welcomeSection p {
+            margin: 5px 0;
+        }
+
+        .investmentSection {
+		    width:100%;
+            margin-top: 30px;
+            margin-bottom: 50px;	
+        }
+
+        .investmentSectionBlock {
+			width:100%;
+            display: flex;
+			justify-content:space-between;
+            flex-wrap: wrap;			
+        }
+
+        .investment {
+		    width:100%;
+            padding: 10px;
+            background: rgba(4, 23, 42, 0.05);
+            margin-left: 0%;
+            margin-bottom: 10px;
+        }
+
+        .investment span {
+            font-size: .7em;
+            font-weight: lighter;
+            margin-right: 5px;
+        }
+		
+		.row{
+		    display:flex;
+			justify-content:space-between;
+		}
+
+        .table {
+            margin-top: 50px;
+        }
+
+        .table header {
+            font-size: 1.2em;
+        }
+
+        .tableSection {
+            overflow: scroll;
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
+
+        .tableSection::-webkit-scrollbar {
+            display: none;
+        }
+
+        table {
+            font-size: .8em;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        tr {
+            border-bottom: 2px solid rgba(4, 23, 42, 0.1);
+        }
+
+        thead {
+            font-weight: bold;
+            background: #FB3F5C;
+            color: #fff;
+            border-bottom: 0px;
+        }
+
+        td {
+            padding: 10px 10px;
+        }
+
+        tbody td {
+            padding: 15px 5px;
+        }
+
+        @media screen and (min-width: 768px) {
+            main {
+                padding: 0 50px;
+            }
+
+            .investmentSection {
+                margin-top: 40px;
+                margin-bottom: 50px;
+            }
+
+            .investmentSectionBlock {
+                width: 100%;
+            }
+
+            .investment {
+                width: 170px;
+                padding: 20px;
+				margin-left: 0%;
+                margin-bottom: 20px;
+            }
+
+            .tableSection {
+                overflow: auto;   
+            }
+
+            thead td {
+                padding: 20px;
+            }
+
+            td {
+                padding: 10px 10px;
+            }
+
+            tbody td {
+                padding: 25px 15px;
+            }
+
+            tr {
+                border-bottom: 2px solid rgba(4, 23, 42, 0.1);
+            }
+        }
+        @media screen and (min-width: 992px) {
+
+            main {
+                padding: 0 7%;
+            }
+
+            .welcome {
+                font-size: 2em;
+            }
+
+            .investmentSection {
+                flex-direction: initial;
+            }
+
+            .investmentSectionBlock{
+                width: 100%;
+				height: 0;
+				margin-bottom:350px;
+            }
+
+            .investment {
+			    max-width:100%;
+				width:170px;
+                padding: 20px 15px;
+                margin-bottom: 10px;
+            }
+			
+            .table {
+                margin-top: 50px;
+            }
+		}
+			
+			@media(min-width:1430px){
+				.investment {
+					width:350px;
+					padding: 20px 15px;
+					margin-bottom: 10px;
+				}
+			}
+			@media(min-width:1250px){
+				.investment {
+					max-width:100%;
+					width:210px;
+					padding: 20px 15px;
+					margin-bottom: 10px;
+				}
+			}
+			
