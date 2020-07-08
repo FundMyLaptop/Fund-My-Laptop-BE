@@ -47,4 +47,9 @@ Route::get('investor-dashboard', 'PagesController@investorDashboard');
 Route::get('investee-dashboard', 'PagesController@investeeDashboard');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
-Route::get('complaint-form', 'PagesController@complaintForm');
+Route::get('signup', 'PagesController@signUp');
+Route::get('profile-update', 'PagesController@updateProfile');
+Route::get('total-investment', 'PagesController@totalInvestment');
+Route::get('test-modals', 'PagesController@testModals');
+Route::get('login', 'PagesController@login');
+
