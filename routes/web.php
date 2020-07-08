@@ -30,3 +30,4 @@ Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
+Route::get('campaign', 'PagesController@campaign');
