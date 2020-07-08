@@ -104,4 +104,34 @@ class PagesController extends Controller
     {
         return view('complaint-form');
     }
+
+    public function updateProfile()
+    {
+        return view('update-profilepage');
+    }
+
+    public function signUp()
+    {
+        return view('signup');
+    }
+
+    public function sign_up()
+    {
+        return view('sign-Up');
+    }
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function totalInvestment()
+    {
+        return view('investors_total_list_of_investments');
+    }
+
+    public function testModals()
+    {
+        return view('testmodals');
+    }
 }
