@@ -60,4 +60,48 @@ class PagesController extends Controller
     {
         return view('milestones');
     }
+
+    public function blogRead()
+    {
+        return view('blog-read');
+    }
+
+    public function blog()
+    {
+        return view('blog');
+    }
+
+    public function error404Page()
+    {
+        return view('404');
+    }
+    public function error500Page()
+    {
+        return view('500');
+    }
+
+    public function investorDashboard()
+    {
+        return view('investor-dashboard');
+    }
+
+    public function investeeDashboard()
+    {
+        return view('investee-dashboard');
+    }
+
+    public function campaignGrossing()
+    {
+        return view('campaign-grossing');
+    }
+
+    public function complaint()
+    {
+        return view('complaint');
+    }
+
+    public function complaintForm()
+    {
+        return view('complaint-form');
+    }
 }

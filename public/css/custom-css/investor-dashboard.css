@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #fff;
+    color: #04172A;
+}
+
+body {
+    height: 100%;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100%;
+}
+
+#content-wrap {
+    padding-bottom: 400px;
+}
+
+#footer-main {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 400px;
+    background: #04172A;
+    margin-top: -400px;
+}
+
+.container-main {
+    margin-top: 100px;
+}
+
+.pink-text {
+    text-decoration: none;
+    color: #FB3F5C
+}
+
+nav {
+    background: rgba(4, 23, 42, 0.03);
+    padding: 15px 30px;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+main {
+    flex: 1 1 0;
+    /* height: 100vh; */
+    padding: 0 20px;
+}
+
+.text--secondary {
+    color: #FB3F5C;
+}
+
+.user {
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
+.user__intro,
+.user p {
+    margin: 5px 0;
+}
+
+.user-carousel {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.fa {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.left-arrow {
+    margin-top: 120px;
+    position: absolute;
+    left: 0;
+    margin-left: 60px;
+}
+
+.right-arrow {
+    margin-top: 120px;
+    position: absolute;
+    right: 0;
+    margin-right: 60px;
+}
+
+.user-financials {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    margin-right: 20px;
+    width: 250px;
+    height: 258px;
+    background: rgba(4, 23, 42, 0.03);
+}
+
+.user-financials button {
+    width: 100px;
+    margin-top: 20px;
+    background: #FB3F5C;
+    box-shadow: 0px 4px 15px rgba(251, 63, 92, 0.2);
+    border-radius: 5px;
+    border: none;
+    padding: 10px 0px 10px 0px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.user-details {
+    display: flex;
+    width: 100%;
+}
+
+progress[value] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 95%;
+    margin: auto;
+    height: 15px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #eee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    border-radius: 3px;
+}
+
+progress[value]::-webkit-progress-value {
+    background: #04172A;
+    border-radius: 3px
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-header {
+    font-size: 1.2em;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+.account__block {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+}
+
+.account__block--details {
+    max-width: 100%;
+    flex: 0 0 48%;
+    padding: 15px;
+    background: rgba(4, 23, 42, 0.05);
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.account__block--details span {
+    font-size: .7em;
+    font-weight: lighter;
+    margin-right: 5px;
+}
+
+.account__progress {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-ring__circle {
+    transition: 0.35s stroke-dashoffset;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.progress__value {
+    position: relative;
+    margin: 0;
+    background-color: transparent;
+    top: -180px;
+}
+
+.progress__value h1,
+.progress__value h6 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 3em;
+}
+
+.progress__value h6 {
+    font-size: 1em;
+    font-weight: lighter;
+}
+
+.table {
+    margin-top: -70px;
+}
+
+.table header {
+    font-size: 1.2em;
+}
+
+.table__container {
+    overflow: scroll;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.table__container::-webkit-scrollbar {
+    display: none;
+}
+
+table {
+    font-size: .8em;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 2px solid rgba(4, 23, 42, 0.1);
+}
+
+thead {
+    font-weight: bold;
+    background: #FB3F5C;
+    color: #fff;
+    border-bottom: 0px;
+}
+
+td {
+    padding: 10px 10px;
+    text-align: center;
+    font-weight: normal;
+}
+
+tbody td {
+    padding: 15px 5px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .user p {
+        font-size: 11px;
+    }
+
+    .fa {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .left-arrow {
+        margin-top: 120px;
+        position: absolute;
+        left: 0;
+        margin-left: 10px;
+    }
+
+    .right-arrow {
+        margin-top: 120px;
+        position: absolute;
+        right: 10px;
+        margin-right: 0px;
+    }
+
+    td {
+        padding: 5px 5px;
+        font-size: 8px;
+    }
+
+    tbody td {
+        padding: 10px 5px;
+    }
+
+    thead {
+        font-weight: bold;
+        font-size: 12px;
+        background: #FB3F5C;
+        color: #fff;
+        border-bottom: 0px;
+    }
+
+    .account {
+        margin-top: 40px;
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .account__block {
+        margin: auto;
+    }
+    .account__block--details small{
+        font-size: 12px;
+    }
+    .account__block--details h2{
+        font-size: 16px;
+    }
+    .account__block--details span{
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+    nav {
+        padding: 25px 50px;
+        font-size: 1.5em;
+    }
+
+    main {
+        padding: 0 50px;
+    }
+
+    .account {
+        margin-top: 40px;
+    }
+
+    .account__block {
+        width: 80%;
+    }
+
+    .account__block--details {
+        width: 100%;
+        flex: 0 0 32%;
+        padding: 20px;
+    }
+
+    .account__progress {
+        width: 100%;
+        margin-top: -20px;
+    }
+
+    .table__container {
+        overflow: auto;
+    }
+
+    thead td {
+        padding: 20px;
+    }
+
+    td {
+        padding: 10px 10px;
+        font-size: 14px;
+    }
+
+    tbody td {
+        padding: 25px 15px;
+    }
+
+    tr {
+        border-bottom: 2px solid rgba(4, 23, 42, 0.1);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    nav {
+        padding: 25px 9%;
+        font-size: 1.5em;
+    }
+
+    main {
+        padding: 0 9%;
+    }
+
+    .user__intro {
+        font-size: 2em;
+    }
+
+    .account {
+        flex-direction: initial;
+    }
+
+    .account__block {
+        width: 75%;
+        height: 0;
+    }
+
+    .account__block--details {
+        padding: 20px 40px;
+        padding-bottom: 0;
+    }
+
+    .table {
+        margin-top: -40px;
+    }
+
+}
