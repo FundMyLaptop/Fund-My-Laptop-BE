@@ -16,7 +16,7 @@
 					</div>
 				</div>
 				<div id="name">
-					<h3>John Doe</h3>
+					<h3>{{ $data['message']['firstName']." ".$data['message']['lastName'] }}</h3>
 					<p>Frontend Developer</p>
 				</div>
 			</section>
@@ -27,7 +27,7 @@
 						<label>Basic Information</label>
 						<div class="_pfg">
 							<p>Date of Birth</p>
-							<input type="date" name="" class="_pfc" />
+							<input type="date" name="" value="" class="_pfc" />
 						</div>
 						<div class="_pfg">
 							<p>Gender</p>
@@ -50,15 +50,15 @@
 						<label>Contact Information</label>
 						<div class="_pfg">
 							<p>Email Address</p>
-							<input type="email" name="" class="_pfc" />
+						<input type="email" name="" value="{{ $data['message']['email'] }}" class="_pfc" />
 						</div>
 						<div class="_pfg">
 							<p>Phone Number</p>
-							<input type="phone" name="" class="_pfc" />
+						<input type="phone" name="" value="{{ $data['message']['phone'] }}" class="_pfc" />
 						</div>
 						<div class="_pfg">
 							<p>Resident Address</p>
-							<input type="text" name="" class="_pfc" />
+						<input type="text" name="" value="{{ $data['message']['address'] }}" class="_pfc" />
 						</div>
 						<div class="_pfg">
 							<p>Website</p>

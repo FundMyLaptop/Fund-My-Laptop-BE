@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -107,7 +108,14 @@ class PagesController extends Controller
 
     public function updateProfile()
     {
-        return view('update-profilepage');
+        $token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMWUwODQzYTdiOTFkNzViM2E1MjVlNjkxMjc5MzU1MGYxN2Y0NTIyZDUxMWZlYTRkNmY2YjU2MDJjYzhiMTNkYmZlZTFmMDYwYjJkYTQxMWYiLCJpYXQiOjE1OTQyMjU1MDgsIm5iZiI6MTU5NDIyNTUwOCwiZXhwIjoxNjI1NzYxNTA4LCJzdWIiOiI1MDIiLCJzY29wZXMiOltdfQ.nlHagmumeQBY0_V65rIpsEa2V2iqLxa_rzWvViBh1vXnjey_kAD7fk_PG0_NwQFEGd6FSChFYVSQ1DBhtUMDCKrDZzob_WdbZMEq4bwYHEqV5_oo3PdMjYRTi0b3pRZCXMAim-7uWKrEBMKcdzcUwcJqEF8krKR2TuzJ0rqtzxfr6ZxKE8o8guLHrHAlTa7Z4Nv57EavnIBSbWzsOHJTKxAVFtymNpd-JX5_O2kbOE3vSa4oRHxf9qbYQ82lr-6vEOCdu7VD1UgG1bsJPCBMP6MQuk_FY-LKqQPVVYWf6TZp2oD7ttjPKZBNWIJG5iy967gDzlTrFZ0v_bKGs4qAz0PnuRVe3jZAmt58dJ7fK7DM0_5VMpVLwOw-o8aTKm0s03Lo7tRsN3egoUlKvIje-hbX2d5zc1r-GLJJW2lZu9twZCHk1rifPUokyJkAMyp1ey3tcjvPLhbPt_U3_TDBNcIExV9dYyZ62Uqejbth-1362OJwpuRhnbYf2xQQvut93R8f7an90HCF_uyX4Grlnci8V9wEtQalyopWACFBcHoLp7H_H-hFIPSqEGgyqftiyKtRiKaZQFDTKcrR1WlfgSEckgaz72pyQGA41Fw6dyiILa1xQfdH2jxpQi9MkRRX0MIoK7RSX39YignOBosasI0isfd10ep6d7RGvk-sSTY';
+        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);  
+        $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]); 
+        $body = $response->getBody();
+        $content =$body->getContents();
+        $data = json_decode($content,TRUE);
+
+        return view('update-profilepage', compact('data'));
     }
 
     public function signUp()
