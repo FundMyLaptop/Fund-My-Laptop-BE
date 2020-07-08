@@ -20,4 +20,19 @@ class PagesController extends Controller
     {
         return view('campaign');
     }
+
+    public function career()
+    {
+        return view('career');
+    }
+
+    public function album()
+    {
+        return view('album');
+    }
+
+    public function faq()
+    {
+        return view('faq');
+    }
 }
