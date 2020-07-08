@@ -1,5 +1,5 @@
 
-@import url ("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap" rel="stylesheet");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap");
 
 *{
 	margin: 0;
@@ -280,69 +280,73 @@ h1 {
 }
 
 @media(max-width: 767px) {
-  .hamburger .fa {
-    display: inline-block;
-  }
-  .navbar {
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    width: 100%;
-  }
+    .hamburger .fa {
+        display: inline-block;
+    }
 
-  .navbar .show {
-    display: block;
-  }
+    .navbar {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+    }
 
-  .navbar ul li {
-    display: block;
-    margin-left: 0;
+    .navbar .show {
+        display: block;
+    }
 
-  }
+    .navbar ul li {
+        display: block;
+        margin-left: 0;
 
-  .navbar ul li a {
-    line-height: 42px;
-    color: #04172A;
-  }
+    }
 
-  .navbar ul li a::before {
-    bottom: -3px;
-    background-color: #FFFFFF;
-  }
+    .navbar ul li a {
+        line-height: 42px;
+        color: #04172A;
+    }
 
-  .benefit-content .box {
-    padding: 30px;
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
+    .navbar ul li a::before {
+        bottom: -3px;
+        background-color: #FFFFFF;
+    }
 
-@media(max-width: 500px) {
-h1 {
-	font-size: 26px;
-	line-height: 30px;
-    margin: 0px 0px 1em;
-}
- .box .icon {
-  height: 45px;
-  width: 45px;
-}
+    .benefit-content .box {
+        padding: 30px;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 
-.box .icon .fa {
-  font-size: 20px;
-  line-height: 40px;
-}
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 26px;
+            line-height: 30px;
+            margin: 0px 0px 1em;
+        }
 
-.box .icon .fas {
-  font-size: 20px;
-  line-height: 40px;
-}
-  .benefactor-box .benefactor-img {
-    flex-wrap: wrap;
-    text-align: center;
-  }
+        .box .icon {
+            height: 45px;
+            width: 45px;
+        }
 
-  .benefactor-img .test-img {
-    flex: 0 0 100%;
-    max-width: 100%;
+        .box .icon .fa {
+            font-size: 20px;
+            line-height: 40px;
+        }
 
-  }
+        .box .icon .fas {
+            font-size: 20px;
+            line-height: 40px;
+        }
+
+        .benefactor-box .benefactor-img {
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .benefactor-img .test-img {
+            flex: 0 0 100%;
+            max-width: 100%;
+
+        }
+    }
 }

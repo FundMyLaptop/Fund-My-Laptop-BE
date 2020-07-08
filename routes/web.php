@@ -36,3 +36,6 @@ Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
 Route::get('payment', 'PagesController@payment');
 Route::get('benefit', 'PagesController@benefit');
+Route::get('partners', 'PagesController@partners');
+Route::get('how-it-works', 'PagesController@howItWorks');
+Route::get('milestones', 'PagesController@mileStones');

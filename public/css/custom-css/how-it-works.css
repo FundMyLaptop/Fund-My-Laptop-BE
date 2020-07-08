@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.btnhiw{
+    background-color: #FB3F5C;
+    padding: 15px;
+    outline: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+.hiwleft{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+@media (min-width: 768px) {
+    .mtb-4{
+        margin: 3em 0 !important;
+    }
+}
