@@ -10,4 +10,10 @@ class PagesController extends Controller
     {
         return view('terms-and-condition');
     }
+
+    public function privacyPolicy()
+    {
+        return view('privacy-policy');
+
+    }
 }
