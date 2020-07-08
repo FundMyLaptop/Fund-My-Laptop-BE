@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
+class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -548,10 +548,12 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
     public static $classMap = array (
         'AccrualsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AccrualsTableSeeder.php',
         'App\\Accrual' => __DIR__ . '/../..' . '/app/Accrual.php',
+        'App\\AdminContoller' => __DIR__ . '/../..' . '/app/AdminContoller.php',
         'App\\BankAccount' => __DIR__ . '/../..' . '/app/BankAccount.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Favorite' => __DIR__ . '/../..' . '/app/Favorite.php',
+        'App\\Http\\Controllers\\AdminContollerController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminContollerController.php',
         'App\\Http\\Controllers\\Api\\AccrualController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AccrualController.php',
         'App\\Http\\Controllers\\Api\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/AdminController.php',
         'App\\Http\\Controllers\\Api\\BankAccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/BankAccountController.php',
@@ -559,12 +561,14 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'App\\Http\\Controllers\\Api\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Api\\InvestController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/InvestController.php',
         'App\\Http\\Controllers\\Api\\RecommendationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RecommendationController.php',
+        'App\\Http\\Controllers\\Api\\RepaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RepaymentController.php',
         'App\\Http\\Controllers\\Api\\RequestController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RequestController.php',
         'App\\Http\\Controllers\\Api\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ResetPasswordController.php',
         'App\\Http\\Controllers\\Api\\TestimonialController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/TestimonialController.php',
         'App\\Http\\Controllers\\Api\\TransactionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/TransactionController.php',
         'App\\Http\\Controllers\\Api\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/UserController.php',
         'App\\Http\\Controllers\\Api\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/VerificationController.php',
+        'App\\Http\\Controllers\\Api\\VerifyEmailController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/VerifyEmailController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -572,6 +576,8 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\SocialAuthGoogleController' => __DIR__ . '/../..' . '/app/Http/Controllers/SocialAuthGoogleController.php',
+        'App\\Http\\Controllers\\SocialController' => __DIR__ . '/../..' . '/app/Http/Controllers/SocialController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForAdminRoleMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForAdminRoleMiddleware.php',
@@ -589,11 +595,19 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Recommendation' => __DIR__ . '/../..' . '/app/Recommendation.php',
+        'App\\Repayment' => __DIR__ . '/../..' . '/app/Repayment.php',
         'App\\Request' => __DIR__ . '/../..' . '/app/Request.php',
+
+        'App\\ThirdParty\\Flutterwave' => __DIR__ . '/../..' . '/app/Thirdparty/Flutterwave.php',
+        'App\\Services\\SocialGoogleAccountService' => __DIR__ . '/../..' . '/app/Services/SocialGoogleAccountService.php',
+        'App\\SocialGoogleAccount' => __DIR__ . '/../..' . '/app/SocialGoogleAccount.php',
+
         'App\\Testimonial' => __DIR__ . '/../..' . '/app/Testimonial.php',
+
         'App\\Transaction' => __DIR__ . '/../..' . '/app/Transaction.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Verification' => __DIR__ . '/../..' . '/app/Verification.php',
+        'App\\socialAccount' => __DIR__ . '/../..' . '/app/socialAccount.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonConverterInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonConverterInterface.php',
         'Carbon\\CarbonImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',
@@ -5434,6 +5448,7 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
         'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
         'Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
+        'TestimonialsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestimonialsTableSeeder.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
@@ -5584,10 +5599,10 @@ class ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit766fc09bdb4453b4b86e72a8393bc980::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit52498c0a126732e6707634abd19eb4f7::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit52498c0a126732e6707634abd19eb4f7::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit52498c0a126732e6707634abd19eb4f7::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit52498c0a126732e6707634abd19eb4f7::$classMap;
 
         }, null, ClassLoader::class);
     }

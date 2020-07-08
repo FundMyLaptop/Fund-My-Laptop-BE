@@ -21,4 +21,12 @@ class Request extends Model
     public function accrual() {
         return $this->belongsTo('App\Accrual');
     }
+
+    public function transaction(){
+        return $this->hasMany('App\Request');
+    }
+
+    public function repayment(){
+        return $this->hasMany('App\Repayment');
+    }
 }
