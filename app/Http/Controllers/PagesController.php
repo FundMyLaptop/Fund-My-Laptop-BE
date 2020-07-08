@@ -24,4 +24,9 @@ class PagesController extends Controller
     {
         return view('blog-list');
     }
+
+    public function contactUs()
+    {
+        return view('contact-us');
+    }
 }

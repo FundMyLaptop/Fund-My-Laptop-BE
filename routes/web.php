@@ -32,3 +32,4 @@ Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
 Route::get('campaign', 'PagesController@campaign');
 Route::get('blog-list', 'PagesController@blogList');
+Route::get('contact-us', 'PagesController@contactUs');
