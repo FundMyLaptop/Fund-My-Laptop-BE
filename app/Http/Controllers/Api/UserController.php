@@ -34,7 +34,7 @@ class UserController extends Controller
         //fetch all users.
         $users = $this->user->all();
 
-        if($user){
+        if($users){
             return response()->json([
                 'message' => 'All users retrieved.',
                 'data' => $users
@@ -42,7 +42,7 @@ class UserController extends Controller
         }else{
             return response()->json([
                 'message' => 'Failed to fetch users.',
-                'data' => $users
+                'data' => $users->id
             ], 404);
         }
 
