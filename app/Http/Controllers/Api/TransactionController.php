@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request as TransactionRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Transaction;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index()
     {
@@ -31,13 +36,39 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param TransactionRequest $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
+        $user_id = Auth::user()->id;
+        $validator = Validator::make($request->all(),
+            [
+                'request_id' => 'required|int',
+                'transaction_ref' => 'required',
+                'amount' => 'required|numeric',
+                'status' => 'required',
+                'response_code' => 'required|int',
+            ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 400);
+        }
+
+        $transaction =  new Transaction();
+        $transaction->request_id = $request->request_id;
+        $transaction->user_id = $user_id;
+        $transaction->transaction_ref = $request->transaction_ref;
+        $transaction->amount = $request->amount;
+        $transaction->status= $request->status;
+        $transaction->response_code = $request->response_code;
+        $transaction->save();
+
+        return response()->json([
+                "message" => "transaction record created"
+            ], 201);
+        }
+
         //
-    }
 
     /**
      * Display the specified resource.
@@ -48,6 +79,13 @@ class TransactionController extends Controller
     public function show($id)
     {
         //
+    }
+    // Show a funder's funding history
+    public function getFunderHistory($id){
+        //Auth::user();
+        $transaction = Transaction::with('request', 'user')->where('user_id', $id)->get();
+
+        return response()->json(['transactions' => $transaction],200);
     }
 
     /**
@@ -63,14 +101,45 @@ class TransactionController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
+     * @param TransactionRequest $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+
+    public function update(TransactionRequest $request, $id)
     {
         //
+        $user_id = Auth::user()->id;
+        $validator = Validator::make($request->all(),
+            [
+                'request_id' => 'required|int',
+                'transaction_ref' => 'required',
+                'amount' => 'required|numeric',
+                'status' => 'required',
+                'response_code' => 'required|int',
+            ]);
+        if($validator->fails()){
+            return response()->json(['message'=> $validator->errors()],400);
+        }
+        $transaction_exist = Transaction::query()->where('id',$id)->exists();
+        if($transaction_exist){
+
+            $update = Transaction::query()->where('id',$id)->update([
+               'transaction_ref'=>$request->transaction_ref,
+                'request_id'=>$request->request_id,
+                'amount'=>$request->amount,
+                'status'=>$request->status,
+                'response_code'=>$request->response_code
+            ]);
+            if($update){
+                return response()->json(['message'=> 'transaction updated'],201);
+            }else{
+                return response()->json(['message'=> 'unable to update the transaction'],400);
+            }
+        }else{
+            return response()->json(['message'=> 'transaction does not exist '],400);
+        }
     }
 
     /**

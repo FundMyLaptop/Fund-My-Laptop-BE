@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Request as FundRequest;
 
 class AdminController extends Controller
 {
@@ -15,7 +18,32 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        //Check if user is Admin
+
+    }
+
+    public function block(Request $request){
+        if(Auth::check() && Auth::user()->role == 1) {
+            if (User::where('id', $request->id)->exists()) {
+                $user = User::find($request->id);
+                $user->isBlocked = 1;
+                // $user->blocked_until = $request->blocked_until;
+                $user->save();
+
+                return response()->json([
+                    "message" => 'User account blocked'
+                ], 202);
+            } else {
+                return response()->json([
+                    "message" => 'User does not exist'
+                ]);
+            }
+        } else
+        {
+            return response()->json([
+                'message' => 'You do not have permission to perform this action'
+            ],404);
+        }
     }
 
     /**
@@ -77,10 +105,30 @@ class AdminController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+
+        //delete User account
+        if (Auth::check() && Auth::user()->role == 2) {
+            if(User::where('id', $id)->exists()) {
+                $user = User::find($id);
+                $user->delete();
+
+                return response()->json([
+                    "message" => "User account successfully deleted"
+                ], 202);
+            } else {
+                return response()->json([
+                    "message" => "User account not found"
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'message' => 'You do not have permission to perform this action'
+            ]);
+        }
     }
+
 }
