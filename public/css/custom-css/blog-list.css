@@ -1,0 +1,88 @@
+/* CSS styles for alternate blog page */
+
+/* Header styles */
+.nav-top a.nav-link {
+  color: black !important;
+  font-size: 1em;
+}
+
+.nav-top a.nav-link:hover {
+  color: var(--fml-secondary) !important;
+}
+
+.nav-top button {
+  font-size: 18px;
+}
+
+/* Article styles */
+
+.article-title a.text-dark:hover {
+  color: var(--fml-secondary) !important;
+}
+
+.article-body p {
+  font-size: 18px;
+  line-height: 1.8;
+  font-family: 'Merriweather';
+  margin-bottom: 3em;
+}
+
+.article-body img {
+  width: 100%;
+}
+
+.q {
+  fill: rgba(0, 0, 0, 0.9);
+}
+
+.blog-share-links a:hover .q {
+  fill: var(--fml-secondary);
+}
+
+@media screen and (max-width: 576px) {
+  h1.article-title {
+    font-size: 2em;
+  }
+  .article-meta {
+    padding-top: 1em;
+  }
+}
+
+/*footer styles */
+ul.nav li {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+ul.footer-icons > * + * {
+  padding-left: 1em;
+}
+
+ul.bye li {
+  padding-top: 0;
+  padding-right: 0;
+}
+
+ul.bye > * + * {
+  padding-left: 1.5em;
+}
+
+@media screen and (max-width: 576px) {
+  div.bye {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  ul.bye {
+    flex-direction: column;
+    text-align: center;
+    order: -1;
+  }
+
+  ul.bye li {
+    padding-left: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}

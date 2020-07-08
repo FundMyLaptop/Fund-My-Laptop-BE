@@ -1,0 +1,21 @@
+
+main {
+    padding-top: 20px;
+    font-family: DM sans;
+    font-size: 20px;
+}
+
+.content{
+    background-image: url('../../img/404-2.jpg');
+    background-size: cover;
+    padding-top: 8rem;
+}
+
+.btn-page{
+padding: 15px 20px;
+border-radius: 5px;
+border: 1px solid #FB3F5C;
+background-color: #FB3F5C; ;
+color: white;
+}
+

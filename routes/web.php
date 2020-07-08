@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    
-    return view('welcome');
+
+    return view('index');
 });
 
 // Auth::routes(['verify' => true]);
@@ -26,3 +26,12 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
+
+
+Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
+Route::get('privacy-policy', 'PagesController@privacyPolicy');
+Route::get('campaign', 'PagesController@campaign');
+Route::get('career', 'PagesController@career');
+Route::get('album', 'PagesController@album');
+Route::get('faq', 'PagesController@faq');
+Route::get('payment', 'PagesController@payment');
