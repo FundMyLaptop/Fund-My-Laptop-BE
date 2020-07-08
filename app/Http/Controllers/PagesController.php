@@ -40,4 +40,24 @@ class PagesController extends Controller
     {
         return view('payment');
     }
+
+    public function benefit()
+    {
+        return view('benefits');
+    }
+
+    public function partners()
+    {
+        return view('partners');
+    }
+
+    public function howItWorks()
+    {
+        return view('how-it-works');
+    }
+
+    public function mileStones()
+    {
+        return view('milestones');
+    }
 }
