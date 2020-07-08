@@ -60,4 +60,88 @@ class PagesController extends Controller
     {
         return view('milestones');
     }
+
+    public function blogRead()
+    {
+        return view('blog-read');
+    }
+
+    public function blog()
+    {
+        return view('blog');
+    }
+
+    public function error404Page()
+    {
+        return view('404');
+    }
+    public function error500Page()
+    {
+        return view('500');
+    }
+
+    public function investorDashboard()
+    {
+        return view('investor-dashboard');
+    }
+
+    public function investeeDashboard()
+    {
+        return view('investee-dashboard');
+    }
+
+    public function campaignGrossing()
+    {
+        return view('campaign-grossing');
+    }
+
+    public function complaint()
+    {
+        return view('complaint');
+    }
+
+    public function complaintForm()
+    {
+        return view('complaint-form');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function blogList()
+    {
+        return view('blog-list');
+    }
+
+    public function updateProfile()
+    {
+        return view('update-profilepage');
+    }
+
+    public function signUp()
+    {
+        return view('signup');
+    }
+
+    public function sign_up()
+    {
+        return view('sign-Up');
+    }
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function totalInvestment()
+    {
+        return view('investors_total_list_of_investments');
+    }
+
+    public function testModals()
+    {
+        return view('testmodals');
+    }
 }
