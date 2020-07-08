@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Request as FundRequest;
 
 class AdminController extends Controller
 {
@@ -18,23 +20,29 @@ class AdminController extends Controller
     {
         //Check if user is Admin
 
-        if (Auth::check() && Auth::user()->role == 2) {
+    }
 
-            // Fetch completed requests
+    public function block(Request $request){
+        if(Auth::check() && Auth::user()->role == 1) {
+            if (User::where('id', $request->id)->exists()) {
+                $user = User::find($request->id);
+                $user->isBlocked = 1;
+                // $user->blocked_until = $request->blocked_until;
+                $user->save();
 
-            $completed_requests = DB::table('requests')->where('isFunded', '=', 1)->get();
-
-            // Count completed requests
-
-            $count_completed = count($completed_requests);
+                return response()->json([
+                    "message" => 'User account blocked'
+                ], 202);
+            } else {
+                return response()->json([
+                    "message" => 'User does not exist'
+                ]);
+            }
+        } else
+        {
             return response()->json([
-                'message' => 'Completed requests fetched successfully',
-                'completed_requests' => $completed_requests,
-                'count_completed' => $count_completed], 200);
-        } else {
-            return response()->json([
-                'message' => 'Requested resource could not be fetched'
-            ], 400);
+                'message' => 'You do not have permission to perform this action'
+            ],404);
         }
     }
 

@@ -1,0 +1,79 @@
+
+/* dm-sans-regular - latin */
+@font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('DM Sans Regular'), local('DMSans-Regular'),
+    url('../font/dm-sans-v4-latin-regular.woff') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('../font/dm-sans-v4-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+body{
+    font-family: "DM Sans";
+}
+.top{
+    position: absolute;
+    z-index: -1;
+    min-width: 100%;
+    min-height: 350px;
+    background: #04172A ;
+    clip-path: polygon(50% 0%, 100% 0, 100% 100%, 100% 60%, 0 100%, 0 50%, 0 0);
+}
+.page{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+.heading{
+    min-height: 150px;
+}
+.heading-text{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 52px;
+    color: white;
+}
+.page-header-1{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 42px;
+    color: #04172A;
+}
+.page-header-2{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 31px;
+
+    color: #04172A;
+}
+.page-paragraph{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: #04172A;
+}
+@media screen and (max-width: 480px) {
+    .heading-text{
+        font-style: normal;
+        font-weight: bold;
+        font-size: 26px;
+    }
+    .top{
+        position: absolute;
+        z-index: -1;
+        min-width: 100%;
+        min-height: 200px;
+    }
+
+    .page-container{
+        margin-top: -90px;
+    }
+    
+}
