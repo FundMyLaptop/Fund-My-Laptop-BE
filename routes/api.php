@@ -25,6 +25,10 @@ Route::post('login', 'Api\UserController@login');
 Route::get('logout', 'Api\UserController@logout');
 Route::post('register', 'Api\UserController@register');
 Route::delete('request/delete/{id}', 'RequestController@destroy');
+
+
+
+
 Route::delete('request/delete-my-request/{id}','RequestController@deleteMyRequest');
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
 	/*Route::get('/user', function (Request $request) {
@@ -75,6 +79,9 @@ Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
 Route::get('email/verify/{id}/{hash}', 'Api\VerifyEmailController@verify')->name('verification.verify'); //verify email
 Route::get('email/resend', 'Api\VerifyEmailController@resend')->name('verification.resend'); //resend email
+//Blog Resource
+Route::resource('v1/blog', 'Api\BlogController');
+
 
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
