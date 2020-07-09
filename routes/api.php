@@ -64,6 +64,11 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
   Route::get('testimonials/user/{id}','TestimonialController@userTestimonials');
   Route::get('testimonials/{id}','TestimonialController@myTestimonials');
   Route::post('users/block','AdminController@block');
+  Route::post('blogs', 'BlogController@store');
+  Route::get('blogs', 'BlogController@index');
+  Route::get('blogs/{id}', 'BlogController@show');
+//   Route::put('blogs/{id}', 'BlogController@edit');
+  Route::delete('blogs/{id}', 'BlogController@destroy');
 
 
     // Commented out by Eromosele

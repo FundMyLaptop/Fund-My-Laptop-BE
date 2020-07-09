@@ -10,6 +10,7 @@ return array(
     'App\\Accrual' => $baseDir . '/app/Accrual.php',
     'App\\AdminContoller' => $baseDir . '/app/AdminContoller.php',
     'App\\BankAccount' => $baseDir . '/app/BankAccount.php',
+    'App\\Blog' => $baseDir . '/app/Blog.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Favorite' => $baseDir . '/app/Favorite.php',
@@ -36,8 +37,10 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',
     'App\\Http\\Controllers\\SocialAuthGoogleController' => $baseDir . '/app/Http/Controllers/SocialAuthGoogleController.php',
     'App\\Http\\Controllers\\SocialController' => $baseDir . '/app/Http/Controllers/SocialController.php',
+    'App\\Http\\Controllers\\testifyController' => $baseDir . '/app/Http/Controllers/testifyController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForAdminRoleMiddleware' => $baseDir . '/app/Http/Middleware/CheckForAdminRoleMiddleware.php',
@@ -48,6 +51,8 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Middleware\\checkBlocked' => $baseDir . '/app/Http/Middleware/checkBlocked.php',
+    'App\\Notifications\\EmailVerificationNotification' => $baseDir . '/app/Notifications/EmailVerificationNotification.php',
     'App\\Notifications\\PasswordResetNotification' => $baseDir . '/app/Notifications/PasswordResetNotification.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -57,15 +62,10 @@ return array(
     'App\\Recommendation' => $baseDir . '/app/Recommendation.php',
     'App\\Repayment' => $baseDir . '/app/Repayment.php',
     'App\\Request' => $baseDir . '/app/Request.php',
-
-
-    'App\\ThirdParty\\Flutterwave' => $baseDir . '/app/Thirdparty/Flutterwave.php',
-
-    'App\\Services\\SocialGoogleAccountService' => $baseDir . '/app/Services/SocialGoogleAccountService.php',
+    'App\\Services\\sSocialGoogleAccountService' => $baseDir . '/app/Services/SocialGoogleAccountService.php',
     'App\\SocialGoogleAccount' => $baseDir . '/app/SocialGoogleAccount.php',
-
     'App\\Testimonial' => $baseDir . '/app/Testimonial.php',
-
+    'App\\ThirdParty\\Flutterwave' => $baseDir . '/app/Thirdparty/Flutterwave.php',
     'App\\Transaction' => $baseDir . '/app/Transaction.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Verification' => $baseDir . '/app/Verification.php',
