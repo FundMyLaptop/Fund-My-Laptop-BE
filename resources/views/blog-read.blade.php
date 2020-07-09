@@ -9,28 +9,30 @@
 
     <section class="blog-main container mt-5"></article>
         <article class="row pb-2 col-md-9 align-self-center mx-auto border-bottom mb-5 px-0">
-            <nav aria-label="breadcrumb" class="">
+            <nav aria-label="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb bg-transparent px-0">
                     <li class="breadcrumb-item"><a href="#" class="text-fml-secondary">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{route('blog-list')}}" class="text-fml-secondary">Blog</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$blog->title}}... </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$blog['title']}}... </li>
                 </ol>
                 
             </nav>
-         
-            <h1 class="article-read-title font-weight-bold">
-                {{$blog->title}}
+        
+             
+            <h1 class="article-read-title font-weight-bold col-md-12">
+                {{$blog['title']}}
                 
             </h1>
-            <div class="article-read-meta">
+        
+            <div class="article-read-meta col-md-12">
                 
-                <p><a class="font-weight-bold text-dark">{{$blog->category}}</a> - {{date("M d, Y",strtotime($blog->created_at))}}</p>
+                <p><a class="font-weight-bold text-dark">{{$blog['category']}}</a> - {{date("M d, Y",strtotime($blog['created_at']))}}</p>
             </div>
-            <div class="article-read-image">
-                <img src="{{$blog->image}}" class="d-block w-100" />
+            <div class="article-read-image col-md-12">
+                <img src="{{$blog['image']}}" class="d-block w-100" />
             </div>
-            <section class="article-body mt-4">
-                {{$blog->body}}
+            <section class="article-body mt-4 col-md-12">
+                {{$blog['post']}}
                
 
                 <div class="blog-share-links col-auto px-0 mt-5">
