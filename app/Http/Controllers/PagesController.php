@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Blog;
+
 class PagesController extends Controller
 {
     public function termsAndConditions()
@@ -63,13 +63,28 @@ class PagesController extends Controller
 
     public function blogRead($title)
     {
+
+
+    
+        $curl = curl_init();
+        $title=urlencode($title);
+        curl_setopt($curl,CURLOPT_URL,url('/api/v1/blog/'.$title));
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl,CURLOPT_HEADER, false);
+
+            $response = curl_exec($curl);
         
-        $title=urldecode($title);
-        $blog =Blog::where('title',$title)->first();
-        if(!$blog){
+        
+            curl_close($curl);
+         
+            $resp = json_decode($response, true);
+           
+        if(!$resp||isset($resp['message'])){
             return view('404');
         }
-        return view('blog-read')->with('blog', $blog);
+        return view('blog-read')->with('blog', $resp);
+        
     }
 
     public function blog()
