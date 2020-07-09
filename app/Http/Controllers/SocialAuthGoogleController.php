@@ -10,10 +10,12 @@ class SocialAuthGoogleController extends Controller
    *
    * @return void
    */
-    public function redirect()
-    {
-        return Socialite::driver('google')->redirect();
-    }
+
+      public function redirect(){
+        return Socialite::driver('google')->stateless()->redirect();
+          }
+
+
 /**
      * Return a callback method from google api.
      *
