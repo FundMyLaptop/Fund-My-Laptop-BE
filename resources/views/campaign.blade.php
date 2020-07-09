@@ -11,19 +11,19 @@
     <div class="container pleading_funding">
         <div class="row">
             <div class="page-links">
-                <a href="">Home</a> <span>/</span>
-                <a href="">Campaigns Page</a> <span>/</span>
-                <a href="" class="text-primary">Campaign</a>
+            <a href="">{{ $linkone }}</a> <span>/</span>
+            <a href="">{{ $linktwo }}</a> <span>/</span>
+                <a href="" class="text-primary">{{ $linkthree }}</a>
             </div>
         </div>
         <div class="row">
-            <p class="plead_fund">Fund John Doe’s Laptop Purchase</p>
+            <p class="plead_fund">{{ $plead }}</p>
         </div>
         <div class="row deVideoDiv">
             <video width="320" height="240" controls>
                 <source src="movie.mp4" type="video/mp4">
                 <source src="movie.ogg" type="video/ogg">
-                Your browser does not support the video tag.
+                {{ $video }}
             </video>
         </div>
     </div>
@@ -31,29 +31,29 @@
     <div class="container">
         <div class="row each_detail_row">
             <div class="col-md-6 col-12">
-                <p class="title_laptop_detail">Posted by:</p>
+                <p class="title_laptop_detail">{{ $detail }}:</p>
                 <div class="row profile align-items-center">
                     <div class="profile_image_container">
                         <img src="../img/profileImage1.png" alt="" />
                     </div>
-                    <p class="laptop_subdetail">John Doe</p>
+                    <p class="laptop_subdetail">{{ $subdetail }}</p>
                 </div>
             </div>
             <div class="col-md-6 col-12 anotherSwipe">
-                <p class="title_laptop_detail">Posted on:</p>
-                <p class="laptop_subdetail">12/12/2020</p>
+                <p class="title_laptop_detail">{{ $laptopdetail }}</p>
+                <p class="laptop_subdetail">{{ $laptopsubdetail }}</p>
             </div>
         </div>
 
         <div class="row each_detail_row">
             <div class="col-md-6 col-12">
-                <p class="title_laptop_detail">Location:</p>
-                <p class="laptop_subdetail">Lagos, Nigeria</p>
+                <p class="title_laptop_detail">{{ $where }}</p>
+                <p class="laptop_subdetail">{{ $region }}</p>
             </div>
 
             <div class="col-md-6 col-12 anotherSwipe">
-                <p class="title_laptop_detail">Occupation</p>
-                <p class="laptop_subdetail">Freelance Software Developer</p>
+                <p class="title_laptop_detail">{{ $work }}</p>
+                <p class="laptop_subdetail">{{ $mode }}</p>
             </div>
         </div>
 
@@ -61,22 +61,15 @@
 
         <div class="row each_detail_row">
             <div class="col">
-                <p class="title_laptop_detail">Description</p>
-                <p class="description_detail">
-                    I run a small freelancing business in the heart of Lagos. My former
-                    laptop finally packed up after several attempts at refurbishing it,
-                    I would like a loan to get a new laptop to continue my business. My
-                    business loremipsum.com generates enough money to repay the loan in
-                    three months. I would really appreciate funding for this campaign.
-                    Thank you for your time 🙂.
-                </p>
+                <p class="title_laptop_detail">{{ $description }}</p>
+                <p class="description_detail">{{ $described }}</p>
             </div>
         </div>
 
         <!-- Recomendations -->
         <div class="row recommendations">
             <div class="col">
-                <p class="title_laptop_detail">Recommended by:</p>
+                <p class="title_laptop_detail">{{ $recommend }}</p>
             </div>
         </div>
         <div class="row recommenders">
@@ -85,12 +78,8 @@
                     <div class="profile_image_container">
                         <img src="../img/janePix.png" alt="" />
                     </div>
-                    <p class="laptop_subdetail">
-                        Jane Doe
-                    </p>
-                    <span class="no_of_recommmendations"
-                    >11 successsful recommendations</span
-                    >
+                    <p class="laptop_subdetail">{{ $subdetail }}</p>
+                    <span class="no_of_recommmendations">{{ $numrecommend }}</span>
                 </div>
             </div>
             <div class="col-md-6 col-12">
@@ -98,12 +87,8 @@
                     <div class="profile_image_container">
                         <img src="../img/janetPix.png" alt="" />
                     </div>
-                    <p class="laptop_subdetail">
-                        Janet Doe
-                    </p>
-                    <span class="no_of_recommmendations"
-                    >7 successsful recommendations</span
-                    >
+                    <p class="laptop_subdetail">{{ $subdetail }}</p>
+                    <span class="no_of_recommmendations">{{ $numrecommendtwo}}</span>
                 </div>
             </div>
         </div>
@@ -114,30 +99,28 @@
                     <div class="profile_image_container">
                         <img src="../img/UnleDoePix.png" alt="" />
                     </div>
-                    <p class="laptop_subdetail">
-                        Uncle Doe
-                    </p>
+                    <p class="laptop_subdetail">{{ $subdetailtwo }}</p>
                     <span class="no_of_recommmendations"
-                    >6 successsful recommendations</span
+                    >{{ $subrecommendthree }}</span
                     >
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <p class="to_view_recom_details">View recommender details</p>
+            <p class="to_view_recom_details">{{ $view }}</p>
         </div>
     </div>
     <div class="container">
 
         <div class="row each_detail_row">
             <div class="col-12 col-md-6">
-                <p class="title_laptop_detail toAdjust">Loan amount:</p>
-                <p class="detail_funding_2">N 250,000</p>
+                <p class="title_laptop_detail toAdjust">{{ $loan }}</p>
+                <p class="detail_funding_2">{{ $fund }}</p>
             </div>
 
             <div class="col-12 col-md-6">
-                <p class="title_laptop_detail toAdjust">Proposed Repayment period:</p>
-                <p class="detail_funding_2">3 months</p>
+                <p class="title_laptop_detail toAdjust">{{ $proposed }}</p>
+                <p class="detail_funding_2">{{ $when }}</p>
             </div>
         </div>
 
@@ -146,19 +129,16 @@
         <div class="row each_detail_row">
             <div class="col-12 col-md-8">
                 <p class="get_funding_ASAP">
-                    Get a <strong>N 275,000</strong> repayment in 3 months if you fund
-                    this loan
+                    {{ $agreement }} <strong>{{ $repayment }}</strong> {{ $paying }}
                 </p>
             </div>
             <div class="col-12 col-md-3 fundButton">
-                <p><a class="funding_Loan" href="#">Fund this loan</a></p>
+                <p><a class="funding_Loan" href="#">{{ $fundlink }}</a></p>
             </div>
         </div>
         <div class="row each_detail_row">
             <div class="col-12 col-md-7">
-                <p class="get_funding_ASAP">
-                    Can’t fund? Want to help? Share this campaign on social media
-                </p>
+                <p class="get_funding_ASAP">{{ $gettingfund }}</p>
             </div>
             <div class="col-12 col-md-5 funding_socials">
                 <a href="#"> <ion-icon name="logo-facebook"></ion-icon></a>
