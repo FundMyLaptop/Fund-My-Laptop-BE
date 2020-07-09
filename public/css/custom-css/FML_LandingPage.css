@@ -286,7 +286,15 @@ h5{
 .page-footer a{
     font-size: 18px;
     line-height: 24px;
+    color: rgba(255, 255, 255, 0.8);
 }
+
+.list-item a {
+    font-size: 18px;
+    line-height: 21px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+  }
 /* **************** Media queries *************** */
 @media only screen and (max-width:650px){
     .jumbotron {

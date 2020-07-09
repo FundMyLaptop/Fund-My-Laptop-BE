@@ -26,10 +26,10 @@
                         <li class="list-item">
                             <h5>RESOURCES </h5>
                         </li>
-                        <li class="list-item">Why choose FundMyLaptop</li>
-                        <li class="list-item">How P2P Lending works</li>
-                        <li class="list-item">About FundMyLaptop</li>
-                        <li class="list-item">Contact Us</li>
+                        <li class="list-item"><a href="{{ url('error404Page') }}">Why choose FundMyLaptop</a></li>
+                        <li class="list-item"><a href="{{ url('how-it-works') }}">How P2P Lending works</a></li>
+                        <li class="list-item"><a href="{{ url('error404Page') }}">About FundMyLaptop</a></li>
+                        <li class="list-item"><a href="{{ url('contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -44,9 +44,9 @@
 
             <div class="ml-lg-auto credits-list">
                 <ul class="list-unstyled d-inline-flex credits-list">
-                    <li class="mr-lg-4 mr-md-4">FAQ</li>
-                    <li class="mr-lg-4 mr-md-4">Privacy Policy</li>
-                    <li class="mr-lg-4 mr-md-4">Terms & Conditions</li>
+                    <li class="mr-lg-4 mr-md-4"><a href="{{ url('faq') }}">FAQ</a></li>
+                    <li class="mr-lg-4 mr-md-4"><a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
+                    <li class="mr-lg-4 mr-md-4"><a href="{{ url('terms-and-conditions') }}">Terms & Conditions</a></li>
                 </ul>
             </div>
         </div>

@@ -16,11 +16,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-<<<<<<< HEAD
-=======
 // Auth::routes(['verify' => true]);
 
->>>>>>> b4aa0b5ec27c8247db876a50ef7e4d7346db1be3
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
