@@ -105,6 +105,16 @@ class PagesController extends Controller
         return view('complaint-form');
     }
 
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function blogList()
+    {
+        return view('blog-list');
+    }
+
     public function updateProfile()
     {
         return view('update-profilepage');
