@@ -15,13 +15,15 @@ class BlogsTableSeeder extends Seeder
             
       
     
+    
             $faker = Faker\Factory::create();
-            for ($i = 0; $i < 1000; $i++) {
+            for ($i = 0; $i < 100; $i++) {
                
                 $blog = new Blog();
                 $blog->user_id = $faker->numberBetween(1, 450);
                 $blog->title = $faker->words($nb = 6, $asText = true);
-                $blog->body = $faker->text($maxNbChars = 2000);
+                $blog->image = $faker->imageUrl($width = 640, $height = 480);
+                $blog->post = $faker->text($maxNbChars = 2000);
                 $blog->category = $faker->word;
               $blog->save();
                 
