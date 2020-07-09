@@ -107,9 +107,18 @@ class PagesController extends Controller
         return view('complaint-form');
     }
 
-    public function updateProfile(Request $request)
+    public function contact()
     {
+        return view('contact');
+    }
 
+    public function blogList()
+    {
+        return view('blog-list');
+    }
+
+    public function updateProfile()
+    {
         $token = 'Bearer '.Auth::user()->token();
         $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
         $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
