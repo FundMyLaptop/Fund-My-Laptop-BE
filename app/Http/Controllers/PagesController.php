@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PagesController extends Controller
 {
     public function termsAndConditions()
@@ -142,6 +140,37 @@ class PagesController extends Controller
 
     public function testModals()
     {
+        /*$authorization = "Authorization: Bearer jwtTokenHere";
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.fundmylaptop.com/api/v1/transaction/store",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_TIMEOUT => 30000,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+        // Set Here Your Requesred Headers
+            'Content-Type: application/json', $authorization
+        ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            return view("testmodals")->with(array('transaction', json_encode($transactions)));
+            //json_decode($response);
+        }
+        */
+        //return view('testmodals');
         return view('testmodals');
+
+        //$transactions = \DB::table('transactions')->get();
+        //echo $transactions; die();
+
     }
 }
