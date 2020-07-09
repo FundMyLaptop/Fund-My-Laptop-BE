@@ -24,7 +24,7 @@
             </h1>
             <div class="article-read-meta">
                 
-                <p><a class="font-weight-bold text-dark">{{$blog->category}}</a> - {{date("M D, Y",strtotime($blog->created_at))}}</p>
+                <p><a class="font-weight-bold text-dark">{{$blog->category}}</a> - {{date("M d, Y",strtotime($blog->created_at))}}</p>
             </div>
             <div class="article-read-image">
                 <img src="{{$blog->image}}" class="d-block w-100" />
