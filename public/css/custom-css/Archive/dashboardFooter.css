@@ -1,0 +1,24 @@
+footer {
+    background: #04172A; 
+     
+}
+
+hr {
+    background-color: #fff;
+    width: 93%;
+    margin: 0 auto; 
+}
+footer, .footer-link {
+    color: #fff;
+}
+
+
+@media only screen and (max-width: 570px) {
+    .footer__details {
+        text-align: center;
+    }
+
+    .footer-links {
+        order: 1; 
+    }
+}

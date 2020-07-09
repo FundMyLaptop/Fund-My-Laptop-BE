@@ -1,0 +1,246 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  color: rgba(4, 23, 42, 0.8);
+  overflow-x: hidden;
+  font-family: "DM Sans";
+  background:#FFF;
+}
+
+main {
+  background: #fafafa;
+}
+
+.content{
+  padding-left: 5rem !important;
+}
+.pleading_funding{
+  padding: 0.5rem 2rem !important;
+  margin-top: 100px !important;
+}
+.plead_fund {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
+  color: rgba(4, 23, 42, 0.8);
+  /* margin-left: 22px;
+  margin-bottom: 30px; */
+}
+
+.page-links {
+  padding: 20px 0;
+}
+
+.page-links a {
+  font-size: 24px;
+  line-height: 31px;
+  color: rgba(4, 23, 42, 0.8);
+  text-decoration: none;
+}
+
+.page-links span{
+  font-size: 24px;
+  line-height: 31px;
+  color: rgba(4, 23, 42, 0.8);
+}
+
+.deVideoDiv video{
+  width: 95%;
+  height: 450px;
+}
+
+.showcase {
+  background: url(../../img/showcase-video.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 964px;
+  height: 547px;
+}
+
+.showcase img {
+  width: 140px;
+  height: 140px;
+}
+
+.title_laptop_detail {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: rgba(4, 23, 42, 0.5);
+}
+
+.profile_image_container {
+  margin-left: 12px;
+  width: 40px;
+  height: 40px;
+}
+.profile p {
+  margin-left: 20px;
+}
+
+.profile_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile_image_container img {
+  height: 100%;
+  width: 100%;
+}
+
+.laptop_subdetail {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 31px;
+  margin-bottom: 0;
+  color: rgba(4, 23, 42, 0.8);
+}
+
+.each_detail_row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 20px 0;
+}
+
+.description_detail {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 36px;
+  color: rgba(4, 23, 42, 0.8);
+  text-align: justify;
+}
+
+.recommendations {
+  padding: 20px 0;
+}
+
+.recommenders {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.no_of_recommmendations {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  margin: auto;
+}
+
+.recommender {
+  border-radius: 20px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 10px 2px;
+  width: 100%;
+}
+
+.to_view_recom_details {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+.detail_funding_2 {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 31px;
+  color: rgba(4, 23, 42, 0.8);
+}
+
+.get_funding_ASAP {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.funding_Loan {
+  background: #fb3f5c;
+  border: 1px solid #fb3f5c;
+  border-radius: 10px;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #ffffff;
+}
+
+.funding_Loan:hover {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #fb3f5c;
+}
+
+.funding_socials a {
+  margin-right: 25px;
+  color: rgba(4, 23, 42, 0.8);
+  justify-content: flex-end;
+}
+
+.funding_socials a > ion-icon {
+  font-size: 30px;
+}
+
+
+
+@media(max-width:800px){
+  .pleading_funding{
+    padding: 0.5rem 2rem !important;
+  }
+  .page-links a{
+    font-size: 16px;
+  }
+  .page-links span{
+    font-size: 16px;
+  }
+  .plead_fund{
+    font-size: 26px;
+  }
+  .deVideoDiv video{
+    height: 250px;
+  }
+  .anotherSwipe{
+    padding-top: 40px;
+  }
+  .title_laptop_detail{
+    margin-left: 20px;
+  }
+  .recommenders{
+    margin-left: 20px;
+  }
+  .no_of_recommmendations{
+    margin: 5px;
+    padding-left: 4px;
+  }
+  .each_detail_row{
+    margin-left: 20px;
+  }
+  .toAdjust{
+    margin-left: 0 !important;
+  }
+  .fundButton{
+    margin-top: 20px;
+  }
+}
+

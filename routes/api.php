@@ -24,7 +24,8 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 Route::post('login', 'Api\UserController@login');
 Route::get('logout', 'Api\UserController@logout');
 Route::post('register', 'Api\UserController@register');
-
+Route::delete('request/delete/{id}', 'RequestController@destroy');
+Route::delete('request/delete-my-request/{id}','RequestController@deleteMyRequest');
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
