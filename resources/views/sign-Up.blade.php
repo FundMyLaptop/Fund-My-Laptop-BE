@@ -7,11 +7,11 @@
         <p class="p-1 p-md-3 login-text mt-md-n4">Help Achieve Your dreams with funding for your laptops at little to no cost.</p>
         <div class="form-group row">
 			<div class="col-md-6">
-				<input type="text" placeholder="First Name" name="firstname" class="form-control" id="firstName" required>
+				<input type="text" placeholder="First Name" name="firstName" class="form-control" id="firstName" required>
 				<p id="errorFirstName" class="error text-danger text-center text-sm-left"> </p>
-			</div>
+			</div>	
 			<div class="col-md-6">
-				<input type="text" placeholder="Last Name" name="lastname" class="form-control" id="lastName" required>
+				<input type="text" placeholder="Last Name" name="lastName" class="form-control" id="lastName" required>
 				<p id="errorLastName" class="error text-danger text-center text-sm-left"> </p>
 			</div>
 
