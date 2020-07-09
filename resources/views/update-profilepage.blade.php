@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href= "{{asset('css/custom-css/update-profilepage.css')}}"/>
     @endpush
 	
-    @section('content')
+	@section('content')
 		<main class="__up_container">
 			<section id="userinfo">
 				<div style="position: relative;">
