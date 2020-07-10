@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Request as FundRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -15,6 +16,18 @@ class RequestController extends Controller
     {
         //
     }
+
+
+
+    public function fetch_featured_requests(Request $request)
+    {
+
+        // if (Auth::check() && Auth::user()->role == 2) {
+        $hey = FundRequest::with('user')->where('isFeatured',0)->inRandomOrder()->limit(6)->get();
+        // }
+        return view('randomrequest', compact('hey'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
