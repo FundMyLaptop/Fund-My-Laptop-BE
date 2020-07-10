@@ -40,7 +40,7 @@ class UserController extends Controller
         //$= users = $this->user->all();//
         $users = User::with('request', 'favorite', 'recommendation', 'bank_account')->get();
 
-        if ($users) {
+        if($users){
             return response()->json([
                 'message' => 'All users retrieved.',
                 'data' => $users
@@ -48,7 +48,7 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'message' => 'Failed to fetch users.',
-                'data' => $users
+                'data' => $users->id
             ], 404);
         }
     }
@@ -85,7 +85,7 @@ class UserController extends Controller
                     [
                         'status' => 'success',
                         'token' => $token,
-                        'email verification status' => 'Email not verified. Please verify your email.', 
+                        'email verification status' => 'Email not verified. Please verify your email.',
                         'data' => $user
                     ],
                     200

@@ -57,12 +57,12 @@ z-index: 10000000;
             fill="#9ADF8F" />
         </svg>
 
-        <h2 class="mb-3">Payment Successful</h2>
+    <h2 class="mb-3">Payment Successful</h2>
 
         <h3 class="mb-3 text-muted">Amount Donated</h3>
-        <p id="amountDonated" class="text-muted">N100,000</p>
+        <p id="amountDonated" class="text-muted"> {{ $amount ?? ''}}</p>
         <h3 class="mb-3 text-muted">Transaction ID:</h3>
-        <p id="transactionID" class="text-muted">123456</p>
+    <p id="transactionID" class="text-muted">{{ $transid ?? ''}}</p>
 
         <button type="button" class="btn btn-lg btn-outline-danger" data-dismiss="modal">Continue
           <svg class="modal-button__icon" width="8" height="12" viewBox="0 0 8 12" fill="none"

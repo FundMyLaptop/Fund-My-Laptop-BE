@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class PagesController extends Controller
 {
@@ -142,6 +142,12 @@ class PagesController extends Controller
 
     public function testModals()
     {
-        return view('testmodals');
+        $user = Auth::user();
+        $row = \DB::table('transactions')->where('user_id',$user)->first();
+        $amount = $row->amount ?? "";
+        $transid = $row->transaction_ref ?? "";
+
+        return view('testmodals',['amount'=> $amount, 'transid' => $transid]);
+
     }
 }
