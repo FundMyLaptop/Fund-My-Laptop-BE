@@ -1,5 +1,5 @@
 <?php
-
+use App\Request as FundRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,8 +12,11 @@
 */
 
 Route::get('/', function () {
-
-    return view('index');
+    $oldRequests = FundRequest::where([
+        ['isFunded', '0'], 
+        ['isSuspended', '0']
+    ])->oldest()->take(3)->get();
+    return view('index')->with(['oldRequests'=>$oldRequests]);
 });
 
 // Auth::routes(['verify' => true]);
@@ -39,8 +42,8 @@ Route::get('benefit', 'PagesController@benefit');
 Route::get('partners', 'PagesController@partners');
 Route::get('how-it-works', 'PagesController@howItWorks');
 Route::get('milestones', 'PagesController@mileStones');
-Route::get('blog-read', 'PagesController@blogRead');
-Route::get('blog', 'PagesController@blog');
+Route::get('blog/{id}', 'PagesController@blogRead');
+Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
 Route::get('investor-dashboard', 'PagesController@investorDashboard');
@@ -48,11 +51,14 @@ Route::get('investee-dashboard', 'PagesController@investeeDashboard');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
+Route::post('complaint-form', 'PagesController@complaintForm');
 Route::get('contact', 'PagesController@contact');
 Route::get('blog-list', 'PagesController@blogList');
+// this points to the badly rendered blade
 Route::get('signup', 'PagesController@signUp');
 Route::get('profile-update', 'PagesController@updateProfile');
 Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login');
 Route::get('sign-up', 'PagesController@sign_up');
+Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');

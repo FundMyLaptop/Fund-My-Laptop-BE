@@ -11,16 +11,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link px-4 font-weight-bold" href="#">Lend</a>
+                    <a class="nav-link px-4 font-weight-bold" href="{{ url('lend') }}">Lend</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-4 font-weight-bold" href="#">Borrow</a>
+                    <a class="nav-link px-4 font-weight-bold" href="{{ url('borrow') }}">Borrow</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-4 font-weight-bold" href="#">About</a>
+                    <a class="nav-link px-4 font-weight-bold" href="{{ url('/#about') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pl-md-4 font-weight-bold" href="#">
+                    <a class="nav-link pl-md-4 font-weight-bold" href="{{ url('login') }}">
                         <button class="btn btn-fml-secondary px-4">
                             Login
                         </button>
