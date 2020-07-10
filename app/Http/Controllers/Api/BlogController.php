@@ -18,9 +18,9 @@ class BlogController extends Controller
     {
         // Who can read all Blog post
         // an authenticated users should be able to view all blog post
-        // 9 queries are returned per pages
+        // 6 queries are returned per pages
         $user = Auth::user();
-        $query = Blog::with('user')->paginate(9);
+        $query = Blog::with('user')->paginate(6);
 
         return response()->json([
             'message' => 'Blogs retrieved',
@@ -76,7 +76,7 @@ class BlogController extends Controller
         } else {
             return response()->json([
                 'message' => 'You do not have permission to perform this action'
-            ]);
+            ], 401);
         }
     }
 
@@ -155,7 +155,7 @@ class BlogController extends Controller
         } else {
             return response()->json([
                 'message' => 'You do not have permission to perform this action'
-            ]);
+            ], 401);
         }
     }
 }
