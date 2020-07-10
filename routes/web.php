@@ -1,5 +1,5 @@
 <?php
-
+use App\Request as FundRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,8 +12,11 @@
 */
 
 Route::get('/', function () {
-
-    return view('index');
+    $oldRequests = FundRequest::where([
+        ['isFunded', '0'], 
+        ['isSuspended', '0']
+    ])->oldest()->take(3)->get();
+    return view('index')->with(['oldRequests'=>$oldRequests]);
 });
 
 // Auth::routes(['verify' => true]);
@@ -58,3 +61,4 @@ Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login');
 Route::get('sign-up', 'PagesController@sign_up');
+Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
