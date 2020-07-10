@@ -40,12 +40,15 @@ class RequestController extends Controller
      */
     public function availableFundingRequest()
     {
-        $unattendedFundingRequest = FundRequest::with('user')->where('isFunded', 0)->get();
+        //$unattendedFundingRequests = FundRequest::with('user')->where('isFunded', 0)->get();
+        $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
 
-        return response()->json([
+        /*return response()->json([
             'message' => 'Unattended Requests Retrieved',
             'data' => $unattendedFundingRequest
-        ], 200);
+        ], 200);*/
+
+        return view('unfunded-campaigns',compact('unattendedFundingRequests'));
     }
 
     /**
@@ -147,7 +150,7 @@ class RequestController extends Controller
 
               'message' => 'Request retrieved',
               'data' => $request
-          ], 200); 
+          ], 200);
         }
     }
 
@@ -182,7 +185,7 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //destroy method 
+        //destroy method
         if (Auth::check() && Auth::user()->role == 2) {
            if(FundRequest::where('id', $id)->exists()) {
                $fundRequest = FundRequest::find($id);
@@ -231,7 +234,7 @@ class RequestController extends Controller
         ], 200);
     }
 
-   
+
 
     /**
      * Update the specified resource in storage.
