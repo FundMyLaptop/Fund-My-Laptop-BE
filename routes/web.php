@@ -27,6 +27,7 @@ Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
 Route::get('campaign', 'PagesController@campaign');
+Route::get('campaign/{id}', 'RequestController@view_campaign');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
@@ -56,10 +57,6 @@ Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login')->name('login');
 Route::get('sign-up', 'PagesController@sign_up');
-<<<<<<< HEAD
-Route::get('campaign/{id}', 'RequestController@view_campaign');
-=======
 Route::post('update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
->>>>>>> 2b86e9957e31a11da0937779bd1ea99fb73a4acc

@@ -4,11 +4,6 @@ namespace App\Http\Controllers;
 use App\Request as FundRequest;
 use App\User;
 use App\Http\Controllers\Controller;
-
-
-
-
-use App\Request as FundRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
