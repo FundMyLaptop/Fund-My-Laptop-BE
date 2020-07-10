@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ComplaintFormMail;
 use App\Blog;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -143,7 +144,14 @@ class PagesController extends Controller
 
     public function updateProfile()
     {
-        return view('update-profilepage');
+        $token = 'Bearer '.Auth::user()->token();
+        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
+        $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
+        $body = $response->getBody();
+        $content = $body->getContents();
+        $data = json_decode($content, TRUE);
+
+        return view('update-profilepage', compact('data'));
     }
 
     public function signUp()
