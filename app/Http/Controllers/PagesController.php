@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\ComplaintFormMail;
 use App\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PagesController extends Controller
 {
@@ -106,8 +109,24 @@ class PagesController extends Controller
         return view('complaint');
     }
 
-    public function complaintForm()
+    public function complaintForm(Request $request)
     {
+        if ($request->isMethod('POST')) {
+            $data = [
+                'name' => 'required|min:5',
+                'email' => 'required|email',
+                'message' => 'required|min:10'
+            ];
+
+            if (!$request->validate($data)) {
+                return redirect()->back()->withInput($data);
+            } else {
+                $complaint_data = $request->all();
+                Mail::to('')->send(new ComplaintFormMail($complaint_data));
+
+                return redirect('complaint-form')->with('status', 'Thanks for your message!. We will be in touch.');
+            }
+        }
         return view('complaint-form');
     }
 

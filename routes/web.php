@@ -48,6 +48,7 @@ Route::get('investee-dashboard', 'PagesController@investeeDashboard');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
+Route::post('complaint-form', 'PagesController@complaintForm');
 Route::get('contact', 'PagesController@contact');
 Route::get('blog-list', 'PagesController@blogList');
 Route::get('signup', 'PagesController@signUp');
