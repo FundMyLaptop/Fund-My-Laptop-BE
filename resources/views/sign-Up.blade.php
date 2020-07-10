@@ -20,13 +20,34 @@
 
         <div class="form-group row">
 			<div class="col-md-6">
-				<input type="email" placeholder="Email" name="email" class="form-control" id="email">
+				<input type="email" placeholder="Email" name="email" class="form-control" id="email" required>
 				<p id="errorEmail" class="error  text-danger text-center text-sm-left"> </p>
 			</div>
 			<div class="col-md-6">
-				<input type="password" placeholder="Password" name="password" class="form-control" id="password">
+				<input type="number" placeholder="Phone" name="phone" class="form-control" id="phone" required>
+				<p id="errorPhone" class="error text-danger text-center text-sm-left"></p>
+			</div>
+        </div>
+
+        <div class="form-group row">
+			<div class="col-md-6">
+            <input type="password" placeholder="Password" name="password" class="form-control" id="password" required>
 				<p id="errorPassword" class="error text-danger text-center text-sm-left"></p>
 			</div>
+			<div class="col-md-6">
+				<input type="password" placeholder="Password Again" name="password_again" class="form-control" id="password_again" required>
+				<p id="errorPasswordAgain" class="error text-danger text-center text-sm-left"></p>
+			</div>
+        </div>
+
+        <div class="form-group row">
+            
+            <textarea name="address" id=""class="form-control mx-3" 
+            placeholder="Address" cols="5" rows="4" required></textarea>
+
+			<p id="errorAddress" class="error text-danger text-center text-sm-left"></p>
+
+
 		</div>
 
         <div class="form-group mx-auto">

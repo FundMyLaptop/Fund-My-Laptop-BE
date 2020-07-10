@@ -103,10 +103,10 @@ class UserController extends Controller
             'lastName' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            // 'password_again' => 'required|same:password',
-            // 'phone' => 'required|unique:users',
-            // 'address' => 'required',
-            // 'role' => 'required',
+            'password_again' => 'required|same:password',
+            'phone' => 'required|unique:users',
+            'address' => 'required',
+            'role' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -130,9 +130,9 @@ class UserController extends Controller
                 'data' => array(
                     'firstName' => $request->firstName,
                     'lastName' => $request->lastName,
-                    // 'phone' => $request->phone,
+                    'phone' => $request->phone,
                     'email' => $request->email,
-                    // 'address' => $request->address,
+                    'address' => $request->address,
                     'role' => $request->role,
                 ),
                 'user_id' => $user->id
