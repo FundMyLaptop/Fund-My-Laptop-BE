@@ -111,7 +111,7 @@ class AdminController extends Controller
     {
 
         //delete User account
-        if (Auth::check() && Auth::user()->role == 2) {
+        if (Auth::check() && Auth::user()->role == 1) {
             if(User::where('id', $id)->exists()) {
                 $user = User::find($id);
                 $user->delete();
