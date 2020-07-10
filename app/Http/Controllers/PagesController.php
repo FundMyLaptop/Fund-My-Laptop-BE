@@ -5,6 +5,7 @@ use App\Blog;
 use Illuminate\Http\Request;
 
 
+
 class PagesController extends Controller
 {
     public function termsAndConditions()
