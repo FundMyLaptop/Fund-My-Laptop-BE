@@ -8,115 +8,33 @@
 @section('content')
 
     <section class="blog-main container mt-5">
+
+    @if(count($blogs) > 0)
+        @foreach($blogs as $blog)
         <article class="row pb-5 justify-content-between">
             <div class="article-image col-md-4 order-md-2">
-                <img src="../img/404.png" class="d-block w-100 border rounded" />
+                <img src="{{$blog->image}}" class="d-block w-100 border rounded" />
             </div>
             <div class="article-info col-md-7 order-md-1">
                 <div class="article-meta">
-                    <p><a href="#" class="font-weight-bold text-dark">Business </a>- July 1st, 2020</p>
+                    <p><a href="blog/{{$blog->id}}" class="font-weight-bold text-dark">{{$blog->category}} </a>- {{$blog->created_at}}</p>
                 </div>
                 <h1 class="article-title font-weight-bold">
-                    <a href="blog-read.html" class="text-dark">If I survive HNGI, I can survive any tech-work-life</a>
+                    <a href="blog/{{$blog->id}}" class="text-dark">{{$blog->title}}</a>
                 </h1>
                 <p class="article-desc">
-                    This is an article based on the frivoluos party life style of the
-                    internal space-ship in the american floss of heirarchy
+                    {{str_split($blog->post,20)[0]}}
                 </p>
             </div>
         </article>
-        <article class="row pb-5 justify-content-between">
-            <div class="article-image col-md-4 order-md-2">
-                <img src="../img/404.png" class="d-block w-100 border rounded" />
-            </div>
-            <div class="article-info col-md-7 order-md-1">
-                <div class="article-meta">
-                    <p><a href="#" class="font-weight-bold text-dark">Business </a>- July 1st, 2020</p>
-                </div>
-                <h1 class="article-title font-weight-bold">
-                    <a href="blog-read.html" class="text-dark">If I survive HNGI, I can survive any tech-work-life</a>
-                </h1>
-                <p class="article-desc">
-                    This is an article based on the frivoluos party life style of the
-                    internal space-ship in the american floss of heirarchy
-                </p>
-            </div>
-        </article>
-        <article class="row pb-5 justify-content-between">
-            <div class="article-image col-md-4 order-md-2">
-                <img src="../img/404.png" class="d-block w-100 border rounded" />
-            </div>
-            <div class="article-info col-md-7 order-md-1">
-                <div class="article-meta">
-                    <p><a href="#" class="font-weight-bold text-dark">Business </a>- July 1st, 2020</p>
-                </div>
-                <h1 class="article-title font-weight-bold">
-                    <a href="blog-read.html" class="text-dark">If I survive HNGI, I can survive any tech-work-life</a>
-                </h1>
-                <p class="article-desc">
-                    This is an article based on the frivoluos party life style of the
-                    internal space-ship in the american floss of heirarchy
-                </p>
-            </div>
-        </article>
-        <article class="row pb-5 justify-content-between">
-            <div class="article-image col-md-4 order-md-2">
-                <img src="../img/404.png" class="d-block w-100 border rounded" />
-            </div>
-            <div class="article-info col-md-7 order-md-1">
-                <div class="article-meta">
-                    <p><a href="#" class="font-weight-bold text-dark">Business </a>- July 1st, 2020</p>
-                </div>
-                <h1 class="article-title font-weight-bold">
-                    <a href="blog-read.html" class="text-dark">If I survive HNGI, I can survive any tech-work-life</a>
-                </h1>
-                <p class="article-desc">
-                    This is an article based on the frivoluos party life style of the
-                    internal space-ship in the american floss of heirarchy
-                </p>
-            </div>
-        </article>
-        <article class="row pb-5 justify-content-between">
-            <div class="article-image col-md-4 order-md-2">
-                <img src="../img/404.png" class="d-block w-100 border rounded" />
-            </div>
-            <div class="article-info col-md-7 order-md-1">
-                <div class="article-meta">
-                    <p><a href="#" class="font-weight-bold text-dark">Business </a>- July 1st, 2020</p>
-                </div>
-                <h1 class="article-title font-weight-bold">
-                    <a href="blog-read.html" class="text-dark">If I survive HNGI, I can survive any tech-work-life</a>
-                </h1>
-                <p class="article-desc">
-                    This is an article based on the frivoluos party life style of the
-                    internal space-ship in the american floss of heirarchy
-                </p>
-            </div>
-        </article>
-        <article class="row pb-5 justify-content-between">
-            <div class="article-image col-md-4 order-md-2">
-                <img src="../img/404.png" class="d-block w-100 border rounded" />
-            </div>
-            <div class="article-info col-md-7 order-md-1">
-                <div class="article-meta">
-                    <p><a href="#" class="font-weight-bold text-dark">Business </a>- July 1st, 2020</p>
-                </div>
-                <h1 class="article-title font-weight-bold">
-                    <a href="blog-read.html" class="text-dark">If I survive HNGI, I can survive any tech-work-life</a>
-                </h1>
-                <p class="article-desc">
-                    This is an article based on the frivoluos party life style of the
-                    internal space-ship in the american floss of heirarchy
-                </p>
-            </div>
-        </article>
-        <nav aria-label="Blog pages">
-            <ul class="pagination mx-auto justify-content-center mb-5 border-none">
-                <li class="page-item"><a class="page-link">1</a></li>
-                <li class="page-item"><a class="page-link">2</a></li>
-                <li class="page-item"><a class="page-link">3</a></li>
-            </ul>
-        </nav>
+        @endforeach
+        {{$blogs->links()}}
+    @else
+        <p> No blog found </p>
+    @endif
+
+
+       
     </section>
 
     <section class="row mx-0 blog-subscribe justify-content-center mb-5">
