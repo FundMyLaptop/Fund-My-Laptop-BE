@@ -8,6 +8,7 @@
 @section('content')
 
     <!-- Pleading for fund title -->
+    
     <div class="container pleading_funding">
         <div class="row">
             <div class="page-links">
@@ -16,15 +17,14 @@
                 <a href="" class="text-primary">Campaign</a>
             </div>
         </div>
+        @foreach ($request as $request) 
+       
         <div class="row">
-            <p class="plead_fund">Fund John Doe’s Laptop Purchase</p>
+            <p class="plead_fund">{{$request->title}}</p>
         </div>
+        
         <div class="row deVideoDiv">
-            <video width="320" height="240" controls>
-                <source src="movie.mp4" type="video/mp4">
-                <source src="movie.ogg" type="video/ogg">
-                Your browser does not support the video tag.
-            </video>
+            <img src="{{$request->photoURL}}" height="320" width="440" alt="request-img">
         </div>
     </div>
 
@@ -41,7 +41,8 @@
             </div>
             <div class="col-md-6 col-12 anotherSwipe">
                 <p class="title_laptop_detail">Posted on:</p>
-                <p class="laptop_subdetail">12/12/2020</p>
+               
+                <p class="laptop_subdetail">{{$request->created_at}}</p>
             </div>
         </div>
 
@@ -63,12 +64,7 @@
             <div class="col">
                 <p class="title_laptop_detail">Description</p>
                 <p class="description_detail">
-                    I run a small freelancing business in the heart of Lagos. My former
-                    laptop finally packed up after several attempts at refurbishing it,
-                    I would like a loan to get a new laptop to continue my business. My
-                    business loremipsum.com generates enough money to repay the loan in
-                    three months. I would really appreciate funding for this campaign.
-                    Thank you for your time 🙂.
+                    {{$request->description}}
                 </p>
             </div>
         </div>
@@ -132,7 +128,7 @@
         <div class="row each_detail_row">
             <div class="col-12 col-md-6">
                 <p class="title_laptop_detail toAdjust">Loan amount:</p>
-                <p class="detail_funding_2">N 250,000</p>
+                <p class="detail_funding_2">{{$request->currency }} {{ $request->amount}}</p>
             </div>
 
             <div class="col-12 col-md-6">
@@ -140,6 +136,7 @@
                 <p class="detail_funding_2">3 months</p>
             </div>
         </div>
+        @endforeach
 
         <!-- Acknowledgement and support -->
 

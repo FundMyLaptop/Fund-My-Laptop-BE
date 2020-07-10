@@ -273,22 +273,5 @@ class RequestController extends Controller
         }
     }
 
-    public function view_particular_request($id)
-    {
-    
-        if (Auth::check()) {
-            if(FundRequest::where('id', $id)->exists()) {
-                $FundRequest = FundRequest::find($id);
-                return response()->json([
-                    "message" => "Request retrieved",
-                    "data" => $FundRequest
-                ], 200);
-            } else {
-                return response()->json([
-                    "message" => "Request doesn't exist"
-                ], 404);
-            }
-                
-        }
-    }
+   
 }

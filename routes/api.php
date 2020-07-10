@@ -47,7 +47,6 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
   Route::post('bank-accounts', 'BankAccountController@create');
   Route::get('featured-requests/{id}', 'RequestController@set_featured');
   Route::get('all-featured-requests', 'RequestController@fetch_featured_requests');
-  Route::get('view-particular-requests/{id}', 'RequestController@view_particular_request');
   Route::delete('favorite/delete/{id}','FavoriteController@destroy');
   Route::delete('users/delete/{id}','AdminController@destroy');
   Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');

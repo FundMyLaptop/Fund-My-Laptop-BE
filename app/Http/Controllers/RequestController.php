@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Request as FundRequest;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -43,11 +44,13 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function view_campaign($id)
     {
-        //
+        $request = FundRequest::where('id', $id)->get();
+        return view('campaign', compact('request'));
+         
     }
-
+   
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,4 +84,5 @@ class RequestController extends Controller
     {
         //
     }
+
 }
