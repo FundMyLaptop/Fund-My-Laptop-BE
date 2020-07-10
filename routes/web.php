@@ -51,7 +51,7 @@ Route::get('blog-list', 'PagesController@blogList');
 Route::get('signup', 'PagesController@signUp');
 Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
-Route::get('login', 'PagesController@login');
+Route::get('login', 'PagesController@login')->name('login');
 Route::get('sign-up', 'PagesController@sign_up');
 Route::post('update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
