@@ -112,7 +112,8 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        return view('blog-list');
+        $blogs = Blog::orderBy('created_at','desc')->paginate(6); 
+        return view('blog-list')->with('blogs', $blogs);
     }
 
     public function updateProfile()
