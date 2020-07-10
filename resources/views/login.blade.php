@@ -1,7 +1,10 @@
 @extends('layout.app')
 @section('content')
 <main class="main-content d-sm-flex ">
-    <form class="login-box p-md-5 p-2">
+    <form class="login-box p-md-5 p-2" method="POST" action="{{ route('login') }}">
+
+        @csrf
+        
         <h2 class="p-sm-3 p-1 welcome-text">Welcome to <br> <strong>Fund my Laptop</strong></h2>
     
         <p class="p-1 p-md-3 login-text mt-md-n4">Help Achieve Your dreams with funding for your laptops at little to no cost.</p>
