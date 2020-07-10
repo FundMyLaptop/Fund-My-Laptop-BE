@@ -54,5 +54,9 @@ Route::get('signup', 'PagesController@signUp');
 Route::get('profile-update', 'PagesController@updateProfile');
 Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
-Route::get('login', 'PagesController@login');
+Route::get('signin', 'PagesController@login')->name('user.signin');
 Route::get('sign-up', 'PagesController@sign_up');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

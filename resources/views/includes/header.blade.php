@@ -19,13 +19,38 @@
                 <li class="nav-item">
                     <a class="nav-link px-4 font-weight-bold" href="#">About</a>
                 </li>
+                @guest
                 <li class="nav-item">
-                    <a class="nav-link pl-md-4 font-weight-bold" href="#">
+                    <a class="nav-link pl-md-4 font-weight-bold" href="{{ route('user.signin') }}">
                         <button class="btn btn-fml-secondary px-4">
-                            Login
+                        {{ __('Login') }}
                         </button>
                     </a>
                 </li>
+
+                @if (Route::has('register'))
+                <li class="nav-item">
+                    <a class="nav-link pl-md-4 font-weight-bold" href="{{ route('register') }}">
+                        <button class="btn btn-fml-secondary px-4">
+                        {{ __('Sign Up') }}
+                        </button>
+                    </a>
+                </li>
+                @endif
+            @else
+
+                <li class="nav-item">
+                    <a class="nav-link pl-md-4 font-weight-bold" href="{{ route('logout') }}" onclick="event.preventDefault();
+document.getElementById('logout-form').submit();">
+                        <button class="btn btn-fml-secondary px-4">
+                        {{ __('Logout') }}
+                        </button>
+                    </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                @csrf
+                </form>
+                </li>
+                @endguest    
             </ul>
         </div>
     </nav>
