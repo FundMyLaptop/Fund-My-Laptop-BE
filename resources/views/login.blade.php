@@ -36,7 +36,7 @@
         <div>
             <input type="submit" class="form-control login-btn  btn-fml-secondary" value="Log in">
         </div>
-        <p class="account-info-text text-center py-4">Don't have an account? <a href="#" class="sign-up-link">Sign up</a></p>
+        <p class="account-info-text text-center py-4">Don't have an account? <a href="{{ url('sign-up') }}" class="sign-up-link">Sign up</a></p>
        
         <!-- <div id="error" class="error p-1 "></div>
         </div> -->
