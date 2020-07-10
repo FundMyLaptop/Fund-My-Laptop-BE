@@ -23,7 +23,7 @@ class Request extends Model
     }
 
     public function transaction(){
-        return $this->hasMany('App\Request');
+        return $this->hasMany('App\Transaction');
     }
 
     public function repayment(){
