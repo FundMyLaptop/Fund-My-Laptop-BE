@@ -39,7 +39,7 @@ Route::get('benefit', 'PagesController@benefit');
 Route::get('partners', 'PagesController@partners');
 Route::get('how-it-works', 'PagesController@howItWorks');
 Route::get('milestones', 'PagesController@mileStones');
-Route::get('blog-read', 'PagesController@blogRead');
+\Route::get('blog/{title}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
