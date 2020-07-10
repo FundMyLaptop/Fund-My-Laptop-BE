@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Request as FundRequest;
+use App\User;
 
 class PagesController extends Controller
 {
@@ -38,9 +41,17 @@ class PagesController extends Controller
         return view('faq');
     }
 
-    public function payment()
+    public function payment($id)
     {
-        return view('payment');
+        if(isset($id)){
+        $request = FundRequest::whereId($id)->firstOrFail();
+         $userId = $request->user_id;
+         $user = User::whereId($userId)->firstOrFail();
+         $firstName = $user->firstName;
+         $lastName = $user->lastName;
+
+        return view('payment', compact('user', 'request'));
+        }
     }
 
     public function benefit()
