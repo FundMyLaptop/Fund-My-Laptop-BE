@@ -23,7 +23,7 @@ class AdminController extends Controller
     }
 
     public function block(Request $request){
-        if(Auth::check() && Auth::user()->role == 1) {
+        if(Auth::check() && Auth::user()->role == 2) {
             if (User::where('id', $request->id)->exists()) {
                 $user = User::find($request->id);
                 $user->isBlocked = 1;
