@@ -50,7 +50,7 @@ class PagesController extends Controller
         return view('faq');
     }
 
-    public function payment()
+    public function payment($id)
     {
         if(isset($id)){
         $request = FundRequest::whereId($id)->firstOrFail();
@@ -58,7 +58,7 @@ class PagesController extends Controller
          $user = User::whereId($userId)->firstOrFail();
          $firstName = $user->firstName;
          $lastName = $user->lastName;
-          
+
         return view('payment', compact('user', 'request'));
         }
     }
