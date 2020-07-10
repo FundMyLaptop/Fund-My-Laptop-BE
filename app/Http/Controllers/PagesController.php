@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Blog;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -61,9 +61,15 @@ class PagesController extends Controller
         return view('milestones');
     }
 
-    public function blogRead()
+    public function blogRead($title)
     {
-        return view('blog-read');
+        $title=urldecode($title);
+        $blog =Blog::where('title',$title)->first();
+      if(!$blog){
+        return view('404');
+      }
+      
+        return view('blog-read')->with('blog', $blog);
     }
 
     public function blog()
