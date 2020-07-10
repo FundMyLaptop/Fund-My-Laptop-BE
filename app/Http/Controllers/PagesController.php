@@ -61,10 +61,10 @@ class PagesController extends Controller
         return view('milestones');
     }
 
-    public function blogRead($title)
+    public function blogRead($id)
     {
-        $title=urldecode($title);
-        $blog =Blog::where('title',$title)->first();
+        
+        $blog =Blog::find($id);
       if(!$blog){
         return view('404');
       }
