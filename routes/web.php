@@ -63,5 +63,5 @@ Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login');
 Route::get('sign-up', 'PagesController@sign_up');
 
-Route::get('sign-up', 'TestimonialController@index');
+Route::get('testimonial', 'TestimonialController@index');
 

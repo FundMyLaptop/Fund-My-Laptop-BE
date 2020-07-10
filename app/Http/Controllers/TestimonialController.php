@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Testimonial;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class TestimonialController extends Controller
 {
@@ -16,16 +17,18 @@ class TestimonialController extends Controller
     public function index()
     {
         //
-        //get count of testimonials
-        //$testimonial= Testimonial::get();
+
+
 
         if (Auth::check() && Auth::user()->role == 2)
         {
-            $row_count = DB::table($tableName)
-                     ->select(DB::raw('count(*) as count'))
-                     ->count;
+            $user = Auth::User();
 
+            $row = \DB::table('transactions')->get();
+            //get count of testimonials
+            $row_count = count($row);
             $testimonial_id = rand(1,$row_count);
+            //echo $testimonial_id; die();
 
             if(Testimonial::where('id', $testimonial_id)->exists())
             {
@@ -37,10 +40,10 @@ class TestimonialController extends Controller
             {
                 return view('testimonial',['testimonial'=> 'No testimonial']);
             }
-        } else
-        {
+       } else
+       {
             return view('testimonial',['testimonial'=> 'You do not have access to view this page']);
-        }
+       }
     }
 
     /**
