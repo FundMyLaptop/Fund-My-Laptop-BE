@@ -28,7 +28,7 @@
                 
                 <p><a class="font-weight-bold text-dark">{{$blog->category}}</a> - {{date("M d, Y",strtotime($blog->created_at))}}</p>
             </div>
-            <div class="article-read-image col-md-12">
+            <div class="article-read-image">
                 <img src="{{$blog->image}}" class="d-block w-100" />
             </div>
             <section class="article-body mt-4 col-md-12">
