@@ -104,7 +104,7 @@ class UserController extends Controller
                 ->withInput();
         } else {
             // store
-            $user = User::find('id');
+            $user = User::find($id);
             $user->phone       = $request->input('phone');
             $user->email      = $request->input('email');
             $user->address    = $request->input('address');
