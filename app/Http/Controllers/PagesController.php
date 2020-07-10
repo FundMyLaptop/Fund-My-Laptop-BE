@@ -7,9 +7,18 @@ use App\Blog;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Request as FundRequest;
 
 class PagesController extends Controller
 {
+    public function landingPage()
+    {
+        $oldRequests = FundRequest::where([
+            ['isFunded', '0'],
+            ['isSuspended', '0']
+        ])->oldest()->take(3)->get();
+        return view('index')->with(['oldRequests' => $oldRequests]);
+    }
     public function termsAndConditions()
     {
         return view('terms-and-condition');
@@ -67,12 +76,12 @@ class PagesController extends Controller
 
     public function blogRead($id)
     {
-        
-        $blog =Blog::find($id);
-      if(!$blog){
-        return view('404');
-      }
-      
+
+        $blog = Blog::find($id);
+        if (!$blog) {
+            return view('404');
+        }
+
         return view('blog-read')->with('blog', $blog);
     }
 
@@ -138,7 +147,7 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        $blogs = Blog::orderBy('created_at','desc')->paginate(6); 
+        $blogs = Blog::orderBy('created_at', 'desc')->paginate(6);
         return view('blog-list')->with('blogs', $blogs);
     }
 

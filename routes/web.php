@@ -1,5 +1,4 @@
 <?php
-use App\Request as FundRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,13 +10,7 @@ use App\Request as FundRequest;
 |
 */
 
-Route::get('/', function () {
-    $oldRequests = FundRequest::where([
-        ['isFunded', '0'], 
-        ['isSuspended', '0']
-    ])->oldest()->take(3)->get();
-    return view('index')->with(['oldRequests'=>$oldRequests]);
-});
+Route::get('/', 'PagesController@landingPage');
 
 // Auth::routes(['verify' => true]);
 
