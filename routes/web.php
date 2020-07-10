@@ -13,7 +13,7 @@ use App\Request as FundRequest;
 
 Route::get('/', function () {
     $oldRequests = FundRequest::where([
-        ['isFunded', '0'], 
+        ['isFunded', '0'],
         ['isSuspended', '0']
     ])->oldest()->take(3)->get();
     return view('index')->with(['oldRequests'=>$oldRequests]);
@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
+
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
@@ -61,3 +62,6 @@ Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login');
 Route::get('sign-up', 'PagesController@sign_up');
+
+Route::get('sign-up', 'TestimonialController@index');
+
