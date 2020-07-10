@@ -16,7 +16,7 @@
             <p class="font-weight-normal">OOPS...CAN'T FIND THAT PAGE
 
             <div class="row justify-content-center align-items-center" style="margin:0">
-                <button class="btn btn-info align-center" a href="home.html">Go to Homepage</button>
+            <a href="{{ url('/') }}"><button class="btn btn-info align-center">Go to Homepage</button></a>
             </div>
             </p>
         </div>
