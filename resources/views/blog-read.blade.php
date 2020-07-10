@@ -12,27 +12,27 @@
             <nav aria-label="breadcrumb" class="col-md-12">
                 <ol class="breadcrumb bg-transparent px-0">
                     <li class="breadcrumb-item"><a href="#" class="text-fml-secondary">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{route('blog-list')}}" class="text-fml-secondary">Blog</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{$blog['title']}}... </li>
+                <li class="breadcrumb-item"><a href="{{route('blog')}}" class="text-fml-secondary">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$blog->title}}... </li>
                 </ol>
                 
             </nav>
         
              
             <h1 class="article-read-title font-weight-bold col-md-12">
-                {{$blog['title']}}
+                {{$blog->title}}
                 
             </h1>
         
             <div class="article-read-meta col-md-12">
                 
-                <p><a class="font-weight-bold text-dark">{{$blog['category']}}</a> - {{date("M d, Y",strtotime($blog['created_at']))}}</p>
+                <p><a class="font-weight-bold text-dark">{{$blog->category}}</a> - {{date("M d, Y",strtotime($blog->created_at))}}</p>
             </div>
             <div class="article-read-image col-md-12">
-                <img src="{{$blog['image']}}" class="d-block w-100" />
+                <img src="{{$blog->image}}" class="d-block w-100" />
             </div>
             <section class="article-body mt-4 col-md-12">
-                {{$blog['post']}}
+                {{$blog->post}}
                
 
                 <div class="blog-share-links col-auto px-0 mt-5">

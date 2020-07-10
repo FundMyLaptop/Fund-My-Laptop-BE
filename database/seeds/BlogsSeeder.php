@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Blog;
 class BlogsSeeder extends Seeder
 {
     /**
@@ -14,7 +14,7 @@ class BlogsSeeder extends Seeder
      
     
         $faker = Faker\Factory::create();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
            
             $blog = new Blog();
             $blog->user_id = $faker->numberBetween(1, 450);
