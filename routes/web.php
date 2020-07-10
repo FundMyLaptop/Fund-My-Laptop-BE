@@ -22,7 +22,7 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
-
+Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
