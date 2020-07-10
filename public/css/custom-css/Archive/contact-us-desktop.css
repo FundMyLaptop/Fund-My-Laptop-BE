@@ -1,0 +1,298 @@
+:root {
+  box-sizing: border-box;
+}
+
+*, 
+*::before, 
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #E5E5E5;
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+
+
+}
+
+.contactUsHeader {
+  /* Optional property using a hosted image */
+  /* background: linear-gradient( #04172a80, #04172a80 ), url(https://bit.ly/3icP4wo) no-repeat; */
+  background: linear-gradient( #04172a80, #04172a80 ), url('../../img/contact-us-desktop-splash.svg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 296.89px;
+  text-align: center;
+  color: #ffffff;
+   margin-top: 6rem;
+
+
+
+   
+
+  
+
+   
+}
+
+.contactUsHeader div {
+  margin-top: 7.5em;
+}
+
+.contactUsHeader h1 {
+  margin-bottom: .75em;
+}
+
+.contactUsHeader p {
+  font-size: 1.2rem;
+}
+
+hr.titleHr {
+  border: 10px solid #FB3F5C;
+  width: 30.8%;
+  margin-top: -3em;
+}
+
+.borderDesign {
+  border: 1px solid #00000040;
+  border-radius: 4px;
+  box-shadow: #00000040;
+}
+
+.lightColour {
+  color: #999898;
+  font-size: 0.8em;
+  font-weight: lighter;
+}
+
+.darkColour1 {
+  color: #04172ab3;
+  font-size: 0.8em;
+  font-weight: lighter;
+}
+
+.darkColour2 {
+  color: #04172a4d;
+  font-size: 0.8em;
+  font-weight: lighter;
+}
+
+/* Awesome font icons */
+i {
+  color: #FB3F5C;
+}
+
+.iconPack {
+  padding: .5em .8em;
+  background-color: #fb3f5c1a;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.fbIconPack {
+  padding: .5em .9em;
+  background-color: #fb3f5c1a;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.contactUsContent {
+  padding: 5em 8em;
+}
+
+.contactDetailsList {
+  flex:1;
+  margin-right: 3em;
+}
+
+.contactUsForm {
+  flex: 2;
+  margin-left: 3em;
+  padding: 2em 3em;
+  
+}
+
+.contactUsForm button {
+  margin-top: 1em;
+  margin-left: auto;
+}
+.error{
+  font-size: 12px;
+  text-align: center;
+  color: red;
+  padding-top: 10px;
+  
+}
+@media (max-width: 1000px) {
+  .contactUsHeader {
+     height: 143.48px;
+    }
+   .contactUsHeader div {
+  margin-top: 1.5em;
+}
+.contactUsHeader h1 {
+  margin-bottom: 1.75em;
+  font-size: 18.3168px;
+line-height: 24px;
+
+height: 23.66px;
+
+color: #FFFFFF;
+}
+
+.contactUsHeader p {
+    width: 198.43px;
+height: 45.79px;
+font-family: DM Sans;
+font-style: normal;
+font-weight: 500;
+font-size: 12.2112px;
+line-height: 15px;
+/* or 125% */
+
+text-align: center;
+
+}
+hr.titleHr {
+  border:5px solid #FB3F5C;
+  width: 25.8%;
+   margin-top: -2.6em;
+
+  
+}
+.contactUsContent {
+  flex-direction: column;
+  margin: 0;
+  flex: 0;
+
+}
+.borderDesign {
+  border: 1px solid #00000040;
+ border-radius: 3.816px;
+  box-shadow: #00000040;
+  height: 49.61;
+  
+  
+  position: relative;
+  
+  right:4.5rem;
+
+
+
+}
+
+
+
+.contactUsForm {
+  flex: 0;
+  margin-left: 0em;
+  padding: 2em 2em;
+}
+.contactDetailsList {
+  flex: 1;
+  margin-right: 3em;
+}
+input[type=text],
+input[type=tel],
+input[type=email]
+
+{
+  border: 0.763199px solid rgba(4, 23, 42, 0.7);
+box-sizing: border-box;
+border-radius: 3.816px;
+height:36.63px;
+width: 335px;
+}
+
+.darkColour2 {
+  border: 0.763199px solid rgba(4, 23, 42, 0.7);
+box-sizing: border-box;
+}
+
+}
+@media (max-width: 400px){
+  .borderDesign {
+     width: 360px;
+     right:7.6rem;
+   }
+   input[type=text],
+input[type=tel],
+input[type=email]
+
+{
+  width: 302px;
+ }
+}
+  @media (min-width: 400px) and (max-width: 500px){
+    .borderDesign {
+     width: 399px;
+     right:7.8rem;
+
+ }
+    input[type=text],
+input[type=tel],
+input[type=email]
+
+{
+  width: 322px;
+ }
+}
+ 
+    @media (min-width: 700px)and (max-width:1000px){
+      .borderDesign {
+     width: 744px;
+     right:7.4rem;
+
+
+}
+ input[type=text],
+input[type=tel],
+input[type=email]
+
+{
+  width:302px;
+ }
+}
+ @media (max-width: 350px) {
+   .borderDesign {
+     width: 295px;
+     right:7.4rem;
+   }
+   input[type=text],
+input[type=tel],
+input[type=email]
+
+{
+  border: 0.763199px solid rgba(4, 23, 42, 0.7);
+box-sizing: border-box;
+border-radius: 3.816px;
+height:36.63px;
+width: 206px;
+}
+
+ }
+ 
+
+ @media (min-width: 450px) and (max-width: 460px){
+  .borderDesign {
+     width: 665px;
+   right: 7.8rem; 
+ }
+   input[type=text],
+     input[type=tel],
+     input[type=email]{
+  border: 0.763199px solid rgba(4, 23, 42, 0.7);
+box-sizing: border-box;
+border-radius: 3.816px;
+height:36.63px;
+width: 586px;
+   }
+ }
+ 
+ @media (min-width: 460px) and (max-width: 700px){
+  .borderDesign {
+     width: 465px;
+   right: 7.5rem; 
+ }

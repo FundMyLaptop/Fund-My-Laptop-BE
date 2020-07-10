@@ -1,0 +1,421 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    background-color: #E5E5E5;
+
+}
+button{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    border-radius: 10px;
+    height: 40px;
+    border: none;
+}
+a{
+color: white;}
+a:hover{
+    color: #FB3F5C;
+}
+h1{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 94px;
+    color: rgba(255, 255, 255, 0.9);
+}
+h2{
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 94px;
+    color: rgba(255, 255, 255, 0.9)
+}
+h3{
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 52px;
+    color: #04172A;
+}
+.form-group>label{
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(51, 51, 51, 0.5);
+}
+.form-group>input{
+ height: 48px;
+}
+.form-control::placeholder{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    color: #BDBDBD;
+}
+
+h5{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    color: rgba(4, 23, 42, 0.9);
+}
+/* Nav Bar start here */
+#navbarDropdown, #nav-link{
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 21px;
+    color: #04172A;
+}
+  /* NavBar buttons */
+    .btn-sign-in{
+        border: 1px solid #FB3F5C;
+        box-sizing: border-box;
+        width: 98px;
+        color: #FB3F5C;
+        background-color: white;
+        border-radius: 10px;
+    }
+    .btn-start{
+        background: #FB3F5C;
+        width: 177px;
+        color: #FFFFFF;
+        border-radius: 10px;
+    }
+  /* end nabars button */
+
+/* ***** Nav bar end here ***** */
+
+/* Header content start  Here */
+.jumbotron{
+    margin-top: 5.5rem;
+    background: url(/img/HeaderHero-.png) center  no-repeat;
+    background-size: cover;
+    min-height: 400px;
+
+}
+.header-text>p{
+    font-size: 24px;
+    line-height: 31px;
+    
+    color:  rgba(255, 255, 255, 0.9);
+}
+.header-form{
+    box-shadow: 0px 4px 8px rgba(251, 63, 92, 0.07);
+    border-radius: 8px;
+    }
+.btn-form{
+    width: 100%;
+    height: 48px;
+    background: #FB3F5C;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    color: white;
+}
+/* header content finish here */
+
+/* ******************* MAIN************ */
+
+/* **Tranding section  start*/
+.btn-view-all{
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 42px;
+    color: #FB3F5C;
+    cursor: pointer;
+}
+.trending-section{
+    background-color: #E5E5E5;
+}
+.card-img-top,.card-footer:last-child {
+    border-radius: unset;
+}
+.card{
+    box-shadow: 0px 4px 24px rgba(177, 177, 177, 0.25);
+    border-radius: unset;
+}
+.card-subtitle{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.progress{
+    height: 6px;
+}
+#card-progress-bar{
+    background-color: #FB3F5C;
+    border-radius: 20px;
+}
+.card-price{
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(4, 23, 42, 0.9);
+}
+.card-progress-num{
+    font-size: 16px;
+    line-height: 20px;
+    color: rgba(4, 23, 42, 0.9);
+ }
+ .card-fonds{
+    font-size: 16px;
+    line-height: 20px;
+    color: #ABABAB;
+ }
+ .card-footer {
+    height: 40px;
+    background: rgba(4, 23, 42, 0.9);
+ }
+ .card-footer>span{
+    font-size: 16px;
+    line-height: 140.2%;
+    color: #FFFFFF;
+ }
+/*  Trending section Finish */
+
+/* About Us start Here */
+.about-us-section>div{
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+}
+.about-us-title{
+    line-height: 62px;
+}
+.aboutus-img{
+    border-radius: 5px;
+}
+.aboutus-text{
+    font-size: 24px;
+    line-height: 36px;
+    color: #000000;
+}
+/****** About Us Finish Here ******/
+/* Featured compaign start Here */
+.compaign-section{
+    padding: 8rem 0;
+}
+/****** Featured compaign Finish Here ******/
+/* Testimonials-section  start Here */
+
+.testimonials-section{
+
+    background: url(/img/background-pink.svg) center no-repeat;
+    background-size: cover;
+    min-height:  742px;
+    margin:0;
+    padding: 6rem 0;
+}
+.testimonials-text>p{
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 38px;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+.testimonials-text::before{
+    content: url(/img/“.png);
+    position: absolute;
+    top: -20%;
+    left: -2%;
+}
+.testimonials-text::after{
+    content: url(/img/“2.png);
+    position: absolute;
+    right: -0;
+    bottom: 0;
+}   
+/****** Testimonials-section Finish Here ******/
+
+/* Foooter start here */
+.news-letter{
+    background: url(/img/newsLetter.png) center  no-repeat;
+    background-size: cover;
+    min-height: 578px;
+}
+.news-letter-text>p{
+    font-size: 24px;
+    line-height: 35px;
+    color: white;
+    width: 75%;
+}
+#subscribe-input{
+    width: 100%;
+    height: 80px;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    background: transparent;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    color: white;
+    font-size: 32px;
+    line-height: 42px
+}
+#subscribe-input::placeholder{
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 42px;
+    color: rgba(255, 255, 255, 0.5);
+ 
+}
+.subscribe-btn{
+    width: 100%;
+    height: 80px;
+    background: #FB3F5C;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 42px;
+    color: white;
+
+}
+.page-footer{
+    background: #04172A;
+    color: white;
+}
+.page-footer a{
+    font-size: 18px;
+    line-height: 24px;
+}
+/* **************** Media queries *************** */
+@media only screen and (max-width:650px){
+    .jumbotron {
+        background: url(/img/headerHero-phone.png) top  no-repeat;
+        background-size: contain;
+    }
+    .testimonials-section{
+        
+        background: url(/img/background-pink-small.svg) center no-repeat;
+        background-size: cover;
+        min-height:  494px;
+    }
+    .news-letter{
+        background: url(/img/newsletter-Mobile.png) center  no-repeat;
+        background-size: cover;
+        height: 403px;
+    }
+    .testimonials-text>p{
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9)
+    }
+    .testimonials-text::before {
+        content: unset;
+    }
+    .testimonials-text::after{
+        content: url(/img/“\ mobile.png);
+        right: 7%;
+    }
+        
+    h3{
+        font-size: 24px;
+        line-height: 31px !important;
+        color: #04172A;
+    }
+    h1{
+        font-size: 32px;
+        line-height: 42px;
+        text-align: center;
+    }
+    h2{
+        font-size: 24px;
+        line-height: 31px;
+
+    }
+    h5{
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 21px;
+    }
+    .header-text>p{
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+
+    }
+    .btn-view-all{
+        font-size: 19px;
+        line-height: 25px;
+    }
+    .compaign-section{
+        padding: 1rem 0;
+    }
+    .card-subtitle{
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .news-letter-text>p{
+        font-size: 12px;
+        line-height: 147.7%;
+        text-align: center;
+        width: 90%;
+    }
+  
+}
+@media only screen and (max-width:770px){
+    .subscribe-btn , #subscribe-input {
+        height: 48px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 21px;
+ 
+    }
+    #subscribe-input::placeholder{
+        font-size: 12px;
+        line-height: 16px;
+    }
+  
+ }
+ @media only screen and (max-width:1000px){
+    hr{
+        border: 1px solid #FFFFFF;
+        
+    }
+} 
+@media only screen and (max-width:500px){
+    .header-form{
+        margin-top: 6rem !important;
+        
+    }
+    .aboutus-text{
+        font-size: 21px;
+        line-height: 30px;
+    }
+}
+@media only screen and (max-width: 303px){
+    .header-text, .jumbotron>div{
+    margin-top: 0 !important;   
+ }
+ .aboutus-text{
+    font-size: 19px;
+    line-height: 30px;
+}
+} 
+@media only screen and (max-width: 269px){
+    h1{
+        font-size: 26px;        
+    }
+} 
+@media only screen and (max-width: 254px){
+    h1{
+        font-size: 22px;        
+    }
+    .header-text>p{
+        font-size: 10px ;
+    }
+    .btn-form{
+        font-size: 18px;
+    }
+} 

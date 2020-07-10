@@ -1,0 +1,245 @@
+.logo {
+	margin-left: 7%;
+}
+
+.userhead {
+	margin-top: 40px;
+	font-weight: 500;
+}
+
+.color1 {
+	color: #fb3f5c;
+}
+ 
+div#uimg {
+	background: #fb3f5c
+		url("https://res.cloudinary.com/jiroghene/image/upload/v1593538976/backgrounds/Mask_Group_q9eti3.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	display: inline-block;
+	border-radius: 7px;
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+
+.usertext {
+	color: white;
+}
+
+.usertext p {
+	font-size: 13px;
+}
+
+.btn_refresh {
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+	background-color: white;
+	color: #fb3f5c;
+	border: none;
+	outline: none;
+}
+
+.btn_refresh i {
+	font-size: 14px;
+}
+
+.tot_balance {
+	margin-left: 7%;
+}
+
+#prog {
+	height: 160px;
+	width: 160px;
+	border-radius: 50%;
+	text-align: center;
+	border: 10px solid #e1e1e1;
+	border-right: 10px solid #fb3f5c;
+	border-top: 10px solid #fb3f5c;
+}
+
+.p-nom1 {
+	margin: 5px 0;
+	font-weight: 200;
+}
+.p-nom1 a {
+	color: #fb3f5c;
+}
+
+.__carousel {
+	display: flex;
+	margin-bottom: 5%;
+}
+
+#carousel-boxes {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-auto-rows: auto;
+	column-gap: 15px;
+}
+.__carousel_box {
+	width: 250px;
+	background-color: rgba(4, 23, 42, 0.03);
+}
+
+._car_pgbar {
+	padding: 0.3em;
+	width: 100%;
+	border-radius: 3px;
+	position: relative;
+	background-color: #e1e1e1;
+	z-index: 5;
+}
+
+._car_pgbar::before {
+	position: absolute;
+	height: 100%;
+	width: 70%;
+	content: " ";
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background-color: black;
+	z-index: -1;
+}
+.__carousel a.btn {
+	background-color: #fb3f5c;
+	color: white;
+}
+
+.stats {
+	display: flex;
+}
+
+.status {
+	border-radius: 13px;
+	background: #fb3f5c;
+	border: none;
+	font-size: 0.7em;
+	margin-left: 5px;
+}
+
+button:disabled {
+	color: white;
+	text-transform: capitalize;
+}
+
+.loan {
+	margin: 26px 0;
+}
+
+.p-nom1 {
+	font-size: 20px;
+}
+
+.account {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.account_details {
+	flex: 1 1 25%;
+	padding: 20px 40px;
+	padding-bottom: 0;
+	border-right: 10px solid white;
+	margin-bottom: 30px;
+	background-color: rgba(4, 23, 42, 0.05);
+}
+
+.account_details h2 {
+	margin-top: 7px;
+}
+
+.account_details span,
+.totloan span {
+	font-size: 0.6em;
+	font-weight: lighter;
+}
+
+.right {
+	margin-right: 5px;
+}
+
+.left {
+	margin-left: 2px;
+}
+
+.table header {
+	font-size: 1.2em;
+}
+
+.table_container {
+	overflow: scroll;
+	margin-top: 12px;
+	margin-bottom: 50px;
+}
+
+.table_container::-webkit-scrollbar {
+	display: none;
+}
+
+table {
+	font-size: 0.8em;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+tr {
+	border-bottom: 2px solid rgba(4, 23, 42, 0.1);
+	margin-left: 5px;
+}
+
+thead {
+	font-weight: bold;
+	background: #fb3f5c;
+	color: #fff;
+	border-bottom: 0px;
+}
+
+thead td {
+	padding: 20px;
+}
+
+td {
+	padding: 10px 10px;
+}
+
+tbody td {
+	padding: 20px;
+	font-size: 1.2em;
+}
+
+.date {
+	font-size: 2em;
+}
+
+.f-15 {
+	font-size: 0.9em;
+}
+
+@media screen and (max-width: 768px) {
+	.userdetails {
+		flex-wrap: wrap;
+	}
+
+	.userdetails .tot_balance {
+		padding-top: 15px;
+		order: 3;
+		width: 100%;
+		margin: 0;
+	}
+	.userdetails #prog {
+		order: 2;
+		margin-left: 0;
+	}
+}
+
+@media screen and (max-width: 475px) {
+	.userdet {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		width: 100%;
+	}
+}

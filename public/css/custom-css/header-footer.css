@@ -1,0 +1,162 @@
+body {
+  width: 100%;
+}
+
+.head {
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+#ham {
+  display: none;
+}
+#mod {
+  display: none;
+}
+#mod li {
+  display: block;
+  text-align: right;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
+.head-wrapper {
+  width: 90%;
+  margin: auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.head ul li {
+  display: inline;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.head ul li a {
+  text-decoration: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #04172a;
+}
+.head a:hover {
+  color: red;
+}
+.head button {
+  background: #fb3f5c;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 5px 20px;
+  transition: 0.5s;
+}
+
+.head button a {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  transition: 0.5s;
+  color: #ffffff !important;
+}
+.head button:hover {
+  border: 1px red solid;
+  background: #c0989e;
+}
+
+/* footer */
+
+footer {
+  background: #04172a;
+  width: 100%;
+  box-sizing: border-box;
+  color: white;
+}
+footer ul {
+  padding-left: 0;
+}
+footer li {
+  list-style: none;
+}
+.footer-wrapper {
+  width: 90%;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 30px 0;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-content li {
+  margin: 8px 0;
+}
+.footer-link ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+.icon img {
+  margin-right: 20px;
+  transition: 0.6s;
+}
+.icon img:hover {
+  transform: scale(1.2);
+}
+hr {
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+footer li a {
+  font-size: 18px;
+  line-height: 21px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+footer .terms {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.terms ul li {
+  display: inline;
+  margin: 0 5px;
+}
+
+/* media */
+@media (max-width: 900px) {
+  .footer-content {
+    display: block;
+    align-items: center;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+  }
+  .footer-resource {
+    margin-top: 20px;
+  }
+  .head-link {
+    display: none;
+  }
+  #ham {
+    display: block;
+    cursor: pointer;
+  }
+  .terms {
+    display: block !important;
+    align-items: center;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+    padding-top: 30px;
+  }
+  .policy {
+    margin-bottom: 0;
+  }
+  .policy li a {
+    display: block;
+  }
+}
