@@ -66,7 +66,10 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\checkBlocked' => $baseDir . '/app/Http/Middleware/checkBlocked.php',
+<<<<<<< HEAD
     'App\\Mail\\ComplaintFormMail' => $baseDir . '/app/Mail/ComplaintFormMail.php',
+=======
+>>>>>>> c37a4966d559f36938b50d4a28e1cbf23ceb161b
     'App\\Notifications\\EmailVerificationNotification' => $baseDir . '/app/Notifications/EmailVerificationNotification.php',
     'App\\Notifications\\PasswordResetNotification' => $baseDir . '/app/Notifications/PasswordResetNotification.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

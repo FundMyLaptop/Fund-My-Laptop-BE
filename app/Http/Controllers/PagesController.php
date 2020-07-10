@@ -66,12 +66,10 @@ class PagesController extends Controller
 
     public function blogRead($id)
     {
-
         $blog =Blog::find($id);
       if(!$blog){
         return view('404');
       }
-
         return view('blog-read')->with('blog', $blog);
     }
 
@@ -137,7 +135,8 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        return view('blog-list');
+        $blogs = Blog::orderBy('created_at','desc')->paginate(6);
+        return view('blog-list')->with('blogs', $blogs);
     }
 
     public function updateProfile()
