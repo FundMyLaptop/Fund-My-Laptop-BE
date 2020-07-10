@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ComplaintFormMail;
+use App\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -63,9 +64,15 @@ class PagesController extends Controller
         return view('milestones');
     }
 
-    public function blogRead()
+    public function blogRead($id)
     {
-        return view('blog-read');
+        
+        $blog =Blog::find($id);
+      if(!$blog){
+        return view('404');
+      }
+      
+        return view('blog-read')->with('blog', $blog);
     }
 
     public function blog()
