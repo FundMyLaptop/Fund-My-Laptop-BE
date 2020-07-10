@@ -10,7 +10,6 @@
 |
 */
 
-<<<<<<< HEAD
 Route::get('/', function () {
     $oldRequests = FundRequest::where([
         ['isFunded', '0'],
@@ -18,9 +17,7 @@ Route::get('/', function () {
     ])->oldest()->take(3)->get();
     return view('index')->with(['oldRequests'=>$oldRequests]);
 });
-=======
 Route::get('/', 'PagesController@landingPage');
->>>>>>> 5f93ed94ee25ecbda4c94c97d2a266c2cb980b17
 
 // Auth::routes(['verify' => true]);
 
@@ -64,12 +61,9 @@ Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login')->name('login');
 Route::get('sign-up', 'PagesController@sign_up');
-<<<<<<< HEAD
 
 Route::get('testimonial', 'TestimonialController@index');
 
-=======
 Route::post('update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
->>>>>>> 5f93ed94ee25ecbda4c94c97d2a266c2cb980b17
