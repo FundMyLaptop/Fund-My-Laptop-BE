@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Request extends Model
 {
 	protected $table = 'requests';
-	
+
 	protected $fillable = ['user_id','title','description','photoURL','currency','amount','isFunded','isSuspended','isActive'];
 
     public function user() {
@@ -28,5 +28,16 @@ class Request extends Model
 
     public function repayment(){
         return $this->hasMany('App\Repayment');
+    }
+
+    public function getIsFundedAttribute($attribute){
+        return[
+            0 => 'Not Funded',
+            1 => 'Funded'
+        ][$attribute];
+    }
+
+    public function scopeIsNotFunded($query){
+        return $query->where('isFunded', 0);
     }
 }

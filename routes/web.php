@@ -1,5 +1,4 @@
 <?php
-use App\Request as FundRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +10,7 @@ use App\Request as FundRequest;
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', function () {
     $oldRequests = FundRequest::where([
         ['isFunded', '0'],
@@ -18,6 +18,9 @@ Route::get('/', function () {
     ])->oldest()->take(3)->get();
     return view('index')->with(['oldRequests'=>$oldRequests]);
 });
+=======
+Route::get('/', 'PagesController@landingPage');
+>>>>>>> 5f93ed94ee25ecbda4c94c97d2a266c2cb980b17
 
 // Auth::routes(['verify' => true]);
 
@@ -30,7 +33,7 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
-
+Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
@@ -57,11 +60,16 @@ Route::get('contact', 'PagesController@contact');
 Route::get('blog-list', 'PagesController@blogList');
 // this points to the badly rendered blade
 Route::get('signup', 'PagesController@signUp');
-Route::get('profile-update', 'PagesController@updateProfile');
 Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
-Route::get('login', 'PagesController@login');
+Route::get('login', 'PagesController@login')->name('login');
 Route::get('sign-up', 'PagesController@sign_up');
+<<<<<<< HEAD
 
 Route::get('testimonial', 'TestimonialController@index');
 
+=======
+Route::post('update-profile/{id}','UserController@update')->name('update-profile');
+Route::get('edit-profile/{id}','UserController@edit');
+Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
+>>>>>>> 5f93ed94ee25ecbda4c94c97d2a266c2cb980b17
