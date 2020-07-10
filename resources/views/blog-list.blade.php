@@ -9,7 +9,7 @@
 
     <section class="blog-main container mt-5">
 
-    @if(count($blogs) > 1)
+    @if(count($blogs) > 0)
         @foreach($blogs as $blog)
         <article class="row pb-5 justify-content-between">
             <div class="article-image col-md-4 order-md-2">
@@ -17,10 +17,10 @@
             </div>
             <div class="article-info col-md-7 order-md-1">
                 <div class="article-meta">
-                    <p><a href="blog/urlencode({{$blog->title}})" class="font-weight-bold text-dark">{{$blog->category}} </a>- {{$blog->created_at}}</p>
+                    <p><a href="blog/{{$blog->id}}" class="font-weight-bold text-dark">{{$blog->category}} </a>- {{$blog->created_at}}</p>
                 </div>
                 <h1 class="article-title font-weight-bold">
-                    <a href="blog/urlencode({{$blog->title}})" class="text-dark">{{$blog->title}}</a>
+                    <a href="blog/{{$blog->id}}" class="text-dark">{{$blog->title}}</a>
                 </h1>
                 <p class="article-desc">
                     {{str_split($blog->post,20)[0]}}
