@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
+use App\Request as FundRequest;
+use App\User;
+
 
 use Illuminate\Http\Request;
 
@@ -14,6 +18,13 @@ class RequestController extends Controller
     public function index()
     {
         //
+    }
+
+    public function availableFundingRequest()
+    {
+        $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
+
+        return view('unfunded-campaigns',compact('unattendedFundingRequests'));
     }
 
     /**
