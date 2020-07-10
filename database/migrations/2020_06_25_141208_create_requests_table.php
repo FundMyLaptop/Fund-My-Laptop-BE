@@ -1,4 +1,4 @@
-<?php
+ ., ; k cv cv;ko  i x <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -23,6 +23,7 @@ class CreateRequestsTable extends Migration
             $table->integer('amount');
             $table->boolean('isFunded')->default(0);
             $table->boolean('isSuspended')->default(0);
+            $table->boolean('isFeatured')->default(0);
             $table->boolean('isActive')->default(1);
             $table->timestamps();
         });

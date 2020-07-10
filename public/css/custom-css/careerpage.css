@@ -1,0 +1,193 @@
+body{
+    font-family: DM sans;
+}
+.caption-header {
+    text-align: center;
+    padding-top: 15%;
+}
+
+.bk-color {
+    background-color: rgb(248, 218, 222);
+}
+
+.caption-header h2 {
+    font-weight: bolder;
+    color: #011b33;
+    font-size: 42px;
+}
+
+.caption-header p {
+    font-size: 20px;
+    max-width: 40%;
+    margin: auto;
+    font-weight: normal;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    .caption-header p {
+        max-width: 100%;
+    }
+}
+
+.caption-header .btn-opening {
+    background-color: #1D2E3F;
+    color: #fff!important;
+    padding: 12px 25px!important;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.caption-header .btn-opening:hover {
+    background-color: #04172A;
+    color: #fff;
+      -webkit-transition: background 0.5s linear;
+        -moz-transition: background 0.5s linear;
+        -ms-transition: background 0.5s linear;
+        -o-transition: background 0.5s linear;
+        transition: background 0.5s linear;
+}
+
+
+.patterns img {
+    width: 100%;
+    position: relative;
+    margin-top: -20%;
+    opacity: 0.1;
+}
+
+.inner-text {
+    padding-top: 60px;
+}
+
+.inner-text h2 {
+    color: #011b33;
+    font-weight: 600;
+    font-size: 28px;
+    padding-bottom: 20px;
+}
+
+.inner-text p {
+    color: #7B8088;
+    font-size: 16px;
+    line-height: 2.0;
+}
+
+.stuff-image img {
+    max-width: 50%;
+    padding-top: 40px;
+}
+
+.stuff-image {
+    text-align: center;
+}
+
+.pad-info {
+    background-color: fff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+
+/* styling for jobs starts here */
+
+.card-body {
+    background-color: #fff;
+    box-shadow: 0px 2px 25px 0px rgba(22, 53, 76, 0.05);
+    padding: 20px 30px;
+    border-radius: 8px;
+}
+
+.card-pattern {
+    /* width: auto; */
+    background-image: url('../../img/career-curve-pattern.png');
+    position: absolute;
+    top: 0;
+    right: 40;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0.3;
+    /* -ms-transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg); */
+}
+
+.card-body .card-title {
+    font-size: 20px!important;
+    /* font-weight: 650; */
+    padding-top: 7px;
+    margin-bottom: 20px;
+    /* font-family: Roboto, sans-serif; */
+    color: #000!important;
+}
+
+.card-body .card-text {
+    /* font-family: Roboto, sans-serif; */
+    font-size: 14px;
+    line-height: 1.8;
+    letter-spacing: 0.4px;
+    font-weight: 500;
+}
+
+.card-open {
+    font-size: 24px;
+    font-weight: 650;
+    /* font-family: Roboto, sans-serif; */
+}
+
+.card-body .card-sub {
+    color: #7b8088;
+    font-size: 12px!important;
+    /* font-family: Roboto, sans-serif; */
+}
+
+.card-body .card-subtitle {
+    color: #FB3F5C;
+    font-size: 14px;
+    font-weight: 550;
+    /* font-family: Roboto, sans-serif; */
+}
+
+.card-body span {
+    color: black!important;
+    padding-right: 5px;
+    /* font-family: Roboto, sans-serif; */
+}
+
+.card-apply {
+    text-align: center!important;
+}
+
+.card-apply .btn-more {
+    background-color: #FB3F5C;
+    color: #fff;
+    padding: 7px 40px!important;
+    font-weight: 550;
+    margin-top: 100px;
+    /* font-family: Roboto, sans-serif; */
+}
+
+.card-apply .btn-jobs {
+    background-color: #FB3F5C;
+    color: #fff;
+    padding: 7px 40px!important;
+    font-weight: 550;
+    margin-top: 50px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.card-apply .card-status {
+    color: #7b8088;
+    padding-top: 10px;
+    /* font-family: Roboto, sans-serif; */
+}
+
+.job-page {
+    background-color: #f8fafb;
+}

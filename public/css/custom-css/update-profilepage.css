@@ -1,0 +1,128 @@
+body {
+    font-family: "DM Sans", sans-serif;
+    font-style: normal;
+    margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+.__up_container {
+    width: 70%;
+    margin: 100px auto;
+    color: #04172a;
+}
+
+#userinfo {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+#userinfo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#userinfo #name {
+    align-self: center;
+    padding: 0px 10px;
+}
+
+#userinfo #pencilicon {
+    position: absolute;
+    top: 0;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.1s 0.1s linear;
+}
+
+#userinfo #pencilicon:hover {
+    opacity: 1;
+}
+
+#userinfo #name h3 {
+    font-weight: bold;
+    font-size: 30px;
+}
+#userinfo #name p {
+    font-weight: 500;
+    color: rgba(4, 23, 42, 0.75);
+}
+
+#editprofile {
+    display: flex;
+    margin-top: 50px;
+}
+
+#editprofile .cols {
+    flex: 0.5;
+}
+
+.cols:nth-child(1) {
+    margin-right: 5%;
+}
+
+.cols:nth-child(2) {
+    margin-left: 5%;
+}
+
+.cols > label {
+    font-size: 22px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+#editprofile ._pfg {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+._pfc {
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 100%;
+    border-radius: 3px;
+    outline: none;
+}
+
+input._pfc:focus,
+textarea._pfc:focus {
+    box-shadow: 0px 0px 10px 0px #fb3f5c7d;
+}
+
+#updateprofile {
+    background-color: #fb3f5c;
+    border: none;
+    outline: none;
+    padding: 15px 30px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 768px) {
+    .__up_container {
+        width: 80%;
+    }
+
+    #editprofile {
+        flex-direction: column;
+    }
+
+    #editprofile .cols {
+        margin: 0;
+    }
+}
