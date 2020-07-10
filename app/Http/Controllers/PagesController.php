@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
-use GuzzleHttp\Cookie\CookieJar;
 
 class PagesController extends Controller
 {
@@ -133,36 +130,8 @@ class PagesController extends Controller
         return view('sign-Up');
     }
 
-    public function login(Request $request)
+    public function login()
     {
-        if ($request->isMethod('post')){
-            try {
-                $client = new \GuzzleHttp\Client(['base_uri' => 'https://api.fundmylaptop.com/api/']);
-                //$cookieJar = new CookieJar();
-                $inputs = [
-                    'email' => $request->input('email', ''),
-                    'password' => $request->input('password', ''),
-                ];
-                
-                // dd($inputs);
-                $response = $client->request('POST', 'login', [
-                    'form_params' => $inputs
-                    //'cookies' => $cookieJar
-                ]);
-                if ($response->getStatusCode() == 200) {
-                    $data =  $response->getBody()->getContents();
-                    $data = json_decode($response, TRUE);
-
-                    return redirect()->route('dashboard', $data);
-    
-                    // echo '<pre>';
-                    // print_r($data);
-                } 
-            } catch (\Exception $exception) {
-                //return 'Caught exception: '. $exception->getMessage();
-                return redirect()->route('error500Page');
-            }
-        }       
         return view('login');
     }
 

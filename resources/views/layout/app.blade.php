@@ -17,6 +17,8 @@
 <body>
 @include('includes.header')
 
+@include('includes.flash-msg')
+
 @yield('content')
 
 @include('includes.footer')
