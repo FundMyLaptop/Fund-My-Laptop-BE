@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     //
-    protected $table = 'transctions';
+    protected $table = 'transactions';
 
     protected $fillable = ['request_id','transaction_ref','amount','status','response_code'];
 
