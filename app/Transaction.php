@@ -11,11 +11,11 @@ class Transaction extends Model
 
     protected $fillable = ['request_id','transaction_ref','amount','status','response_code'];
 
-    public function request(){
+    protected $guarded = ['id'];
 
+    public function request(){
         return $this->belongsTo('App\Request');
     }
-    protected $guarded = ['id'];
 
    // public function request(){
     //    return $this->belongsTo('App\Request');
