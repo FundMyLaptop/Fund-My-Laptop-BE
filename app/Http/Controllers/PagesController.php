@@ -1,14 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
-use App\Blog;
-=======
 
 use App\Mail\ComplaintFormMail;
 use App\Blog;
 use GuzzleHttp\Client;
->>>>>>> 2b86e9957e31a11da0937779bd1ea99fb73a4acc
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Request as FundRequest;
