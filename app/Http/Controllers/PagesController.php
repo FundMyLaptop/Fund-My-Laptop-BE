@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Request as FundRequest;
 use App\User;
 
+
+
 class PagesController extends Controller
 {
     public function landingPage()
@@ -96,7 +98,8 @@ class PagesController extends Controller
 
     public function blog()
     {
-        return view('blog');
+        $blogs = Blog::latest()->paginate(6);
+        return view('blog', compact('blogs'));
     }
 
     public function error404Page()
