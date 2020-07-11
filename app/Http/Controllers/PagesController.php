@@ -1,13 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
+<<<<<<< HEAD
 use App\Blog;
+=======
+
+use App\Mail\ComplaintFormMail;
+use App\Blog;
+use GuzzleHttp\Client;
+>>>>>>> 2b86e9957e31a11da0937779bd1ea99fb73a4acc
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Request as FundRequest;
+use App\User;
 
 
 
 class PagesController extends Controller
 {
+    public function landingPage()
+    {
+        $oldRequests = FundRequest::where([
+            ['isFunded', '0'],
+            ['isSuspended', '0']
+        ])->oldest()->take(3)->get();
+        return view('index')->with(['oldRequests' => $oldRequests]);
+    }
     public function termsAndConditions()
     {
         return view('terms-and-condition');
@@ -38,9 +56,17 @@ class PagesController extends Controller
         return view('faq');
     }
 
-    public function payment()
+    public function payment($id)
     {
-        return view('payment');
+        if(isset($id)){
+        $request = FundRequest::whereId($id)->firstOrFail();
+         $userId = $request->user_id;
+         $user = User::whereId($userId)->firstOrFail();
+         $firstName = $user->firstName;
+         $lastName = $user->lastName;
+
+        return view('payment', compact('user', 'request'));
+        }
     }
 
     public function benefit()
@@ -63,9 +89,15 @@ class PagesController extends Controller
         return view('milestones');
     }
 
-    public function blogRead()
+    public function blogRead($id)
     {
-        return view('blog-read');
+
+        $blog = Blog::find($id);
+        if (!$blog) {
+            return view('404');
+        }
+
+        return view('blog-read')->with('blog', $blog);
     }
 
     public function blog()
@@ -103,8 +135,24 @@ class PagesController extends Controller
         return view('complaint');
     }
 
-    public function complaintForm()
+    public function complaintForm(Request $request)
     {
+        if ($request->isMethod('POST')) {
+            $data = [
+                'name' => 'required|min:5',
+                'email' => 'required|email',
+                'message' => 'required|min:10'
+            ];
+
+            if (!$request->validate($data)) {
+                return redirect()->back()->withInput($data);
+            } else {
+                $complaint_data = $request->all();
+                Mail::to('')->send(new ComplaintFormMail($complaint_data));
+
+                return redirect('complaint-form')->with('status', 'Thanks for your message!. We will be in touch.');
+            }
+        }
         return view('complaint-form');
     }
 
@@ -115,12 +163,20 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        return view('blog-list');
+        $blogs = Blog::orderBy('created_at', 'desc')->paginate(6);
+        return view('blog-list')->with('blogs', $blogs);
     }
 
     public function updateProfile()
     {
-        return view('update-profilepage');
+        $token = 'Bearer '.Auth::user()->token();
+        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
+        $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
+        $body = $response->getBody();
+        $content = $body->getContents();
+        $data = json_decode($content, TRUE);
+
+        return view('update-profilepage', compact('data'));
     }
 
     public function signUp()
