@@ -38,7 +38,10 @@ Route::get('campaign', 'PagesController@campaign');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
-Route::get('payment', 'PagesController@payment');
+/* Route::get('payment', 'PagesController@payment'); */
+//make payment for a request... where {id} is requestId
+Route::get('payment/{id}', 'PagesController@payment');
+Route::post('payment/{id}', 'PagesController@payment');
 Route::get('benefit', 'PagesController@benefit');
 Route::get('partners', 'PagesController@partners');
 Route::get('how-it-works', 'PagesController@howItWorks');
