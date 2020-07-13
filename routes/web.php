@@ -57,5 +57,5 @@ Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login')->name('login');
 Route::get('sign-up', 'PagesController@sign_up');
 Route::post('update-profile/{id}','UserController@update')->name('update-profile');
-Route::get('edit-profile/{id}','UserController@edit');
+Route::get('edit-profile','PagesController@updateProfile');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');

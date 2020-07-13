@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ComplaintFormMail;
-use App\Blog;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Request as FundRequest;
 use App\User;
@@ -14,14 +13,6 @@ use App\User;
 
 class PagesController extends Controller
 {
-    public function landingPage()
-    {
-        $oldRequests = FundRequest::where([
-            ['isFunded', '0'],
-            ['isSuspended', '0']
-        ])->oldest()->take(3)->get();
-        return view('index')->with(['oldRequests' => $oldRequests]);
-    }
     public function termsAndConditions()
     {
         return view('terms-and-condition');
@@ -85,15 +76,9 @@ class PagesController extends Controller
         return view('milestones');
     }
 
-    public function blogRead($id)
+    public function blogRead()
     {
-
-        $blog = Blog::find($id);
-        if (!$blog) {
-            return view('404');
-        }
-
-        return view('blog-read')->with('blog', $blog);
+        return view('blog-read');
     }
 
     public function blog()
@@ -131,24 +116,8 @@ class PagesController extends Controller
         return view('complaint');
     }
 
-    public function complaintForm(Request $request)
+    public function complaintForm()
     {
-        if ($request->isMethod('POST')) {
-            $data = [
-                'name' => 'required|min:5',
-                'email' => 'required|email',
-                'message' => 'required|min:10'
-            ];
-
-            if (!$request->validate($data)) {
-                return redirect()->back()->withInput($data);
-            } else {
-                $complaint_data = $request->all();
-                Mail::to('')->send(new ComplaintFormMail($complaint_data));
-
-                return redirect('complaint-form')->with('status', 'Thanks for your message!. We will be in touch.');
-            }
-        }
         return view('complaint-form');
     }
 
@@ -159,14 +128,14 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        $blogs = Blog::orderBy('created_at', 'desc')->paginate(6);
-        return view('blog-list')->with('blogs', $blogs);
+        return view('blog-list');
     }
 
     public function updateProfile()
     {
+        // $token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZjBmM2Q0NzAyZjFmM2YwNzZhZmY0MGRhOGRjMzZlNGY1MzUxNzA0YzdmN2I0YTFiNjllZDAwNjljZjJiYzg1NjMzYjY2OGZmODg5YWYyYTAiLCJpYXQiOjE1OTQzNDE2MzUsIm5iZiI6MTU5NDM0MTYzNSwiZXhwIjoxNjI1ODc3NjM1LCJzdWIiOiI1MDIiLCJzY29wZXMiOltdfQ.dzVIVRC1icLI4G_zke-xWVbNg64ipR7sB1pSxwc7zwbqn8V6vMi2gfZH4v1wkLMjFlDV9o5gUm3Z45ulCy74PotPV5Q-U8CCN3JQRIvEMg7S-vpQUGE70_tInx8HjKaojdFGR545qnDMvlMp2YmKAGZt6NpcRy-OSffoxAGdZhY2A3ST0CGxUtTy4cQHhFnB_NHdKQYQRD8GUruG2_nVkiTVWSKHNl2IhWWLPdkcIpK5f9vy51u1e29HUfLi7T5_fO-rcg2QBJKAdDvlmOWmjTDYnETVgyU2Fk6jlHJ6k1JAlV7SLKQ2DiyYy5snb4Isajnw3xlx85FXxBQjrsAymYEKTsxRvycob6SOChwQYZh4ALeVbM40bZ8YndmtRSZrTw7cN2I33WzbREQUqSH0oNiRZ9L9RhJd4LuTgTftBUUag2ma0XwaegfLgXHJxQru-TmqZXihPH-j_qvWD16Mxgl3D0NboxgadHZqclYMVbLE7LI-DExtlOUGXXRmYINfhW73mHW4e9DFqZYN2jUqZ8FxrfHxr7giASm6M9IZTEBYxAMyI_pvvuJ_m1C4PNd4nP-AtPfrWgWMihpLdHKv8qqMOl3PhQI-B3HtZCl-JsvCD6i4faa9smASnxanPyH8Ki9W1y6svidC1Yn6VJKMu2zXyn_nS8LpaxxFFDMZxxE';
         $token = 'Bearer '.Auth::user()->token();
-        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
+        $client = new Client(['base_uri' => 'https://www.fundmylaptop.com/']);
         $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
         $body = $response->getBody();
         $content = $body->getContents();
