@@ -1,4 +1,5 @@
 @extends('layout.app')
+
 @section('content')
 <!-- 
 	Refactored the code base: @ajadi
