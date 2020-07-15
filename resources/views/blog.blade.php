@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <div class="single-blog">
                         <p class="blog-meta">By Admin<span>{{ date('F d, Y', strtotime($blog->created_at)) }}</span></p>
-                        <img src="../img/blog1.jpg">
+                        <img src="{{ $blog->image }}">
                         <h2><a href="#">{{ $blog->title }}</a></h2>
                         <p class="blog-text">{{ $blog->post }}</p>
                         <p><a href="" class="read-more-btn">Read More</a></p>
