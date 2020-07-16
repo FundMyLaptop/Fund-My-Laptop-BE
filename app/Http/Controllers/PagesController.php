@@ -59,14 +59,18 @@ class PagesController extends Controller
 
     public function payment($id)
     {
-        if(isset($id)){
-        $request = FundRequest::whereId($id)->firstOrFail();
-         $userId = Auth::user()->id;
-         $user = User::whereId($userId)->firstOrFail();
-         $firstName = $user->firstName;
-         $lastName = $user->lastName;
-
-        return view('payment', compact('user', 'request'));
+        if (isset($id)) {
+            $request = FundRequest::whereId($id)->with('user')->firstOrFail();
+            $userId = Auth::user()->id;
+            $user = User::whereId($userId)->firstOrFail();
+            $firstName = $user->firstName;
+            $lastName = $user->lastName;
+            $metadata = [
+                'funder_id' => $user->id,
+                'request_id' => $id,
+                'requester_id' => $request->user->id
+            ];
+            return view('payment', compact('user', 'request', 'metadata'));
         }
     }
 
@@ -119,33 +123,32 @@ class PagesController extends Controller
     public function investorDashboard()
     {
 
-         if(Auth::check()==True) {
-         $user_id=Auth::user()->id;   
-        
-        $user = User::find($user_id);
-        $transactiontotal=array_sum(json_decode(Transaction::where([['user_id',$user_id],['status','success']])->pluck('amount')));
-           $requests=FundRequest::where([['isFunded',0],['isSuspended', 0],['isActive', 1]])->get();
-  
-        $transactions = Transaction::with(['Request'])->where([['user_id',$user_id],['status','success']])->get();
-        $rate=0;
-        foreach($transactions as $transaction){
-            $rate=$transaction->request->accrual->avg('rate')+$rate;
+        if (Auth::check() == True) {
+            $user_id = Auth::user()->id;
 
+            $user = User::find($user_id);
+            $transactiontotal = array_sum(json_decode(Transaction::where([['user_id', $user_id], ['status', 'success']])->pluck('amount')));
+            $requests = FundRequest::where([['isFunded', 0], ['isSuspended', 0], ['isActive', 1]])->get();
+
+            $transactions = Transaction::with(['Request'])->where([['user_id', $user_id], ['status', 'success']])->get();
+            $rate = 0;
+            foreach ($transactions as $transaction) {
+                $rate = $transaction->request->accrual->avg('rate') + $rate;
+            }
+            if (count($transactions) > 0)
+                $intrestAverage = round($rate / count($transactions), 1);
+            else {
+                $intrestAverage = 0;
+            }
+            $repaymenttotal = 0;
+            foreach ($transactions as  $transaction) {
+                $repaymenttotal = array_sum(json_decode($transaction->request->repayment->pluck('amount_paid'))) + $repaymenttotal;
+            }
+
+            return view('investor-dashboard')->with(compact('transactiontotal', 'user', 'repaymenttotal', 'transactions', 'requests', 'intrestAverage'));
+        } else {
+            return redirect(url('login'));
         }
-        if(count($transactions)>0)
-        $intrestAverage=round($rate/count($transactions),1);
-        else{
-            $intrestAverage=0;
-        }
-        $repaymenttotal=0;
-        foreach( $transactions as  $transaction){
-        $repaymenttotal = array_sum(json_decode( $transaction->request->repayment->pluck('amount_paid')))+$repaymenttotal;       
-    }
-    
-        return view('investor-dashboard')->with(compact('transactiontotal','user','repaymenttotal','transactions','requests','intrestAverage'));
-}else{
-    return redirect(url('login'));   
-}
     }
 
     public function successPage()
@@ -158,8 +161,7 @@ class PagesController extends Controller
         // check if profile is completed
         if (Auth::user()->phone == "" || Auth::user()->address == "") {
             return view('investee-dashboard')->with('danger', 'Profile update is not complete yet');
-        }
-        else
+        } else
             return view('investee-dashboard');
     }
 
@@ -207,7 +209,7 @@ class PagesController extends Controller
 
     public function updateProfile()
     {
-        $token = 'Bearer '.Auth::user()->token();
+        $token = 'Bearer ' . Auth::user()->token();
         $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
         $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
         $body = $response->getBody();
@@ -242,5 +244,4 @@ class PagesController extends Controller
     {
         return view('testmodals');
     }
-    
 }
