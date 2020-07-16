@@ -273,22 +273,37 @@ class RequestController extends Controller
         }
     }
 
-    public function view_particular_request($id)
+    public function view_details_of_a_campaign($id)
     {
     
         if (Auth::check()) {
             if(FundRequest::where('id', $id)->exists()) {
-                $FundRequest = FundRequest::find($id);
+                $campaign_details = FundRequest::find($id);
                 return response()->json([
-                    "message" => "Request retrieved",
-                    "data" => $FundRequest
+                    "message" => "Campaign details retrieved",
+                    "data" =>  $campaign_details
                 ], 200);
             } else {
                 return response()->json([
-                    "message" => "Request doesn't exist"
+                    "message" => "No details for this campaign"
                 ], 404);
             }
                 
         }
     }
+
+    public function top_campaigns()
+    {
+        $top_campaigns = FundRequest:: where('isActive', '1')->orderBy('amount', 'desc')->paginate(3);
+        if($top_campaigns){
+            return response()->json([
+                "message" => "Top campaigns retrieved",
+                "data" => $top_campaigns
+            ], 200);
+        }
+        
+            
+    }
+
+    
 }

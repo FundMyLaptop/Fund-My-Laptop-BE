@@ -21,6 +21,7 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 });*/
 
 // Authentication
+
 Route::post('login', 'Api\UserController@login');
 Route::get('logout', 'Api\UserController@logout');
 Route::post('register', 'Api\UserController@register');
@@ -29,7 +30,8 @@ Route::delete('request/delete-my-request/{id}','RequestController@deleteMyReques
 Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1'], function () {
 	/*Route::get('/user', function (Request $request) {
     	return $request->user();
-	});*/
+    });*/
+ 
 	Route::post('testimonial','TestimonialController@store');
 	Route::any('process-recurring-payments', 'RepaymentController@process');
     ///all other routes should be defined under this line using the format of line 25 (above)
@@ -47,7 +49,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
   Route::post('bank-accounts', 'BankAccountController@create');
   Route::get('featured-requests/{id}', 'RequestController@set_featured');
   Route::get('all-featured-requests', 'RequestController@fetch_featured_requests');
-  Route::get('view-particular-requests/{id}', 'RequestController@view_particular_request');
+  Route::get('view-details-of-campaign/{id}', 'RequestController@view_details_of_a_campaign');
   Route::delete('favorite/delete/{id}','FavoriteController@destroy');
   Route::delete('users/delete/{id}','AdminController@destroy');
   Route::get('transaction/funder/{id}', 'TransactionController@getFunderHistory');
@@ -65,6 +67,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
   Route::get('testimonials/user/{id}','TestimonialController@userTestimonials');
   Route::get('testimonials/{id}','TestimonialController@myTestimonials');
   Route::post('users/block','AdminController@block');
+  Route::get('top_campaigns', 'RequestController@top_campaigns');
 
 
     // Commented out by Eromosele
@@ -76,7 +79,7 @@ Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');  //For resetting the password
 Route::get('email/verify/{id}/{hash}', 'Api\VerifyEmailController@verify')->name('verification.verify'); //verify email
 Route::get('email/resend', 'Api\VerifyEmailController@resend')->name('verification.resend'); //resend email
-
+   
 Route::fallback(function () {
 	return response()->json(['message' => 'Not Found'], 404);
 })->name('api.fallback.404');
