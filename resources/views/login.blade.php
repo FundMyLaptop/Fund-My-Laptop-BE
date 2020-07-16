@@ -9,7 +9,7 @@
 
         <p class="p-1 p-md-3 login-text mt-md-n4">Help Achieve Your dreams with funding for your laptops at little to no cost.</p>
         <div>
-            <a href="#" class="text-center py-3 btn-google d-flex justify-content-center align-items-center">
+            <a href="{{url('/auth/redirect/google')}}" class="text-center py-3 btn-google d-flex justify-content-center align-items-center">
             <img class="pr-3" src="../img/google icon.svg" alt="">
             Login with Google
             </a>
