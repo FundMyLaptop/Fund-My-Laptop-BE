@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+
 class PagesController extends Controller
 {
     public function landingPage()
@@ -147,9 +148,19 @@ class PagesController extends Controller
 }
     }
 
+    public function successPage()
+    {
+        return view('signup-success');
+    }
+    // the homepage 
     public function investeeDashboard()
     {
-        return view('investee-dashboard');
+        // check if profile is completed
+        if (Auth::user()->phone == "" || Auth::user()->address == "") {
+            return view('investee-dashboard')->with('danger', 'Profile update is not complete yet');
+        }
+        else
+            return view('investee-dashboard');
     }
 
     public function campaignGrossing()
@@ -211,6 +222,7 @@ class PagesController extends Controller
         return view('signup');
     }
 
+    // redundant code
     public function sign_up()
     {
         return view('sign-Up');

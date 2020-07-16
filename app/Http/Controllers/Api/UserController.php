@@ -104,8 +104,8 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'password_again' => 'required|same:password',
-            'phone' => 'required|unique:users',
-            'address' => 'required',
+            'phone' => 'sometimes|unique:users',
+            'address' => 'sometimes',
             'role' => 'required',
         ]);
 
@@ -122,6 +122,7 @@ class UserController extends Controller
         $user = User::create($input);
         $user->sendEmailVerificationNotification();
         $token =  $user->createToken('FundMyLaptop')->accessToken;
+        return redirect('signup-success');
         return response()->json(
             [
                 'status' => 'success',
@@ -138,6 +139,8 @@ class UserController extends Controller
             ],
             201
         );
+        // return redirect('signup-success');
+        // return view('signup-success');
     }
 
     public function details()

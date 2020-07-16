@@ -11,8 +11,9 @@
 */
 
 Route::get('/', 'PagesController@landingPage');
+Route::get('/signup-success', 'PagesController@SuccessPage');
 
-// Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
@@ -46,8 +47,8 @@ Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
-Route::get('login/{provider}/investor-dashboard', 'PagesController@investorDashboard');
-Route::get('investee-dashboard', 'PagesController@investeeDashboard');
+Route::get('investor-dashboard', 'PagesController@investorDashboard');
+Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
