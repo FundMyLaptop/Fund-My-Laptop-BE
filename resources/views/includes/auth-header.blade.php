@@ -21,7 +21,10 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link px-4 pl-4 font-weight-bold" href="{{url('investor-dashboard')}}">My Dashboard</a>
+                    <a class="nav-link px-4 pl-4 font-weight-bold" href="{{url('investor-dashboard')}}">Investor Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-4 pl-4 font-weight-bold" href="{{url('investee-dashboard')}}">Investee Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link pl-md-4 font-weight-bold" href="{{  url('logout')  }}">
