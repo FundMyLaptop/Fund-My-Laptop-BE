@@ -10,6 +10,13 @@
 |
 */
 
+Route::get('/', function () {
+    $oldRequests = FundRequest::where([
+        ['isFunded', '0'],
+        ['isSuspended', '0']
+    ])->oldest()->take(3)->get();
+    return view('index')->with(['oldRequests'=>$oldRequests]);
+});
 Route::get('/', 'PagesController@landingPage');
 
 // Auth::routes(['verify' => true]);
@@ -17,6 +24,7 @@ Route::get('/', 'PagesController@landingPage');
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/callback/{provider}', 'SocialController@callback');
+
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
@@ -56,6 +64,9 @@ Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
 Route::get('login', 'PagesController@login')->name('login');
 Route::get('sign-up', 'PagesController@sign_up');
+
+Route::get('testimonial', 'TestimonialController@index');
+
 Route::post('update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');

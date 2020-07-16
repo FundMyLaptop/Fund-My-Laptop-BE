@@ -18,6 +18,10 @@ class Transaction extends Model
         return $this->belongsTo('App\Request');
     }
 
+   // public function request(){
+    //    return $this->belongsTo('App\Request');
+   // }
+
     public function user(){
         return $this->belongsTo('App\User');
     }

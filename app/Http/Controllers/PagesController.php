@@ -87,12 +87,10 @@ class PagesController extends Controller
 
     public function blogRead($id)
     {
-
-        $blog = Blog::find($id);
-        if (!$blog) {
-            return view('404');
-        }
-
+        $blog =Blog::find($id);
+      if(!$blog){
+        return view('404');
+      }
         return view('blog-read')->with('blog', $blog);
     }
 
@@ -159,7 +157,7 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        $blogs = Blog::orderBy('created_at', 'desc')->paginate(6);
+        $blogs = Blog::orderBy('created_at','desc')->paginate(6);
         return view('blog-list')->with('blogs', $blogs);
     }
 
@@ -197,6 +195,12 @@ class PagesController extends Controller
 
     public function testModals()
     {
-        return view('testmodals');
+        $user = Auth::user();
+        $row = \DB::table('transactions')->where('user_id',$user)->first();
+        $amount = $row->amount ?? "";
+        $transid = $row->transaction_ref ?? "";
+
+        return view('testmodals',['amount'=> $amount, 'transid' => $transid]);
+
     }
 }
