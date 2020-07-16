@@ -23,6 +23,7 @@ header('Access-Control-Allow-Headers: Authorization, Content-Type');
 // Authentication
 
 Route::post('login', 'Api\UserController@login');
+Route::post('savecomment', 'Api\CommentsController@store');
 Route::get('logout', 'Api\UserController@logout');
 Route::post('register', 'Api\UserController@register');
 Route::delete('request/delete/{id}', 'RequestController@destroy');
@@ -34,6 +35,11 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
  
 	Route::post('testimonial','TestimonialController@store');
 	Route::any('process-recurring-payments', 'RepaymentController@process');
+  Route::post('comment', 'CommentsController@store');
+  Route::get('deletecomment', 'CommentsController@destroy');
+  Route::post('reply', 'ReplyController@store');
+  Route::get('deletereply', 'ReplyController@destroy');
+  
     ///all other routes should be defined under this line using the format of line 25 (above)
 
 	///all other routes should be defined under this line using the format of line 25 (above)
