@@ -25,14 +25,10 @@
 		</div>
 		<!-- email and phone -->
 		<div class="form-group row">
-			<div class="col-md-6">
+			
 				<input type="email" placeholder="Email" name="email" class="form-control" id="email" required>
 				<p id="erroremail" class="error text-danger text-center text-sm-left">
-			</div>
-			<div class="col-md-6">
-				<input type="number" placeholder="Phone e.g: +23480000000" name="phone" class="form-control" id="phone" required>
-				<p id="errorPhone" class="error text-danger text-center text-sm-left">
-			</div>
+			
 		</div>
 		<!-- password -->
 		<div class="form-group row">
@@ -46,13 +42,6 @@
 			</div>
 		</div>
 		<!-- address -->
-		<div class="form-group row">
-			<textarea class="form-control mx-3" name="address" id="address" 
-			cols="30" rows="4" placeholder="Address" required>
-
-			</textarea>
-			
-		</div>
 		<div class="">
 			<input class="check" type="checkbox" required >
 			<label class="terms"> I agree to the <span>Terms Policy Conditions</span></label>
