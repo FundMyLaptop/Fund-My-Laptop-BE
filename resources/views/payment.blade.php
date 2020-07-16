@@ -7,7 +7,7 @@
 
 
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+{{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <div class="container mx-auto mb-5" style="margin-top: 88px;">
         <header>
             <h1 id="title" class="mt-5 mb-4">Fund {!! $request->user->firstName !!} {!! $request->user->lastName !!}'s Laptop Purchase</h1>
@@ -42,13 +42,13 @@
                 <div class="alert alert-danger d-none" style="padding: 0.5rem 1rem;" id="alert" role="alert">
                     <p class="my-0" id="alertMessage"></p>
                 </div>
-                <form class="payment-form d-flex flex-column p-4" action="{{ url('invest') }}" method="POST" novalidate>
+                <form class="payment-form d-flex flex-column p-4" action="{{ route('campaign/pay') }}" method="POST" novalidate>
         @csrf
                     <div class="form-group mb-4">
                         <label class="form__label" for="amount">Amount</label>
                         <div class="input-group">
                             <span class="input-group-text" id="selectedCurrency">&#x20A6;</span>
-                            <input class="form-control form-control-lg form__input" type="number" id="amounta" name="amount_invested"
+                            <input class="form-control form-control-lg form__input" type="number" id="amounta" name="amount"
                                    placeholder="Enter Amount to Donate">
                                    <input  type="hidden" name="request_id"
                                    value="{{ $request->id }}">
@@ -80,11 +80,17 @@
                     <div class="form-group mb-4">
                         <label class="form__label" for="email">Email Address</label>
                         <input class="form-control form-control-lg form__input" type="email" name="email" id="emaila"
-                               placeholder="Enter your email address" value="{!! $user->email !!}">
+                               placeholder="Enter your email address" value="{!! $user->email !!}" disabled>
                         <div class="invalid-feedback"></div>
                     </div>
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="email" value="{{ $user->email }}">
+                    <input id="orderid" type="hidden" name="orderID">
+                    <input type="hidden" name="metadata" value="{{ json_encode($metadata)}}" >
+                    <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
+
                     <!-- State the payment processor for users to know -->
-                    <h2 class="my-3">Payment processor: Flutterwave</h2>
+                    {{-- <h2 class="my-3">Payment processor: Flutterwave</h2> --}}
 
                     <!-- <h3>Select Payment Method</h3> -->
 
@@ -116,12 +122,12 @@
                         
                         {{-- <button class="btn btn-danger btn-lg mx-auto btn-block my-4 form__button" onClick="payWithRave()">Pay &#x20A6;</button> --}}
                         
-                        <script>
+                        {{-- <script>
                             var emailA = "test@test.com";
                             var fullname = "test";
                             var amountA = 20000;   
                         </script>
-                        <script src="https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+                        <script src="https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script> --}}
                     
             </div>
         </div>
@@ -131,7 +137,7 @@
 @endsection
 <!-- Flutterwave JavaScript Starts -->
 
-<script>
+{{-- <script>
     const API_publicKey = "FLWPUBK-676417a64e495aff7f3e3c37571605e9-X"; 
 
     function payWithRave() {
@@ -174,5 +180,5 @@
             }
         });
     }
-</script>
+</script> --}}
 <!-- Flutterwave JavaScript Ends -->

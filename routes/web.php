@@ -24,7 +24,6 @@ Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
-Route::post('invest', 'InvestController@index');
 Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
@@ -72,3 +71,9 @@ Route::post('update-profile/{id}','UserController@update')->name('update-profile
 Route::get('edit-profile/{id}','UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
 Route::post('transaction/store/{user}', 'TransactionController@store');
+
+//paystack api
+Route::post('campaign/pay', 'InvestController@redirectToGateway')->name('campaign/pay');
+Route::get('campaign/pay/callback', 'InvestController@handleGatewayCallback');
+
+
