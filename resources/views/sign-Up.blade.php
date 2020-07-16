@@ -1,4 +1,5 @@
 @extends('layout.app')
+
 @section('content')
     	<!-- main content goes in here -->
 	<div class="bodyrow">
@@ -28,5 +29,5 @@
 @endsection
 
 
-	
+
 

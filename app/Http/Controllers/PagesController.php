@@ -4,13 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Mail\ComplaintFormMail;
 use App\Blog;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Request as FundRequest;
 use App\User;
 
+
+
 class PagesController extends Controller
 {
+    public function landingPage()
+    {
+        $oldRequests = FundRequest::where([
+            ['isFunded', '0'],
+            ['isSuspended', '0']
+        ])->oldest()->take(3)->get();
+        return view('index')->with(['oldRequests' => $oldRequests]);
+    }
     public function termsAndConditions()
     {
         return view('terms-and-condition');
@@ -41,9 +52,17 @@ class PagesController extends Controller
         return view('faq');
     }
 
-    public function payment()
+    public function payment($id)
     {
-        return view('payment');
+        if(isset($id)){
+        $request = FundRequest::whereId($id)->firstOrFail();
+         $userId = $request->user_id;
+         $user = User::whereId($userId)->firstOrFail();
+         $firstName = $user->firstName;
+         $lastName = $user->lastName;
+
+        return view('payment', compact('user', 'request'));
+        }
     }
 
     public function benefit()
@@ -69,17 +88,18 @@ class PagesController extends Controller
     public function blogRead($id)
     {
 
-        $blog =Blog::find($id);
-      if(!$blog){
-        return view('404');
-      }
+        $blog = Blog::find($id);
+        if (!$blog) {
+            return view('404');
+        }
 
         return view('blog-read')->with('blog', $blog);
     }
 
     public function blog()
     {
-        return view('blog');
+        $blogs = Blog::latest()->paginate(6);
+        return view('blog', compact('blogs'));
     }
 
     public function error404Page()
@@ -139,13 +159,20 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        $blogs = Blog::orderBy('created_at','desc')->paginate(6);
+        $blogs = Blog::orderBy('created_at', 'desc')->paginate(6);
         return view('blog-list')->with('blogs', $blogs);
     }
 
     public function updateProfile()
     {
-        return view('update-profilepage');
+        $token = 'Bearer '.Auth::user()->token();
+        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
+        $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
+        $body = $response->getBody();
+        $content = $body->getContents();
+        $data = json_decode($content, TRUE);
+
+        return view('update-profilepage', compact('data'));
     }
 
     public function signUp()
