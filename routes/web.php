@@ -65,8 +65,12 @@ Route::post('complaint-form', 'PagesController@complaintForm');
 
 //contact routes
 Route::get('contact', 'PagesController@contact');
+
 Route::post('process_contact', 'ContactController@store');
 
+
+
+Route::get('lend', 'PagesController@lend');
 
 Route::get('blog-list', 'PagesController@blogList');
 // this points to the badly rendered blade
@@ -85,8 +89,11 @@ Route::get('sign-up', 'PagesController@sign_up');
 Route::post('update-profile/{id}', 'UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}', 'UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
+
 Route::post('transaction/store/{user}', 'TransactionController@store');
 
 //paystack api
 Route::post('campaign/pay', 'InvestController@redirectToGateway')->name('campaign/pay');
 Route::get('campaign/pay/callback', 'InvestController@handleGatewayCallback');
+
+
