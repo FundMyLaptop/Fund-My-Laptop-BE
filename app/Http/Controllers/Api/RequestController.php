@@ -76,6 +76,8 @@ class RequestController extends Controller
                     'photoURL' => 'required',
                     'currency' => 'required',
                     'amount' => 'required',
+                    'occupation' => 'required',
+                    'repaymentPeriod' => 'required',
                 ]
             );
             if ($validator->fails()) {

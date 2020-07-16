@@ -8,7 +8,7 @@ class Request extends Model
 {
 	protected $table = 'requests';
 
-	protected $fillable = ['user_id','title','description','photoURL','currency','amount','isFunded','isSuspended','isActive'];
+	protected $fillable = ['user_id','title','description','photoURL','currency','amount','occupation', 'repaymentPeriod','isFunded','isSuspended','isActive'];
 
     public function user() {
         return $this->belongsTo('App\User');
