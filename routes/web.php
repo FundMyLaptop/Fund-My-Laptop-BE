@@ -16,11 +16,11 @@ Route::get('/', 'PagesController@landingPage');
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
+Route::get('/login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
-Route::get('/redirect', 'SocialAuthGoogleController@redirect');
-Route::get('/callback', 'SocialAuthGoogleController@callback');
+//Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+//Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 
@@ -42,7 +42,7 @@ Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
-Route::get('investor-dashboard', 'PagesController@investorDashboard');
+Route::get('login/{provider}/investor-dashboard', 'PagesController@investorDashboard');
 Route::get('investee-dashboard', 'PagesController@investeeDashboard');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
