@@ -70,7 +70,7 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function view_campaign($id)
+    public function show($id)
     {
         $request = FundRequest::where('id', $id)->get();
         return view('campaign', compact('request'));

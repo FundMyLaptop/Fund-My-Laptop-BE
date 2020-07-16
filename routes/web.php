@@ -27,7 +27,7 @@ Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
 Route::get('campaign', 'PagesController@campaign');
-Route::get('campaign/{id}', 'RequestController@view_campaign');
+Route::get('campaign/{id}', 'RequestController@show');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
