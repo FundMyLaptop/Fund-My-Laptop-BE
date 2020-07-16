@@ -21,6 +21,8 @@
 @include('includes.header')
 @endIf
 
+
+
 @yield('content')
 
 @include('includes.footer')

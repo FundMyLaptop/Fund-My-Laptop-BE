@@ -58,6 +58,11 @@ class PagesController extends Controller
         return view('faq');
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+        
     public function payment($id)
     {
         if (isset($id)) {
@@ -245,4 +250,10 @@ class PagesController extends Controller
     {
         return view('testmodals');
     }
+  
+    public function lend()
+    {
+        return view('list-of-campaigns');
+    }
+
 }

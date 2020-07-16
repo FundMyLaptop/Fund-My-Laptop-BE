@@ -3,7 +3,7 @@
 @push('styles')
 <link rel="stylesheet" href= "{{asset('css/custom-css/update-profilepage.css')}}"/>
 @endpush
-
+@include('includes.flash-msg')
 	@section('content')
 		<main class="__up_container">
 			<section id="userinfo">
