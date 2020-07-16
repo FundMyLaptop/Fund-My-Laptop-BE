@@ -17,11 +17,11 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
+Route::get('/login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
-Route::get('/redirect', 'SocialAuthGoogleController@redirect');
-Route::get('/callback', 'SocialAuthGoogleController@callback');
+//Route::get('/redirect', 'SocialAuthGoogleController@redirect');
+//Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 
