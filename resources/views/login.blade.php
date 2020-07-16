@@ -1,9 +1,9 @@
 @extends('layout.app')
 @section('content')
 <main class="main-content d-sm-flex ">
-    <form class="login-box p-md-5 p-2" method="POST" action="{{ route('login') }}">
+    <form class="login-box p-md-5 p-2" method="POST">
 
-        @csrf
+        {!! csrf_field() !!}
 
         <h2 class="p-sm-3 p-1 welcome-text">Welcome to <br> <strong>Fund my Laptop</strong></h2>
 
@@ -22,7 +22,20 @@
             </span>
             <hr/>
         </div>
+    <!-- check user for valid or invalid login -->
+         @if (session('status'))
+            <p class="alert alert-success">{{ session('status') }}
+            </p>
+            @endif
+            @if (session('error'))
+            <p class="alert alert-danger">{{ session('error') }}
+            </p>
+            @endif
 
+            @foreach ($errors->all() as $error)
+            <p class="alert alert-danger">{{ $error }}
+            </p>
+            @endforeach
         <div class="form-group">
             <input type="email" placeholder="Email" name="email" class="form-control" id="email">
             <p id="errorEmail" class="error  text-danger text-center text-sm-left"> </p>
