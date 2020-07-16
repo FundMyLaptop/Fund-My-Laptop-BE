@@ -49,7 +49,7 @@
                             <input class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
-                    <button class="btn-form mx-auto my-4">Strat Compaign</button>
+                    <button class="btn-form mx-auto my-4">Start Compaign</button>
                 </form>
             </div>
         </div>
@@ -71,7 +71,7 @@
                     @endphp
                     <div class="col-lg-4 mb-4">
                         <div class="card ">
-                            <img class="card-img-top" src="{{ $oldRequest->user->verification->photoURL }}" alt="Card image cap">
+                            <img class="card-img-top" src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" alt="Card image cap">
                             <!-- card body -->
                             <div class="card-body">
                                 <h5 class="card-title mb-0">
