@@ -15,9 +15,11 @@
 </head>
 
 <body>
+@if(Auth::check()==True) {
+@include('includes.auth-header')
+@else
 @include('includes.header')
-
-<!-- @include('includes.flash-msg') -->
+@endIf
 
 @yield('content')
 
