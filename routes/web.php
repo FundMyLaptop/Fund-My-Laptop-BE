@@ -56,6 +56,7 @@ Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
 Route::post('complaint-form', 'PagesController@complaintForm');
 
+//contact routes
 Route::get('contact', 'PagesController@contact');
 Route::post('process_contact', 'ContactController@store');
 
