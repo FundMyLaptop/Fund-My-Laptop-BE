@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    color: #04172A;
+}
+
+section{
+    margin:80px;
+    margin-bottom:10px;
+}
+@media screen and (max-width:500px){
+    section{
+        margin:10px;
+    }
+}
+
+.hide{
+display:block;
+}
+@media screen and (max-width:1200px){
+.hide{
+    display:none;
+}
+
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.top{
+    margin-top:-30px;
+}
+
+@media screen and (max-width:500px){
+    .top{
+    margin-top:30px;
+}
+}
+
+.topCampaigns{
+    text-align:center;
+}
+
+@media screen and (max-width:500px){
+   .topCampaigns{
+       margin-top:50px;
+   }
+   }
+
+.box{
+    width:350px;
+    height:auto;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 24px rgba(177, 177, 177, 0.25);
+    margin:30px auto 30px auto;
+}
+
+@media screen and (max-width:700px){
+    .box{
+        width:85%;
+        height:auto;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 24px rgba(177, 177, 177, 0.25);
+        margin:30px auto;
+    }
+}
+
+.boxContent{
+    padding:25px;
+}
+
+.img{
+    width:100%;
+    height:216px;
+    background:black;
+}
+
+.detailsButton{
+    color:#ffffff;
+    background: rgba(4, 23, 42, 0.9);
+    box-shadow: 0px 4px 24px rgba(177, 177, 177, 0.25);
+    width:100%;
+    margin-bottom:0;
+    padding:10px;
+}
+
+h3{
+    font-family: DM Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 31px;
+color: rgba(4, 23, 42, 0.8);
+}
+
+h2{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+    color: rgba(4, 23, 42, 0.8);
+}
+
+.name{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    color: rgba(4, 23, 42, 0.9);
+    margin-bottom:0;
+}
+
+.reason{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top:0;
+}
+
+.description{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(4, 23, 42, 0.9);
+}
+
+.raisedAmount{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ABABAB;
+}
+
+.amount{
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 21px;
+    color: rgba(4, 23, 42, 0.9);
+}
+
+
+.meter {
+height:5px;
+width: 100%;
+background: #EAEAEA;
+border-radius: 20px;
+margin-top:40px;
+margin-bottom:15px;
+padding: 0px;
+}
+
+.span{
+height: 100%;
+border-radius: 8px;
+background-color: #FB3F5C;
+color:#FB3F5C;
+}
+
+.campaign_display_box{
+    position: relative;
+}
+
+.view_details_btn{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.see-more{
+margin-left:auto;
+margin-right:0px;
+box-shadow: 0px 4px 24px rgba(177, 177, 177, 0.25);
+margin-bottom:50px;
+}
+
+@media screen and (max-width:1200px){
+.see-more{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-right:auto;
+    margin-left:auto;
+    width:20%;
+    box-shadow: 0px 4px 24px rgba(177, 177, 177, 0.25);
+    margin-bottom:50px;
+}
+}
+@media screen and (max-width:700px){
+.see-more{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-right:auto;
+    margin-left:auto;
+    width:70%;
+    box-shadow: 0px 4px 24px rgba(177, 177, 177, 0.25);
+    margin-bottom:50px;
+}
+}

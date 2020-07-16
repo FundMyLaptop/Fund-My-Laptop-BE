@@ -54,30 +54,42 @@
                                 <p class="contact-item__title">Send a Message</p>
                                 <span class="contact-item__num">Do you have anything you want to tell us? Get in touch with us today.</span>
                             </div>
-                            <form class="form-field">
+                            <br>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success" role="alert">
+                                       {{ Session::get('success')}}
+                                </div>
+                            @endif
+                            <form class="form-field" method="POST" action="/process_contact">
+                                @csrf
                                 <div class="row m-0 d-flex justify-content-between">
-                                    <div class="form-group form-item--input">
-                                        <label for="exampleFormControlInput1">Full Name</label>
-                                        <input type="text" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input full name">
+                                <div class="form-group form-item--input {{ $errors->has('name') ? 'has-error': '' }}">
+                                        <label for="exampleFormControlInput1">Name</label>
+                                        <input type="text" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input full name" name="name">
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
                                     </div>
-                                    <div class="form-group form-item--input">
+                                    <div class="form-group form-item--input {{ $errors->has('email') ? 'has-error': '' }}">
                                         <label for="exampleFormControlInput1">Email Address</label>
-                                        <input type="email" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input email">
+                                        <input type="email" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input email" name="email">
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
                                     </div>
                                 </div>
                                 <div class="row m-0 d-flex justify-content-between">
-                                    <div class="form-group form-item--input">
+                                    <div class="form-group form-item--input {{ $errors->has('phone') ? 'has-error': '' }}">
                                         <label for="exampleFormControlInput1">Phone Number</label>
-                                        <input type="phone" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input phone number">
+                                        <input type="phone" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input phone number" name="phone">
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
                                     </div>
-                                    <div class="form-group form-item--input">
+                                    <div class="form-group form-item--input {{ $errors->has('subject') ? 'has-error': '' }}">
                                         <label for="exampleFormControlInput1">Subject</label>
-                                        <input type="text" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input subject">
+                                        <input type="text" class="contact-item__num py-4 form-control" id="exampleFormControlInput1" placeholder="Input subject" name="subject">
+                                        <span class="text-danger">{{ $errors->first('subject') }}</span>
                                     </div>
                                 </div>
-                                <div class="form-group w-100">
+                                <div class="form-group w-100 {{ $errors->has('message') ? 'has-error': '' }}">
                                     <label for="exampleFormControlTextarea1">Message</label>
-                                    <textarea class="pt-3 form-item--text-area contact-item__num form-control" id="exampleFormControlTextarea1" rows="" placeholder="Input message"></textarea>
+                                    <textarea class="pt-3 form-item--text-area contact-item__num form-control" id="exampleFormControlTextarea1" rows="" placeholder="Input message" name="message"></textarea>
+                                    <span class="text-danger">{{ $errors->first('message') }}</span>
                                 </div>
                                 <button class="form-submit" type="submit">Send Message</button>
                             </form>
