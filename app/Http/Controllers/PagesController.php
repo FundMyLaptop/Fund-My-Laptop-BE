@@ -98,7 +98,7 @@ class PagesController extends Controller
 
     public function blog()
     {
-        $blogs = Blog::latest()->paginate(6);
+        $blogs = Blog::latest()->paginate(9);
         return view('blog', compact('blogs'));
     }
 
