@@ -140,6 +140,14 @@
                 <p class="detail_funding_2">3 months</p>
             </div>
         </div>
+        <!--comment-->
+        <div>
+    
+            
+            @include('comments.comments')
+            
+</div>
+         
 
         <!-- Acknowledgement and support -->
 
