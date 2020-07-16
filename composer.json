@@ -13,6 +13,7 @@
         "ext-json": "*",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0",
+        "jorenvanhocht/laravel-share": "^3.2",
         "laravel/framework": "^6.2",
         "laravel/passport": "^9.2",
         "laravel/socialite": "^4.4",

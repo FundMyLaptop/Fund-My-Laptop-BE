@@ -17,7 +17,7 @@
 <body>
 @include('includes.header')
 
-@include('includes.flash-msg')
+<!-- @include('includes.flash-msg') -->
 
 @yield('content')
 

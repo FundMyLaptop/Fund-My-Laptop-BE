@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         // Laravel\Socialite\SocialiteServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
     ],
 
@@ -229,6 +230,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         // 'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Form' => 'Illuminate\Html\FormFacade',
+        'Html' => 'Illuminate\Html\HtmlFacade',
+        'Share' => Jorenvh\Share\ShareFacade::class,
+        'Carbon' => 'Carbon\Carbon',
 
     ],
 

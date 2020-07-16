@@ -22,6 +22,13 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
+Route::get('campaigns', 'RequestController@investeeCampaigns');
+Route::get('campaigns/create', 'RequestController@createCampaign'); //
+Route::post('campaigns', 'RequestController@storeCampaign');
+Route::get('campaigns/edit/{id}', 'RequestController@editCampaign');
+Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');
+Route::patch('campaigns/{id}', 'RequestController@updateCampaign');
+Route::post('campaigns/{id}', 'RequestController@suspendCampaign');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
