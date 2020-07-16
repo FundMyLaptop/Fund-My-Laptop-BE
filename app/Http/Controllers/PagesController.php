@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Request as FundRequest;
 use App\User;
-use Auth;
+use App\Transaction;
+use App\Repayment;
+use App\Accrual;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -57,7 +61,7 @@ class PagesController extends Controller
     {
         if(isset($id)){
         $request = FundRequest::whereId($id)->firstOrFail();
-         $userId = $request->user_id;
+         $userId = Auth::user()->id;
          $user = User::whereId($userId)->firstOrFail();
          $firstName = $user->firstName;
          $lastName = $user->lastName;
@@ -114,7 +118,34 @@ class PagesController extends Controller
 
     public function investorDashboard()
     {
-        return view('investor-dashboard');
+
+         if(Auth::check()==True) {
+         $user_id=Auth::user()->id;   
+        
+        $user = User::find($user_id);
+        $transactiontotal=array_sum(json_decode(Transaction::where([['user_id',$user_id],['status','success']])->pluck('amount')));
+           $requests=FundRequest::where([['isFunded',0],['isSuspended', 0],['isActive', 1]])->get();
+  
+        $transactions = Transaction::with(['Request'])->where([['user_id',$user_id],['status','success']])->get();
+        $rate=0;
+        foreach($transactions as $transaction){
+            $rate=$transaction->request->accrual->avg('rate')+$rate;
+
+        }
+        if(count($transactions)>0)
+        $intrestAverage=round($rate/count($transactions),1);
+        else{
+            $intrestAverage=0;
+        }
+        $repaymenttotal=0;
+        foreach( $transactions as  $transaction){
+        $repaymenttotal = array_sum(json_decode( $transaction->request->repayment->pluck('amount_paid')))+$repaymenttotal;       
+    }
+    
+        return view('investor-dashboard')->with(compact('transactiontotal','user','repaymenttotal','transactions','requests','intrestAverage'));
+}else{
+    return redirect(url('login'));   
+}
     }
 
     public function successPage()
@@ -211,4 +242,5 @@ class PagesController extends Controller
     {
         return view('testmodals');
     }
+    
 }
