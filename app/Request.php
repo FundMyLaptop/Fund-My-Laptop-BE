@@ -19,7 +19,7 @@ class Request extends Model
     }
 
     public function accrual() {
-        return $this->belongsTo('App\Accrual');
+        return $this->hasMany('App\Accrual');
     }
 
     public function transaction(){

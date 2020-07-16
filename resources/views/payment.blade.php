@@ -7,10 +7,10 @@
 
 
 @section('content')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container mx-auto mb-5" style="margin-top: 88px;">
         <header>
-            <h1 id="title" class="mt-5 mb-4">Fund {!! $user->firstName !!} {!! $user->lastName !!}'s Laptop Purchase</h1>
+            <h1 id="title" class="mt-5 mb-4">Fund {!! $request->user->firstName !!} {!! $request->user->lastName !!}'s Laptop Purchase</h1>
 
             <h3 class="text-muted">Loan Amount</h3>
             <p style="font-size: 2rem;"><strong>&#x20A6; {!! $request->amount !!}</strong></p>
@@ -19,17 +19,17 @@
             <div class="col-md-6 mt-4">
                 <!-- Video -->
                 <div class="video embed-responsive-4by3">
-                    <img class="img img-fluid" src="../img/video-placeholder.png" alt="video-placeholder">
+                    <img class="img img-fluid" src="{{$request->photoURL  }}" alt="video-placeholder">
                     <!-- <iframe src="" frameborder="0"></iframe> -->
                 </div>
 
-                <p class="my-4" id="creationDate">Created July 16, 2020</p>
+                <p class="my-4" id="creationDate">Created {{date("M d,Y",strtotime($request->created_at))  }}</p>
                 <hr>
 
                 <div class="user-info my-4">
                     <img src="../img/card-image (4).png" height="40px" width="40px" alt="user photo"
                          class="img-icon rounded-circle">
-                    <p class="m-0">John Doe</p>
+                    <p class="m-0">{{$request->user->firstName  }}</p>
                 </div>
 
                 <div class="repayment-info">
@@ -42,14 +42,18 @@
                 <div class="alert alert-danger d-none" style="padding: 0.5rem 1rem;" id="alert" role="alert">
                     <p class="my-0" id="alertMessage"></p>
                 </div>
-                <form class="payment-form d-flex flex-column p-4" method="POST" novalidate>
-        
+                <form class="payment-form d-flex flex-column p-4" action="{{ url('invest') }}" method="POST" novalidate>
+        @csrf
                     <div class="form-group mb-4">
                         <label class="form__label" for="amount">Amount</label>
                         <div class="input-group">
                             <span class="input-group-text" id="selectedCurrency">&#x20A6;</span>
-                            <input class="form-control form-control-lg form__input" type="number" id="amounta" name="amount"
+                            <input class="form-control form-control-lg form__input" type="number" id="amounta" name="amount_invested"
                                    placeholder="Enter Amount to Donate">
+                                   <input  type="hidden" name="request_id"
+                                   value="{{ $request->id }}">
+                                   <input  type="hidden" name="user_id"
+                                   value="{{ $user->id }}">
                             <select class="input-group-text" id="chooseCurrency">
                                 <option value="NGN" selected>NGN</option>
                                 <option value="USD">USD</option>
@@ -63,7 +67,7 @@
                     <div class="form-group mb-2">
                         <label class="form__label" for="fullName">Full Name</label>
                         <input class="form-control form-control-lg form__input" type="text" id="fullNamea"
-                               placeholder="Enter your full name" name="fullName">
+                               placeholder="Enter your full name" name="fullName" value="{!! $user->firstName !!} {!! $user->lastName !!}">
                         <div class="invalid-feedback"></div>
                     </div>
 
@@ -75,8 +79,8 @@
 
                     <div class="form-group mb-4">
                         <label class="form__label" for="email">Email Address</label>
-                        <input class="form-control form-control-lg form__input" type="email" id="emaila"
-                               placeholder="Enter your email address" >
+                        <input class="form-control form-control-lg form__input" type="email" name="email" id="emaila"
+                               placeholder="Enter your email address" value="{!! $user->email !!}">
                         <div class="invalid-feedback"></div>
                     </div>
                     <!-- State the payment processor for users to know -->
@@ -107,9 +111,11 @@
                             <div class="invalid-feedback"></div>
                         </div>
                     </div> -->
+                    <button class="btn btn-danger btn-lg mx-auto btn-block my-4 form__button" type="submit" >Pay &#x20A6;</button>
                     </form>
                         
-                        <button class="btn btn-danger btn-lg mx-auto btn-block my-4 form__button" onClick="payWithRave()">Pay &#x20A6;</button>
+                        {{-- <button class="btn btn-danger btn-lg mx-auto btn-block my-4 form__button" onClick="payWithRave()">Pay &#x20A6;</button> --}}
+                        
                         <script>
                             var emailA = "test@test.com";
                             var fullname = "test";
