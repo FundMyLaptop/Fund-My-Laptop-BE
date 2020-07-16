@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+
 class PagesController extends Controller
 {
     public function landingPage()

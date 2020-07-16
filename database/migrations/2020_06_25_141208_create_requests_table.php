@@ -21,6 +21,8 @@ class CreateRequestsTable extends Migration
             $table->string('photoURL');
             $table->string('currency')->default('NGN');
             $table->integer('amount');
+            $table->string('occupation');
+            $table->string('repaymentPeriod');
             $table->boolean('isFunded')->default(0);
             $table->boolean('isSuspended')->default(0);
             $table->boolean('isFeatured')->default(0);
