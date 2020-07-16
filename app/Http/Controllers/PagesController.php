@@ -6,6 +6,8 @@ use App\Mail\ComplaintFormMail;
 use App\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Request as FundRequest;
+use App\User;
 
 class PagesController extends Controller
 {
@@ -66,12 +68,12 @@ class PagesController extends Controller
 
     public function blogRead($id)
     {
-        
+
         $blog =Blog::find($id);
       if(!$blog){
         return view('404');
       }
-      
+
         return view('blog-read')->with('blog', $blog);
     }
 
@@ -137,7 +139,7 @@ class PagesController extends Controller
 
     public function blogList()
     {
-        $blogs = Blog::orderBy('created_at','desc')->paginate(6); 
+        $blogs = Blog::orderBy('created_at','desc')->paginate(6);
         return view('blog-list')->with('blogs', $blogs);
     }
 
