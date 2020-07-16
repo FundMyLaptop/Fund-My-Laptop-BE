@@ -213,17 +213,17 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="pt-4">
-            <div>Past Campaigns</div>
+        <div class="pt-4">
+            <div><strong>Past Campaigns</strong></div>
             <div class="w-100 overflow-x-auto">
                 <div class="width-md-900">
                     <div class="d-flex py-3 fml-bg-secondary mb-3 font-weight-bold">
                         <div class="col pl-5">Type</div>
                         <div class="col">Name</div>
                         <div class="col">Purpose</div>
-                        <div class="col">Amount</div> -->
-                        <!--<div class="col">Payback period</div>-->
-                        <!-- <div class="col">Campaign Status</div>
+                        <div class="col">Amount</div>
+                        <div class="col">Payback period</div>
+                        <div class="col">Campaign Status</div>
                     </div>
                     <div class="shadow-light">
                         @foreach ($pastcampaign as $past)
@@ -232,9 +232,9 @@
                         <div class="col pl-5">Lendee</div>
                             <div class="col">{{$fundee->firstName ?? "Not found"}}</div>
                             <div class="col">{{$past->title ?? ""}}</div>
-                            <div class="col">{{number_format($past->amount) ?? ""}}</div> -->
+                            <div class="col">{{number_format($past->amount) ?? ""}}</div>
                             <!--<div class="col">6 months</div>-->
-                            <!-- <div class="col">@if($past->isSuspended == 1) Suspended @else Funded @endif</div>
+                            <div class="col">@if($past->isSuspended == 1) Suspended @else Funded @endif</div>
                         </div>
                         <hr>
 
@@ -242,7 +242,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <br>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

@@ -86,7 +86,7 @@ class RequestController extends Controller
             //Get the fundee real name from user table
             $fundee = User::where('id',$user_id)->first();
             //Get all funded and suspended and featured
-            $pastcampaign = FundRequest::where('isActive', 1)->orderBy('updated_at', 'desc')->paginate(5);
+            $pastcampaign = FundRequest::where('isActive', 0)->where('isFeatured', 0)->where('isFunded', 1)->orderBy('updated_at', 'desc')->paginate(5);
 
             return view('manage-campaign', compact('campaign', 'requests', 'fundee', 'pastcampaign', 'funder', 'userDonation'));
 
@@ -190,7 +190,6 @@ class RequestController extends Controller
             } else {
                 // get authenticated user id
                 $user_id = Auth::id();
-
                 //fetch the request id from database
                 $update = FundRequest::findOrFail($id);
                 if ($update->isActive == 1 && $update->isSuspended != 1) {
