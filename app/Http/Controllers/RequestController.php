@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Request as FundRequest;
+use App\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
@@ -14,6 +17,26 @@ class RequestController extends Controller
     public function index()
     {
         //
+    }
+
+
+
+    public function fetch_featured_requests(Request $request)
+    {
+
+        if (Auth::check() && Auth::user()->role == 2) {
+        $hey = FundRequest::with('user')->where('isFeatured',0)->inRandomOrder()->limit(6)->get();
+            return view('randomrequest', compact('hey'));
+        }else{
+            return redirect('/');
+        }
+
+    }
+    public function availableFundingRequest()
+    {
+        $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
+
+        return view('unfunded-campaigns',compact('unattendedFundingRequests'));
     }
 
     /**
@@ -45,9 +68,11 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $request = FundRequest::where('id', $id)->get();
+        return view('campaign', compact('request'));
+         
     }
-
+   
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,4 +106,5 @@ class RequestController extends Controller
     {
         //
     }
+
 }
