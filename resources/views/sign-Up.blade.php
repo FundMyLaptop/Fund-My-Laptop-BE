@@ -1,4 +1,5 @@
 @extends('layout.app')
+
 @section('content')
     	<!-- main content goes in here -->
 	<div class="bodyrow">
@@ -20,7 +21,7 @@
 				<button id="submitButton">Sign Up</button>
 				<div class="separator">OR</div>
 				<a id="googleSignupButton"><img src="../img/google_logo.png" />Sign up with Google</a>
-				<p>Already have an account?<span> Sign in</span></p>
+				<p>Already have an account?<a href="{{ url('login') }}"><span>  Sign in </span></a></p>
 			</form>
 		</section>
 		<section class="imageSection"></section>
@@ -28,5 +29,5 @@
 @endsection
 
 
-	
+
 
