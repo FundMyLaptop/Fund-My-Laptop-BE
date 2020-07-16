@@ -8,6 +8,14 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Request as FundRequest;
+use App\User;
+use App\Transaction;
+use App\Repayment;
+use App\Accrual;
+use Illuminate\Support\Facades\Auth;
+
+
+
 
 class PagesController extends Controller
 {
@@ -49,9 +57,17 @@ class PagesController extends Controller
         return view('faq');
     }
 
-    public function payment()
+    public function payment($id)
     {
-        return view('payment');
+        if(isset($id)){
+        $request = FundRequest::whereId($id)->firstOrFail();
+         $userId = Auth::user()->id;
+         $user = User::whereId($userId)->firstOrFail();
+         $firstName = $user->firstName;
+         $lastName = $user->lastName;
+
+        return view('payment', compact('user', 'request'));
+        }
     }
 
     public function benefit()
@@ -87,7 +103,8 @@ class PagesController extends Controller
 
     public function blog()
     {
-        return view('blog');
+        $blogs = Blog::latest()->paginate(9);
+        return view('blog', compact('blogs'));
     }
 
     public function error404Page()
@@ -101,12 +118,49 @@ class PagesController extends Controller
 
     public function investorDashboard()
     {
-        return view('investor-dashboard');
+
+         if(Auth::check()==True) {
+         $user_id=Auth::user()->id;   
+        
+        $user = User::find($user_id);
+        $transactiontotal=array_sum(json_decode(Transaction::where([['user_id',$user_id],['status','success']])->pluck('amount')));
+           $requests=FundRequest::where([['isFunded',0],['isSuspended', 0],['isActive', 1]])->get();
+  
+        $transactions = Transaction::with(['Request'])->where([['user_id',$user_id],['status','success']])->get();
+        $rate=0;
+        foreach($transactions as $transaction){
+            $rate=$transaction->request->accrual->avg('rate')+$rate;
+
+        }
+        if(count($transactions)>0)
+        $intrestAverage=round($rate/count($transactions),1);
+        else{
+            $intrestAverage=0;
+        }
+        $repaymenttotal=0;
+        foreach( $transactions as  $transaction){
+        $repaymenttotal = array_sum(json_decode( $transaction->request->repayment->pluck('amount_paid')))+$repaymenttotal;       
+    }
+    
+        return view('investor-dashboard')->with(compact('transactiontotal','user','repaymenttotal','transactions','requests','intrestAverage'));
+}else{
+    return redirect(url('login'));   
+}
     }
 
+    public function successPage()
+    {
+        return view('signup-success');
+    }
+    // the homepage 
     public function investeeDashboard()
     {
-        return view('investee-dashboard');
+        // check if profile is completed
+        if (Auth::user()->phone == "" || Auth::user()->address == "") {
+            return view('investee-dashboard')->with('danger', 'Profile update is not complete yet');
+        }
+        else
+            return view('investee-dashboard');
     }
 
     public function campaignGrossing()
@@ -168,6 +222,7 @@ class PagesController extends Controller
         return view('signup');
     }
 
+    // redundant code
     public function sign_up()
     {
         return view('sign-Up');
@@ -187,4 +242,5 @@ class PagesController extends Controller
     {
         return view('testmodals');
     }
+    
 }
