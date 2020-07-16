@@ -8,8 +8,22 @@
             <h1 class="h1style !important">Welcome to</h1> <br /><br/>
             <h2 class="h2style !important">Fund my Laptop</h2>
             <p>Help Achieve your dreams with funding for your laptops at little or no cost</p>
-            <form method="POST" action="{{ url('api/register') }}">
-            @csrf
+            <form method="POST">
+            {!! csrf_field() !!}
+            <!-- check user for valid or invalid signup -->   
+         @if (session('status'))
+            <br>
+            <br>
+            <p class="alert alert-success">{{ session('status') }}
+            </p>
+            @endif
+​
+            @foreach ($errors->all() as $error)
+            <br>
+            <br>
+            <p class="alert alert-danger">{{ $error }}
+            </p>
+            @endforeach
             <input type="hidden" name="role" value="0">
                 <div class="bodyrow">
                     <input type="text" class="name" name="firstName" id="firstName" placeholder="First Name" required>
@@ -25,7 +39,7 @@
                 </div>
                 <button id="submitButton">Sign Up</button>
                 <div class="separator">OR</div>
-                <a id="googleSignupButton"><img src="{{ asset('img/google_logo.PNG') }}" />Sign up with Google</a>
+                <a href="{{url('/auth/redirect/google')}}" id="googleSignupButton"><img src="../img/google_logo.png" />Sign up with Google</a>
                 <p>Already have an account?<a href="{{ url('login') }}"><span> Sign in</span></a></p>
             </form>
         </section>
