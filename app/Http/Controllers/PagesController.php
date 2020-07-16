@@ -62,6 +62,18 @@ class PagesController extends Controller
     {
         return view('about');
     }
+
+    public function profile()
+    {
+        $user = Auth::user()->id;
+        $data = User::with('request', 'favorite', 'bank_account', 'recommendation')->where('id', $user)->first();
+        if ($data) {
+            return view('update-profilepage', compact('data'));
+        } else {
+            return response()->json(['message' => 'Could not the details of this user'], 400);
+        }
+        
+    }
         
     public function payment($id)
     {
@@ -216,7 +228,7 @@ class PagesController extends Controller
     public function updateProfile()
     {
         $token = 'Bearer ' . Auth::user()->token();
-        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
+        $client = new Client(['base_uri' => 'fundmylaptop.com/']);
         $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
         $body = $response->getBody();
         $content = $body->getContents();
