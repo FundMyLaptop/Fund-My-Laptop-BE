@@ -32,16 +32,12 @@ class RequestController extends Controller
         }
 
     }
-
-
-
     public function availableFundingRequest()
     {
         $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
 
         return view('unfunded-campaigns',compact('unattendedFundingRequests'));
     }
-
 
     /**
      * Show the form for creating a new resource.

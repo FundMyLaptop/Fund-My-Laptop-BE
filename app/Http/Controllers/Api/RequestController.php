@@ -12,7 +12,7 @@ use Validator;
 
 class RequestController extends Controller
 {
-    public function __construct()
+   public function __construct()
     {
         //allows only authenticated user
         $this->middleware('auth');
@@ -24,13 +24,13 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $query = FundRequest::with('user')->paginate(30);
+        $user = Auth::user();  //Store the authorized user
+        $query = FundRequest::with('user')->paginate(30);  //Get user requests and display 30 per page
 
         return response()->json([
             'message' => 'Requests retrieved',
             'data' => $query
-        ], 200);
+        ], 200);  //Output as JSON
     }
 
     /**
@@ -40,12 +40,15 @@ class RequestController extends Controller
      */
     public function availableFundingRequest()
     {
-        $unattendedFundingRequest = FundRequest::with('user')->where('isFunded', 0)->get();
+        //Use the scope created in the Request Model to fetch all requests that have not been funded and display results 30 per page
+        $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
+
+        //$unattendedFundingRequests = FundRequest::with('user')->where('isFunded', 0)->get();
 
         return response()->json([
             'message' => 'Unattended Requests Retrieved',
-            'data' => $unattendedFundingRequest
-        ], 200);
+            'data' => $unattendedFundingRequests
+        ], 200);  //Output JSON
     }
 
     /**
@@ -147,7 +150,7 @@ class RequestController extends Controller
 
               'message' => 'Request retrieved',
               'data' => $request
-          ], 200); 
+          ], 200);
         }
     }
 
@@ -182,7 +185,7 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //destroy method 
+        //destroy method
         if (Auth::check() && Auth::user()->role == 2) {
            if(FundRequest::where('id', $id)->exists()) {
                $fundRequest = FundRequest::find($id);
@@ -231,7 +234,7 @@ class RequestController extends Controller
         ], 200);
     }
 
-   
+
 
     /**
      * Update the specified resource in storage.
@@ -275,7 +278,7 @@ class RequestController extends Controller
 
     public function view_details_of_a_campaign($id)
     {
-    
+
         if (Auth::check()) {
             if(FundRequest::where('id', $id)->exists()) {
                 $campaign_details = FundRequest::find($id);
@@ -288,7 +291,7 @@ class RequestController extends Controller
                     "message" => "No details for this campaign"
                 ], 404);
             }
-                
+
         }
     }
 

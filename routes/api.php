@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
   Route::get('unattended-requests', 'RequestController@availableFundingRequest');
   Route::post('requests/store', 'RequestController@store');
   Route::get('requests/{id}', 'RequestController@show');
-  Route::get('uncompleted-requests', 'RequestController@fetch_uncompleted_requests');
+  Route::get('uncompleted-requests', 'RequestController@fetch_uncompleted_requests'); //This is a protected route
   Route::post('bank-accounts', 'BankAccountController@create');
   Route::get('featured-requests/{id}', 'RequestController@set_featured');
   Route::get('all-featured-requests', 'RequestController@fetch_featured_requests');
