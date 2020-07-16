@@ -6,8 +6,7 @@
 
 
 @section('content')
-
-    <div class="jumbotron jumbotron px-0 px-md-4 mb-0 mb-md-4 ">
+    <div class="jumbotron jumbotron px-0 px-md-4 mb-0 mb-md-4 mt-0">
         <div class="row mt-lg-5 px-2 px-md-5 mx-auto mt-5">
             <div class="col-xl-8 px-0  mb-2 mb-sm-5 px-md-5 header-text mt-5
         d-flex
@@ -49,7 +48,7 @@
                             <input class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
-                    <button class="btn-form mx-auto my-4">Strat Compaign</button>
+                    <button class="btn-form mx-auto my-4">Start Compaign</button>
                 </form>
             </div>
         </div>
@@ -62,81 +61,59 @@
         <section class="container trending-section my-md-5">
             <h3 class="mb-4">Trending Now !</h3>
             <div class="row trending-cards ">
+                @if(count($oldRequests) > 0)
                 <!-- card start here -->
-                <div class="col-lg-4 mb-4">
+                @foreach($oldRequests as $oldRequest)
+                    @php
+                        $amountFunded = $oldRequest->transaction()->where('status','success')->get()->sum->amount;
+                        $percentage = intval(($amountFunded * 100) / $oldRequest->amount);
+                    @endphp
+                    <div class="col-lg-4 mb-4">
+                        <div class="card ">
+                            <img class="card-img-top" src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" alt="Card image cap">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <h5 class="card-title mb-0">
+                                    {{ $oldRequest->user->firstName.' '.$oldRequest->user->lastName }}
+                                </h5>
+                                <span class="card-subtitle ">
+                                    {{ $oldRequest->title }}
+                                </span>
+                                <p class="card-text mt-4">
+                                    {{ $oldRequest->description }}
+                                </p>
+                                <div class="progress">
+                                    <div class="progress-bar" id='card-progress-bar' role="progressbar" style="width: {{ $percentage }}%;"
+                                        aria-valuenow="{{ $percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3 mb-2">
+                                    <span class="card-price">
+                                        N{{ number_format($amountFunded) }}
+                                    </span>
+                                    <span class="card-progress-num">
+                                        {{ $percentage }}%
+                                    </span>
+                                </div>
+                                <span class="card-fonds">
+                                    Raised of N{{ number_format($oldRequest->amount) }}</span>
+                            </div>
+                            <!-- card footer -->
+                            <div class="card-footer d-flex align-center justify-content-between p-0">
+                                <a href='' class="m-auto "> view details <img src="/img/card-arrow.png" alt=""> </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                @else
+                <div class="col-lg-12 mb-4">
                     <div class="card ">
-                        <img class="card-img-top" src="/img/Trendin-pic.png" alt="Card image cap">
                         <!-- card body -->
                         <div class="card-body">
-                            <h5 class="card-title mb-0">Adelanke Doe</h5>
-                            <span class="card-subtitle ">Laptop purchase</span>
-                            <p class="card-text mt-4">I need a laptop to complete my final
-                                year school project...</p>
-                            <div class="progress">
-                                <div class="progress-bar"  id='card-progress-bar' role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-3 mb-2">
-                                <span class="card-price"> N90,000</span>
-                                <span class="card-progress-num">90%</span>
-                            </div>
-                            <span class="card-fonds">Raised of N100,000</span>
-                        </div>
-                        <!-- card footer -->
-                        <div class="card-footer d-flex align-center justify-content-between p-0">
-                            <a href=''  class="m-auto "> view details <img src="/img/card-arrow.png" alt=""> </a>
+                            <h5 class="card-title mb-0">No Available Request</h5>
                         </div>
                     </div>
                 </div>
-                <!-- card start here -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card ">
-                        <img class="card-img-top" src="/img/Trendin-pic.png" alt="Card image cap">
-                        <!-- card body -->
-                        <div class="card-body">
-                            <h5 class="card-title mb-0">Adelanke Doe</h5>
-                            <span class="card-subtitle ">Laptop purchase</span>
-                            <p class="card-text mt-4">I need a laptop to complete my final
-                                year school project...</p>
-                            <div class="progress">
-                                <div class="progress-bar"  id='card-progress-bar' role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-3 mb-2">
-                                <span class="card-price"> N90,000</span>
-                                <span class="card-progress-num">90%</span>
-                            </div>
-                            <span class="card-fonds">Raised of N100,000</span>
-                        </div>
-                        <!-- card footer -->
-                        <div class="card-footer d-flex align-center justify-content-between p-0">
-                            <a href='' class="m-auto "> view details <img src="/img/card-arrow.png" alt=""> </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- card start here -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card ">
-                        <img class="card-img-top" src="/img/Trendin-pic.png" alt="Card image cap">
-                        <!-- card body -->
-                        <div class="card-body">
-                            <h5 class="card-title mb-0">Adelanke Doe</h5>
-                            <span class="card-subtitle ">Laptop purchase</span>
-                            <p class="card-text mt-4">I need a laptop to complete my final
-                                year school project...</p>
-                            <div class="progress">
-                                <div class="progress-bar"  id='card-progress-bar' role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="d-flex justify-content-between mt-3 mb-2">
-                                <span class="card-price"> N90,000</span>
-                                <span class="card-progress-num">90%</span>
-                            </div>
-                            <span class="card-fonds">Raised of N100,000</span>
-                        </div>
-                        <!-- card footer -->
-                        <div class="card-footer d-flex align-center justify-content-between p-0">
-                            <a href='' class="m-auto "> view details <img src="/img/card-arrow.png" alt=""> </a>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
         </section>
         <!-- about us section -->

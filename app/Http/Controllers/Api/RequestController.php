@@ -12,7 +12,7 @@ use Validator;
 
 class RequestController extends Controller
 {
-    public function __construct()
+   public function __construct()
     {
         //allows only authenticated user
         $this->middleware('auth');
@@ -24,13 +24,13 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $query = FundRequest::with('user')->paginate(30);
+        $user = Auth::user();  //Store the authorized user
+        $query = FundRequest::with('user')->paginate(30);  //Get user requests and display 30 per page
 
         return response()->json([
             'message' => 'Requests retrieved',
             'data' => $query
-        ], 200);
+        ], 200);  //Output as JSON
     }
 
     /**
@@ -40,12 +40,15 @@ class RequestController extends Controller
      */
     public function availableFundingRequest()
     {
-        $unattendedFundingRequest = FundRequest::with('user')->where('isFunded', 0)->get();
+        //Use the scope created in the Request Model to fetch all requests that have not been funded and display results 30 per page
+        $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
+
+        //$unattendedFundingRequests = FundRequest::with('user')->where('isFunded', 0)->get();
 
         return response()->json([
             'message' => 'Unattended Requests Retrieved',
-            'data' => $unattendedFundingRequest
-        ], 200);
+            'data' => $unattendedFundingRequests
+        ], 200);  //Output JSON
     }
 
     /**
@@ -76,6 +79,8 @@ class RequestController extends Controller
                     'photoURL' => 'required',
                     'currency' => 'required',
                     'amount' => 'required',
+                    'occupation' => 'required',
+                    'repaymentPeriod' => 'required',
                 ]
             );
             if ($validator->fails()) {
@@ -87,6 +92,8 @@ class RequestController extends Controller
             $photoURL = $request->photoURL ?? "";
             $currency = $request->currency ?? "";
             $amount = $request->amount ?? "";
+            $occupation = $request->occupation ?? "";
+            $repaymentPeriod = $request->repaymentPeriod ?? "";
             $isFunded = 0;
             $isSuspended = 0;
             $isActive = 0;
@@ -115,6 +122,8 @@ class RequestController extends Controller
             $fundreq->photoURL = htmlspecialchars($photoURL);
             $fundreq->currency = htmlspecialchars($currency);
             $fundreq->amount = htmlspecialchars($amount);
+            $fundreq->occupation = htmlspecialchars($occupation);
+            $fundreq->repaymentPeriod = htmlspecialchars($repaymentPeriod);
             $fundreq->isFunded = htmlspecialchars($isFunded);
             $fundreq->isSuspended = htmlspecialchars($isSuspended);
             $fundreq->isActive = htmlspecialchars($isActive);
@@ -147,7 +156,7 @@ class RequestController extends Controller
 
               'message' => 'Request retrieved',
               'data' => $request
-          ], 200); 
+          ], 200);
         }
     }
 
@@ -182,7 +191,7 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
-        //destroy method 
+        //destroy method
         if (Auth::check() && Auth::user()->role == 2) {
            if(FundRequest::where('id', $id)->exists()) {
                $fundRequest = FundRequest::find($id);
@@ -231,7 +240,7 @@ class RequestController extends Controller
         ], 200);
     }
 
-   
+
 
     /**
      * Update the specified resource in storage.
@@ -272,4 +281,38 @@ class RequestController extends Controller
             ], 200);
         }
     }
+
+    public function view_details_of_a_campaign($id)
+    {
+
+        if (Auth::check()) {
+            if(FundRequest::where('id', $id)->exists()) {
+                $campaign_details = FundRequest::find($id);
+                return response()->json([
+                    "message" => "Campaign details retrieved",
+                    "data" =>  $campaign_details
+                ], 200);
+            } else {
+                return response()->json([
+                    "message" => "No details for this campaign"
+                ], 404);
+            }
+
+        }
+    }
+
+    public function top_campaigns()
+    {
+        $top_campaigns = FundRequest:: where('isActive', '1')->orderBy('amount', 'desc')->paginate(3);
+        if($top_campaigns){
+            return response()->json([
+                "message" => "Top campaigns retrieved",
+                "data" => $top_campaigns
+            ], 200);
+        }
+        
+            
+    }
+
+    
 }

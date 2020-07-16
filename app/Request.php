@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Request extends Model
 {
 	protected $table = 'requests';
-	
-	protected $fillable = ['user_id','title','description','photoURL','currency','amount','isFunded','isSuspended','isActive'];
+
+	protected $fillable = ['user_id','title','description','photoURL','currency','amount','occupation', 'repaymentPeriod','isFunded','isSuspended','isActive'];
 
     public function user() {
         return $this->belongsTo('App\User');
@@ -19,14 +19,25 @@ class Request extends Model
     }
 
     public function accrual() {
-        return $this->belongsTo('App\Accrual');
+        return $this->hasMany('App\Accrual');
     }
 
     public function transaction(){
-        return $this->hasMany('App\Request');
+        return $this->hasMany('App\Transaction');
     }
 
     public function repayment(){
         return $this->hasMany('App\Repayment');
+    }
+
+    public function getIsFundedAttribute($attribute){
+        return[
+            0 => 'Not Funded',
+            1 => 'Funded'
+        ][$attribute];
+    }
+
+    public function scopeIsNotFunded($query){
+        return $query->where('isFunded', 0);
     }
 }
