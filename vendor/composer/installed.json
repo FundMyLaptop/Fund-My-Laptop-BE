@@ -911,8 +911,8 @@
     },
     {
         "name": "guzzlehttp/guzzle",
-        "version": "7.0.1",
-        "version_normalized": "7.0.1.0",
+        "version": "6.5.5",
+        "version_normalized": "6.5.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/guzzle.git",
@@ -4902,6 +4902,165 @@
         "homepage": "https://github.com/sebastianbergmann/version"
     },
     {
+        "name": "sendgrid/php-http-client",
+        "version": "3.10.8",
+        "version_normalized": "3.10.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sendgrid/php-http-client.git",
+            "reference": "51e69a9acdb7a1a5ebb4420d3f54917d7341076f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sendgrid/php-http-client/zipball/51e69a9acdb7a1a5ebb4420d3f54917d7341076f",
+            "reference": "51e69a9acdb7a1a5ebb4420d3f54917d7341076f",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*",
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.4",
+            "squizlabs/php_codesniffer": "~2.0"
+        },
+        "time": "2020-06-24T19:34:13+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "SendGrid\\": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Matt Bernier",
+                "email": "mbernier@twilio.com"
+            },
+            {
+                "name": "Elmer Thomas",
+                "email": "ethomas@twilio.com"
+            }
+        ],
+        "description": "HTTP REST client, simplified for PHP",
+        "homepage": "http://github.com/sendgrid/php-http-client",
+        "keywords": [
+            "api",
+            "fluent",
+            "http",
+            "rest",
+            "sendgrid"
+        ]
+    },
+    {
+        "name": "sendgrid/sendgrid",
+        "version": "7.7.0",
+        "version_normalized": "7.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sendgrid/sendgrid-php.git",
+            "reference": "4f2f9f67791ba4c8e311fbe44785661af01062d9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/4f2f9f67791ba4c8e311fbe44785661af01062d9",
+            "reference": "4f2f9f67791ba4c8e311fbe44785661af01062d9",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*",
+            "ext-mbstring": "*",
+            "ext-openssl": "*",
+            "php": ">=5.6",
+            "sendgrid/php-http-client": "~3.10",
+            "starkbank/ecdsa": "0.*"
+        },
+        "replace": {
+            "sendgrid/sendgrid-php": "*"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.7.9 || ^6.4.3",
+            "squizlabs/php_codesniffer": "3.*",
+            "swaggest/json-diff": "^3.4"
+        },
+        "time": "2020-07-08T18:49:48+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "SendGrid\\Contacts\\": "lib/contacts/",
+                "SendGrid\\EventWebhook\\": "lib/eventwebhook/",
+                "SendGrid\\Mail\\": "lib/mail/",
+                "SendGrid\\Stats\\": "lib/stats/"
+            },
+            "classmap": [
+                "lib/BaseSendGridClientInterface.php",
+                "lib/SendGrid.php",
+                "lib/TwilioEmail.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "This library allows you to quickly and easily send emails through Twilio SendGrid using PHP.",
+        "homepage": "http://github.com/sendgrid/sendgrid-php",
+        "keywords": [
+            "email",
+            "grid",
+            "send",
+            "sendgrid",
+            "twilio sendgrid"
+        ]
+    },
+    {
+        "name": "starkbank/ecdsa",
+        "version": "0.0.4",
+        "version_normalized": "0.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/starkbank/ecdsa-php.git",
+            "reference": "9369d35ed9019321adb4eb9fd3be21357d527c74"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/starkbank/ecdsa-php/zipball/9369d35ed9019321adb4eb9fd3be21357d527c74",
+            "reference": "9369d35ed9019321adb4eb9fd3be21357d527c74",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5"
+        },
+        "time": "2020-05-15T15:46:20+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/ellipticcurve.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "StarkBank",
+                "email": "developers@starkbank.com",
+                "homepage": "https://starkbank.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "fast openSSL-compatible implementation of the Elliptic Curve Digital Signature Algorithm (ECDSA)",
+        "homepage": "https://github.com/starkbank/ecdsa-php"
+    },
+    {
         "name": "swiftmailer/swiftmailer",
         "version": "v6.2.3",
         "version_normalized": "6.2.3.0",
@@ -6629,6 +6788,81 @@
         ],
         "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
         "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles"
+    },
+    {
+        "name": "unicodeveloper/laravel-paystack",
+        "version": "1.0.4",
+        "version_normalized": "1.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/unicodeveloper/laravel-paystack.git",
+            "reference": "533d45b3e7c68e283a2ed71ddd45af1ef7728873"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/unicodeveloper/laravel-paystack/zipball/533d45b3e7c68e283a2ed71ddd45af1ef7728873",
+            "reference": "533d45b3e7c68e283a2ed71ddd45af1ef7728873",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "5.*|6.*",
+            "illuminate/support": "^5.8.15|^6.0|^7.0",
+            "php": "^7.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "^1.3",
+            "php-coveralls/php-coveralls": "^2.0",
+            "phpunit/phpunit": "^8.4|^9.0",
+            "scrutinizer/ocular": "~1.1"
+        },
+        "time": "2020-05-23T16:38:24+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Unicodeveloper\\Paystack\\PaystackServiceProvider"
+                ],
+                "aliases": {
+                    "Paystack": "Unicodeveloper\\Paystack\\Facades\\Paystack"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/Support/helpers.php"
+            ],
+            "psr-4": {
+                "Unicodeveloper\\Paystack\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "unicodeveloper",
+                "email": "prosperotemuyiwa@gmail.com"
+            },
+            {
+                "name": "iamfunsho",
+                "email": "info@devfunsho.com"
+            }
+        ],
+        "description": "A Laravel Package for Paystack",
+        "keywords": [
+            "github",
+            "laravel",
+            "laravel 5",
+            "laravel 6",
+            "open source",
+            "payments",
+            "paystack",
+            "paystack.co",
+            "php",
+            "subscription"
+        ]
     },
     {
         "name": "vlucas/phpdotenv",
