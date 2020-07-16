@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/{provider}/investee-dashboard', 'SocialController@callback');
+Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 //Route::get('/redirect', 'SocialAuthGoogleController@redirect');
@@ -47,8 +47,8 @@ Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
-Route::get('login/{provider}/investor-dashboard', 'PagesController@investorDashboard');
-Route::get('investee-dashboard', 'PagesController@investeeDashboard');
+Route::get('/{provider}/investor-dashboard', 'PagesController@investorDashboard');
+Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');;
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
