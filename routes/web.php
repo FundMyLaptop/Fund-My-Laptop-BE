@@ -11,8 +11,9 @@
 */
 
 Route::get('/', 'PagesController@landingPage');
+Route::get('/signup-success', 'PagesController@SuccessPage');
 
-// Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
@@ -23,15 +24,19 @@ Route::get('/login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
-
+Route::post('invest', 'InvestController@index');
+Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
+Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
 Route::get('campaign', 'PagesController@campaign');
+Route::get('campaign/{id}', 'RequestController@show');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
 /* Route::get('payment', 'PagesController@payment'); */
 //make payment for a request... where {id} is requestId
+
 Route::get('payment/{id}', 'PagesController@payment');
 Route::post('payment/{id}', 'PagesController@payment');
 Route::get('benefit', 'PagesController@benefit');
@@ -54,8 +59,13 @@ Route::get('blog-list', 'PagesController@blogList');
 Route::get('signup', 'PagesController@signUp');
 Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
-Route::get('login', 'PagesController@login')->name('login');
+//login post route
+Route::get('/login','PagesController@login');
+Route::post('login', 'UserController@login')->name('login');
+//verify account route
+Route::get('verify/{id}', 'UserController@verifyAccount');
 Route::get('sign-up', 'PagesController@sign_up');
 Route::post('update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
+Route::post('transaction/store/{user}', 'TransactionController@store');

@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Request as FundRequest;
-use App\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CommentsController;
+use App\reply;
+use App\Comments;
 
-class RequestController extends Controller
+class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,27 +17,7 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-
-
-    public function fetch_featured_requests(Request $request)
-    {
-
-        if (Auth::check() && Auth::user()->role == 2) {
-        $hey = FundRequest::with('user')->where('isFeatured',0)->inRandomOrder()->limit(6)->get();
-            return view('randomrequest', compact('hey'));
-        }else{
-            return redirect('/');
-        }
-
-    }
-    public function availableFundingRequest()
-    {
-        $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
-
-        return view('unfunded-campaigns',compact('unattendedFundingRequests'));
+       
     }
 
     /**
@@ -57,7 +38,30 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $user = Auth::user();
+     $validator=Validator::make($request->all());
+
+   if($validator->fails()){
+     return response()->json($validator->messages(), 200);
+ }
+if (Auth::check() && Auth::user()->role == 2) {
+        
+ $reply = Reply::create([
+          'name' =>$name,
+          'reply' =>$request->reply,
+          ]);
+
+
+//dd($createComment);
+ $comment = Comment::find($request->comment_id);
+  if($reply){
+    return response()->json(['reply'=>'saved'], 200);
+  }else{
+    return response()->json(['error'=>'Sorry an error occured while processing your reply.']);
+  }}else{
+  	return response()->json(['error'=>'Only admin can reply comments']);
+  }
     }
 
     /**
@@ -68,11 +72,9 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $request = FundRequest::where('id', $id)->get();
-        return view('campaign', compact('request'));
-         
+        //
     }
-   
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,7 +83,7 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -104,7 +106,24 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
+    	$user = Auth::user();
+        if (Auth::check() && Auth::user()->role == 2) {
+        
+         $reply = $reply->find(request()->reply_id);
+            $post = $reply->post;
+
+
+        $deleted = $comment->delete();
+        if ($deleted) {
+            return response()->json(['status'=>'Deleted'], 200);
+  }else{
+    return response()->json(['error'=>'Sorry an error occured while deleting your reply.']);
+  }}else{
+            return response()->json(['error'=>'Only Admins can delete']);
+        }
+
+
         //
     }
-
+    
 }
