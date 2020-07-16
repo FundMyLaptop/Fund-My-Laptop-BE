@@ -31,7 +31,6 @@ Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');
 Route::patch('campaigns/{id}', 'RequestController@updateCampaign');
 Route::post('campaigns/{id}', 'RequestController@suspendCampaign');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
-Route::post('invest', 'InvestController@index');
 Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
@@ -79,3 +78,9 @@ Route::post('update-profile/{id}','UserController@update')->name('update-profile
 Route::get('edit-profile/{id}','UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
 Route::post('transaction/store/{user}', 'TransactionController@store');
+
+//paystack api
+Route::post('campaign/pay', 'InvestController@redirectToGateway')->name('campaign/pay');
+Route::get('campaign/pay/callback', 'InvestController@handleGatewayCallback');
+
+

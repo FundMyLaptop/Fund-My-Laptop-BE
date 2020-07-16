@@ -178,6 +178,8 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         // Laravel\Socialite\SocialiteServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Unicodeveloper\Paystack\PaystackServiceProvider::class
 
     ],
 
@@ -234,7 +236,9 @@ return [
         'Html' => 'Illuminate\Html\HtmlFacade',
         'Share' => Jorenvh\Share\ShareFacade::class,
         'Carbon' => 'Carbon\Carbon',
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
+        
     ],
 
 ];

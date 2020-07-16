@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\sendAcknowledgementEmail;
 use App\Request as FundRequest;
 use App\User;
+use Paystack;
+use App\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Redirect;
@@ -30,66 +33,61 @@ class InvestController extends Controller
 
     public function index(Request $request)
     {
-     
-        $validator = Validator::make($request->all(),
-        [
-            'request_id' => 'required|int',
-            'amount_invested' => 'required|int',
-            'email' => 'required'
-        ]);
-    if ($validator->fails()) {
-        return Redirect::back()->withInput()->withErrors($validator);
+        //
     }
-      $request_id = $request->input('request_id');
-        $amount_invested = $request->input('amount_invested');
-        $user_id =$request->input('user_id');
-        $funder_email = $request->input('email');
 
+    public function redirectToGateway(Request $request)
+    {
+        //dd($request->amount);
+        $rules = array(
+            'amount'      => 'required',
+            'fullName'      => 'required'
+        );
+        $validator = Validator::make($request->all(), $rules);
+
+        if (!$validator->fails()) {
+            $request->amount = $request->amount * 100;
+            return Paystack::getAuthorizationUrl()->redirectNow();
+        }        
+    }
+
+    /**
+     * Obtain Paystack payment information
+     * @return void
+     */
+    public function handleGatewayCallback(Transaction $trans)
+    {
+        $paymentDetails = Paystack::getPaymentData();
+
+        //dd($paymentDetails);
+        $user = Auth::user();
+
+        $trans->request_id       = $paymentDetails['data']['metadata']['request_id'];
+        $trans->user_id     = $paymentDetails['data']['metadata']['funder_id'];
+        $trans->transaction_ref    = $paymentDetails['data']['reference'];
+        $trans->status      = $paymentDetails['data']['status'];
+        $trans->amount      = ($paymentDetails['data']['amount'])/100;
+        $trans->response_code       = 200;
+        $saved = $trans->save();
+
+        if($saved){
+        $request = FundRequest::where('id', $trans->request_id)->with('user')->first();
+            $details = [
+                'greeting' => 'Hi ' . $user->firstName,
+                'body' => 'Your investment of ' . $trans->amount . ' in '. $request->user->firstName . '\'s campaign - ' . url('/campaign/'.$trans->request_id). ' - has been acknowledged',
+                'thanks' => 'Thank you.!',
+            ];
+            //$sendUser = User::first();
+
+            $user->notify(new sendAcknowledgementEmail($details));
+
+            return redirect()->route('investor-dashboard');
+        }
+        // else{
+        //     dd('Not saved');
         
-            $txref = uniqid(rand(0, 1000));
-            $curl = curl_init();
+        // }
 
-            $customer_email = $funder_email;
-            $amount = $amount_invested;
-            $currency = "NGN";
-            $PBFPubKey = "FLWPUBK_TEST-babd6d1a417bdd33d5af0cd1729b36c6-X";
-            $redirect_url = url('invest/redirect/' . $request_id.'/'.$user_id);
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/hosted/pay",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => json_encode([
-                    'amount' => $amount,
-                    'customer_email' => $customer_email,
-                    'currency' => $currency,
-                    'txref' => $txref,
-                    'PBFPubKey' => $PBFPubKey,
-                    'redirect_url' => $redirect_url
-                ]),
-                CURLOPT_HTTPHEADER => [
-                    "content-type: application/json",
-                    "cache-control: no-cache"
-                ],
-            ));
-
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-
-            if ($err) {
-                // there was an error contacting the rave API
-                return view('transaction-status')->with('message',$err);
-            }
-
-            $transaction = json_decode($response);
-
-            if (!$transaction->data && !$transaction->data->link) {
-                // there was an error from the API
-                return view('transaction-status')->with('message','API Error!');
-            }
-
-            // redirect to page so User can pay
-            return redirect($transaction->data->link);
-        
     }
 
 
