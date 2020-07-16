@@ -89,6 +89,8 @@ class RequestController extends Controller
             $photoURL = $request->photoURL ?? "";
             $currency = $request->currency ?? "";
             $amount = $request->amount ?? "";
+            $occupation = $request->occupation ?? "";
+            $repaymentPeriod = $request->repaymentPeriod ?? "";
             $isFunded = 0;
             $isSuspended = 0;
             $isActive = 0;
@@ -117,6 +119,8 @@ class RequestController extends Controller
             $fundreq->photoURL = htmlspecialchars($photoURL);
             $fundreq->currency = htmlspecialchars($currency);
             $fundreq->amount = htmlspecialchars($amount);
+            $fundreq->occupation = htmlspecialchars($occupation);
+            $fundreq->repaymentPeriod = htmlspecialchars($repaymentPeriod);
             $fundreq->isFunded = htmlspecialchars($isFunded);
             $fundreq->isSuspended = htmlspecialchars($isSuspended);
             $fundreq->isActive = htmlspecialchars($isActive);
