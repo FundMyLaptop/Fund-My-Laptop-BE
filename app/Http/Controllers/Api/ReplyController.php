@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\CommentsController;
+use App\Http\Controllers\CommentsController;
 use App\reply;
 use App\Comments;
 

@@ -33,10 +33,10 @@ Route::group(['namespace' => 'Api', 'middleware' => 'auth:api',  'prefix' => 'v1
 	});*/
 	Route::post('testimonial','TestimonialController@store');
 	Route::any('process-recurring-payments', 'RepaymentController@process');
-  Route::post('comment', 'Api\CommentsController@store');
-  Route::get('deletecomment', 'Api\CommentsController@destroy');
-  Route::post('reply', 'Api\ReplyController@store');
-  Route::get('deletereply', 'Api\ReplyController@destroy');
+  Route::post('comment', 'CommentsController@store');
+  Route::get('deletecomment', 'CommentsController@destroy');
+  Route::post('reply', 'ReplyController@store');
+  Route::get('deletereply', 'ReplyController@destroy');
   
     ///all other routes should be defined under this line using the format of line 25 (above)
 
