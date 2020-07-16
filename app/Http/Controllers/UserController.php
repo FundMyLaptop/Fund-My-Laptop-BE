@@ -71,7 +71,8 @@ class UserController extends Controller
     public function edit(Request $request, $id)
     {
         //
-            $user = User::find($request->id);
+            $user = Auth::user()->id;
+            //$user = User::find($request->id);
 
             //return redirect()->route('/update-profile/{$id}')->with('user', $user);
             return View::make('update-profilepage')->with('user', $user);
@@ -111,7 +112,7 @@ class UserController extends Controller
             $user->save();
 
             // redirect
-            return back()->with('success','Profile Updated');
+            return redirect()->back()->with('success','Profile Updated');
         }
     }
 
