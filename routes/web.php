@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/login/{provider}/investee-dashboard', 'SocialController@callback');
+Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 //Route::get('/redirect', 'SocialAuthGoogleController@redirect');
@@ -47,8 +47,8 @@ Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
-Route::get('investor-dashboard', 'PagesController@investorDashboard');
-Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');
+Route::get('/{provider}/investor-dashboard', 'PagesController@investorDashboard');
+Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');;
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
@@ -57,8 +57,11 @@ Route::get('contact', 'PagesController@contact');
 Route::get('blog-list', 'PagesController@blogList');
 // this points to the badly rendered blade
 Route::get('signup', 'PagesController@signUp');
+//signup route
+Route::post('signup', 'UserController@signUp');
 Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
+
 //login post route
 Route::get('/login','PagesController@login');
 Route::post('login', 'UserController@login')->name('login');
