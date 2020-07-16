@@ -26,6 +26,7 @@ class RequestsTableSeeder extends Seeder
                 'isFunded' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isSuspended' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isActive' => $faker->boolean($chanceOfGettingTrue = 50),
+                'isFeatured' => $faker->boolean($chanceOfGettingTrue = 50),
             ]);
         }
     }

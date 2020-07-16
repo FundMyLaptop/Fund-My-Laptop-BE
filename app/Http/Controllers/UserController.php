@@ -126,6 +126,62 @@ class UserController extends Controller
     {
         //
     }
+
+     //user registration
+     public function signUp(Request $request)
+     {
+         $credentials = $request->only('firstName','lastName','email', 'password');
+ 
+         $rules = array(
+             'email' => 'required|email|unique:users',
+             'password' => 'required',
+             'firstName' => 'required',
+             'lastName' => 'required'
+         );
+ 
+         $validator = Validator::make($request->all(), $rules);
+ 
+         if($validator->fails())
+            {
+                return Redirect::back()->withInput()->withErrors($validator);
+            } else {
+         $input = $request->all();
+         $input['password'] = bcrypt($input['password']);
+         $input['role'] = 'user';
+         //send verification mail to user
+         $verifyCode = '$2y$10$hO2Acl2tSRjFSv7Fw99gjOGrlOZpRH0HlpvRZbKKFHk1DbptU9k/G';
+         $verifyLink = "http://fundmylaptop.com/verify/poiuytrewq?mnbvcxz=".$input['email']."&lkjhgfdsa=".$verifyCode;
+         //send mail code starts
+         $email = new \SendGrid\Mail\Mail(); 
+         $email->setFrom("test@example.com", "FundMyLapTop");
+         $email->setSubject("Verify your account");
+         $email->addTo($input['email'], $input['firstName']);
+         $mailContent = "<strong>Hi, ".$input['firstName']."<br><br>Kindly use the link below to verify your account<br><br>Link: ".$verifyLink."</strong>";
+         $email->addContent(
+             "text/html", $mailContent
+         );
+         $sendgrid = new \SendGrid('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');
+         try {
+                 $response = $sendgrid->send($email);
+                 print $response->statusCode() . "\n";
+                 print_r($response->headers());
+                 print $response->body() . "\n";
+             } catch (Exception $e) {
+                 echo 'Caught exception: '. $e->getMessage() ."\n";
+             }
+         //send mail code ends
+         $saveData = User::create($input);
+         if($saveData){
+             return redirect('/signup')->with('status', 'Registration Successful, Please check your mail box for verification!');
+           } else {
+               return Redirect::back()
+                 ->withErrors([
+                     'credentials' => 'We cannot register you now; Please try again'
+                 ]);
+             }
+          }        
+     }
+
         // user login auth
     public function login(Request $request)
     {
