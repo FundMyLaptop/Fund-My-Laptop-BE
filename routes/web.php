@@ -54,6 +54,7 @@ Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
 Route::post('complaint-form', 'PagesController@complaintForm');
 Route::get('contact', 'PagesController@contact');
+Route::get('lend', 'PagesController@lend');
 Route::get('blog-list', 'PagesController@blogList');
 // this points to the badly rendered blade
 Route::get('signup', 'PagesController@signUp');

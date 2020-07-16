@@ -242,5 +242,10 @@ class PagesController extends Controller
     {
         return view('testmodals');
     }
+
+    public function lend()
+    {
+        return view('list-of-campaigns');
+    }
     
 }

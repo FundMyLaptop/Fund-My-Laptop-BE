@@ -21,7 +21,7 @@
 @include('includes.header')
 @endIf
 
-@include('includes.flash-msg')
+
 
 @yield('content')
 
