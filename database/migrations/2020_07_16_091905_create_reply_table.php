@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSocialAccountsTable extends Migration
+class CreateReplyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateSocialAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_accounts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->string('provider_name')->nullable();
-            $table->string('provider_id')->unique()->nullable();
+        Schema::create('reply', function (Blueprint $table) {
+            $table->bigIncrements('reply_id');
+            $table->string('name');
+            $table->string('reply');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateSocialAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_accounts');
+        Schema::dropIfExists('reply');
     }
 }

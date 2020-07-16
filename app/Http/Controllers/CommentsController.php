@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Request as FundRequest;
-use App\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Comments;
 
-class RequestController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,27 +15,7 @@ class RequestController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-
-
-    public function fetch_featured_requests(Request $request)
-    {
-
-        if (Auth::check() && Auth::user()->role == 2) {
-        $hey = FundRequest::with('user')->where('isFeatured',0)->inRandomOrder()->limit(6)->get();
-            return view('randomrequest', compact('hey'));
-        }else{
-            return redirect('/');
-        }
-
-    }
-    public function availableFundingRequest()
-    {
-        $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
-
-        return view('unfunded-campaigns',compact('unattendedFundingRequests'));
+       
     }
 
     /**
@@ -57,7 +36,26 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $user = Auth::user();
+     $validator=Validator::make($request->all());
+
+   if($validator->fails()){
+     return response()->json($validator->messages(), 200);
+ }
+
+
+        $createComment = Comment::create([
+          'name' =>$name,
+          'comment' =>$request->comment,
+          ]);
+//dd($createComment);
+  $fundreq = FundRequest::find($request->fundreq);
+  if($createComment){
+    return response()->json(['comment'=>'saved'], 200);
+  }else{
+    return response()->json(['error'=>'Sorry an error occured while processing your comment.']);
+  }
     }
 
     /**
@@ -68,11 +66,9 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $request = FundRequest::where('id', $id)->get();
-        return view('campaign', compact('request'));
-         
+        //
     }
-   
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -81,7 +77,7 @@ class RequestController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -104,7 +100,18 @@ class RequestController extends Controller
      */
     public function destroy($id)
     {
+         $comment = $comment->find(request()->id);
+            $post = $comment->post;
+
+
+        $deleted = $comment->delete();
+        if ($deleted) {
+            return response()->json(['status'=>'Deleted'], 200);
+  }else{
+    return response()->json(['error'=>'Sorry an error occured while deleting your comment.']);
+  }
+
         //
     }
-
+    
 }

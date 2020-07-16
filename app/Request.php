@@ -8,7 +8,7 @@ class Request extends Model
 {
 	protected $table = 'requests';
 
-	protected $fillable = ['user_id','title','description','photoURL','currency','amount','isFunded','isSuspended','isActive', 'isFeatured'];
+	protected $fillable = ['user_id','title','description','photoURL','currency','amount','occupation', 'repaymentPeriod','isFunded','isSuspended','isActive', 'isFeatured'];
 
     public function user() {
         return $this->belongsTo('App\User');
@@ -19,7 +19,7 @@ class Request extends Model
     }
 
     public function accrual() {
-        return $this->belongsTo('App\Accrual');
+        return $this->hasMany('App\Accrual');
     }
 
     public function transaction(){
