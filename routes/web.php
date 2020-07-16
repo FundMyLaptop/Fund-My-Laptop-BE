@@ -60,6 +60,7 @@ Route::get('signup', 'PagesController@signUp');
 Route::get('total-investment', 'PagesController@totalInvestment');
 Route::get('test-modals', 'PagesController@testModals');
 //login post route
+Route::get('/login','PagesController@login');
 Route::post('login', 'UserController@login')->name('login');
 //verify account route
 Route::get('verify/{id}', 'UserController@verifyAccount');

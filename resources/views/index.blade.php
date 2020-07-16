@@ -6,8 +6,7 @@
 
 
 @section('content')
-
-    <div class="jumbotron jumbotron px-0 px-md-4 mb-0 mb-md-4 ">
+    <div class="jumbotron jumbotron px-0 px-md-4 mb-0 mb-md-4 mt-0">
         <div class="row mt-lg-5 px-2 px-md-5 mx-auto mt-5">
             <div class="col-xl-8 px-0  mb-2 mb-sm-5 px-md-5 header-text mt-5
         d-flex
@@ -88,7 +87,7 @@
                                         aria-valuenow="{{ $percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <div class="d-flex justify-content-between mt-3 mb-2">
-                                    <span class="card-price"> 
+                                    <span class="card-price">
                                         N{{ number_format($amountFunded) }}
                                     </span>
                                     <span class="card-progress-num">
