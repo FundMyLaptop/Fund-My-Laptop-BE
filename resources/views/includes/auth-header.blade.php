@@ -27,7 +27,7 @@
                 <li hidden class="nav-item">
                     <a class="nav-link px-4 pl-4 font-weight-bold" href="{{url('investee-dashboard')}}">Investee Dashboard</a>
                 </li>
-                <a href="{{url('investee-dashboard')}}"><button class="btn btn-fml-secondary align-self-center nav-item view-dashboard-btn" >  View Dashboard</button></a>
+                <a href="{{url('investor-dashboard')}}"><button class="btn btn-fml-secondary align-self-center nav-item view-dashboard-btn" >  View Dashboard</button></a>
 
 
                 <div class="dropdown pl-4">
