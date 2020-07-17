@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-12 mb-4">
                 <h2><b>Raise money for <br> your laptop purchase<br> or fix</b></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum numquam nam, accusamus repudiandae ratione commodi esse, amet, hic porro quisquam explicabo fuga id consectetur odio quasi, ex minima sed ut.</p>
+                <p>In 5 simple and easy steps, lets show you how you can fund your laptop or raise funds to fix</p>
                 <button class="btnhiw">Get Started</button>
             </div>
             <div class="col-md-8 col-sm-12">
