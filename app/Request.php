@@ -37,6 +37,13 @@ class Request extends Model
         ][$attribute];
     }
 
+    public function getIsActiveAttribute($attribute){
+        return[
+            0 => 'Inactive',
+            1 => 'Active'
+        ][$attribute];
+    }
+
     public function scopeIsNotFunded($query){
         return $query->where('isFunded', 0);
     }

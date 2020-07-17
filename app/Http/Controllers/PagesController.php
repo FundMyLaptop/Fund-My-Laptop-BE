@@ -20,8 +20,18 @@ class PagesController extends Controller
             ['isFunded', '0'],
             ['isSuspended', '0']
         ])->oldest()->take(3)->get();
-        return view('index')->with(['oldRequests' => $oldRequests]);
+
+        $allRequests = FundRequest::paginate(15);
+
+        return view('index',compact('oldRequests','allRequests'));
     }
+
+    public function request($id){
+        $request = FundRequest::find($id);
+        //dd($request);
+        return view('details',compact('request'));
+    }
+
     public function termsAndConditions()
     {
         return view('terms-and-condition');
