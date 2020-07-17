@@ -39,7 +39,7 @@ class RequestController extends Controller
     {
         $unattendedFundingRequests = FundRequest::IsNotFunded()->paginate(30);
 
-        return view('unfunded-campaigns',compact($unattendedFundingRequests));
+        return view('unfunded-campaigns',compact('unattendedFundingRequests'));
     }
 
         /**

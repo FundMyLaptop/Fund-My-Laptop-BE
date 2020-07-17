@@ -23,7 +23,7 @@
             <div class="  header-form col-xl-4 my-5  pt-3 pb-5 bg-white"
             >
                 <!-- here should be form -->
-                <form class=" px-md-3 d-flex flex-column justify-content-center" method="post" action="{{ url('/campaigns') }}">
+                <form class=" px-md-3 d-flex flex-column justify-content-center" method="post" action="{{ route('campaigns/create') }}">
                 @csrf
                     <h5 class=" text-center mb-5 mt-0">Laptop Funding</h5>
                     <div class="form-group">
