@@ -11,6 +11,8 @@ use App\BackAccount;
 use App\Recommendation;
 use View;
 use Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserVerification;
 
 class UserController extends Controller
 {
@@ -127,11 +129,11 @@ class UserController extends Controller
         //
     }
 
-    //user registration
+     //user registration
      public function signUp(Request $request)
      {
          $credentials = $request->only('firstName','lastName','email', 'password');
-
+ 
          $rules = array(
              'email' => 'required|email|unique:users',
              'password' => 'required|confirmed',
@@ -139,9 +141,9 @@ class UserController extends Controller
              'firstName' => 'required',
              'lastName' => 'required'
          );
-
+ 
          $validator = Validator::make($request->all(), $rules);
-
+ 
          if($validator->fails())
             {
                 return Redirect::back()->withInput()->withErrors($validator);
@@ -156,7 +158,7 @@ class UserController extends Controller
          $verifyCode = '$2y$10$hO2Acl2tSRjFSv7Fw99gjOGrlOZpRH0HlpvRZbKKFHk1DbptU9k/G';
          $verifyLink = "http://fundmylaptop.com/verify/poiuytrewq?mnbvcxz=".$input['email']."&lkjhgfdsa=".$verifyCode;
          //send mail code starts
-         $email = new \SendGrid\Mail\Mail();
+         $email = new \SendGrid\Mail\Mail(); 
          $email->setFrom("noreply@fundmylaptop.com", "FundMyLapTop");
          $email->setSubject("Verify your account");
          $email->addTo($input['email'], $input['firstName']);
@@ -183,7 +185,7 @@ class UserController extends Controller
                      'credentials' => 'We cannot register you now; Please try again'
                  ]);
              }
-          }
+          }        
      }
 
         // user login auth
@@ -206,11 +208,10 @@ class UserController extends Controller
             }
         else {
             if(Auth::attempt($credentials) && Auth::user()->email_verified_at == NULL){
-                Auth::logout();
                 return Redirect::back()
                 ->withErrors([
                     'credentials' => 'Email is not verified yet, please check your mail or spam folder!'
-                ]);
+                ]); 
                 }
               return Redirect::back()
                 ->withErrors([
