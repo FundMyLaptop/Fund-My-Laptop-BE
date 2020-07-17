@@ -202,11 +202,7 @@ class UserController extends Controller
              return Redirect::back()->withInput()->withErrors($validator);
            } else {
                if(Auth::attempt($credentials) && Auth::user()->email_verified_at !== NULL){
-                   $checkUser = $request->get('zxcvbnm');
-                   if($checkUser && $checkUser == 'lkjhgfdsa'){
-                        return redirect('/update-profile')->with('status', 'Login Successful!');
-                   }
-                    return redirect('/investee-dashboard')->with('status', 'Login Successful!');
+                    return redirect('/update-profile')->with('status', 'Login Successful!');
             }
         else {
             if(Auth::attempt($credentials) && Auth::user()->email_verified_at == NULL){
