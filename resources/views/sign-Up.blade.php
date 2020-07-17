@@ -8,7 +8,7 @@
 	Refactored the code base: @ajadi
  -->
     <!-- main content goes in here -->
-	<main class="main-content d-sm-flex ">
+	<main class="main-content d-sm-flex mt-5  mt-lg-0 ">
 	<form class="login-box p-md-5 p-2" method="POST" action="{{ url('api/register') }}">
 		<input type="hidden" name="role" value="0">
 		@csrf
