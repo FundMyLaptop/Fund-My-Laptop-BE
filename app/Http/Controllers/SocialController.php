@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\socialAccount;
+use App\SocialAccount;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,24 +41,24 @@ class SocialController extends Controller
                 ],
                 200
             );
-//            return redirect()->to('/home');
+        //return redirect()->to('/home');
     }catch (Exception $exception){
             return response()->json(['error' => 'Unauthorized', 'message'=>$exception->getMessage()], 401);
         }
     }
     function createUser($getInfo,$provider){
         try{
-            $social = socialAccount::where(['provider_id' => $getInfo->id, 'provider' => $provider])->first();
+            $social = socialAccount::where(['provider_id' => $getInfo->id, 'provider_name' => $provider])->first();
             if($social){
                 return $social->User;
             }else {
                 if ($getInfo->email) {
                     $user = User::where('email', $getInfo->email)->first();
                     if ($user) {
-                        $social = socialAccount::create([
+                        $social = SocialAccount::create([
                             'user_id' => $user->id,
                             'provider_id' => $getInfo->id,
-                            'provider' => $provider
+                            'provider_name' => $provider
                         ]);
                         return $user;
                     } else {
@@ -68,9 +68,9 @@ class SocialController extends Controller
                             'role' => 0
                         ]);
 
-                        socialAccount::create([
+                        SocialAccount::create([
                             'user_id' => $user->id,
-                            'provider' => $provider,
+                            'provider_name' => $provider,
                             'provider_id' => $getInfo->id,
                         ]);
                         return $user;
@@ -82,9 +82,9 @@ class SocialController extends Controller
                         'role' => 0
                     ]);
 
-                    socialAccount::create([
+                    SocialAccount::create([
                         'user_id' => $user->id,
-                        'provider' => $provider,
+                        'provider_name' => $provider,
                         'provider_id' => $getInfo->id,
                     ]);
                     return $user;

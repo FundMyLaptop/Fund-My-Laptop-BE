@@ -17,6 +17,8 @@ HNGi7 Project by Team Avengers
     b. `php artisan key:generate`
     
     c. `php artisan migrate`
+
+    d. `composer install`
     
 5. Run `php artisan serve` to run the server and load on your browser
 

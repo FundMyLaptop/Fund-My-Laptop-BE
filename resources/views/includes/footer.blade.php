@@ -26,9 +26,9 @@
                         <li class="list-item">
                             <h5>RESOURCES </h5>
                         </li>
-                        <li class="list-item"><a href="{{ url('') }}"> Why choose FundMyLaptop </a></li>
+                        <li class="list-item"><a href="{{ url('why-choose-us') }}"> Why choose FundMyLaptop </a></li>
                         <li class="list-item"><a href="{{ url('how-it-works') }}"> How P2P Lending works</a></li>
-                        <li class="list-item"><a href="{{ url('') }}"> About FundMyLaptop</a></li>
+                        <li class="list-item"><a href="{{ url('about') }}"> About FundMyLaptop</a></li>
                         <li class="list-item"><a href="{{ url('contact') }}"> Contact Us</a></li>
                     </ul>
                 </div>
