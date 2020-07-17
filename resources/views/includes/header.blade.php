@@ -1,7 +1,7 @@
 <!--Header-->
 <div class="nav-container container-fluid shadow-sm">
     <nav class="navbar nav-top navbar-expand-md navbar-light container-md px-0">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{asset('img/layer1.png')}}" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
                     <a class="nav-link px-4 font-weight-bold" href="{{ url('borrow') }}">Borrow</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-4 font-weight-bold" href="{{ url('/#about') }}">About</a>
+                    <a class="nav-link px-4 font-weight-bold" href="{{ url('about') }}">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link pl-md-4 font-weight-bold" href="{{ url('login') }}">

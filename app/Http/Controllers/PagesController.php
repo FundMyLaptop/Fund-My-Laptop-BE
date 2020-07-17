@@ -25,7 +25,7 @@ class PagesController extends Controller
             ['isFunded', '0'],
             ['isSuspended', '0']
         ])->oldest()->take(3)->get();
-        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->limit(6)->get();
+        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',0)->inRandomOrder()->limit(6)->get();
         return view('index')->with(['oldRequests' => $oldRequests])->with(['featuredCampaigns' => $featuredCampaigns]);
     }
     public function termsAndConditions()
@@ -62,7 +62,19 @@ class PagesController extends Controller
     {
         return view('about');
     }
-        
+
+    public function profile()
+    {
+        $user = Auth::user()->id;
+        $data = User::with('request', 'favorite', 'bank_account', 'recommendation')->where('id', $user)->first();
+        if ($data) {
+            return view('update-profilepage', compact('data'));
+        } else {
+            return response()->json(['message' => 'Could not the details of this user'], 400);
+        }
+
+    }
+
     public function payment($id)
     {
         if (isset($id)) {
@@ -161,7 +173,7 @@ class PagesController extends Controller
     {
         return view('signup-success');
     }
-    // the homepage 
+    // the homepage
     public function investeeDashboard()
     {
         // check if profile is completed
@@ -216,7 +228,7 @@ class PagesController extends Controller
     public function updateProfile()
     {
         $token = 'Bearer ' . Auth::user()->token();
-        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
+        $client = new Client(['base_uri' => 'fundmylaptop.com/']);
         $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
         $body = $response->getBody();
         $content = $body->getContents();
@@ -227,7 +239,7 @@ class PagesController extends Controller
 
     public function signUp()
     {
-        return view('signup');
+        return view('sign-Up');
     }
 
     // redundant code
@@ -250,7 +262,7 @@ class PagesController extends Controller
     {
         return view('testmodals');
     }
-  
+
     public function lend()
     {
         return view('list-of-campaigns');
