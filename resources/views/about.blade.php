@@ -64,7 +64,7 @@
  
          <div class="container text-center my-5">
              <h3 class="my-5">Join other investors on Fund My Laptop</h3>
-             <div><a href="#" class="start-btn btn btn-secondary btn-lg align-self-center mb-5">Start funding</a></div>
+             <div><a href="{{ url('investee-dashboard') }}" class="start-btn btn btn-secondary btn-lg align-self-center mb-5">Start funding</a></div>
          </div>
      </div>
  @endsection
