@@ -50,7 +50,7 @@ return array(
     'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',
     'App\\Http\\Controllers\\RecommendationController' => $baseDir . '/app/Http/Controllers/RecommendationController.php',
     'App\\Http\\Controllers\\RepaymentController' => $baseDir . '/app/Http/Controllers/RepaymentController.php',
-    'App\\Http\\Controllers\\ReplyController' => $baseDir . '/app/Http/Controllers/Api/ReplyController.php',
+    'App\\Http\\Controllers\\ReplyController' => $baseDir . '/app/Http/Controllers/ReplyController.php',
     'App\\Http\\Controllers\\RequestController' => $baseDir . '/app/Http/Controllers/RequestController.php',
     'App\\Http\\Controllers\\SocialAuthGoogleController' => $baseDir . '/app/Http/Controllers/SocialAuthGoogleController.php',
     'App\\Http\\Controllers\\SocialController' => $baseDir . '/app/Http/Controllers/SocialController.php',

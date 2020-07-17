@@ -2,7 +2,7 @@
 
 @push('styles')
         <link rel = "stylesheet" href="{{asset('css/custom-css/profile-setup.css')}}">
-        <link rel="stylesheet" href="{{ url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap')}}"
+        <link rel="stylesheet" href="{{ url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap')}}">
         <link rel="stylesheet" href="{{asset('css/bootstrap-css/bootstrap.css')}}">
         <link rel="stylesheet" href="{{asset('css/custom-css/footer.css')}}">
 @endpush

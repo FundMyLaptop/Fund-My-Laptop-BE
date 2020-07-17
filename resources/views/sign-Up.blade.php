@@ -4,7 +4,7 @@
 @endpush
 
 @section('content')
-<!-- 
+<!--
 	Refactored the code base: @ajadi
  -->
     <!-- main content goes in here -->
@@ -13,7 +13,7 @@
 		<input type="hidden" name="role" value="0">
 		@csrf
 		<h2 class="p-sm-3 p-1 welcome-text">Welcome to <br> <strong>Fund my Laptop</strong></h2>
-    
+
         <p class="p-1 p-md-3 login-text mt-md-n4">Help Achieve Your dreams with funding for your laptops at little to no cost.</p>
 		<!-- first and last names -->
 		<div class="form-group row">
@@ -28,10 +28,10 @@
 		</div>
 		<!-- email and phone -->
 		<div class="form-group row">
-			
+
 				<input type="email" placeholder="Email" name="email" class="form-control" id="email" required>
 				<p id="erroremail" class="error text-danger text-center text-sm-left">
-			
+
 		</div>
 		<!-- password -->
 		<div class="form-group row">
@@ -49,27 +49,27 @@
 			<input class="check" type="checkbox" required >
 			<label class="terms"> I agree to the <span>Terms Policy Conditions</span></label>
 		</div>
-		
+
         <div>
             <input type="submit" class="form-control login-btn  btn-fml-secondary" value="Sign Up">
 		</div>
-		
+
 		<div>
 		<div class="separator">OR</div>
-			<a id="googleSignupButton" href=""><img src="{{ asset('img/google_logo.PNG') }}" />Sign up with Google</a>
+			<a id="googleSignupButton" href="{{url('/auth/redirect/google')}}"><img src="{{ asset('img/google_logo.PNG') }}" />Sign up with Google</a>
 		</div>
         <p class="account-info-text text-center py-4">Already have an account? <a href="{{ url('login') }}" class="sign-up-link">Log In</a></p>
-       
+
         <!-- <div id="error" class="error p-1 "></div>
         </div> -->
 
-		
+
 	</form>
-	
+
 	<div class="login-img-box d-none d-md-block">
         <img src="../img/login-img.png" class="login-img" alt="login FundMyLaptop">
     </div>
-    
+
 </main>
 @endsection
 

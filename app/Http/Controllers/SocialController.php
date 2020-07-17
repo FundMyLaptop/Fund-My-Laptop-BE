@@ -41,7 +41,7 @@ class SocialController extends Controller
                 ],
                 200
             );
-        return redirect()->to('/home');
+        //return redirect()->to('/home');
     }catch (Exception $exception){
             return response()->json(['error' => 'Unauthorized', 'message'=>$exception->getMessage()], 401);
         }

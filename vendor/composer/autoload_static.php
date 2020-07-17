@@ -635,7 +635,7 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\RecommendationController' => __DIR__ . '/../..' . '/app/Http/Controllers/RecommendationController.php',
         'App\\Http\\Controllers\\RepaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/RepaymentController.php',
-        'App\\Http\\Controllers\\ReplyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ReplyController.php',
+        'App\\Http\\Controllers\\ReplyController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReplyController.php',
         'App\\Http\\Controllers\\RequestController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequestController.php',
         'App\\Http\\Controllers\\SocialAuthGoogleController' => __DIR__ . '/../..' . '/app/Http/Controllers/SocialAuthGoogleController.php',
         'App\\Http\\Controllers\\SocialController' => __DIR__ . '/../..' . '/app/Http/Controllers/SocialController.php',

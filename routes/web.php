@@ -20,7 +20,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
+Route::get('/{provider}/update-profile', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 //Route::get('/redirect', 'SocialAuthGoogleController@redirect');
@@ -43,6 +43,8 @@ Route::get('campaign/{id}', 'RequestController@show');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
+Route::get('about', 'PagesController@about');
+Route::get('update-profile', 'PagesController@profile');
 /* Route::get('payment', 'PagesController@payment'); */
 //make payment for a request... where {id} is requestId
 
@@ -56,8 +58,9 @@ Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
-Route::get('/{provider}/investor-dashboard', 'PagesController@investorDashboard');
-Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');;
+Route::get('investor-dashboard', 'PagesController@investorDashboard');
+Route::get('/investor-dashboard', 'PagesController@investorDashboard')->name('investor-dashboard');
+Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
@@ -86,6 +89,8 @@ Route::post('login', 'UserController@login')->name('login');
 //verify account route
 Route::get('verify/{id}', 'UserController@verifyAccount');
 Route::get('sign-up', 'PagesController@sign_up');
+Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
+Route::get('edit-profile/{id}','UserController@edit');
 Route::post('update-profile/{id}', 'UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}', 'UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');
