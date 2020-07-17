@@ -94,7 +94,11 @@ class UserController extends Controller
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'email'      => 'required|email',
-            'phone'      => 'required'
+            'phone'      => 'required',
+            'date_of_birth' => 'sometimes',
+            'sex' => 'sometimes',
+            'bio' => 'sometimes',
+            'address' => 'required',
         );
         $validator = Validator::make($request->all(), $rules);
 
@@ -105,12 +109,21 @@ class UserController extends Controller
                 ->withInput();
         } else {
             // store
-            $user = User::find('id');
-            $user->phone       = $request->input('phone');
-            $user->email      = $request->input('email');
-            $user->address    = $request->input('address');
-            $user->save();
+            // $user = User::find('id');
+            // $user->phone       = $request->input('phone');
+            // $user->email      = $request->input('email');
+            // $user->address    = $request->input('address');
+            // $user->save();
 
+            $user_id = Auth::id();
+            //fetch the request id from database
+            $update = User::findOrFail($id);
+            
+                $requestUpdate = [
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                ];
+                User::where('id', $id)->update($requestUpdate);
             // redirect
             return back()->with('success','Profile Updated');
         }

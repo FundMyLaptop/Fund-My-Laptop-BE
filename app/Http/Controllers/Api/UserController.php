@@ -218,6 +218,37 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        try {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'date_of_birth' => 'sometimes',
+                    'sex' => 'sometimes',
+                    'bio' => 'sometimes',
+                    'address' => 'required',
+                    'phone' => 'required',
+                ]
+            );
+
+                if ($validator->fails()) {
+                    return redirect('/update-profile/'.$id)->withErrors($validator);
+                } else {
+                    // get authenticated user id
+                    $user_id = Auth::id();
+                    //fetch the request id from database
+                    $update = User::findOrFail($id);
+                    
+                        $requestUpdate = [
+                            'phone' => $request->phone,
+                            'address' => $request->address,
+                        ];
+                        User::where('id', $id)->update($requestUpdate);
+                        return redirect()->back()->with('edit_success', 'Update successful.');
+                    
+                }
+            } catch (\Exception $ex) {
+                return redirect()->back()->with('edit_error', 'Oops! something went wrong.');
+            }
     }
 
     /**
