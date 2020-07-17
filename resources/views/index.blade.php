@@ -221,8 +221,9 @@
                 we only send newsletter weekly and we promise not to spam</p>
         </div>
         <div class="col-md-8 news-letter-form ml-md-5" >
-            <form action="">
-                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input" placeholder="Enter Email">
+            <form action="/newsletter" method="POST">
+                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input {{ $errors->has('email') ? 'has-error': '' }}" placeholder="Enter Email"  >
+                <span class="text-danger">{{ $errors->first('email') }}</span>
                 <button class="mb-5 subscribe-btn"> Subscribe</button>
             </form>
         </div>
