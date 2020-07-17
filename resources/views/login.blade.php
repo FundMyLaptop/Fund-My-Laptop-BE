@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 <main class="main-content d-sm-flex ">
-    <form class="login-box p-md-5 p-2" method="POST" action="{{ route('login') }}">
+    <form class="login-box p-md-5 p-2" method="POST">
 
         {!! csrf_field() !!}
 

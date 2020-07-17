@@ -25,6 +25,11 @@ Route::get('/{provider}/update-profile', 'SocialController@callback');
 
 //Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 //Route::get('/callback', 'SocialAuthGoogleController@callback');
+
+//Middleware to serve all logged in pages 
+//Only logged users have access to these pages
+Route::group(['middleware' => 'auth'], function () {
+
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('campaigns', 'RequestController@investeeCampaigns');
 Route::get('campaigns/create', 'RequestController@createCampaign'); //
@@ -36,14 +41,6 @@ Route::post('campaigns/{id}', 'RequestController@suspendCampaign');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
-Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
-Route::get('privacy-policy', 'PagesController@privacyPolicy');
-Route::get('campaign', 'PagesController@campaign');
-Route::get('campaign/{id}', 'RequestController@show');
-Route::get('career', 'PagesController@career');
-Route::get('album', 'PagesController@album');
-Route::get('faq', 'PagesController@faq');
-Route::get('about', 'PagesController@about');
 Route::get('update-profile', 'PagesController@profile');
 /* Route::get('payment', 'PagesController@payment'); */
 //make payment for a request... where {id} is requestId
@@ -66,29 +63,6 @@ Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
 Route::post('complaint-form', 'PagesController@complaintForm');
 
-//contact routes
-Route::get('contact', 'PagesController@contact');
-
-Route::post('process_contact', 'ContactController@store');
-
-
-
-Route::get('lend', 'PagesController@lend');
-
-Route::get('blog-list', 'PagesController@blogList');
-// this points to the badly rendered blade
-Route::get('signup', 'PagesController@signUp');
-//signup route
-Route::post('signup', 'UserController@signUp');
-Route::get('total-investment', 'PagesController@totalInvestment');
-Route::get('test-modals', 'PagesController@testModals');
-
-//login post route
-Route::get('/login', 'PagesController@login');
-Route::post('login', 'UserController@login')->name('login');
-//verify account route
-Route::get('verify/{id}', 'UserController@verifyAccount');
-Route::get('sign-up', 'PagesController@sign_up');
 Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
 Route::post('update-profile/{id}', 'UserController@update')->name('update-profile');
@@ -102,3 +76,37 @@ Route::post('campaign/pay', 'InvestController@redirectToGateway')->name('campaig
 Route::get('campaign/pay/callback', 'InvestController@handleGatewayCallback');
 
 
+Route::get('total-investment', 'PagesController@totalInvestment');
+Route::get('test-modals', 'PagesController@testModals');
+
+});
+
+//None Auth Pages
+
+Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
+Route::get('privacy-policy', 'PagesController@privacyPolicy');
+Route::get('campaign', 'PagesController@campaign');
+Route::get('campaign/{id}', 'RequestController@show');
+Route::get('career', 'PagesController@career');
+Route::get('album', 'PagesController@album');
+Route::get('faq', 'PagesController@faq');
+Route::get('about', 'PagesController@about');
+
+//contact routes
+Route::get('contact', 'PagesController@contact');
+
+Route::post('process_contact', 'ContactController@store');
+
+Route::get('lend', 'PagesController@lend');
+
+Route::get('blog-list', 'PagesController@blogList');
+// this points to the badly rendered blade
+Route::get('signup', 'PagesController@signUp');
+//signup route
+Route::post('signup', 'UserController@signUp');
+//login post route
+Route::get('/login', 'PagesController@login');
+Route::post('login', 'UserController@login')->name('login');
+//verify account route
+Route::get('verify/{id}', 'UserController@verifyAccount');
+Route::get('sign-up', 'PagesController@sign_up');

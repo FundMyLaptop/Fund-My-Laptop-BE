@@ -9,12 +9,31 @@
  -->
     <!-- main content goes in here -->
 	<main class="main-content d-sm-flex mt-5  mt-lg-0 ">
-	<form class="login-box p-md-5 p-2" method="POST" action="{{ url('api/register') }}">
+	<form class="login-box p-md-5 p-2" method="POST">
 		<input type="hidden" name="role" value="0">
-		@csrf
+		            {!! csrf_field() !!}
+
 		<h2 class="p-sm-3 p-1 welcome-text">Welcome to <br> <strong>Fund my Laptop</strong></h2>
 
         <p class="p-1 p-md-3 login-text mt-md-n4">Help Achieve Your dreams with funding for your laptops at little to no cost.</p>
+		            <!-- check user for valid or invalid signup -->   
+         @if (session('status'))
+            <br>
+            <br>
+            <p class="alert alert-success">{{ session('status') }}
+            </p>
+            @endif
+            @if (session('error'))
+            <p class="alert alert-danger">{{ session('error') }}
+            </p>
+            @endif
+​
+            @foreach ($errors->all() as $error)
+            <br>
+            <br>
+            <p class="alert alert-danger">{{ $error }}
+            </p>
+            @endforeach
 		<!-- first and last names -->
 		<div class="form-group row">
 			<div class="col-md-6">
@@ -36,11 +55,11 @@
 		<!-- password -->
 		<div class="form-group row">
 			<div class="col-md-6">
-				<input type="password" placeholder="Password Again" name="password" class="form-control" id="password" required>
+				<input type="password" placeholder="Password" name="password" class="form-control" id="password" required>
 				<p id="erroremail" class="error text-danger text-center text-sm-left">
 			</div>
 			<div class="col-md-6">
-				<input type="password" placeholder="Password Again" name="password_again" class="form-control" id="password_again" required>
+				<input type="password" placeholder="Password Confirmation" name="password_confirmation" class="form-control" id="password_confirmation" required>
 				<p id="errorPasswordAgain" class="error text-danger text-center text-sm-left">
 			</div>
 		</div>
@@ -72,5 +91,3 @@
 
 </main>
 @endsection
-
-
