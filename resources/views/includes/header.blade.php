@@ -14,7 +14,7 @@
                     <a class="nav-link px-4 font-weight-bold" href="{{ url('lend') }}">Lend</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-4 font-weight-bold" href="{{ url('borrow') }}">Borrow</a>
+                    <a class="nav-link px-4 font-weight-bold" href="{{ url('signup') }}">Borrow</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-4 font-weight-bold" href="{{ url('about') }}">About</a>
