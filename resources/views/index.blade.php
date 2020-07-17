@@ -23,17 +23,19 @@
             <div class="  header-form col-xl-4 my-5  pt-3 pb-5 bg-white"
             >
                 <!-- here should be form -->
-                <form action="" class=" px-md-3 d-flex flex-column justify-content-center">
+                <form class=" px-md-3 d-flex flex-column justify-content-center" method="post" action="{{ url('/campaigns') }}">
+                @csrf
                     <h5 class=" text-center mb-5 mt-0">Laptop Funding</h5>
                     <div class="form-group">
                         <label for="inputAddress">Campaign Name</label>
-                        <input type="text" class="form-control" id="CampaignName" placeholder="Campaign name here..">
+                        <input type="text" class="form-control" name="title" id="CampaignName" placeholder="Campaign name here..">
                     </div>
                     <div class="form-group">
                         <label for="inputState">Target</label>
-                        <select id="inputState" class="form-control">
+                        <select id="inputState" class="form-control" name="amount">
                             <option selected>$1000</option>
-                            <option>$10000</option>
+                            <option>$20000</option>
+                            <option>$30000</option>
                         </select>
                     </div>
                     <!-- date row -->
@@ -48,7 +50,7 @@
                             <input class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
-                    <button class="btn-form mx-auto my-4">Start Compaign</button>
+                    <button type="submit" class="btn-form mx-auto my-4">Start Compaign</button>
                 </form>
             </div>
         </div>
