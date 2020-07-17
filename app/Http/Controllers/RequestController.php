@@ -86,8 +86,7 @@ class RequestController extends Controller
         //Get the fundee real name from user table
         $fundee = User::where('id', $user_id)->first();
         //Get all funded and suspended and featured
-        $pastcampaign = FundRequest::where('isActive', 0)->where('isFeatured', 0)->where('isFunded', 1)->orderBy('updated_at', 'desc')->paginate(5);
-        //return view('manage-campaign', compact('campaign', 'requests', 'fundee', 'pastcampaign', 'funder', 'userDonation'));
+        $pastcampaign = FundRequest::where('user_id', $user_id)->where('isFunded', 1)->orderBy('updated_at', 'desc')->paginate(5);
         return view('manage-campaign', compact('campaign', 'requests', 'fundee', 'pastcampaign', 'funder', 'userDonation'));
     }
 
@@ -122,32 +121,33 @@ class RequestController extends Controller
                 ]
             );
             if ($validator->fails()) {
-                return redirect('/campaigns/create')->withErrors($validator);
-            }
-            if ($request->amount < 1) {
-                return redirect()->back()->with('create_error', 'Please enter a valid amount.');
-            }
-            // get authenticated user id
-//        $user_id = Auth::id();
-            $user_id = Auth::user()->id;
-            $requestInfo = [
-                'user_id' => $user_id,
-                'title' => $request->title,
-                'description' => $request->description,
-                'photoURL' => $request->photo_URL,
-                'repaymentPeriod' => $request->repaymentPeriod,
-                'repaymentTimes' => $request->repaymentTimes,
-                'currency' => 1,
-                'amount' => $request->amount,
-                'isFunded' => 0,
-                'isSuspended' => 0,
-                'isActive' => 1,
-            ];
-
-            if (FundRequest::create($requestInfo)) {
-                return redirect()->back()->with('create_success', 'Campaign request created successfully.');
+                return redirect('/campaigns/create')->withErrors($validator)->withInput();
             } else {
-                return redirect()->back()->with('create_error', 'Campaign request creation failed.');
+                if ($request->amount < 1) {
+                    return redirect()->back()->with('create_error', 'Please enter a valid amount.');
+                }
+                // get authenticated user id
+                // $user_id = Auth::id();
+                $user_id = Auth::user()->id;
+                $requestInfo = [
+                    'user_id' => $user_id,
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'photoURL' => $request->photo_URL,
+                    'repaymentPeriod' => $request->repaymentPeriod,
+                    'repaymentTimes' => $request->repaymentTimes,
+                    'currency' => 1,
+                    'amount' => $request->amount,
+                    'isFunded' => 0,
+                    'isSuspended' => 0,
+                    'isActive' => 1,
+                ];
+
+                if (FundRequest::create($requestInfo)) {
+                    return redirect()->back()->with('create_success', 'Campaign request created successfully.');
+                } else {
+                    return redirect()->back()->with('create_error', 'Campaign request creation failed.');
+                }
             }
         } catch (\Exception $ex) {
             return redirect()->back()->with('create_error', 'Oops! something went wrong.');
@@ -196,7 +196,7 @@ class RequestController extends Controller
                 return redirect('/campaigns/edit/' . $id)->withErrors($validator);
             } else {
                 // get authenticated user id
-//        $user_id = Auth::id();
+                // $user_id = Auth::id();
                 $user_id = Auth::user()->id;
                 //fetch the request id from database
                 $update = FundRequest::findOrFail($id);
