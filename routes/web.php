@@ -43,6 +43,8 @@ Route::get('campaign/{id}', 'RequestController@show');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
+Route::get('about', 'PagesController@about');
+Route::get('update-profile', 'PagesController@profile');
 /* Route::get('payment', 'PagesController@payment'); */
 //make payment for a request... where {id} is requestId
 
