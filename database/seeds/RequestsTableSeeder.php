@@ -25,6 +25,7 @@ class RequestsTableSeeder extends Seeder
                 'amount' => $faker->randomNumber(6),
                 'occupation' => $occ,
                 'repaymentPeriod' => $faker->randomNumber(4),
+                'repaymentTimes' => $faker->randomNumber(2),
                 'isFunded' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isSuspended' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isFeatured' => $faker->boolean($chanceOfGettingTrue = 50),

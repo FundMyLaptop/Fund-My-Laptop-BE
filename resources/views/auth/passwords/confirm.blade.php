@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layout.app')
 
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">{{ __('Confirm Password') }}</div>
+            <div class="">
+                <div class="">{{ __('Confirm Password') }}</div>
 
-                <div class="card-body">
+                <div class="">
                     {{ __('Please confirm your password before continuing.') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
@@ -21,7 +21,7 @@
                                     name="password" placeholder="{{ __('Password') }}"
                                     required autocomplete="current-password">
                                     <i class="la la-lock"></i>
-                                </div>                                
+                                </div>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
