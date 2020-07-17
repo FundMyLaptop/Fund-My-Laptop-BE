@@ -51,8 +51,8 @@
                 <div class="navbar-nav flex-row toggle-menu">
                     <a class="nav-item nav-link pr-0 align-self-center" href="#">
                         <div class="position-relative">
-                            <img src="{{asset('img/notification-dot.svg') }}" alt="new notifications" class="position-absolute notification-dot" />
-                            <img src="{{asset('img/notification.svg') }}" class="notification-icon" alt="notification icon" />
+                            <img src="{{asset('img/notification-dot.svg')}}" alt="new notifications" class="position-absolute notification-dot" />
+                            <img src="{{asset('img/notification.svg')}}" class="notification-icon" alt="notification icon" />
                         </div>
                     </a>
                 </div>
