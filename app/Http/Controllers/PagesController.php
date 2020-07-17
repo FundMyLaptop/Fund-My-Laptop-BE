@@ -239,7 +239,7 @@ class PagesController extends Controller
 
     public function signUp()
     {
-        return view('sign-Up');
+        return view('signup');
     }
 
     // redundant code
