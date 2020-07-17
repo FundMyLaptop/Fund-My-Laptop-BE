@@ -3,7 +3,7 @@ namespace App\Services;
 use App\SocialGoogleAccount;
 use App\User;
 use Laravel\Socialite\Contracts\User as ProviderUser;
-class sSocialGoogleAccountService
+class SocialGoogleAccountService
 {
     public function createOrGetUser(ProviderUser $providerUser)
     {
