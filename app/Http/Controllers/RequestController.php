@@ -102,6 +102,10 @@ class RequestController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function storeCampaign(Request $request){
+        if(!auth::check()){
+            return redirect('/login');
+        }
+
         try {
             $validator = Validator::make(
                 $request->all(),
@@ -114,7 +118,7 @@ class RequestController extends Controller
                 ]
             );
             if ($validator->fails()) {
-                return redirect('/campaigns/create')->withErrors($validator);
+                return redirect('/campaigns/create')->withInput($request->input());
             }
             if ($request->amount < 1) {
                 return redirect()->back()->with('create_error', 'Please enter a valid amount.');
@@ -256,9 +260,9 @@ class RequestController extends Controller
     {
         $request = FundRequest::where('id', $id)->get();
         return view('campaign', compact('request'));
-         
+
     }
-   
+
     /**
      * Show the form for editing the specified resource.
      *
