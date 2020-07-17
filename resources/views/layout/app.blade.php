@@ -15,11 +15,13 @@
 </head>
 
 <body>
-@if(Auth::check()==True) {
+@if(Auth::check()==True) 
 @include('includes.auth-header')
 @else
 @include('includes.header')
 @endIf
+
+
 
 @yield('content')
 
