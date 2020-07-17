@@ -23,10 +23,12 @@ class RequestsTableSeeder extends Seeder
                 'photoURL' => $faker->imageUrl($width = 640, $height = 480),
                 'currency' => $cur,
                 'amount' => $faker->randomNumber(6),
+                'occupation' => $faker->text($maxNbChars = 50),
+                'repaymentPeriod' => $faker->date($format = 'Y-m-d'),
                 'isFunded' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isSuspended' => $faker->boolean($chanceOfGettingTrue = 50),
-                'isActive' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isFeatured' => $faker->boolean($chanceOfGettingTrue = 50),
+                'isActive' => $faker->boolean($chanceOfGettingTrue = 50),
             ]);
         }
     }

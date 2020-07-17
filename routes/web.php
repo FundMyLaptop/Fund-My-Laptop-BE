@@ -27,7 +27,7 @@ Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('campaigns', 'RequestController@investeeCampaigns');
-Route::get('campaigns/create', 'RequestController@createCampaign'); //
+Route::get('campaigns/create', 'RequestController@createCampaign')->name('campaigns/create')->middleware('auth'); //
 Route::post('campaigns', 'RequestController@storeCampaign');
 Route::get('campaigns/edit/{id}', 'RequestController@editCampaign');
 Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');

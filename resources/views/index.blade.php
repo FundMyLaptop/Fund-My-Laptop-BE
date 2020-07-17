@@ -23,15 +23,15 @@
             <div class="  header-form col-xl-4 my-5  pt-3 pb-5 bg-white"
             >
                 <!-- here should be form -->
-                <form action="" class=" px-md-3 d-flex flex-column justify-content-center">
+        <form action="{{route('campaigns/create')}}" class=" px-md-3 d-flex flex-column justify-content-center">
                     <h5 class=" text-center mb-5 mt-0">Laptop Funding</h5>
                     <div class="form-group">
                         <label for="inputAddress">Campaign Name</label>
-                        <input type="text" class="form-control" id="CampaignName" placeholder="Campaign name here..">
+                        <input name="name" type="text" class="form-control" id="CampaignName" placeholder="Campaign name here..">
                     </div>
                     <div class="form-group">
                         <label for="inputState">Target</label>
-                        <select id="inputState" class="form-control">
+                        <select name="options" id="inputState" class="form-control">
                             <option selected>$1000</option>
                             <option>$10000</option>
                         </select>
@@ -40,15 +40,15 @@
                     <div class="row">
                         <div class="form-group col-md-6 pr-lg-1">
                             <label for="example-date-input" class=" col-form-label">Start Date</label>
-                            <input class="form-control" type="date"  id="example-date-input">
+                            <input name="start-date" class="form-control" type="date"  id="example-date-input">
 
                         </div>
                         <div class="form-group col-md-6  pl-lg-1">
                             <label for="example-date-input" class=" col-form-label">End Date</label>
-                            <input class="form-control" type="date"  id="example-date-input">
+                            <input name="end-date" class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
-                    <button class="btn-form mx-auto my-4">Start Compaign</button>
+                    <button class="btn-form mx-auto my-4">Start Campaign</button>
                 </form>
             </div>
         </div>
