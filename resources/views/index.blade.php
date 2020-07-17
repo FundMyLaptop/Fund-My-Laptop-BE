@@ -33,9 +33,9 @@
                     <div class="form-group">
                         <label for="inputState">Target</label>
                         <select id="inputState" class="form-control" name="amount">
-                            <option selected>$1000</option>
-                            <option>$20000</option>
-                            <option>$30000</option>
+                            <option selected value="1000">$1000</option>
+                            <option value="20000">$20000</option>
+                            <option value="30000">$30000</option>
                         </select>
                     </div>
                     <!-- date row -->
@@ -221,8 +221,9 @@
                 we only send newsletter weekly and we promise not to spam</p>
         </div>
         <div class="col-md-8 news-letter-form ml-md-5" >
-            <form action="">
-                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input" placeholder="Enter Email">
+            <form action="/newsletter" method="POST">
+                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input {{ $errors->has('email') ? 'has-error': '' }}" placeholder="Enter Email"  >
+                <span class="text-danger">{{ $errors->first('email') }}</span>
                 <button class="mb-5 subscribe-btn"> Subscribe</button>
             </form>
         </div>

@@ -72,6 +72,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\checkBlocked' => $baseDir . '/app/Http/Middleware/checkBlocked.php',
     'App\\Mail\\ComplaintFormMail' => $baseDir . '/app/Mail/ComplaintFormMail.php',
+    'App\\Newletter' => $baseDir . '/app/Newletter.php',
     'App\\Notifications\\EmailVerificationNotification' => $baseDir . '/app/Notifications/EmailVerificationNotification.php',
     'App\\Notifications\\PasswordResetNotification' => $baseDir . '/app/Notifications/PasswordResetNotification.php',
     'App\\Notifications\\sendAcknowledgementEmail' => $baseDir . '/app/Notifications/sendAcknowledgementEmail.php',

@@ -657,6 +657,7 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\checkBlocked' => __DIR__ . '/../..' . '/app/Http/Middleware/checkBlocked.php',
         'App\\Mail\\ComplaintFormMail' => __DIR__ . '/../..' . '/app/Mail/ComplaintFormMail.php',
+        'App\\Newletter' => __DIR__ . '/../..' . '/app/Newletter.php',
         'App\\Notifications\\EmailVerificationNotification' => __DIR__ . '/../..' . '/app/Notifications/EmailVerificationNotification.php',
         'App\\Notifications\\PasswordResetNotification' => __DIR__ . '/../..' . '/app/Notifications/PasswordResetNotification.php',
         'App\\Notifications\\sendAcknowledgementEmail' => __DIR__ . '/../..' . '/app/Notifications/sendAcknowledgementEmail.php',

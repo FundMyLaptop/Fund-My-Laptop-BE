@@ -121,7 +121,7 @@ class RequestController extends Controller
                 ]
             );
             if ($validator->fails()) {
-                return redirect('/campaigns/create')->withErrors($validator)->withInput();
+                return redirect()->back()->withErrors($validator)->withInput();
             } else {
                 if ($request->amount < 1) {
                     return redirect()->back()->with('create_error', 'Please enter a valid amount.');
