@@ -1,3 +1,4 @@
+
 <!--Header-->
 <div class="nav-container container-fluid shadow-sm">
     <nav class="navbar nav-top navbar-expand-md navbar-light container-md px-0">
@@ -7,7 +8,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+​
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item">
@@ -26,7 +27,7 @@
                 <li hidden class="nav-item">
                     <a class="nav-link px-4 pl-4 font-weight-bold" href="{{url('investee-dashboard')}}">Investee Dashboard</a>
                 </li>
-                <a href="{{url('investee-dashboard')}}"><button class="btn btn-fml-secondary align-self-center nav-item view-dashboard-btn" >  View Dashboard</button></a>
+                <a href="{{url('investor-dashboard')}}"><button class="btn btn-fml-secondary align-self-center nav-item view-dashboard-btn" >  View Dashboard</button></a>
 
 
                 <div class="dropdown pl-4">
@@ -45,7 +46,6 @@
                         </form>
                     </div>
                 </div>
-
                 <div class="navbar-nav flex-row toggle-menu">
                     <a class="nav-item nav-link pr-0 align-self-center" href="#">
                         <div class="position-relative">

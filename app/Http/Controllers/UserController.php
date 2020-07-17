@@ -11,6 +11,8 @@ use App\BackAccount;
 use App\Recommendation;
 use View;
 use Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserVerification;
 
 class UserController extends Controller
 {
@@ -76,9 +78,9 @@ class UserController extends Controller
 
             //return redirect()->route('/update-profile/{$id}')->with('user', $user);
             return View::make('update-profilepage')->with('user', $user);
-    }      
+    }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -89,12 +91,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'email'      => 'required|email',
-            'phone'      => 'required'
+            'phone'      => 'required',
+            'date_of_birth' => 'sometimes',
+            'sex' => 'sometimes',
+            'bio' => 'sometimes',
+            'address' => 'required',
         );
         $validator = Validator::make($request->all(), $rules);
 
@@ -105,12 +111,21 @@ class UserController extends Controller
                 ->withInput();
         } else {
             // store
-            $user = User::find('id');
-            $user->phone       = $request->input('phone');
-            $user->email      = $request->input('email');
-            $user->address    = $request->input('address');
-            $user->save();
+            // $user = User::find('id');
+            // $user->phone       = $request->input('phone');
+            // $user->email      = $request->input('email');
+            // $user->address    = $request->input('address');
+            // $user->save();
 
+            $user_id = Auth::id();
+            //fetch the request id from database
+            $update = User::findOrFail($id);
+            
+                $requestUpdate = [
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                ];
+                User::where('id', $id)->update($requestUpdate);
             // redirect
             return back()->with('success','Profile Updated');
         }
@@ -127,7 +142,7 @@ class UserController extends Controller
         //
     }
 
-    //user registration
+     //user registration
      public function signUp(Request $request)
      {
          $credentials = $request->only('firstName','lastName','email', 'password');
