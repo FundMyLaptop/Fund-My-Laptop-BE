@@ -32,7 +32,7 @@
                 </div>
                 <input type="email" id="email" name="email" placeholder="Email" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
-                <input type="password" placeholder="Password Again" name="password_again" id="password_again" required>
+                <input type="password" placeholder="Password Confirmation" name="password_confirmation" id="password_confirmation" required>
                 <div>
                     <input class="check" type="checkbox" required>
                     <label class="terms"> I agree to the <span>Terms Policy Conditions</span></label>

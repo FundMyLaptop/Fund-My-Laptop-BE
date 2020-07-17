@@ -127,14 +127,15 @@ class UserController extends Controller
         //
     }
 
-     //user registration
+    //user registration
      public function signUp(Request $request)
      {
          $credentials = $request->only('firstName','lastName','email', 'password');
  
          $rules = array(
              'email' => 'required|email|unique:users',
-             'password' => 'required',
+             'password' => 'required|confirmed',
+             'password_confirmation' => 'required',
              'firstName' => 'required',
              'lastName' => 'required'
          );
@@ -145,7 +146,10 @@ class UserController extends Controller
             {
                 return Redirect::back()->withInput()->withErrors($validator);
             } else {
-         $input = $request->all();
+         $input['email'] = $request->get('email');
+         $input['firstName'] = $request->get('firstName');
+         $input['lastName'] = $request->get('lastName');
+         $input['password'] = $request->get('password');
          $input['password'] = bcrypt($input['password']);
          $input['role'] = 'user';
          //send verification mail to user
@@ -153,14 +157,14 @@ class UserController extends Controller
          $verifyLink = "http://fundmylaptop.com/verify/poiuytrewq?mnbvcxz=".$input['email']."&lkjhgfdsa=".$verifyCode;
          //send mail code starts
          $email = new \SendGrid\Mail\Mail(); 
-         $email->setFrom("test@example.com", "FundMyLapTop");
+         $email->setFrom("noreply@fundmylaptop.com", "FundMyLapTop");
          $email->setSubject("Verify your account");
          $email->addTo($input['email'], $input['firstName']);
          $mailContent = "<strong>Hi, ".$input['firstName']."<br><br>Kindly use the link below to verify your account<br><br>Link: ".$verifyLink."</strong>";
          $email->addContent(
              "text/html", $mailContent
          );
-         $sendgrid = new \SendGrid('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');
+         $sendgrid = new \SendGrid(env('SENDGRID_API_KEY'));
          try {
                  $response = $sendgrid->send($email);
                  print $response->statusCode() . "\n";
@@ -198,7 +202,7 @@ class UserController extends Controller
              return Redirect::back()->withInput()->withErrors($validator);
            } else {
                if(Auth::attempt($credentials) && Auth::user()->email_verified_at !== NULL){
-                    return redirect('/investee-dashboard')->with('status', 'Login Successful!');
+                    return redirect('/update-profile')->with('status', 'Login Successful!');
             }
         else {
             if(Auth::attempt($credentials) && Auth::user()->email_verified_at == NULL){
@@ -225,7 +229,7 @@ class UserController extends Controller
                 $findUser = User::whereEmail($userEmail)->firstOrFail();
                 $findUser->email_verified_at = date('Y-m-d H:m:s', time());
                 $findUser->save();
-                return redirect('/login')->with('status', 'Account Verified, You can now Login!');
+                return redirect('/login?zxcvbnm=lkjhgfdsa')->with('status', 'Account Verified, You can now Login to setup your profile!');
             } else {
                  return redirect('/login')->with('error', 'We could not verify your account, please contact Administrator!');
             }
