@@ -1,5 +1,4 @@
-@extends('layout.app');
-
+@extends('layout.app')
 @push('styles')
     <link rel="stylesheet" href="{{asset('css/bootstrap-css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('css/custom-css/footer.css')}}">
@@ -97,11 +96,9 @@
         }
     </style>
 @endpush
-
 @section('content')
-
-<div class="container mb-4">
-<div class="d-flex justify-content-between py-3 fs-md-14">
+    <div class="container mb-4">
+        <div class="d-flex justify-content-between py-3 fs-md-14">
             <div class="d-flex align-items-center"><span class="text-secondary pr-2">Main Dashboard</span> <span
                     class="sign fw-500">&gt;</span> <span class="pl-2">Manage Campaign</span></div>
             <div>
@@ -110,7 +107,6 @@
                 </a>
             </div>
         </div>
-
         <div class="row">
             <div class="d-md-flex">
                 <div class="col-md-6 px-md-3 px-4">
@@ -141,7 +137,7 @@
                         </div>
                         <div class="d-flex align-items-center fs-20 fs-md-14">
                             <div>
-                                <!-- <span class="mx-md-3 mx-2">@if($userDonation > 0) {{$userDonation. ' Donator(s)'}} @else '' @endif </span>
+                            <!-- <span class="mx-md-3 mx-2">@if($userDonation > 0) {{$userDonation. ' Donator(s)'}} @else '' @endif </span>
                                 <span class="dot"></span> -->
                                 <span class="mr-md-3 mr-2">@if($funder > 0) {{$funder. ' Lender(s)'}} @else {{''}} @endif </span>
                                 <!--<span class="dot"></span>
@@ -157,8 +153,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-start flex-column flex-md-row py-3 w-100">
-                <div class="mx-3 py-2 py-md-5 text-center mt-4">
-                    <br>
+                <div class="mx-3 py-2 py-md-5 text-center">
                     <form action="{{ url('/campaigns/'.$campaign->id) }}" method="post">
                         @csrf
                         <button type="submit" class="btn shadow-sm fml-bg-primary align-self-center fs-13"><span>End your campaign</span>
@@ -182,39 +177,35 @@
             <div class="mb-4"><strong>Recent Involvements</strong></div>
             <div class="w-100 overflow-x-auto">
                 <div class="width-md-900">
-
                     <div class="d-flex py-3 fml-bg-secondary mb-3 font-weight-bold">
                         <div class="col pl-5">Type</div>
                         <div class="col">Name </div>
                         <div class="col">Purpose</div>
                         <div class="col">Amount </div>
-                        <!--<div class="col">Payback period</div>-->
+                        <div class="col">Payback period</div>
+                        <div class="col">Payback Times</div>
                         <div class="col">Status </div>
                     </div>
-
-
                     <div class="shadow-light">
                         @foreach ($requests as $campaigns)
-
                             <div class="d-flex fs-14 fw-500 py-3">
-                            <div class="col pl-5">@if($campaigns->user_id) Lendee @else Donor @endif</div>
-                            <div class="col">{{ $fundee->firstName ?? "" }}</div>
-
-                            <div class="col">{{ $campaigns->title ?? "Not found" }}</div>
-
-                            <div class="col">{{ 'N'. number_format($campaigns->amount) }}</div>
-                            <!--<div class="col">6 months</div>-->
-                        <div class="col">{{'Funded '.Carbon::parse(date('Y-m-d H:i:s'))->diffInDays(Carbon::parse($campaigns->updated_at)). ' day(s) ago'}}</div>
-                        </div>
-                        <hr>
-
+                                <div class="col pl-5">@if($campaigns->user_id) Lendee @else Donator @endif</div>
+                                <div class="col">{{ $fundee->firstName ?? "" }}</div>
+                                <div class="col">{{ $campaigns->title ?? "Not found" }}</div>
+                                <div class="col">&#x20a6;{{number_format($campaigns->amount) }}</div>
+                                <div class="col">{{$campaigns->repaymentPeriod. ' '}} Months</div>
+                                <div class="col">{{$campaigns->repaymentTimes. ' '}} Times</div>
+                                <div class="col">{{'Funded '.Carbon::parse(date('Y-m-d H:i:s'))->diffInDays(Carbon::parse($campaigns->updated_at)). ' day(s) ago'}}</div>
+                            </div>
+                            <hr>
                         @endforeach
+                        {{$pastcampaign->appends(['sort' => 'campaign'])->links()}}
                     </div>
                 </div>
             </div>
         </div>
         <div class="pt-4">
-            <div><strong>Past Campaigns</strong></div>
+            <div class="mb-4"><strong>Past Campaigns</strong></div>
             <div class="w-100 overflow-x-auto">
                 <div class="width-md-900">
                     <div class="d-flex py-3 fml-bg-secondary mb-3 font-weight-bold">
@@ -223,28 +214,28 @@
                         <div class="col">Purpose</div>
                         <div class="col">Amount</div>
                         <div class="col">Payback period</div>
+                        <div class="col">Payback Times</div>
                         <div class="col">Campaign Status</div>
                     </div>
                     <div class="shadow-light">
                         @foreach ($pastcampaign as $past)
-
-                        <div class="d-flex fs-14 fw-500 py-3">
-                        <div class="col pl-5">Lendee</div>
-                            <div class="col">{{$fundee->firstName ?? "Not found"}}</div>
-                            <div class="col">{{$past->title ?? ""}}</div>
-                            <div class="col">{{number_format($past->amount) ?? ""}}</div>
-                            <!--<div class="col">6 months</div>-->
-                            <div class="col">@if($past->isSuspended == 1) Suspended @else Funded @endif</div>
-                        </div>
-                        <hr>
-
+                            <div class="d-flex fs-14 fw-500 py-3">
+                                <div class="col pl-5">Lendee</div>
+                                <div class="col">{{$fundee->firstName ?? "Not found"}}</div>
+                                <div class="col">{{$past->title ?? ""}}</div>
+                                <div class="col">&#x20a6;{{number_format($past->amount) ?? ""}}</div>
+                                <div class="col">{{$past->repaymentPeriod. ' '}} months</div>
+                                <div class="col">{{$past->repaymentTimes. ' '}} Times</div>
+                                <div class="col">@if($past->isSuspended == 1) Suspended @else Funded @endif</div>
+                            </div>
+                            <hr>
                         @endforeach
+                        {{$pastcampaign->appends(['sort' => 'campaign'])->links()}}
                     </div>
                 </div>
             </div>
         </div>
         <br>
-
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -257,46 +248,25 @@
                     <div class="modal-body">
                         <div class="icon-container1 d-flex">
 
-                                <div id="social-links">
-                                        <div class="row">
+                            <div id="social-links">
+                                <div class="row">
 
-                                           <div class="col-12 mb-1">
-                                           <div class="col-6 pull-left">
-                                           <a href="{{'http://www.linkedin.com/shareArticle?mini=true&amp;url='.url()->current().'&amp;title='.$campaign->title.'&amp;summary='.$campaign->description}}" class="social-button " id=""><span class="fa fa-linkedin" style="font-size:40px;color:#0e76a8; padding:5%"></span></a></div>
-<div class="col-6 pull-right"><a href="{{'https://twitter.com/intent/tweet?text='.$campaign->title.' '. url()->current().'&amp;url='.url()->current()}}" class="social-button pull-right" id=""><span class="fa fa-twitter" style="font-size:40px;color:#00acee; padding:5%"></span></a></div>
-                                           </div>
-                                           <div class="col-12">
-                                           <div class="col-6 pull-left">
-                                           <a href="{{'https://www.facebook.com/sharer/sharer.php?'.url()->current()}}" class="social-button" id=""><span class="fa fa-facebook-square" style="font-size:40px;color:#3b5998; padding:5%"></span></a>
-                                           </div>
-                                           <div class="col-6 pull-right">
-                                           <a href="{{'https://wa.me/?text='.$campaign->title.' '.url()->current()}}" class="social-button pull-right" id=""><span class="fa fa-whatsapp" style="font-size:40px;color:#075e54; padding:5%"></span></a>
-
-                                           </div>
-                                           </div>
+                                    <div class="col-12 mb-1">
+                                        <div class="col-6 pull-left">
+                                            <a href="{{'http://www.linkedin.com/shareArticle?mini=true&amp;url='.url()->current().'&amp;title='.$campaign->title.'&amp;summary='.$campaign->description}}" class="social-button " id=""><span class="fa fa-linkedin" style="font-size:40px;color:#0e76a8; padding:5%"></span></a></div>
+                                        <div class="col-6 pull-right"><a href="{{'https://twitter.com/intent/tweet?text='.$campaign->title.' '. url()->current().'&amp;url='.url()->current()}}" class="social-button pull-right" id=""><span class="fa fa-twitter" style="font-size:40px;color:#00acee; padding:5%"></span></a></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="col-6 pull-left">
+                                            <a href="{{'https://www.facebook.com/sharer/sharer.php?'.url()->current()}}" class="social-button" id=""><span class="fa fa-facebook-square" style="font-size:40px;color:#3b5998; padding:5%"></span></a>
                                         </div>
+                                        <div class="col-6 pull-right">
+                                            <a href="{{'https://wa.me/?text='.$campaign->title.' '.url()->current()}}" class="social-button pull-right" id=""><span class="fa fa-whatsapp" style="font-size:40px;color:#075e54; padding:5%"></span></a>
+
+                                        </div>
+                                    </div>
                                 </div>
-
-
-                            <!--<div class="smd"><i class=" img-thumbnail fa fa-twitter fa-2x"
-                                                style="color:#4c6ef5;background-color: aliceblue"></i>
                             </div>
-                            <div class="smd"><a href=""><i class="img-thumbnail fa fa-facebook fa-2x"
-                                                style="color: #3b5998;background-color: #eceff5;"></i>
-                            </div>
-                            <p>Facebook</p></a>
-                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
-                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </div>
-                        <div class="icon-container2 d-flex">
-                            <div class="smd"><i class="img-thumbnail fa fa-whatsapp fa-2x"
-                                                style="color: #25D366;background-color: #cef5dc;"></i>
-                                <p>Whatsapp</p>
-                            </div>
-                            <div class="smd"><i class="img-thumbnail fa fa-telegram fa-2x"
-                                                style="color: #4c6ef5;background-color: aliceblue"></i>
-                                <p>Telegram</p>
-                            </div> -->
                         </div>
                     </div>
                 </div>
