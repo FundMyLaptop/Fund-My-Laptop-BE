@@ -33,9 +33,15 @@
                     <div class="form-group">
                         <label for="inputState">Target</label>
                         <select id="inputState" class="form-control" name="amount">
+<<<<<<< HEAD
                             <option selected>$1000</option>
                             <option>$20000</option>
                             <option>$30000</option>
+=======
+                            <option selected value="1000">$1000</option>
+                            <option value="20000">$20000</option>
+                            <option value="30000">$30000</option>
+>>>>>>> 42139a1ba75abc202873127f7b7aced1f3299c65
                         </select>
                     </div>
                     <!-- date row -->
@@ -72,7 +78,7 @@
                     @endphp
                     <div class="col-lg-4 mb-4">
                         <div class="card ">
-                            <img class="card-img-top" src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" alt="Card image cap">
+                            <img class="card-img-top" @isset($oldRequest->user->verificaton)src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" @else src="" @endisset alt="Card image cap">
                             <!-- card body -->
                             <div class="card-body">
                                 <h5 class="card-title mb-0">
@@ -157,7 +163,11 @@
                         @endphp
                             <div class="col-lg-4 my-3">
                                 <div class="card ">
+<<<<<<< HEAD
                                     <img class="card-img-top" src="{{ $featuredCampaign->user->verification->photoURL ?? ' ' }}" alt="Card image cap">
+=======
+                                    <img class="card-img-top" @isset($featuredCampaign->user->verification)src="{{ ($featuredCampaign->user->verification->photoURL ) ?? '' }}" @else src="" @endisset  alt="Card image cap">
+>>>>>>> 42139a1ba75abc202873127f7b7aced1f3299c65
                                     <!-- card body -->
                                     <div class="card-body">
                                         <h5 class="card-title mb-0">{{ $featuredCampaign->user->firstName.' '.$featuredCampaign->user->lastName }}</h5>
@@ -221,8 +231,9 @@
                 we only send newsletter weekly and we promise not to spam</p>
         </div>
         <div class="col-md-8 news-letter-form ml-md-5" >
-            <form action="">
-                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input" placeholder="Enter Email">
+            <form action="/newsletter" method="POST">
+                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input {{ $errors->has('email') ? 'has-error': '' }}" placeholder="Enter Email"  >
+                <span class="text-danger">{{ $errors->first('email') }}</span>
                 <button class="mb-5 subscribe-btn"> Subscribe</button>
             </form>
         </div>

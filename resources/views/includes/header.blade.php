@@ -14,7 +14,11 @@
                     <a class="nav-link px-4 font-weight-bold" href="{{ url('lend') }}">Lend</a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a class="nav-link px-4 font-weight-bold" href="{{ url('investee-dashboard') }}">Borrow</a>
+=======
+                    <a class="nav-link px-4 font-weight-bold" href="{{ url('signup') }}">Borrow</a>
+>>>>>>> 42139a1ba75abc202873127f7b7aced1f3299c65
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-4 font-weight-bold" href="{{ url('about') }}">About</a>

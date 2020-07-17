@@ -11,6 +11,8 @@ use App\BackAccount;
 use App\Recommendation;
 use View;
 use Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserVerification;
 
 class UserController extends Controller
 {
@@ -76,9 +78,9 @@ class UserController extends Controller
 
             //return redirect()->route('/update-profile/{$id}')->with('user', $user);
             return View::make('update-profilepage')->with('user', $user);
-    }      
+    }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -89,7 +91,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
@@ -140,7 +142,7 @@ class UserController extends Controller
         //
     }
 
-    //user registration
+     //user registration
      public function signUp(Request $request)
      {
          $credentials = $request->only('firstName','lastName','email', 'password');

@@ -115,7 +115,7 @@
                             <td>INTEREST RATE</td>
                             <td>REPAYMENTS LEFT</td>
                             <td>TOTAL RETURNS</td>
-                            <td>PAYMENT DUE</td>
+                            <td>REPAYMENT PERIOD</td>
                             <td>STATUS</td>
                             </thead>
                             <tbody>
@@ -127,9 +127,9 @@
                                     <td>{{$invests->request->repayment->last()->num_repayments_left ?? '0'}}</td>
                                     <td>₦ 
                                         {{$invests->request->repayment->sum('amount_paid') ?? '0'}}</td>
-                                    <td> @isset($invests->request->repayment->last()->last_payment_date)
-                                        <span><b style="font-size: 22px;"> {{date("d",strtotime($invests->request->repayment->last()->last_payment_date ?? '')) }} </b></span> {{date("M ,Y",strtotime($invests->request->repayment->last()->last_payment_date ?? 'none'))   }}
-                                    @endisset</td>
+                                    <td> 
+                                        <span><b style="font-size: 22px;"> </b></span> {{ $invests->request->repaymentPeriod   }}
+                                    </td>
                                     <td>
                                         @if($invests->amount == $invests->request->repayment->sum('amount_paid'))
                                             Inactive
