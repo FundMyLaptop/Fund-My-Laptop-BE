@@ -9,7 +9,7 @@
     <div class="top">
       <ol class="breadcrumb" style="font-size: 23px; background:none;">
         <li class="breadcrumb-item"><a style="color: black; " href="index.html">Home</a></li>
-        <li class="breadcrumb-item active "><a style="color: blue;" href="list-of-campaigns.html">Campaign</a></li>
+        <li class="breadcrumb-item active "><a style="color: blue;" href="">Campaign</a></li>
       </ol>
     </div>
 
