@@ -23,6 +23,8 @@ class RequestsTableSeeder extends Seeder
                 'photoURL' => $faker->imageUrl($width = 640, $height = 480),
                 'currency' => $cur,
                 'amount' => $faker->randomNumber(6),
+                'repaymentPeriod' => $faker->randomNumber(2),
+                'occupation' => $faker->text(20),
                 'isFunded' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isSuspended' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isActive' => $faker->boolean($chanceOfGettingTrue = 50),
