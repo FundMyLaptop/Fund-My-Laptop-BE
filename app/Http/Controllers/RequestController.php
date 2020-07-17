@@ -106,8 +106,7 @@ class RequestController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeCampaign(Request $request)
-    {
+    public function storeCampaign(Request $request){
         try {
             $validator = Validator::make(
                 $request->all(),
@@ -122,7 +121,7 @@ class RequestController extends Controller
                 ]
             );
             if ($validator->fails()) {
-                return redirect('/campaigns/create')->withErrors($validator);
+                return redirect('/campaigns/create')->withInput($request->input());
             }
             if ($request->amount < 1) {
                 return redirect()->back()->with('create_error', 'Please enter a valid amount.');
