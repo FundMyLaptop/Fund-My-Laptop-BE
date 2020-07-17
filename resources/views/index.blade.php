@@ -33,15 +33,9 @@
                     <div class="form-group">
                         <label for="inputState">Target</label>
                         <select id="inputState" class="form-control" name="amount">
-<<<<<<< HEAD
-                            <option selected>$1000</option>
-                            <option>$20000</option>
-                            <option>$30000</option>
-=======
                             <option selected value="1000">$1000</option>
                             <option value="20000">$20000</option>
                             <option value="30000">$30000</option>
->>>>>>> 42139a1ba75abc202873127f7b7aced1f3299c65
                         </select>
                     </div>
                     <!-- date row -->
@@ -163,11 +157,7 @@
                         @endphp
                             <div class="col-lg-4 my-3">
                                 <div class="card ">
-<<<<<<< HEAD
-                                    <img class="card-img-top" src="{{ $featuredCampaign->user->verification->photoURL ?? ' ' }}" alt="Card image cap">
-=======
-                                    <img class="card-img-top" @isset($featuredCampaign->user->verification)src="{{ ($featuredCampaign->user->verification->photoURL ) ?? '' }}" @else src="" @endisset  alt="Card image cap">
->>>>>>> 42139a1ba75abc202873127f7b7aced1f3299c65
+                                    <img class="card-img-top" src="{{ $featuredCampaign->user->verification->photoURL ?? '' }}" alt="Card image cap">
                                     <!-- card body -->
                                     <div class="card-body">
                                         <h5 class="card-title mb-0">{{ $featuredCampaign->user->firstName.' '.$featuredCampaign->user->lastName }}</h5>
