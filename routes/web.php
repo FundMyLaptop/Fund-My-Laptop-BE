@@ -59,7 +59,7 @@ Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
 Route::get('/investor-dashboard', 'PagesController@investorDashboard')->name('investor-dashboard');
-Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');;
+Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
