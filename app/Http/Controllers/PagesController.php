@@ -31,19 +31,20 @@ class PagesController extends Controller
             ['isFunded', '0'],
             ['isSuspended', '0']
         ])->oldest()->take(15)->get();
+        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->limit(6)->get();
 
         //dd($allRequests);
 
-        return view('index',compact('oldRequests','allRequests'));
+        return view('index',compact('oldRequests','allRequests','featuredCampaigns'));
 
-       $campaign = request()->validate([
-            'name' => 'required',
-            'amount' => 'required',
-            'created_at' => 'required',
-            'updated_at' => 'required'
-        ]);
-
-        FundRequest::create($campaign);
+//       $campaign = request()->validate([
+//            'name' => 'required',
+//            'amount' => 'required',
+//            'created_at' => 'required',
+//            'updated_at' => 'required'
+//        ]);
+//
+//        FundRequest::create($campaign);
     }
 
     public function request($id){
@@ -145,7 +146,7 @@ class PagesController extends Controller
     {
         return view('how-it-works');
     }
-    
+
     public function recommendationForm()
     {
         return view('recommendation-form');
@@ -309,12 +310,12 @@ class PagesController extends Controller
 
     public function lend()
 
-    {  
-     
+    {
+
         $top_campaigns = FundRequest:: where('isFunded', '1')->orderBy('amount', 'desc')->paginate(3);
         $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->paginate(6);
         return view('list-of-campaigns')->with(['topcampaigns' => $top_campaigns])->with(['featuredCampaigns' => $featuredCampaigns]);
-        
+
     }
 
 }
