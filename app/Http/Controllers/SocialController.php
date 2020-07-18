@@ -36,7 +36,7 @@ class SocialController extends Controller
         return redirect('/investee-dashboard');
     }
     public function findOrCreateUser($getInfo,$provider){
-        $social = socialAccount::where(['provider_id' => $getInfo->id, 'provider_name' => $provider])->first();
+        $social = SocialAccount::where(['provider_id' => $getInfo->id, 'provider_name' => $provider])->first();
         if($social){
             return $social->user;
         }else{
@@ -50,7 +50,7 @@ class SocialController extends Controller
                 ]);
             }
 
-            $user->socialAccount()->create([
+            $user->SocialAccount()->create([
                 'provider_name' => $provider,
                 'provider_id' => $getInfo->id,
             ]);
