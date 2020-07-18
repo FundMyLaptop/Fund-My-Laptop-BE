@@ -74,12 +74,13 @@ class InvestController extends Controller
         $request = FundRequest::where('id', $trans->request_id)->with('user')->first();
             $details = [
                 'greeting' => 'Hi ' . $user->firstName,
-                'body' => 'Your investment of ' . $trans->amount . ' in '. $request->user->firstName . '\'s campaign - ' . url('/campaign/'.$trans->request_id). ' - has been acknowledged',
-                'thanks' => 'Thank you.!',
+                'body' => 'Your investment of ' . $trans->amount . 'in '. $request->user->firstName . '\'s campaign -' . url(`/campaign/$trans->request_id`). '- has been acknowledged',
+                'thanks' => 'Thank you for trusting fundmylaptop.com!',
             ];
-            //$sendUser = User::first();
 
-            $user->notify(new sendAcknowledgementEmail($details));
+            $trans->notify(new sendPaymentDetailsEmail($details), $user->email);
+
+            //dd($trans->notifications);
 
             return redirect()->route('investor-dashboard');
         }
@@ -89,7 +90,6 @@ class InvestController extends Controller
         // }
 
     }
-
 
     /**
      * Handle successfull or failed transactions
