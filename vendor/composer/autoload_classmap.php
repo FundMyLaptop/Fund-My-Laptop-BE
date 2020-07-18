@@ -42,7 +42,11 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\BankAccountController' => $baseDir . '/app/Http/Controllers/BankAccountController.php',
     'App\\Http\\Controllers\\BlogController' => $baseDir . '/app/Http/Controllers/Api/BlogController.php',
+<<<<<<< HEAD
+    'App\\Http\\Controllers\\CommentsController' => $baseDir . '/app/Http/Controllers/CommentsController.php',
+=======
     'App\\Http\\Controllers\\CommentsController' => $baseDir . '/app/Http/Controllers/Api/CommentsController.php',
+>>>>>>> bab112ca6599ec39181d1ef51bdb644af7335b74
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FavoriteController' => $baseDir . '/app/Http/Controllers/FavoriteController.php',
@@ -51,7 +55,7 @@ return array(
     'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',
     'App\\Http\\Controllers\\RecommendationController' => $baseDir . '/app/Http/Controllers/RecommendationController.php',
     'App\\Http\\Controllers\\RepaymentController' => $baseDir . '/app/Http/Controllers/RepaymentController.php',
-    'App\\Http\\Controllers\\ReplyController' => $baseDir . '/app/Http/Controllers/ReplyController.php',
+    'App\\Http\\Controllers\\ReplyController' => $baseDir . '/app/Http/Controllers/Api/ReplyController.php',
     'App\\Http\\Controllers\\RequestController' => $baseDir . '/app/Http/Controllers/RequestController.php',
     'App\\Http\\Controllers\\SocialAuthGoogleController' => $baseDir . '/app/Http/Controllers/SocialAuthGoogleController.php',
     'App\\Http\\Controllers\\SocialController' => $baseDir . '/app/Http/Controllers/SocialController.php',
@@ -76,6 +80,7 @@ return array(
     'App\\Mail\\UserVerification' => $baseDir . '/app/Mail/UserVerification.php',
     'App\\Newletter' => $baseDir . '/app/Newletter.php',
     'App\\Notifications\\EmailVerificationNotification' => $baseDir . '/app/Notifications/EmailVerificationNotification.php',
+    'App\\Notifications\\InvestmentAlertNotification' => $baseDir . '/app/Notifications/InvestmentAlertNotification.php',
     'App\\Notifications\\PasswordResetNotification' => $baseDir . '/app/Notifications/PasswordResetNotification.php',
     'App\\Notifications\\sendAcknowledgementEmail' => $baseDir . '/app/Notifications/sendAcknowledgementEmail.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

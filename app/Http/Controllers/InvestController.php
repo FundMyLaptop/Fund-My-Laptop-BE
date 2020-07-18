@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\InvestmentAlertNotification;
 use App\Notifications\sendAcknowledgementEmail;
 use App\Request as FundRequest;
 use App\User;
 use Paystack;
 use App\Transaction;
+use Notification;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Redirect;
+
 class InvestController extends Controller
 {
     /*
@@ -29,7 +32,7 @@ class InvestController extends Controller
      * Handles comparison of Amounts*
      * @param Request $request
      */
-    
+
 
     public function index(Request $request)
     {
@@ -45,10 +48,11 @@ class InvestController extends Controller
         );
         $validator = Validator::make($request->all(), $rules);
 
-        if (!$validator->fails()) {
-            $request->amount = $request->amount * 100;
-            return Paystack::getAuthorizationUrl()->redirectNow();
-        }        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $request->amount = $request->amount * 100;
+        return Paystack::getAuthorizationUrl()->redirectNow();
     }
 
     /**
@@ -59,35 +63,36 @@ class InvestController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
 
-        //dd($paymentDetails);
+       // dd($paymentDetails);
         $user = Auth::user();
 
         $trans->request_id       = $paymentDetails['data']['metadata']['request_id'];
         $trans->user_id     = $paymentDetails['data']['metadata']['funder_id'];
         $trans->transaction_ref    = $paymentDetails['data']['reference'];
         $trans->status      = $paymentDetails['data']['status'];
-        $trans->amount      = ($paymentDetails['data']['amount'])/100;
+        $trans->amount      = ($paymentDetails['data']['amount']) / 100;
         $trans->response_code       = 200;
-        $saved = $trans->save();
+        $trans->save();
 
-        if($saved){
+        /*         if ($saved) { */
         $request = FundRequest::where('id', $trans->request_id)->with('user')->first();
-            $details = [
-                'greeting' => 'Hi ' . $user->firstName,
-                'body' => 'Your investment of ' . $trans->amount . ' in '. $request->user->firstName . '\'s campaign - ' . url('/campaign/'.$trans->request_id). ' - has been acknowledged',
-                'thanks' => 'Thank you.!',
-            ];
-            //$sendUser = User::first();
+        $details = [
+            'greeting' => 'Hi ' . $user->firstName,
+            'body' => 'Your investment of ₦ ' . $trans->amount . ' in ' . $request->user->firstName . '\'s campaign - ' . url('/campaign/' . $trans->request_id) . ' - has been acknowledged',
+            'thanks' => 'Thank you.!',
+        ];
 
-            $user->notify(new sendAcknowledgementEmail($details));
+        $requesterDetails = [
+            'greeting' => 'Hi ' . $request->user->firstName,
+            'body' => 'Your campaign ' . url('/campaign/' . $trans->request_id) . ' has been funded with ₦ ' . $trans->amount,
+            'thanks' => 'Cogratulations!',
+        ];
 
-            return redirect()->route('investor-dashboard');
-        }
-        // else{
-        //     dd('Not saved');
-        
-        // }
+        $user->notify(new sendAcknowledgementEmail($details));
+        $request->user->notify( new InvestmentAlertNotification($requesterDetails));
 
+        return redirect()->route('investor-dashboard');
+        /*         } */
     }
 
 
@@ -98,18 +103,18 @@ class InvestController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function redirect($request_id,$user_id, Request $request)
+    public function redirect($request_id, $user_id, Request $request)
     {
 
 
         if (isset($request['cancelled'])) {
 
-            return view('transaction-status')->with('message','Transaction Cancelled !');
+            return view('transaction-status')->with('message', 'Transaction Cancelled !');
         }
 
 
         if ($request->query('txref')) {
-            
+
             $ref = $request->query('txref');
             $amount = FundRequest::find($request_id)['amount'];
             $currency = "NGN";
@@ -141,7 +146,7 @@ class InvestController extends Controller
             $chargeCurrency = $resp['data']['currency'];
 
             $query = array(
-                
+
                 "request_id" => $request_id,
                 "transaction_ref" => $ref,
                 "amount" => $chargeAmount,
@@ -152,7 +157,7 @@ class InvestController extends Controller
 
             $data_string = json_encode($query);
             if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeCurrency == $currency)) {
-                $store = curl_init(url('transaction/store/'.$user_id));
+                $store = curl_init(url('transaction/store/' . $user_id));
                 curl_setopt($store, CURLOPT_CUSTOMREQUEST, "POST");
                 curl_setopt($store, CURLOPT_POSTFIELDS, $data_string);
                 curl_setopt($store, CURLOPT_RETURNTRANSFER, true);
@@ -160,16 +165,15 @@ class InvestController extends Controller
                 curl_setopt($store, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
                 $response = curl_exec($store);
                 curl_close($store);
-                if(json_decode($response,1)['message']=='transaction record created')
-                return view('transaction-status')->with('message','Transaction successful !');
-                else{
-                    return view('transaction-status')->with('message','Transaction recording failed !');
+                if (json_decode($response, 1)['message'] == 'transaction record created')
+                    return view('transaction-status')->with('message', 'Transaction successful !');
+                else {
+                    return view('transaction-status')->with('message', 'Transaction recording failed !');
                 }
             } else {
-                return view('transaction-status')->with('message','Transaction failed !');
+                return view('transaction-status')->with('message', 'Transaction failed !');
             }
         }
-
     }
 
     /**

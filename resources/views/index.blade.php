@@ -50,7 +50,9 @@
                             <input name="end-date" class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
+
                     <button type="submit" class="btn-form mx-auto my-4">Start Campaign</button>
+
                 </form>
             </div>
         </div>
@@ -70,6 +72,7 @@
                         $amountFunded = $oldRequest->transaction()->where('status','success')->get()->sum->amount;
                         $percentage = intval(($amountFunded * 100) / $oldRequest->amount);
                     @endphp
+
                     <div class="col-lg-4 mb-4">
                         <div class="card ">
                             <img class="card-img-top" @isset($oldRequest->user->verificaton)src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" @else src="" @endisset alt="Card image cap">
@@ -101,7 +104,7 @@
                             </div>
                             <!-- card footer -->
                             <div class="card-footer d-flex align-center justify-content-between p-0">
-                                <a href='' class="m-auto "> view details <img src="/img/card-arrow.png" alt=""> </a>
+                            <a href='/request/{{$oldRequest->id}}' class="m-auto "> View Details <img src="/img/card-arrow.png" alt=""> </a>
                             </div>
                         </div>
                     </div>
@@ -147,8 +150,46 @@
                     <h3 class="col-7">Featured Campaigns </h3>
                     <span class="mt-1 btn-view-all "><a href="{{ url('featured-request') }}"> View All+ </a></span>
                 </div>
+
                 <div class="row compaign-cards ">
                     <!-- card start here -->
+
+                    @foreach ($allRequests as $allRequest)
+                    @php
+                        $amountFunded2 = $allRequest->transaction()->where('status','success')->get()->sum->amount;
+                        $percentage2 = intval(($amountFunded2 * 100) / $allRequest->amount);
+                    @endphp
+                    <div class="col-lg-4 my-3">
+                        <div class="card ">
+                            <img class="card-img-top" src="/img/cardimg (6) .png" alt="Card image cap"><!--This is a constant image-->
+                            <!-- card body -->
+                            <div class="card-body">
+                            <h5 class="card-title mb-0">{{$allRequest->user->firstName}}</h5>
+                                <span class="card-subtitle ">{{$allRequest->title}}</span>
+                                <p class="card-text mt-4">{{$allRequest->description}}</p>
+                                <div class="progress">
+                                    <div class="progress-bar" id='card-progress-bar' role="progressbar" style="width: {{ $percentage2}}%;"
+                                        aria-valuenow="{{ $percentage2 }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-3 mb-2">
+                                    <span class="card-price">
+                                        N{{ number_format($amountFunded2) }}
+                                    </span>
+                                    <span class="card-progress-num">
+                                        {{ $percentage2 }}%
+                                    </span>
+                                </div>
+                                <span class="card-fonds">
+                                    Raised of N{{ number_format($allRequest->amount) }}</span>
+                            </div>
+                            <!-- card footer -->
+                            <div class="card-footer d-flex align-center justify-content-between p-0">
+                                <a href='/request/{{$allRequest->id}}' class="m-auto "> View Details <img src="/img/card-arrow.png" alt=""> </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+
                     @if(count($featuredCampaigns) > 0)
                         @foreach($featuredCampaigns as $featuredCampaign)
                         @php
@@ -182,9 +223,11 @@
                         @else
                             <p> No featured requests </p>
                         @endif
+
                 </div>
             </div>
         </section>
+        
         <!-- Testimonials section -->
         <section class=" container-fluid testimonials-section mt-md-5
        row

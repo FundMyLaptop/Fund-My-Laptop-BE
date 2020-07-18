@@ -84,8 +84,10 @@
                 </div>
             @endforelse
         </div>
+        @if(method_exists($campaign_requests, 'links'))
         <div class="d-flex justify-content-end">
-            <button class="btn btn-white see-more" style="color:#FB3F5C">{{ $campaign_requests->links() }}</button>
+            <span>{{ $campaign_requests->links() }}</span>
         </div>
+            @endif
     </section>
 @endsection
