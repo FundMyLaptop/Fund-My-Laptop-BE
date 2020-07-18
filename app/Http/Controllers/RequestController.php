@@ -6,6 +6,8 @@ use App\Request as FundRequest;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
@@ -94,7 +96,7 @@ class RequestController extends Controller
     public function createCampaign(Request $request)
     {
         $requestInput = $request->all();
-        
+
         return view('investee-create-campaign', compact('requestInput'));
     }
 
@@ -104,7 +106,7 @@ class RequestController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-  
+
     public function storeCampaign(Request $request){
 
         try {
@@ -200,7 +202,7 @@ class RequestController extends Controller
                 $user_id = Auth::user()->id;
                 //fetch the request id from database
                 $update = FundRequest::findOrFail($id);
-                if ($update->isActive == 1 && $update->isSuspended != 1) {
+                if (($update->isActive == 'Active' || $update->isActive == 0)  && $update->isSuspended == 0) {
                     $requestUpdate = [
                         'user_id' => $user_id,
                         'title' => $request->title,
@@ -275,7 +277,7 @@ class RequestController extends Controller
         $request = FundRequest::where('id', $id)->with('user')->first();
         return view('campaign')->with('request',$request);
     }
-   
+
     /**
      * Show the form for editing the specified resource.
      *
