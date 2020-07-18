@@ -57,6 +57,10 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
             'phpseclib\\' => 10,
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'Y' => 
+        array (
+            'Yajra\\Disqus\\' => 13,
+        ),
         'X' => 
         array (
             'XdgBaseDir\\' => 11,
@@ -214,6 +218,10 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'Yajra\\Disqus\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yajra/laravel-disqus/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -632,10 +640,11 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FavoriteController' => __DIR__ . '/../..' . '/app/Http/Controllers/FavoriteController.php',
         'App\\Http\\Controllers\\InvestController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvestController.php',
+        'App\\Http\\Controllers\\NewletterController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewletterController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\RecommendationController' => __DIR__ . '/../..' . '/app/Http/Controllers/RecommendationController.php',
         'App\\Http\\Controllers\\RepaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/RepaymentController.php',
-        'App\\Http\\Controllers\\ReplyController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ReplyController.php',
+        'App\\Http\\Controllers\\ReplyController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReplyController.php',
         'App\\Http\\Controllers\\RequestController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequestController.php',
         'App\\Http\\Controllers\\SocialAuthGoogleController' => __DIR__ . '/../..' . '/app/Http/Controllers/SocialAuthGoogleController.php',
         'App\\Http\\Controllers\\SocialController' => __DIR__ . '/../..' . '/app/Http/Controllers/SocialController.php',
@@ -657,6 +666,7 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\checkBlocked' => __DIR__ . '/../..' . '/app/Http/Middleware/checkBlocked.php',
         'App\\Mail\\ComplaintFormMail' => __DIR__ . '/../..' . '/app/Mail/ComplaintFormMail.php',
+        'App\\Mail\\UserVerification' => __DIR__ . '/../..' . '/app/Mail/UserVerification.php',
         'App\\Newletter' => __DIR__ . '/../..' . '/app/Newletter.php',
         'App\\Notifications\\EmailVerificationNotification' => __DIR__ . '/../..' . '/app/Notifications/EmailVerificationNotification.php',
         'App\\Notifications\\PasswordResetNotification' => __DIR__ . '/../..' . '/app/Notifications/PasswordResetNotification.php',
@@ -669,7 +679,7 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Recommendation' => __DIR__ . '/../..' . '/app/Recommendation.php',
         'App\\Repayment' => __DIR__ . '/../..' . '/app/Repayment.php',
         'App\\Request' => __DIR__ . '/../..' . '/app/Request.php',
-        'App\\Services\\sSocialGoogleAccountService' => __DIR__ . '/../..' . '/app/Services/SocialGoogleAccountService.php',
+        'App\\Services\\SocialGoogleAccountService' => __DIR__ . '/../..' . '/app/Services/SocialGoogleAccountService.php',
         'App\\SocialGoogleAccount' => __DIR__ . '/../..' . '/app/SocialGoogleAccount.php',
         'App\\Testimonial' => __DIR__ . '/../..' . '/app/Testimonial.php',
         'App\\ThirdParty\\Flutterwave' => __DIR__ . '/../..' . '/app/Thirdparty/Flutterwave.php',
@@ -5629,6 +5639,8 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'Yajra\\Disqus\\DisqusMiddleware' => __DIR__ . '/..' . '/yajra/laravel-disqus/src/DisqusMiddleware.php',
+        'Yajra\\Disqus\\DisqusServiceProvider' => __DIR__ . '/..' . '/yajra/laravel-disqus/src/DisqusServiceProvider.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

@@ -38,11 +38,11 @@
                                 <div style="display: flex;">
                                     <p style="font-size: 10px; line-height: 10px; margin-top: 10px;">₦ {{$request->transaction->sum('amount') }} Funded</p>
                                     <div style="flex: 1"></div>
-                                    <p style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;"> ₦ {{ $request->amount - $request->transaction->sum('amount') }} Left</p>
+                                    <p style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;"> &#x20A6 {{ $request->amount - $request->transaction->sum('amount') }} Left</p>
                                 </div>
                                
                                    
-                                <a href="{{ url('payment/'.$request->id) }}">
+                                <a href="{{  route('campaign', $request->id) }}">
                                   <button class="
                                   @if($request->transaction->sum('amount')<0)
                                   disabled

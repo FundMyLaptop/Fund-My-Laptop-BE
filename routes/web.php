@@ -27,20 +27,24 @@ Route::get('/{provider}/update-profile', 'SocialController@callback');
 //Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('campaigns', 'RequestController@investeeCampaigns');
-Route::get('campaigns/create', 'RequestController@createCampaign');//
+Route::match(['get', 'post'], 'campaigns/create', 'RequestController@createCampaign')->name('campaigns/create')->middleware('auth'); //
 Route::post('campaigns', 'RequestController@storeCampaign');
 Route::get('campaigns/edit/{id}', 'RequestController@editCampaign');
 Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');
 Route::patch('campaigns/{id}', 'RequestController@updateCampaign');
 Route::post('campaigns/{id}', 'RequestController@suspendCampaign');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
+
+Route::get('request/{id}', 'PagesController@campaign');
+
+
 Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
+
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('why-choose-us', 'PagesController@whyChooseUs');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
-Route::get('campaign', 'PagesController@campaign');
-Route::get('campaign/{id}', 'RequestController@show');
+Route::get('campaign/{id}', 'RequestController@show')->name('campaign');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
@@ -49,11 +53,12 @@ Route::get('update-profile', 'PagesController@profile');
 /* Route::get('payment', 'PagesController@payment'); */
 //make payment for a request... where {id} is requestId
 
-Route::get('payment/{id}', 'PagesController@payment');
+Route::get('campaign/{id}/fund', 'PagesController@payment')->name('fund');
 Route::post('payment/{id}', 'PagesController@payment');
 Route::get('benefit', 'PagesController@benefit');
 Route::get('partners', 'PagesController@partners');
 Route::get('how-it-works', 'PagesController@howItWorks');
+Route::get('recommendation-form', 'PagesController@recommendationForm');
 Route::get('milestones', 'PagesController@mileStones');
 Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
