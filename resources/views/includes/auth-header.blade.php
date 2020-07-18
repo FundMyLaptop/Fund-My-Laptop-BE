@@ -35,6 +35,8 @@
                     <img src="{{asset('img/user-photo.png')}}" class="menu-icon" href="#"/>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a href="{{ url('investee-dashboard') }}"> <button class="dropdown-item btn-fml-secondary">Investee Dashboard</button></a>
+                        <a href="{{ url('investor-dashboard') }}"> <button class="dropdown-item btn-fml-secondary">Investor Dashboard</button></a>
                         <a href="{{ url('update-profile') }}"> <button class="dropdown-item btn-fml-secondary">Update profile</button></a>
                         <a  href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
@@ -46,25 +48,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="{{url('investor-dashboard')}}"><button class="btn btn-fml-secondary align-self-center nav-item view-dashboard-btn" >  View Dashboard</button></a>
-
-
-                <div class="dropdown pl-4">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{asset('img/user-photo.png')}}" class="menu-icon" href="#"/>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a href="{{ url('update-profile') }}"> <button class="dropdown-item btn-fml-secondary">Update profile</button></a>
-                        <a  href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            <button class="dropdown-item btn-fml-secondary">Log out</button>
-                        </a>
-​
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </div>
+                
                 <div class="navbar-nav flex-row toggle-menu">
                     <a class="nav-item nav-link pr-0 align-self-center" href="#">
                         <div class="position-relative">

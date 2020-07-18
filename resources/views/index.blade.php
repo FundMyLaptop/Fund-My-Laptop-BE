@@ -75,7 +75,7 @@
 
                     <div class="col-lg-4 mb-4">
                         <div class="card ">
-                            <img class="card-img-top" @isset($oldRequest->user->verificaton)src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" @else src="" @endisset alt="Card image cap">
+                            <img class="card-img-top" @isset($oldRequest->user->verificaton)src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" @else src="" @endisset onerror="this.src='/img/milestone1.jpg';" alt="Card image cap">
                             <!-- card body -->
                             <div class="card-body">
                                 <h5 class="card-title mb-0">
@@ -154,43 +154,7 @@
                 <div class="row compaign-cards ">
                     <!-- card start here -->
 
-                    @foreach ($allRequests as $allRequest)
-                    @php
-                        $amountFunded2 = $allRequest->transaction()->where('status','success')->get()->sum->amount;
-                        $percentage2 = intval(($amountFunded2 * 100) / $allRequest->amount);
-                    @endphp
-                    <div class="col-lg-4 my-3">
-                        <div class="card ">
-                            <img class="card-img-top" src="/img/cardimg (6) .png" alt="Card image cap"><!--This is a constant image-->
-                            <!-- card body -->
-                            <div class="card-body">
-                            <h5 class="card-title mb-0">{{$allRequest->user->firstName}}</h5>
-                                <span class="card-subtitle ">{{$allRequest->title}}</span>
-                                <p class="card-text mt-4">{{$allRequest->description}}</p>
-                                <div class="progress">
-                                    <div class="progress-bar" id='card-progress-bar' role="progressbar" style="width: {{ $percentage2}}%;"
-                                        aria-valuenow="{{ $percentage2 }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="d-flex justify-content-between mt-3 mb-2">
-                                    <span class="card-price">
-                                        N{{ number_format($amountFunded2) }}
-                                    </span>
-                                    <span class="card-progress-num">
-                                        {{ $percentage2 }}%
-                                    </span>
-                                </div>
-                                <span class="card-fonds">
-                                    Raised of N{{ number_format($allRequest->amount) }}</span>
-                            </div>
-                            <!-- card footer -->
-                            <div class="card-footer d-flex align-center justify-content-between p-0">
-                                <a href='/request/{{$allRequest->id}}' class="m-auto "> View Details <img src="/img/card-arrow.png" alt=""> </a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-                    @if(count($featuredCampaigns) > 0)
+                     @if(count($featuredCampaigns) > 0)
                         @foreach($featuredCampaigns as $featuredCampaign)
                         @php
                             $amountFunded = $featuredCampaign->transaction()->where('status','success')->get()->sum->amount;
@@ -198,7 +162,7 @@
                         @endphp
                             <div class="col-lg-4 my-3">
                                 <div class="card ">
-                                    <img class="card-img-top" src="{{ $featuredCampaign->user->verification->photoURL ?? '' }}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ $featuredCampaign->user->verification->photoURL ?? '' }}" onerror="this.src='/img/milestone2.jpg';" alt="Card image cap">
                                     <!-- card body -->
                                     <div class="card-body">
                                         <h5 class="card-title mb-0">{{ $featuredCampaign->user->firstName.' '.$featuredCampaign->user->lastName }}</h5>
@@ -227,7 +191,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Testimonials section -->
         <section class=" container-fluid testimonials-section mt-md-5
        row
@@ -264,8 +228,15 @@
                 we only send newsletter weekly and we promise not to spam</p>
         </div>
         <div class="col-md-8 news-letter-form ml-md-5" >
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('success')}}
+                </div>
+            @endif
             <form action="/newsletter" method="POST">
-                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input {{ $errors->has('email') ? 'has-error': '' }}" placeholder="Enter Email"  >
+
+                @csrf
+                <input type="email" name="email" id="subscribe-input" class="mb-5 subscribe-input {{ $errors->has('email') ? 'has-error': '' }}" placeholder="Enter Email"  >
                 <span class="text-danger">{{ $errors->first('email') }}</span>
                 <button class="mb-5 subscribe-btn"> Subscribe</button>
             </form>
