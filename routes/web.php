@@ -89,6 +89,8 @@ Route::get('/login', 'PagesController@login');
 Route::post('login', 'UserController@login')->name('login');
 //verify account route
 Route::get('verify/{id}', 'UserController@verifyAccount');
+//resend verification
+Route::get('resend_verify_email/{id}', 'UserController@resendVerifyEmail');
 Route::get('sign-up', 'PagesController@sign_up');
 Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
