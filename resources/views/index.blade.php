@@ -264,7 +264,13 @@
                 we only send newsletter weekly and we promise not to spam</p>
         </div>
         <div class="col-md-8 news-letter-form ml-md-5" >
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ Session::get('success')}}
+                </div>
+            @endif
             <form action="/newsletter" method="POST">
+
                 @csrf
                 <input type="email" name="email" id="subscribe-input" class="mb-5 subscribe-input {{ $errors->has('email') ? 'has-error': '' }}" placeholder="Enter Email"  >
                 <span class="text-danger">{{ $errors->first('email') }}</span>
