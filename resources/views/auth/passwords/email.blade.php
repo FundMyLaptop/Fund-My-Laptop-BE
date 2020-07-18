@@ -1,13 +1,13 @@
-@extends('layouts._unauth')
+@extends('layout.app')
 
 @section('content')
-<div class="container">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            <div class="">
+                <div class="">{{ __('Reset Your Password') }}</div>
 
-                <div class="card-body">
+                <div class="">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -32,11 +32,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>   
-                            
-                                
-                            
-                                
+                                </div>
                             </div>
                         </div>
 
