@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Request as FundRequest;
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use App\Transaction;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -269,11 +266,10 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $request = FundRequest::where('id', $id)->with('user')->first();
-        return view('campaign')->with('request', $request); 
-
+        $request = FundRequest::where('id', $id)->get();
+        return view('campaign', compact('request'));
     }
-
+   
     /**
      * Show the form for editing the specified resource.
      *

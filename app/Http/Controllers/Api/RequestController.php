@@ -303,7 +303,7 @@ class RequestController extends Controller
 
     public function top_campaigns()
     {
-        $top_campaigns = FundRequest:: where('isActive', '1')->orderBy('amount', 'desc')->paginate(3);
+        $top_campaigns = FundRequest:: where('isFunded', '1')->orderBy('amount', 'desc')->paginate(3);
         if($top_campaigns){
             return response()->json([
                 "message" => "Top campaigns retrieved",
