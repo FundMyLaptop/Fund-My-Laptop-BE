@@ -171,7 +171,7 @@ class UserController extends Controller
          $verifyCode = '$2y$10$hO2Acl2tSRjFSv7Fw99gjOGrlOZpRH0HlpvRZbKKFHk1DbptU9k/G';
          $verifyLink = "http://fundmylaptop.com/verify/poiuytrewq?mnbvcxz=".$input['email']."&lkjhgfdsa=".$verifyCode;
          //send mail code starts
-        $getMessagef = "<strong>Hi, ".$input['firstName']."<br><br>Kindly use the link below to verify your account<br><br>Link: ".$verifyLink."</strong>";
+        $getMessagef = "<strong>Hi, ".$input['firstName']."<br><br>Kindly use the link below to verify your account<br><br>Link: <a href='".$verifyLink."'>".$verifyLink."</a></strong>";
 
         $subject = "Verify your account FundMyLapTop";
         $userEmail = $input['email'];
@@ -217,11 +217,9 @@ class UserController extends Controller
                    return redirect()->intended('/investee-dashboard')->with('status', 'Login Successful!');
                    }
             } else {
+            $userEmail = $request->get('email');
             if($verified == NULL){
-                return Redirect::back()
-                ->withErrors([
-                    'credentials' => 'Email is not verified yet, please check your mail or spam folder!'
-                ]); 
+                return redirect('/login?useremailadrress='.$userEmail)->with('error', 'Email is not verified yet, please check your mail or spam folder!');
                 }
               return Redirect::back()
                 ->withErrors([
@@ -245,6 +243,31 @@ class UserController extends Controller
             } else {
                  return redirect('/login')->with('error', 'We could not verify your account, please contact Administrator!');
             }
+        }
+    }
+    //resend verification link to user email
+    public function resendVerifyEmail(Request $request, $id)
+    {
+            $userEmail = $id;
+            $findUser = User::whereEmail($userEmail)->firstOrFail();
+            $userName = $findUser->firstName; 
+            if($findUser->email_verified_at == NULL){
+                //resend verification mail to user
+                $verifyCode = '$2y$10$hO2Acl2tSRjFSv7Fw99gjOGrlOZpRH0HlpvRZbKKFHk1DbptU9k/G';
+                $verifyLink = "http://fundmylaptop.com/verify/poiuytrewq?mnbvcxz=".$userEmail."&lkjhgfdsa=".$verifyCode;
+                //send mail code starts
+                $getMessagef = "<strong>Hi, ".$userName."<br><br>Kindly use the link below to verify your account<br><br>Link: <a href='".$verifyLink."'>".$verifyLink."</a></strong>";
+
+                $subject = "Verify your account FundMyLapTop";
+                Mail::to($userEmail)->send(new UserVerification($getMessagef));
+                
+                if (Mail::failures()) {
+                return redirect('/login')->with('error', 'Failed to send verification email, Please try again!');   } else {
+                //send mail code ends
+                return redirect('/login')->with('success', 'Verification email sent, Please check your email or spam folder!');
+                }
+            } else {
+            return redirect('/login')->with('error', 'Failed to send verification email, Please try again!');
         }
     }
 }
