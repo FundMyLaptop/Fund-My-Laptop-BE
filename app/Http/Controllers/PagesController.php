@@ -111,6 +111,11 @@ class PagesController extends Controller
     {
         return view('how-it-works');
     }
+    
+    public function recommendationForm()
+    {
+        return view('recommendation-form');
+    }
 
     public function mileStones()
     {
