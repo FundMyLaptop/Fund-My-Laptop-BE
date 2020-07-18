@@ -71,6 +71,7 @@ Route::post('complaint-form', 'PagesController@complaintForm');
 Route::get('contact', 'PagesController@contact');
 
 Route::post('process_contact', 'ContactController@store');
+Route::post('newsletter', 'NewletterController@store');
 
 
 
