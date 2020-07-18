@@ -20,8 +20,8 @@
 					<p>Frontend Developer</p>
 				</div>
 			</section>
-			<p>5 successful payments</p>
-			<section>
+			
+			<section hidden>
 				<div id="editprofile">
 					<section class="cols">
 						<label>Basic Information</label>
@@ -50,15 +50,15 @@
 						<label>Contact Information</label>
 						<div class="_pfg">
 							<p>Email Address</p>
-						<input type="email" name="" value="{{ $data['message']['email'] }}" class="_pfc" />
+						<input type="email" name="" value="{{ Auth::user()-> email  }}" readonly class="_pfc" />
 						</div>
 						<div class="_pfg">
 							<p>Phone Number</p>
-						<input type="phone" name="" value="{{ $data['message']['phone'] }}" class="_pfc" />
+						<input type="phone" name="" value="{{ Auth::user()-> phone  }}" class="_pfc" />
 						</div>
 						<div class="_pfg">
 							<p>Resident Address</p>
-						<input type="text" name="" value="{{ $data['message']['address'] }}" class="_pfc" />
+						<input type="text" name="" value="{{ Auth::user()-> address  }}" class="_pfc" />
 						</div>
 						<div class="_pfg">
 							<p>Website</p>
@@ -68,24 +68,25 @@
 				</div>
 			</div>
 			<div id="name">
-			<h3>{{$user->lastName}}</h3>
+			<h3>{{Auth::user()-> lastName }}</h3>
 				<p>Frontend Developer</p>
 			</div>
 		</section>
 		<p>5 successful payments</p>
+
 		<section>
-			<form action="{{ route('update-profile', $user->id) }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('update-profile', Auth::user()-> id ) }}" method="post" enctype="multipart/form-data">
 				@csrf
 			<div id="editprofile">
 				<section class="cols">
 					<label>Basic Information</label>
 					<div class="_pfg">
 						<p>Date of Birth</p>
-						<input type="date" name="" class="_pfc" />
+						<input type="date" name="date_of_birth" class="_pfc" />
 					</div>
 					<div class="_pfg">
 						<p>Gender</p>
-						<select name="" class="_pfc">
+						<select name="sex" class="_pfc">
 							<option value="male">Male</option>
 							<option value="female">Female</option>
 						</select>
@@ -94,6 +95,7 @@
 					<div class="_pfg">
 						<p>Bio</p>
 						<textarea
+							name="bio"
 							class="_pfc"
 							rows="8"
 							placeholder="Tell us about yourself"
@@ -104,15 +106,15 @@
 					<label>Contact Information</label>
 					<div class="_pfg">
 						<p>Email Address</p>
-						<input type="email" name="email" value="{{ old('email', $user->email) }}" class="_pfc" />
+						<input type="email" name="email" value="{{ old('email', Auth::user()-> email ) }}" class="_pfc" />
 					</div>
 					<div class="_pfg">
 						<p>Phone Number</p>
-						<input type="phone" name="phone" value="{{ old('phone', $user->phone) }}" class="_pfc" />
+						<input type="phone" name="phone" value="{{ old('phone', Auth::user()-> phone) }}" class="_pfc" />
 					</div>
 					<div class="_pfg">
 						<p>Resident Address</p>
-						<input type="text" name="address" value="{{ old('address', $user->address) }}" class="_pfc" />
+						<input type="text" name="address" value="{{ old('address', Auth::user()-> address ) }}" class="_pfc" />
 					</div>
 					{{-- <div class="_pfg">
 						<p>Website</p>

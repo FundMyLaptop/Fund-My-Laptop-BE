@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\socialAccount;
+use App\SocialAccount;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,82 +16,46 @@ class SocialController extends Controller
     public function redirect($provider)
     {   try{
             return Socialite::driver($provider)->redirect();
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             return response()->json(['error' => 'Unauthorized', 'message'=>$exception->getMessage()], 401);
     }
 
     }
     public function callback($provider)
     {
-        try{
-            if($provider == 'twitter'){
-                $getInfo = Socialite::driver($provider)->user();
-            }else{
-                $getInfo = Socialite::driver($provider)->stateless()->user();
-            }
-            $user = $this->createUser($getInfo,$provider);
-            Auth::login($user);
-            $user = Auth::user();
-            $token = $user->createToken('FundMyLaptop')->accessToken;
-            return response()->json(
-                [
-                    'status' => 'success',
-                    'data' => $user,
-                    'token' => $token
-                ],
-                200
-            );
-//            return redirect()->to('/home');
-    }catch (Exception $exception){
-            return response()->json(['error' => 'Unauthorized', 'message'=>$exception->getMessage()], 401);
-        }
-    }
-    function createUser($getInfo,$provider){
-        try{
-            $social = socialAccount::where(['provider_id' => $getInfo->id, 'provider' => $provider])->first();
-            if($social){
-                return $social->User;
-            }else {
-                if ($getInfo->email) {
-                    $user = User::where('email', $getInfo->email)->first();
-                    if ($user) {
-                        $social = socialAccount::create([
-                            'user_id' => $user->id,
-                            'provider_id' => $getInfo->id,
-                            'provider' => $provider
-                        ]);
-                        return $user;
-                    } else {
-                        $user = User::create([
-                            'email' => $getInfo->email,
-                            'firstName' => $getInfo->name,
-                            'role' => 0
-                        ]);
 
-                        socialAccount::create([
-                            'user_id' => $user->id,
-                            'provider' => $provider,
-                            'provider_id' => $getInfo->id,
-                        ]);
-                        return $user;
-                    };
-                } else {
-                    $user = User::create([
-                        'email' => $getInfo->email,
-                        'firstName' => $getInfo->name,
-                        'role' => 0
-                    ]);
-
-                    socialAccount::create([
-                        'user_id' => $user->id,
-                        'provider' => $provider,
-                        'provider_id' => $getInfo->id,
-                    ]);
-                    return $user;
-                }
-            }
-            }catch (\Exception $e){
-                throw new \Exception($e->getMessage());
-            }
+        try{
+            $getInfo = Socialite::driver($provider)->stateless()->user();
         }
+        catch (Exception $exception){
+            return redirect('/login');
+        }
+        $authuser = $this->findOrCreateUser($getInfo, $provider);
+
+        Auth::login($authuser, true);
+        return redirect('/investee-dashboard');
     }
+    public function findOrCreateUser($getInfo,$provider){
+        $social = socialAccount::where(['provider_id' => $getInfo->id, 'provider_name' => $provider])->first();
+        if($social){
+            return $social->user;
+        }else{
+            $user = User::where('email', $getInfo->email)->first();
+
+            if(!$user) {
+                $user = User::create([
+                    'email' => $getInfo->getEmail(),
+                    'firstName' => $getInfo->getName(),
+                    'role' => 0
+                ]);
+            }
+
+            $user->socialAccount()->create([
+                'provider_name' => $provider,
+                'provider_id' => $getInfo->id,
+            ]);
+            return $user;
+
+    }
+}
+}

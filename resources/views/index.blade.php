@@ -6,8 +6,7 @@
 
 
 @section('content')
-
-    <div class="jumbotron jumbotron px-0 px-md-4 mb-0 mb-md-4 ">
+    <div class="jumbotron jumbotron px-0 px-md-4 mb-0 mb-md-4 mt-0">
         <div class="row mt-lg-5 px-2 px-md-5 mx-auto mt-5">
             <div class="col-xl-8 px-0  mb-2 mb-sm-5 px-md-5 header-text mt-5
         d-flex
@@ -24,32 +23,36 @@
             <div class="  header-form col-xl-4 my-5  pt-3 pb-5 bg-white"
             >
                 <!-- here should be form -->
-                <form action="" class=" px-md-3 d-flex flex-column justify-content-center">
+                <form class=" px-md-3 d-flex flex-column justify-content-center" method="post" action="{{ route('campaigns/create') }}">
+                @csrf
                     <h5 class=" text-center mb-5 mt-0">Laptop Funding</h5>
                     <div class="form-group">
                         <label for="inputAddress">Campaign Name</label>
-                        <input type="text" class="form-control" id="CampaignName" placeholder="Campaign name here..">
+                        <input type="text" class="form-control" name="title" id="CampaignName" placeholder="Campaign name here..">
                     </div>
                     <div class="form-group">
                         <label for="inputState">Target</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>$1000</option>
-                            <option>$10000</option>
-                        </select>
+                        <input id="inputState" class="form-control" name="amount" placeholder="Amount">
+                            <!-- <option selected value="1000">$1000</option>
+                            <option value="20000">$20000</option>
+                            <option value="30000">$30000</option> -->
+                        </input>
                     </div>
                     <!-- date row -->
                     <div class="row">
                         <div class="form-group col-md-6 pr-lg-1">
                             <label for="example-date-input" class=" col-form-label">Start Date</label>
-                            <input class="form-control" type="date"  id="example-date-input">
+                            <input name="start-date" class="form-control" type="date"  id="example-date-input">
 
                         </div>
                         <div class="form-group col-md-6  pl-lg-1">
                             <label for="example-date-input" class=" col-form-label">End Date</label>
-                            <input class="form-control" type="date"  id="example-date-input">
+                            <input name="end-date" class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
-                    <button class="btn-form mx-auto my-4">Start Compaign</button>
+
+                    <button type="submit" class="btn-form mx-auto my-4">Start Campaign</button>
+
                 </form>
             </div>
         </div>
@@ -72,7 +75,7 @@
 
                     <div class="col-lg-4 mb-4">
                         <div class="card ">
-                            <img class="card-img-top" src="{{ $oldRequest->user->verification->photoURL }}" alt="Card image cap">
+                            <img class="card-img-top" @isset($oldRequest->user->verificaton)src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" @else src="" @endisset alt="Card image cap">
                             <!-- card body -->
                             <div class="card-body">
                                 <h5 class="card-title mb-0">
@@ -145,11 +148,12 @@
             <div class="container">
                 <div class="row d-flex justify-content-between">
                     <h3 class="col-7">Featured Campaigns </h3>
-                    <span class="mt-1 btn-view-all ">View All+</span>
+                    <span class="mt-1 btn-view-all "><a href="{{ url('featured-request') }}"> View All+ </a></span>
                 </div>
 
                 <div class="row compaign-cards ">
                     <!-- card start here -->
+
                     @foreach ($allRequests as $allRequest)
                     @php
                         $amountFunded2 = $allRequest->transaction()->where('status','success')->get()->sum->amount;
@@ -185,6 +189,41 @@
                         </div>
                     </div>
                     @endforeach
+
+                    @if(count($featuredCampaigns) > 0)
+                        @foreach($featuredCampaigns as $featuredCampaign)
+                        @php
+                            $amountFunded = $featuredCampaign->transaction()->where('status','success')->get()->sum->amount;
+                            $percentageFunded = intval(($amountFunded * 100) / $featuredCampaign->amount);
+                        @endphp
+                            <div class="col-lg-4 my-3">
+                                <div class="card ">
+                                    <img class="card-img-top" src="{{ $featuredCampaign->user->verification->photoURL ?? '' }}" alt="Card image cap">
+                                    <!-- card body -->
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-0">{{ $featuredCampaign->user->firstName.' '.$featuredCampaign->user->lastName }}</h5>
+                                        <span class="card-subtitle ">{{ $featuredCampaign->title }}</span>
+                                        <p class="card-text mt-4">{{ $featuredCampaign->description }}</p>
+                                        <div class="progress">
+                                            <div class="progress-bar"  id='card-progress-bar' role="progressbar" style="width: {{ $percentageFunded }}%;" aria-valuenow="{{ $percentageFunded }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-3 mb-2">
+                                            <span class="card-price"> N{{ number_format($amountFunded) }}</span>
+                                            <span class="card-progress-num">{{ $percentageFunded }}%</span>
+                                        </div>
+                                        <span class="card-fonds">Raised of N{{ number_format($featuredCampaign->amount) }}</span>
+                                    </div>
+                                    <!-- card footer -->
+                                    <div class="card-footer d-flex align-center justify-content-between p-0">
+                                        <a href="{{ url('campaign/'.$featuredCampaign->id) }}" class="m-auto "> view details <img src="/img/card-arrow.png" alt=""> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        @else
+                            <p> No featured requests </p>
+                        @endif
+
                 </div>
             </div>
         </section>
@@ -225,8 +264,9 @@
                 we only send newsletter weekly and we promise not to spam</p>
         </div>
         <div class="col-md-8 news-letter-form ml-md-5" >
-            <form action="">
-                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input" placeholder="Enter Email">
+            <form action="/newsletter" method="POST">
+                <input type="text" name="" id="subscribe-input" class="mb-5 subscribe-input {{ $errors->has('email') ? 'has-error': '' }}" placeholder="Enter Email"  >
+                <span class="text-danger">{{ $errors->first('email') }}</span>
                 <button class="mb-5 subscribe-btn"> Subscribe</button>
             </form>
         </div>

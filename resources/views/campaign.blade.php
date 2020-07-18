@@ -17,7 +17,9 @@
             </div>
         </div>
         <div class="row">
-            <p class="plead_fund">Fund {{$request->user->firstName}}'s Laptop Purchase</p>
+
+            <p class="plead_fund">Fund {{ $request->user->firstName }} {{ $request->user->lastName }}’s Laptop Purchase</p>
+
         </div>
         <div class="row deVideoDiv">
             <video width="320" height="240" controls>
@@ -36,12 +38,14 @@
                     <div class="profile_image_container">
                         <img src="../img/profileImage1.png" alt="" />
                     </div>
+
                     <p class="laptop_subdetail">{{$request->user->firstName}}</p>
                 </div>
             </div>
             <div class="col-md-6 col-12 anotherSwipe">
                 <p class="title_laptop_detail">Posted:</p>
                 <p class="laptop_subdetail">{{$request->created_at->diffForHumans()}}</p>
+
             </div>
         </div>
 
@@ -53,7 +57,9 @@
 
             <div class="col-md-6 col-12 anotherSwipe">
                 <p class="title_laptop_detail">Occupation</p>
+
             <p class="laptop_subdetail">{{$request->occupation}}</p>
+
             </div>
         </div>
 
@@ -63,7 +69,9 @@
             <div class="col">
                 <p class="title_laptop_detail">Description</p>
                 <p class="description_detail">
+
                    {{$request->description}}
+
                 </p>
             </div>
         </div>
@@ -106,7 +114,9 @@
         <div class="row each_detail_row">
             <div class="col-12 col-md-6">
                 <p class="title_laptop_detail toAdjust">Loan amount:</p>
+
             <p class="detail_funding_2">N {{ number_format($request->amount) }}</p>
+
             </div>
 
             <div class="col-12 col-md-6">
@@ -120,12 +130,12 @@
         <div class="row each_detail_row">
             <div class="col-12 col-md-8">
                 <p class="get_funding_ASAP">
-                    Get a <strong>N 275,000</strong> repayment in 3 months if you fund
+                    Get <strong>&#x20A6 {{ $request->amount * 1.1}}</strong> repayment in 3 months if you fund
                     this loan
                 </p>
             </div>
             <div class="col-12 col-md-3 fundButton">
-                <p><a class="funding_Loan" href="#">Fund this loan</a></p>
+                <p><a class="funding_Loan" href="{{ route('fund', $request->id) }}">Fund this loan</a></p>
             </div>
         </div>
         <div class="row each_detail_row">

@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Request as FundRequest;
 use App\User;
+use App\Transaction;
+use App\Repayment;
+use App\Accrual;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -42,9 +47,13 @@ class PagesController extends Controller
     }
 
     public function request($id){
-        $request = FundRequest::find($id);
+        //$request = FundRequest::find($id);
         //dd($request);
-        return view('details',compact('request'));
+        //return view('details',compact('request'));
+
+        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->limit(6)->get();
+        return view('index')->with(['oldRequests' => $oldRequests])->with(['featuredCampaigns' => $featuredCampaigns]);
+
     }
 
     public function termsAndConditions()
@@ -83,16 +92,42 @@ class PagesController extends Controller
         return view('faq');
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function whyChooseUs()
+    {
+        return view('milestones');
+    }
+
+    public function profile()
+    {
+        $user = Auth::user()->id;
+        $data = User::with('request', 'favorite', 'bank_account', 'recommendation')->where('id', $user)->first();
+        if ($data) {
+            return view('update-profilepage', compact('data'));
+        } else {
+            return response()->json(['message' => 'Could not the details of this user'], 400);
+        }
+
+    }
+
     public function payment($id)
     {
-        if(isset($id)){
-        $request = FundRequest::whereId($id)->firstOrFail();
-         $userId = $request->user_id;
-         $user = User::whereId($userId)->firstOrFail();
-         $firstName = $user->firstName;
-         $lastName = $user->lastName;
-
-        return view('payment', compact('user', 'request'));
+        if (isset($id)) {
+            $request = FundRequest::whereId($id)->with('user')->firstOrFail();
+            $userId = Auth::user()->id;
+            $user = User::whereId($userId)->firstOrFail();
+            $firstName = $user->firstName;
+            $lastName = $user->lastName;
+            $metadata = [
+                'funder_id' => $user->id,
+                'request_id' => $id,
+                'requester_id' => $request->user->id
+            ];
+            return view('payment', compact('user', 'request', 'metadata'));
         }
     }
 
@@ -109,6 +144,11 @@ class PagesController extends Controller
     public function howItWorks()
     {
         return view('how-it-works');
+    }
+    
+    public function recommendationForm()
+    {
+        return view('recommendation-form');
     }
 
     public function mileStones()
@@ -129,7 +169,7 @@ class PagesController extends Controller
 
     public function blog()
     {
-        $blogs = Blog::latest()->paginate(6);
+        $blogs = Blog::latest()->paginate(9);
         return view('blog', compact('blogs'));
     }
 
@@ -144,12 +184,47 @@ class PagesController extends Controller
 
     public function investorDashboard()
     {
-        return view('investor-dashboard');
+
+        if (Auth::check() == True) {
+            $user_id = Auth::user()->id;
+
+            $user = User::find($user_id);
+            $transactiontotal = array_sum(json_decode(Transaction::where([['user_id', $user_id], ['status', 'success']])->pluck('amount')));
+            $requests = FundRequest::where([['isFunded', 0], ['isSuspended', 0], ['isActive', 1]])->get();
+
+            $transactions = Transaction::with(['Request'])->where([['user_id', $user_id], ['status', 'success']])->get();
+            $rate = 0;
+            foreach ($transactions as $transaction) {
+                $rate = $transaction->request->accrual->avg('rate') + $rate;
+            }
+            if (count($transactions) > 0)
+                $intrestAverage = round($rate / count($transactions), 1);
+            else {
+                $intrestAverage = 0;
+            }
+            $repaymenttotal = 0;
+            foreach ($transactions as  $transaction) {
+                $repaymenttotal = array_sum(json_decode($transaction->request->repayment->pluck('amount_paid'))) + $repaymenttotal;
+            }
+
+            return view('investor-dashboard')->with(compact('transactiontotal', 'user', 'repaymenttotal', 'transactions', 'requests', 'intrestAverage'));
+        } else {
+            return redirect(url('login'));
+        }
     }
 
+    public function successPage()
+    {
+        return view('signup-success');
+    }
+    // the homepage
     public function investeeDashboard()
     {
-        return view('investee-dashboard');
+        // check if profile is completed
+        if (Auth::user()->phone == "" || Auth::user()->address == "") {
+            return view('investee-dashboard')->with('danger', 'Profile update is not complete yet');
+        } else
+            return view('investee-dashboard');
     }
 
     public function campaignGrossing()
@@ -196,8 +271,8 @@ class PagesController extends Controller
 
     public function updateProfile()
     {
-        $token = 'Bearer '.Auth::user()->token();
-        $client = new Client(['base_uri' => 'https://api.fundmylaptop.com/']);
+        $token = 'Bearer ' . Auth::user()->token();
+        $client = new Client(['base_uri' => 'fundmylaptop.com/']);
         $response = $client->request('GET', 'api/v1/my-profile', ['headers' => ['Authorization' => $token]]);
         $body = $response->getBody();
         $content = $body->getContents();
@@ -211,6 +286,7 @@ class PagesController extends Controller
         return view('signup');
     }
 
+    // redundant code
     public function sign_up()
     {
         return view('sign-Up');
@@ -230,4 +306,15 @@ class PagesController extends Controller
     {
         return view('testmodals');
     }
+
+    public function lend()
+
+    {  
+     
+        $top_campaigns = FundRequest:: where('isFunded', '1')->orderBy('amount', 'desc')->paginate(3);
+        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->paginate(6);
+        return view('list-of-campaigns')->with(['topcampaigns' => $top_campaigns])->with(['featuredCampaigns' => $featuredCampaigns]);
+        
+    }
+
 }

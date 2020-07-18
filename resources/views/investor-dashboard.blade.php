@@ -2,6 +2,8 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{asset('css/custom-css/investor-dashboard.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 @endpush
 
 
@@ -9,9 +11,10 @@
     <div class="container-main">
         <div class="">
             <main>
+                
                 <section class="user">
-                    <h1 class="user__intro">Welcome Back, <span class="text--secondary">Chandan</span></h1>
-                    <p>Campaingn available for investing. <span><a class="pink-text" href="#">View More
+                <h1 class="user__intro">Welcome Back, <span class="text--secondary">{{$user->firstName}}</span></h1>
+                    <p>Campaingn available for investing. <span><a class="pink-text" href="{{ url('unfunded-campaigns') }}">View More
                                         ></a></span>
                     </p>
                 </section>
@@ -19,161 +22,73 @@
                     <div class="left-arrow">
                         <i id="left-button" class="fa fa-chevron-left" aria-hidden="true"></i>
                     </div>
-                    <div class="user-financials">
-                        <div style="margin-left: 20px;">
-                            <div class="user-details">
-                                <img src="../img/Ellipse_43.png" alt="A" style="height: 60px; width: 60px;">
-                                <div style="margin-left: 10px;">
-                                    <h1 style="font-size: 24px; line-height: 24px; margin-bottom: 0;">John Doe
-                                    </h1>
-                                    <p style="margin: 0;">Intern</p>
-                                </div>
-                            </div>
-                            <p style="margin-bottom: 20px;"><b>Loan Amount: $1,000</b></p>
-                            <progress style="margin: 0;" value="70" max="100"></progress>
-                            <div style="display: flex;">
-                                <p style="font-size: 10px; line-height: 10px; margin-top: 10px;">$700 Funded</p>
-                                <div style="flex: 1"></div>
-                                <p
-                                    style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;">
-                                    $300 Left</p>
-                            </div>
-                            <button>
-                                Invest Now
-                            </button>
-                        </div>
-                    </div>
 
-                    <div class="user-financials">
-                        <div style="margin-left: 20px;">
-                            <div class="user-details">
-                                <img src="../img/Ellipse_44.png" alt="A" style="height: 60px; width: 60px;">
-                                <div style="margin-left: 10px;">
-                                    <h1 style="font-size: 24px; line-height: 24px; margin-bottom: 0;">John Doe
-                                    </h1>
-                                    <p style="margin: 0;">Intern</p>
+                    @foreach($requests as $request)
+                        <div class="user-financials">
+                            <div style="margin-left: 20px;">
+                                <div class="user-details">
+                                    <img src="{{ $request->photoURL }}" alt="A" style="height: 60px; width: 60px;">
+                                    <div style="margin-left: 10px;">
+                                        <h1 style="font-size: 24px; line-height: 24px; margin-bottom: 0;">{{ $request->user->name }}</h1>
+                                        <p style="margin: 0;">Intern</p>
+                                    </div>
                                 </div>
+                                <p style="margin-bottom: 20px;"><b>Loan Amount: ₦ {{ $request->amount }}</b></p>
+                                <progress style="margin: 0;" value="{{ ($request->transaction->sum('amount')/$request->amount)*100}}" max="100"></progress>
+                                <div style="display: flex;">
+                                    <p style="font-size: 10px; line-height: 10px; margin-top: 10px;">₦ {{$request->transaction->sum('amount') }} Funded</p>
+                                    <div style="flex: 1"></div>
+                                    <p style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;"> &#x20A6 {{ $request->amount - $request->transaction->sum('amount') }} Left</p>
+                                </div>
+                               
+                                   
+                                <a href="{{  route('campaign', $request->id) }}">
+                                  <button class="
+                                  @if($request->transaction->sum('amount')<0)
+                                  disabled
+                                  @endif ">  Invest Now</button>
+                            </a>
+                          
                             </div>
-                            <p style="margin-bottom: 20px;"><b>Loan Amount: $1,000</b></p>
-                            <progress style="margin: 0;" value="70" max="100"></progress>
-                            <div style="display: flex;">
-                                <p style="font-size: 10px; line-height: 10px; margin-top: 10px;">$700 Funded</p>
-                                <div style="flex: 1"></div>
-                                <p
-                                    style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;">
-                                    $300 Left</p>
-                            </div>
-                            <button>
-                                Invest Now
-                            </button>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <div class="user-financials">
-                        <div style="margin-left: 20px;">
-                            <div class="user-details">
-                                <img src="../img/Ellips_ 46.png" alt="A" style="height: 60px; width: 60px;">
-                                <div style="margin-left: 10px;">
-                                    <h1 style="font-size: 24px; line-height: 24px; margin-bottom: 0;">Jane Doe
-                                    </h1>
-                                    <p style="margin: 0;">Intern</p>
-                                </div>
-                            </div>
-                            <p style="margin-bottom: 20px;"><b>Loan Amount: $1,000</b></p>
-                            <progress style="margin: 0;" value="70" max="100"></progress>
-                            <div style="display: flex;">
-                                <p style="font-size: 10px; line-height: 10px; margin-top: 10px;">$700 Funded</p>
-                                <div style="flex: 1"></div>
-                                <p
-                                    style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;">
-                                    $300 Left</p>
-                            </div>
-                            <button>
-                                Invest Now
-                            </button>
-                        </div>
-                    </div>
+                 
 
-                    <div class="user-financials">
-                        <div style="margin-left: 20px;">
-                            <div class="user-details">
-                                <img src="../img/Ellipse_47.png" alt="A" style="height: 60px; width: 60px;">
-                                <div style="margin-left: 10px;">
-                                    <h1 style="font-size: 24px; line-height: 24px; margin-bottom:0px;">Jane Doe
-                                    </h1>
-                                    <p style="margin: 0;">Intern</p>
-                                </div>
-                            </div>
-                            <p style="margin-bottom: 20px;"><b>Loan Amount: $1,000</b></p>
-                            <progress style="margin: 0;" value="70" max="100"></progress>
-                            <div style="display: flex;">
-                                <p style="font-size: 10px; line-height: 10px; margin-top: 10px;">$700 Funded</p>
-                                <div style="flex: 1"></div>
-                                <p
-                                    style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;">
-                                    $300 Left</p>
-                            </div>
-                            <button>
-                                Invest Now
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="user-financials">
-                        <div style="margin-left: 20px;">
-                            <div class="user-details">
-                                <img src="../img/Ellipse_48.png" alt="A"
-                                     style="height: 60px; width: 60px; margin-top: 10px;">
-                                <div style="margin-left: 10px;">
-                                    <h1 style="font-size: 24px; line-height: 24px; margin-bottom: 0px;">John Doe
-                                    </h1>
-                                    <p style="margin: 0;">Intern</p>
-                                </div>
-                            </div>
-                            <p style="margin-bottom: 20px;"><b>Loan Amount: $1,000</b></p>
-                            <progress style="margin: 0;" value="70" max="100"></progress>
-                            <div style="display: flex;">
-                                <p style="font-size: 10px; line-height: 10px; margin-top: 10px;">$700 Funded</p>
-                                <div style="flex: 1"></div>
-                                <p
-                                    style="font-size: 10px; line-height: 10px; margin-top: 10px; margin-right: 15px;">
-                                    $300 Left</p>
-                            </div>
-                            <button>
-                                Invest Now
-                            </button>
-                        </div>
-                    </div>
-                    <div class="right-arrow">
-                        <i id="right-button" class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <div class="right-arrow" >
+                        <i id="right-button" style="display:inline;"class="fa fa-chevron-right" aria-hidden="true"></i>
                     </div>
                 </section><br />
+                @if(session('success')){
+                    {{ session('success') }}
+                }
+                @endif
                 <header class='account-header'>Here is your account overview</header>
                 <section class="account">
                     <div class="account__block">
                         <div class="account__block--details">
                             <small>Invested Amount</small><br>
-                            <h2><span>INR</span>50,000</h2>
+                            <h2><span>NGN</span>{{$transactiontotal}}</h2>
                         </div>
                         <div class="account__block--details">
                             <small>Repaid Amount</small><br>
-                            <h2><span>INR</span>20,000</h2>
+                            <h2><span>NGN</span>{{$repaymenttotal}}</h2>
                         </div>
                         <div class="account__block--details">
                             <small>Remaining Amount</small><br>
-                            <h2><span>INR</span>30,000</h2>
+                            <h2><span>NGN</span>{{$transactiontotal-$repaymenttotal}}</h2>
                         </div>
                         <div class="account__block--details">
                             <small>Investments</small><br>
-                            <h2>6</h2>
+                            <h2>{{$transactions->count()}}</h2>
                         </div>
                         <div class="account__block--details">
                             <small>Average Investment</small><br>
-                            <h2><span>INR</span>25,000</h2>
+                            <h2><span>NGN</span>{{round($transactions->avg('amount'),1)}}</h2>
                         </div>
                         <div class="account__block--details">
                             <small>Average Interest</small><br>
-                            <h2>2.5<span>%</span></h2>
+                            <h2>{{$intrestAverage}}<span>%</span></h2>
                         </div>
                     </div>
                     <div class="account__progress">
@@ -190,6 +105,7 @@
                     </div>
                 </section>
                 <section class="table">
+                    
                     <header>Here is your account overview</header>
                     <div class="table__container">
                         <table>
@@ -197,57 +113,34 @@
                             <td>LOAN</td>
                             <td>AMOUNT</td>
                             <td>INTEREST RATE</td>
-                            <td>TERM</td>
+                            <td>REPAYMENTS LEFT</td>
                             <td>TOTAL RETURNS</td>
-                            <td>PAYMENT DUE</td>
+                            <td>REPAYMENT PERIOD</td>
                             <td>STATUS</td>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>#7646446</td>
-                                <td>INR 50,000</td>
-                                <td>2.5%</td>
-                                <td>10</td>
-                                <td>INR 1,250</td>
-                                <td> <span><b style="font-size: 22px;">27</b></span> JUNE</td>
-                                <td>Active</td>
-                            </tr>
-                            <tr>
-                                <td>#7646446</td>
-                                <td>INR 50,000</td>
-                                <td>2.5%</td>
-                                <td>10</td>
-                                <td>INR 1,250</td>
-                                <td> <span><b style="font-size: 22px;">27</b></span> JUNE</td>
-                                <td>Active</td>
-                            </tr>
-                            <tr>
-                                <td>#7646446</td>
-                                <td>INR 50,000</td>
-                                <td>2.5%</td>
-                                <td>10</td>
-                                <td>INR 1,250</td>
-                                <td> <span><b style="font-size: 22px;">27</b></span> JUNE</td>
-                                <td>Active</td>
-                            </tr>
-                            <tr>
-                                <td>#7646446</td>
-                                <td>INR 50,000</td>
-                                <td>2.5%</td>
-                                <td>10</td>
-                                <td>INR 1,250</td>
-                                <td> <span><b style="font-size: 22px;">27</b></span> JUNE</td>
-                                <td>Active</td>
-                            </tr>
-                            <tr>
-                                <td>#7646446</td>
-                                <td>INR 50,000</td>
-                                <td>2.5%</td>
-                                <td>10</td>
-                                <td>INR 1,250</td>
-                                <td> <span><b style="font-size: 22px;">27</b></span> JUNE</td>
-                                <td>Active</td>
-                            </tr>
+                                @foreach($transactions as $invests )
+                                <tr>
+                                    <td>#{{$invests->request_id }}</td>
+                                    <td>₦ {{$invests->amount }}</td>
+                                    <td>{{$invests->request->accrual->avg('rate') }}%</td>
+                                    <td>{{$invests->request->repayment->last()->num_repayments_left ?? '0'}}</td>
+                                    <td>₦ 
+                                        {{$invests->request->repayment->sum('amount_paid') ?? '0'}}</td>
+                                    <td> 
+                                        <span><b style="font-size: 22px;"> </b></span> {{ $invests->request->repaymentPeriod   }}
+                                    </td>
+                                    <td>
+                                        @if($invests->amount == $invests->request->repayment->sum('amount_paid'))
+                                            Inactive
+                                        @else
+                                        Active
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                         
+                           
                             </tbody>
                         </table>
                     </div>
@@ -295,7 +188,11 @@
             circle.style.strokeDashoffset = offset;
         }
 
-        const progress_value = 40;
+@if($repaymenttotal>0)
+const progress_value = {{round(($repaymenttotal/$transactiontotal)*100,1) }};
+@else
+        const progress_value = 0;
+        @endIf
         const displayed_value = document.querySelector('#displayed_value')
         displayed_value.innerHTML = `${progress_value}%`
         setProgress(progress_value);
