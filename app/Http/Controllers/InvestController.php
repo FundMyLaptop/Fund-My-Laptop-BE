@@ -95,7 +95,6 @@ class InvestController extends Controller
         /*         } */
     }
 
-
     /**
      * Handle successfull or failed transactions
      *
