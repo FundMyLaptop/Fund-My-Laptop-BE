@@ -636,13 +636,11 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Http\\Controllers\\BankAccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/BankAccountController.php',
         'App\\Http\\Controllers\\BlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/BlogController.php',
         'App\\Http\\Controllers\\CommentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/CommentsController.php',
-
-
-
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FavoriteController' => __DIR__ . '/../..' . '/app/Http/Controllers/FavoriteController.php',
         'App\\Http\\Controllers\\InvestController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvestController.php',
+        'App\\Http\\Controllers\\NewletterController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewletterController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\RecommendationController' => __DIR__ . '/../..' . '/app/Http/Controllers/RecommendationController.php',
         'App\\Http\\Controllers\\RepaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/RepaymentController.php',
@@ -668,10 +666,10 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\checkBlocked' => __DIR__ . '/../..' . '/app/Http/Middleware/checkBlocked.php',
         'App\\Mail\\ComplaintFormMail' => __DIR__ . '/../..' . '/app/Mail/ComplaintFormMail.php',
-
+        'App\\Mail\\UserVerification' => __DIR__ . '/../..' . '/app/Mail/UserVerification.php',
         'App\\Newletter' => __DIR__ . '/../..' . '/app/Newletter.php',
- 
         'App\\Notifications\\EmailVerificationNotification' => __DIR__ . '/../..' . '/app/Notifications/EmailVerificationNotification.php',
+        'App\\Notifications\\InvestmentAlertNotification' => __DIR__ . '/../..' . '/app/Notifications/InvestmentAlertNotification.php',
         'App\\Notifications\\PasswordResetNotification' => __DIR__ . '/../..' . '/app/Notifications/PasswordResetNotification.php',
         'App\\Notifications\\sendAcknowledgementEmail' => __DIR__ . '/../..' . '/app/Notifications/sendAcknowledgementEmail.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
