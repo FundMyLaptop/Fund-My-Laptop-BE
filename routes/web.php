@@ -20,18 +20,14 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
+Route::get('/{provider}/update-profile', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 //Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 //Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('campaigns', 'RequestController@investeeCampaigns');
-<<<<<<< HEAD
 Route::match(['get', 'post'], 'campaigns/create', 'RequestController@createCampaign')->name('campaigns/create')->middleware('auth'); //
-=======
-Route::get('campaigns/create', 'RequestController@createCampaign');//
->>>>>>> 530995e005774c95ec52391933b50a11e4b6d40e
 Route::post('campaigns', 'RequestController@storeCampaign');
 Route::get('campaigns/edit/{id}', 'RequestController@editCampaign');
 Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');
@@ -93,10 +89,8 @@ Route::get('/login', 'PagesController@login');
 Route::post('login', 'UserController@login')->name('login');
 //verify account route
 Route::get('verify/{id}', 'UserController@verifyAccount');
-//resend verification
-Route::get('resend_verify_email/{id}', 'UserController@resendVerifyEmail');
 Route::get('sign-up', 'PagesController@sign_up');
-//Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
+Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
 Route::post('update-profile/{id}', 'UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}', 'UserController@edit');
