@@ -13,7 +13,7 @@
             <p>
                 Not to brag, but peep how far we've come to see how far<br />
                 we'll go. Join us now<br />
-                <span class="headLink">Get Started</span>
+                <a href="{{ url('signup') }}"> <span class="headLink">Get Started</span></a>
             </p>
         </div>
     </div>

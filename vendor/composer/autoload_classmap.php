@@ -43,7 +43,9 @@ return array(
     'App\\Http\\Controllers\\BankAccountController' => $baseDir . '/app/Http/Controllers/BankAccountController.php',
     'App\\Http\\Controllers\\BlogController' => $baseDir . '/app/Http/Controllers/Api/BlogController.php',
     'App\\Http\\Controllers\\CommentsController' => $baseDir . '/app/Http/Controllers/Api/CommentsController.php',
+
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
+
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FavoriteController' => $baseDir . '/app/Http/Controllers/FavoriteController.php',
     'App\\Http\\Controllers\\InvestController' => $baseDir . '/app/Http/Controllers/InvestController.php',
@@ -72,12 +74,14 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\checkBlocked' => $baseDir . '/app/Http/Middleware/checkBlocked.php',
-    'App\\Mail\\ComplaintFormMail' => $baseDir . '/app/Mail/ComplaintFormMail.php',
+    'pp\\Mail\\ComplaintFormMail' => $baseDir . '/app/Mail/ComplaintFormMail.php',
+=======
     'App\\Newletter' => $baseDir . '/app/Newletter.php',
+
     'App\\Notifications\\EmailVerificationNotification' => $baseDir . '/app/Notifications/EmailVerificationNotification.php',
     'App\\Notifications\\PasswordResetNotification' => $baseDir . '/app/Notifications/PasswordResetNotification.php',
     'App\\Notifications\\sendAcknowledgementEmail' => $baseDir . '/app/Notifications/sendAcknowledgementEmail.php',
-    'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
+    'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php'
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
@@ -85,7 +89,7 @@ return array(
     'App\\Recommendation' => $baseDir . '/app/Recommendation.php',
     'App\\Repayment' => $baseDir . '/app/Repayment.php',
     'App\\Request' => $baseDir . '/app/Request.php',
-    'App\\Services\\sSocialGoogleAccountService' => $baseDir . '/app/Services/SocialGoogleAccountService.php',
+    'App\\Services\\SocialGoogleAccountService' => $baseDir . '/app/Services/SocialGoogleAccountService.php',
     'App\\SocialGoogleAccount' => $baseDir . '/app/SocialGoogleAccount.php',
     'App\\Testimonial' => $baseDir . '/app/Testimonial.php',
     'App\\ThirdParty\\Flutterwave' => $baseDir . '/app/Thirdparty/Flutterwave.php',
@@ -5038,6 +5042,8 @@ return array(
     'Whoops\\Util\\SystemFacade' => $vendorDir . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
     'Whoops\\Util\\TemplateHelper' => $vendorDir . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
     'XdgBaseDir\\Xdg' => $vendorDir . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+    'Yajra\\Disqus\\DisqusMiddleware' => $vendorDir . '/yajra/laravel-disqus/src/DisqusMiddleware.php',
+    'Yajra\\Disqus\\DisqusServiceProvider' => $vendorDir . '/yajra/laravel-disqus/src/DisqusServiceProvider.php',
     'phpDocumentor\\Reflection\\DocBlock' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
     'phpDocumentor\\Reflection\\DocBlockFactory' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
     'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',
