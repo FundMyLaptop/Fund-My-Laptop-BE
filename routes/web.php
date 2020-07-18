@@ -20,14 +20,14 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
+Route::get('/{provider}/update-profile', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 //Route::get('/redirect', 'SocialAuthGoogleController@redirect');
 //Route::get('/callback', 'SocialAuthGoogleController@callback');
 Route::get('/testify/{testimonial_id}', 'testifyController@delete');
 Route::get('campaigns', 'RequestController@investeeCampaigns');
-Route::get('campaigns/create', 'RequestController@createCampaign'); //
+Route::get('campaigns/create', 'RequestController@createCampaign');//
 Route::post('campaigns', 'RequestController@storeCampaign');
 Route::get('campaigns/edit/{id}', 'RequestController@editCampaign');
 Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');
@@ -37,6 +37,7 @@ Route::get('/featured-request', 'RequestController@fetch_featured_requests');
 Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
+Route::get('why-choose-us', 'PagesController@whyChooseUs');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
 Route::get('campaign', 'PagesController@campaign');
 Route::get('campaign/{id}', 'RequestController@show');
@@ -58,8 +59,9 @@ Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
 Route::get('error404Page', 'PagesController@error404Page');
 Route::get('error500Page', 'PagesController@error500Page');
-Route::get('/{provider}/investor-dashboard', 'PagesController@investorDashboard');
-Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');;
+Route::get('investor-dashboard', 'PagesController@investorDashboard');
+Route::get('/investor-dashboard', 'PagesController@investorDashboard')->name('investor-dashboard');
+Route::get('investee-dashboard', 'PagesController@investeeDashboard')->middleware('verified');
 Route::get('campaign-grossing', 'PagesController@campaignGrossing');
 Route::get('complaint', 'PagesController@complaint');
 Route::get('complaint-form', 'PagesController@complaintForm');
@@ -88,6 +90,8 @@ Route::post('login', 'UserController@login')->name('login');
 //verify account route
 Route::get('verify/{id}', 'UserController@verifyAccount');
 Route::get('sign-up', 'PagesController@sign_up');
+Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
+Route::get('edit-profile/{id}','UserController@edit');
 Route::post('update-profile/{id}', 'UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}', 'UserController@edit');
 Route::get('unfunded-campaigns', 'RequestController@availableFundingRequest');

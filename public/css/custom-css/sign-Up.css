@@ -26,7 +26,7 @@ html {
 		.bodyrow{
 			display:flex;
 			justify-content:space-between;
-			margin-top:100px;
+			margin-top:10px;
 		}
 		#formSection{
 			width:60%;
@@ -40,7 +40,7 @@ html {
 				padding-right:50px;
 			}
 		}
-		
+
 		@media screen and (max-width:800px){
 			#formSection{
 				width:100%;
@@ -55,7 +55,7 @@ html {
 				padding-right:5%;
 			}
 		}
-		
+
 		.h1style{
 			font-size:36px;
 			font-weight:50;
@@ -68,37 +68,37 @@ html {
 			font-size:36px;
 			font-weight:bold;
 			padding-top:0;
-			margin-top:-50px;
+			margin-top:0px;
 			margin-bottom:0;
 			color:black;
 		}
-		
+
 		@media screen and (max-width:500px){
 			.h2style{
 			font-size:36px;
 			font-weight:bold;
 			padding-top:0;
-			margin-top:0;
+			margin-top:50px;
 			margin-bottom:0;
 			color:black;
 		}
 		}
-		
+
 		form{
 			display:flex;
 			flex-direction:column;
-			margin-top:-50px;
+			margin-top:5px;
 		}
-		
+
 		.imageSection{
 			width: 40%;
 			height: auto;
 			background: url(../../img/1SAnrIxw5OY.png);
 			background-repeat: no-repeat;
 			background-position:center center;
-			background-size:cover;			
+			background-size:cover;
 		}
-		
+
 		@media screen and (max-width:1200px){
 			.imageSection{
 				width: 50%;
@@ -106,10 +106,10 @@ html {
 				background: url(../../img/1SAnrIxw5OY.png);
 				background-repeat: no-repeat;
 				background-position:center center cover;
-				background-size:cover;			
+				background-size:cover;
 			}
 		}
-		
+
 		@media screen and (max-width:800px){
 			.imageSection{
 				width: 0;
@@ -155,7 +155,7 @@ html {
 			color:#ffffff;
 			font-size:18px;
 		}
-		
+
 		#submitButton:hover{
 			height:52px;
 			margin-bottom:15px;
@@ -165,8 +165,8 @@ html {
 			color:#FB3F5C;
 			font-size:18px;
 			border:0.2px solid #FB3F5C;
-		}		
-		
+		}
+
 		#googleSignupButton{
 			width:65%;
 			height:52px;
@@ -182,8 +182,8 @@ html {
 			justify-content:center;
 			align-items:center;
 		}
-		
-		
+
+
 		form p{
 			text-align:center;
 		}

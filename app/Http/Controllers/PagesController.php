@@ -25,7 +25,7 @@ class PagesController extends Controller
             ['isFunded', '0'],
             ['isSuspended', '0']
         ])->oldest()->take(3)->get();
-        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',0)->inRandomOrder()->limit(6)->get();
+        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->limit(6)->get();
         return view('index')->with(['oldRequests' => $oldRequests])->with(['featuredCampaigns' => $featuredCampaigns]);
     }
     public function termsAndConditions()
@@ -61,6 +61,11 @@ class PagesController extends Controller
     public function about()
     {
         return view('about');
+    }
+
+    public function whyChooseUs()
+    {
+        return view('milestones');
     }
 
     public function profile()
@@ -239,7 +244,7 @@ class PagesController extends Controller
 
     public function signUp()
     {
-        return view('sign-Up');
+        return view('signup');
     }
 
     // redundant code

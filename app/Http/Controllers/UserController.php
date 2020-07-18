@@ -11,6 +11,8 @@ use App\BackAccount;
 use App\Recommendation;
 use View;
 use Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserVerification;
 
 class UserController extends Controller
 {
@@ -76,9 +78,9 @@ class UserController extends Controller
 
             //return redirect()->route('/update-profile/{$id}')->with('user', $user);
             return View::make('update-profilepage')->with('user', $user);
-    }      
+    }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -89,12 +91,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'email'      => 'required|email',
-            'phone'      => 'required'
+            'phone'      => 'required',
+            'date_of_birth' => 'sometimes',
+            'sex' => 'sometimes',
+            'bio' => 'sometimes',
+            'address' => 'required',
         );
         $validator = Validator::make($request->all(), $rules);
 
@@ -105,12 +111,21 @@ class UserController extends Controller
                 ->withInput();
         } else {
             // store
-            $user = User::find('id');
-            $user->phone       = $request->input('phone');
-            $user->email      = $request->input('email');
-            $user->address    = $request->input('address');
-            $user->save();
+            // $user = User::find('id');
+            // $user->phone       = $request->input('phone');
+            // $user->email      = $request->input('email');
+            // $user->address    = $request->input('address');
+            // $user->save();
 
+            $user_id = Auth::id();
+            //fetch the request id from database
+            $update = User::findOrFail($id);
+            
+                $requestUpdate = [
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                ];
+                User::where('id', $id)->update($requestUpdate);
             // redirect
             return back()->with('success','Profile Updated');
         }
@@ -127,14 +142,15 @@ class UserController extends Controller
         //
     }
 
-     //user registration
+   //user registration
      public function signUp(Request $request)
      {
          $credentials = $request->only('firstName','lastName','email', 'password');
  
          $rules = array(
              'email' => 'required|email|unique:users',
-             'password' => 'required',
+             'password' => 'required|confirmed',
+             'password_confirmation' => 'required',
              'firstName' => 'required',
              'lastName' => 'required'
          );
@@ -145,32 +161,27 @@ class UserController extends Controller
             {
                 return Redirect::back()->withInput()->withErrors($validator);
             } else {
-         $input = $request->all();
+         $input['email'] = $request->get('email');
+         $input['firstName'] = $request->get('firstName');
+         $input['lastName'] = $request->get('lastName');
+         $input['password'] = $request->get('password');
          $input['password'] = bcrypt($input['password']);
          $input['role'] = 'user';
          //send verification mail to user
          $verifyCode = '$2y$10$hO2Acl2tSRjFSv7Fw99gjOGrlOZpRH0HlpvRZbKKFHk1DbptU9k/G';
          $verifyLink = "http://fundmylaptop.com/verify/poiuytrewq?mnbvcxz=".$input['email']."&lkjhgfdsa=".$verifyCode;
          //send mail code starts
-         $email = new \SendGrid\Mail\Mail(); 
-         $email->setFrom("test@example.com", "FundMyLapTop");
-         $email->setSubject("Verify your account");
-         $email->addTo($input['email'], $input['firstName']);
-         $mailContent = "<strong>Hi, ".$input['firstName']."<br><br>Kindly use the link below to verify your account<br><br>Link: ".$verifyLink."</strong>";
-         $email->addContent(
-             "text/html", $mailContent
-         );
-         $sendgrid = new \SendGrid('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');
-         try {
-                 $response = $sendgrid->send($email);
-                 print $response->statusCode() . "\n";
-                 print_r($response->headers());
-                 print $response->body() . "\n";
-             } catch (Exception $e) {
-                 echo 'Caught exception: '. $e->getMessage() ."\n";
-             }
+        $getMessagef = "<strong>Hi, ".$input['firstName']."<br><br>Kindly use the link below to verify your account<br><br>Link: ".$verifyLink."</strong>";
+
+        $subject = "Verify your account FundMyLapTop";
+        $userEmail = $input['email'];
+        Mail::to($userEmail)->send(new UserVerification($getMessagef));
+        
+        if (Mail::failures()) {
+        return redirect('/signup')->with('error', 'Failed to send verification email, Please try again!');   } else {
          //send mail code ends
-         $saveData = User::create($input);
+         $saveData = User::create($input); 
+        }
          if($saveData){
              return redirect('/signup')->with('status', 'Registration Successful, Please check your mail box for verification!');
            } else {
@@ -182,7 +193,7 @@ class UserController extends Controller
           }        
      }
 
-        // user login auth
+    // user login auth
     public function login(Request $request)
     {
       $credentials = $request->only('email', 'password');
@@ -197,11 +208,15 @@ class UserController extends Controller
            {
              return Redirect::back()->withInput()->withErrors($validator);
            } else {
-               if(Auth::attempt($credentials) && Auth::user()->email_verified_at !== NULL){
-                    return redirect('/investee-dashboard')->with('status', 'Login Successful!');
-            }
-        else {
-            if(Auth::attempt($credentials) && Auth::user()->email_verified_at == NULL){
+               $userEmail = $request->get('email');
+               $findUser = User::whereEmail($userEmail)->firstOrFail();
+                $verified = $findUser->email_verified_at;
+               if($verified !== NULL){
+                   if(Auth::attempt($credentials)){
+                   return redirect('/investee-dashboard')->with('status', 'Login Successful!');
+                   }
+            } else {
+            if($verified == NULL){
                 return Redirect::back()
                 ->withErrors([
                     'credentials' => 'Email is not verified yet, please check your mail or spam folder!'
@@ -225,7 +240,7 @@ class UserController extends Controller
                 $findUser = User::whereEmail($userEmail)->firstOrFail();
                 $findUser->email_verified_at = date('Y-m-d H:m:s', time());
                 $findUser->save();
-                return redirect('/login')->with('status', 'Account Verified, You can now Login!');
+                return redirect('/login?zxcvbnm=lkjhgfdsa')->with('status', 'Account Verified, You can now Login!');
             } else {
                  return redirect('/login')->with('error', 'We could not verify your account, please contact Administrator!');
             }

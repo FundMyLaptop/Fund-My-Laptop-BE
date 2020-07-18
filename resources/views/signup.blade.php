@@ -1,5 +1,7 @@
 @extends('layout.app');
-
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/custom-css/sign-Up.css')}}">
+@endpush
 @section('content')
 
     <!-- main content goes in here -->
@@ -10,8 +12,8 @@
             <p>Help Achieve your dreams with funding for your laptops at little or no cost</p>
             <form method="POST">
             {!! csrf_field() !!}
-            <!-- check user for valid or invalid signup -->   
-         @if (session('status'))
+            <!-- check user for valid or invalid signup -->
+         @if(session('status'))
             <br>
             <br>
             <p class="alert alert-success">{{ session('status') }}
@@ -32,7 +34,7 @@
                 </div>
                 <input type="email" id="email" name="email" placeholder="Email" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
-                <input type="password" placeholder="Password Again" name="password_again" id="password_again" required>
+                <input type="password" placeholder="Password Confirmation" name="password_confirmation" id="password_confirmation" required>
                 <div>
                     <input class="check" type="checkbox" required>
                     <label class="terms"> I agree to the <span>Terms Policy Conditions</span></label>
