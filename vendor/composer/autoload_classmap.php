@@ -43,12 +43,11 @@ return array(
     'App\\Http\\Controllers\\BankAccountController' => $baseDir . '/app/Http/Controllers/BankAccountController.php',
     'App\\Http\\Controllers\\BlogController' => $baseDir . '/app/Http/Controllers/Api/BlogController.php',
     'App\\Http\\Controllers\\CommentsController' => $baseDir . '/app/Http/Controllers/Api/CommentsController.php',
-
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
-
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FavoriteController' => $baseDir . '/app/Http/Controllers/FavoriteController.php',
     'App\\Http\\Controllers\\InvestController' => $baseDir . '/app/Http/Controllers/InvestController.php',
+    'App\\Http\\Controllers\\NewletterController' => $baseDir . '/app/Http/Controllers/NewletterController.php',
     'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',
     'App\\Http\\Controllers\\RecommendationController' => $baseDir . '/app/Http/Controllers/RecommendationController.php',
     'App\\Http\\Controllers\\RepaymentController' => $baseDir . '/app/Http/Controllers/RepaymentController.php',
@@ -73,14 +72,13 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\checkBlocked' => $baseDir . '/app/Http/Middleware/checkBlocked.php',
-    'pp\\Mail\\ComplaintFormMail' => $baseDir . '/app/Mail/ComplaintFormMail.php',
-=======
+    'App\\Mail\\ComplaintFormMail' => $baseDir . '/app/Mail/ComplaintFormMail.php',
+    'App\\Mail\\UserVerification' => $baseDir . '/app/Mail/UserVerification.php',
     'App\\Newletter' => $baseDir . '/app/Newletter.php',
-
     'App\\Notifications\\EmailVerificationNotification' => $baseDir . '/app/Notifications/EmailVerificationNotification.php',
     'App\\Notifications\\PasswordResetNotification' => $baseDir . '/app/Notifications/PasswordResetNotification.php',
     'App\\Notifications\\sendAcknowledgementEmail' => $baseDir . '/app/Notifications/sendAcknowledgementEmail.php',
-    'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php'
+    'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',

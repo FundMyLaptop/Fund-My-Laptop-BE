@@ -39,8 +39,7 @@ Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('r
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('why-choose-us', 'PagesController@whyChooseUs');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
-Route::get('campaign', 'PagesController@campaign');
-Route::get('campaign/{id}', 'RequestController@show');
+Route::get('campaign/{id}', 'RequestController@show')->name('campaign');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
@@ -49,7 +48,7 @@ Route::get('update-profile', 'PagesController@profile');
 /* Route::get('payment', 'PagesController@payment'); */
 //make payment for a request... where {id} is requestId
 
-Route::get('payment/{id}', 'PagesController@payment');
+Route::get('campaign/{id}/fund', 'PagesController@payment')->name('fund');
 Route::post('payment/{id}', 'PagesController@payment');
 Route::get('benefit', 'PagesController@benefit');
 Route::get('partners', 'PagesController@partners');

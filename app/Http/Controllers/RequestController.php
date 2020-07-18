@@ -269,8 +269,8 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $request = FundRequest::where('id', $id)->get();
-        return view('campaign', compact('request'));
+        $request = FundRequest::where('id', $id)->with('user')->first();
+        return view('campaign')->with('request', $request); 
 
     }
 
