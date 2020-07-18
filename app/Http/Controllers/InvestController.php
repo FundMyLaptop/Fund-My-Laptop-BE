@@ -76,25 +76,6 @@ class InvestController extends Controller
 
         /*         if ($saved) { */
         $request = FundRequest::where('id', $trans->request_id)->with('user')->first();
-<<<<<<< HEAD
-            $details = [
-                'greeting' => 'Hi ' . $user->firstName,
-                'body' => 'Your investment of ' . $trans->amount . 'in '. $request->user->firstName . '\'s campaign -' . url(`/campaign/$trans->request_id`). '- has been acknowledged',
-                'thanks' => 'Thank you for trusting fundmylaptop.com!',
-            ];
-
-            $trans->notify(new sendPaymentDetailsEmail($details), $user->email);
-
-            //dd($trans->notifications);
-
-            return redirect()->route('investor-dashboard');
-        }
-        // else{
-        //     dd('Not saved');
-        
-        // }
-
-=======
         $details = [
             'greeting' => 'Hi ' . $user->firstName,
             'body' => 'Your investment of ₦ ' . $trans->amount . ' in ' . $request->user->firstName . '\'s campaign - ' . url('/campaign/' . $trans->request_id) . ' - has been acknowledged',
@@ -112,7 +93,6 @@ class InvestController extends Controller
 
         return redirect()->route('investor-dashboard');
         /*         } */
->>>>>>> 833787e56b4490b55a2de3a1981573753d8b652c
     }
 
     /**
