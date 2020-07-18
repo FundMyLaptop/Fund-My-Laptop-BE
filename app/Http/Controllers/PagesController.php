@@ -63,6 +63,11 @@ class PagesController extends Controller
         return view('about');
     }
 
+    public function whyChooseUs()
+    {
+        return view('milestones');
+    }
+
     public function profile()
     {
         $user = Auth::user()->id;
