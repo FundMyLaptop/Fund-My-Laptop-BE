@@ -49,12 +49,12 @@
                                 <div class="row m-0 d-flex justify-content-between">
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Title</label>
-                                        <input type="text" name="title" class="contact-item__num py-4 form-control @error('title') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Enter campaign title" value="{{ old('title') }}">
+                                        <input type="text" name="title" class="contact-item__num py-4 form-control @error('title') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Enter campaign title" value="{{ old('title') }}" required>
                                     <span class="text-danger">@error('title') {{ $message }} @enderror</span>
                                     </div>
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Amount</label>
-                                        <input type="number" name="amount" class="contact-item__num py-4 form-control @error('amount') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Enter amount" value="{{ old('amount') }}">
+                                        <input type="number" name="amount" class="contact-item__num py-4 form-control @error('amount') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Enter amount" value="{{ old('amount') }}" required>
                                         <span class="text-danger">@error('amount') {{ $message }} @enderror</span>
                                     </div>
                                 </div>
@@ -65,25 +65,25 @@
                                     </div>
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Photo URL</label>
-                                        <input type="url" name="photo_URL" class="contact-item__num py-4 form-control @error('photo_URL') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Enter photo url" value="{{ old('photo_URL') }}">
+                                        <input type="url" name="photo_URL" class="contact-item__num py-4 form-control @error('photo_URL') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Enter photo url" value="{{ old('photo_URL') }}" required>
                                         <span class="text-danger">@error('photo_URL') {{ $message }} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="row m-0 d-flex justify-content-between">
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Repayment Period (Months)</label>
-                                        <input type="number" name="repaymentPeriod" class="contact-item__num py-4 form-control @error('repaymentPeriod') is-invalid @enderror" id="exampleFormControlInput1" placeholder="How long in months?" value="{{ old('repaymentPeriod') }}">
+                                        <input type="number" name="repaymentPeriod" class="contact-item__num py-4 form-control @error('repaymentPeriod') is-invalid @enderror" id="exampleFormControlInput1" placeholder="How long in months?" value="{{ old('repaymentPeriod') }}" required>
                                         <span class="text-danger">@error('repaymentPeriod') {{ $message }} @enderror</span>
                                     </div>
                                     <div class="form-group form-item--input">
                                         <label for="exampleFormControlInput1">Repayment Times</label>
-                                        <input type="number" name="repaymentTimes" class="contact-item__num py-4 form-control @error('repaymentTimes') is-invalid @enderror" id="exampleFormControlInput1" placeholder="How many times?" value="{{ old('repaymentTimes') }}">
+                                        <input type="number" name="repaymentTimes" class="contact-item__num py-4 form-control @error('repaymentTimes') is-invalid @enderror" id="exampleFormControlInput1" placeholder="How many times?" value="{{ old('repaymentTimes') }}" required>
                                         <span class="text-danger">@error('repaymentTimes') {{ $message }} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="form-group w-100">
                                     <label for="exampleFormControlTextarea1">Description</label>
-                                    <textarea name="description" class="pt-3 form-item--text-area contact-item__num form-control @error('description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="" placeholder="Why should people invest in this cause?">{{ old('description') }}</textarea>
+                                    <textarea name="description" class="pt-3 form-item--text-area contact-item__num form-control @error('description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="" placeholder="Why should people invest in this campaign?" required>{{ old('description') }}</textarea>
                                     <span class="text-danger">@error('description') {{ $message }} @enderror</span>
                                 </div>
                                 <button class="form-submit" type="submit">Create Campaign</button>
