@@ -80,6 +80,7 @@ return array(
     'App\\Mail\\UserVerification' => $baseDir . '/app/Mail/UserVerification.php',
     'App\\Newletter' => $baseDir . '/app/Newletter.php',
     'App\\Notifications\\EmailVerificationNotification' => $baseDir . '/app/Notifications/EmailVerificationNotification.php',
+    'App\\Notifications\\InvestmentAlertNotification' => $baseDir . '/app/Notifications/InvestmentAlertNotification.php',
     'App\\Notifications\\PasswordResetNotification' => $baseDir . '/app/Notifications/PasswordResetNotification.php',
     'App\\Notifications\\sendAcknowledgementEmail' => $baseDir . '/app/Notifications/sendAcknowledgementEmail.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

@@ -34,8 +34,13 @@ Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');
 Route::patch('campaigns/{id}', 'RequestController@updateCampaign');
 Route::post('campaigns/{id}', 'RequestController@suspendCampaign');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
+
+Route::get('request/{id}', 'PagesController@campaign');
+
+
 Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
+
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('why-choose-us', 'PagesController@whyChooseUs');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');

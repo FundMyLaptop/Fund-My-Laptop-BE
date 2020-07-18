@@ -8,7 +8,11 @@ class Request extends Model
 {
 	protected $table = 'requests';
 
-	protected $fillable = ['user_id','title','description','photoURL','currency','amount','occupation', 'repaymentPeriod', 'repaymentTimes', 'isFunded','isSuspended','isActive', 'isFeatured'];
+
+
+
+	protected $fillable = ['user_id','title','description','photoURL','currency','amount','location','occupation', 'repaymentPeriod', 'repaymentTimes', 'isFunded','isSuspended','isActive', 'isFeatured'];
+
 
     public function user() {
         return $this->belongsTo('App\User');
@@ -34,6 +38,13 @@ class Request extends Model
         return[
             0 => 'Not Funded',
             1 => 'Funded'
+        ][$attribute];
+    }
+
+    public function getIsActiveAttribute($attribute){
+        return[
+            0 => 'Inactive',
+            1 => 'Active'
         ][$attribute];
     }
 

@@ -222,6 +222,7 @@ class RequestController extends Controller
         }
     }
 
+
     /**
      * Investee end a campaign
      * @param $id
@@ -240,6 +241,7 @@ class RequestController extends Controller
             }
         }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -270,8 +272,8 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        $request = FundRequest::where('id', $id)->get();
-        return view('campaign', compact('request'));
+        $request = FundRequest::where('id', $id)->with('user')->first();
+        return view('campaign')->with('request',$request);
     }
    
     /**

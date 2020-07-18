@@ -669,6 +669,7 @@ class ComposerStaticInit52498c0a126732e6707634abd19eb4f7
         'App\\Mail\\UserVerification' => __DIR__ . '/../..' . '/app/Mail/UserVerification.php',
         'App\\Newletter' => __DIR__ . '/../..' . '/app/Newletter.php',
         'App\\Notifications\\EmailVerificationNotification' => __DIR__ . '/../..' . '/app/Notifications/EmailVerificationNotification.php',
+        'App\\Notifications\\InvestmentAlertNotification' => __DIR__ . '/../..' . '/app/Notifications/InvestmentAlertNotification.php',
         'App\\Notifications\\PasswordResetNotification' => __DIR__ . '/../..' . '/app/Notifications/PasswordResetNotification.php',
         'App\\Notifications\\sendAcknowledgementEmail' => __DIR__ . '/../..' . '/app/Notifications/sendAcknowledgementEmail.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
