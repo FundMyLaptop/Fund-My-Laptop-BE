@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ac8a469a14cc4ae0964c2ee09273af9",
-
+    "content-hash": "efb771e5037d105d984aba547e07f010",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -553,16 +552,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.5.5",
+            "version": "7.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "9d4290de1cfd701f38099ef7e183b64b4b7b0c5e"
+                "reference": "2d9d3c186a6637a43193e66b097c50e4451eaab2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/9d4290de1cfd701f38099ef7e183b64b4b7b0c5e",
-                "reference": "9d4290de1cfd701f38099ef7e183b64b4b7b0c5e",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/2d9d3c186a6637a43193e66b097c50e4451eaab2",
+                "reference": "2d9d3c186a6637a43193e66b097c50e4451eaab2",
                 "shasum": ""
             },
             "require": {
@@ -753,65 +752,6 @@
                 "url"
             ],
             "time": "2019-07-01T23:21:34+00:00"
-        },
-        {
-            "name": "jorenvanhocht/laravel-share",
-            "version": "3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jorenvh/laravel-share.git",
-                "reference": "c82c43b654a48964a8949195c5f48c9e7cb1ec95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jorenvh/laravel-share/zipball/c82c43b654a48964a8949195c5f48c9e7cb1ec95",
-                "reference": "c82c43b654a48964a8949195c5f48c9e7cb1ec95",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.5.0",
-                "phpunit/phpunit": "~6.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Jorenvh\\Share\\Providers\\ShareServiceProvider"
-                    ],
-                    "aliases": {
-                        "Share": "Jorenvh\\Share\\ShareFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Jorenvh\\Share\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joren Van Hocht",
-                    "email": "joren@codeswitch.be",
-                    "homepage": "https://codeswitch.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Optional package for Laravel to generate social share links.",
-            "homepage": "https://github.com/jorenvh/laravel-share",
-            "keywords": [
-                "laravel",
-                "share",
-                "social links",
-                "social share links"
-            ],
-            "time": "2019-12-30T20:39:14+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -1301,60 +1241,6 @@
                 "psysh"
             ],
             "time": "2020-04-07T15:01:31+00:00"
-        },
-        {
-            "name": "laravel/ui",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/ui.git",
-                "reference": "bb64fca681566ca94457d490a00f899516e75664"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/bb64fca681566ca94457d490a00f899516e75664",
-                "reference": "bb64fca681566ca94457d490a00f899516e75664",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "~5.8|^6.0",
-                "illuminate/filesystem": "~5.8|^6.0",
-                "illuminate/support": "~5.8|^6.0",
-                "php": "^7.1.3"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Ui\\UiServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Ui\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Laravel UI utilities and presets.",
-            "keywords": [
-                "laravel",
-                "ui"
-            ],
-            "time": "2020-02-13T21:12:28+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -2825,159 +2711,6 @@
                 "uuid"
             ],
             "time": "2020-02-21T04:36:14+00:00"
-        },
-        {
-            "name": "sendgrid/php-http-client",
-            "version": "3.10.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sendgrid/php-http-client.git",
-                "reference": "51e69a9acdb7a1a5ebb4420d3f54917d7341076f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sendgrid/php-http-client/zipball/51e69a9acdb7a1a5ebb4420d3f54917d7341076f",
-                "reference": "51e69a9acdb7a1a5ebb4420d3f54917d7341076f",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.4",
-                "squizlabs/php_codesniffer": "~2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SendGrid\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matt Bernier",
-                    "email": "mbernier@twilio.com"
-                },
-                {
-                    "name": "Elmer Thomas",
-                    "email": "ethomas@twilio.com"
-                }
-            ],
-            "description": "HTTP REST client, simplified for PHP",
-            "homepage": "http://github.com/sendgrid/php-http-client",
-            "keywords": [
-                "api",
-                "fluent",
-                "http",
-                "rest",
-                "sendgrid"
-            ],
-            "time": "2020-06-24T19:34:13+00:00"
-        },
-        {
-            "name": "sendgrid/sendgrid",
-            "version": "7.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sendgrid/sendgrid-php.git",
-                "reference": "4f2f9f67791ba4c8e311fbe44785661af01062d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/4f2f9f67791ba4c8e311fbe44785661af01062d9",
-                "reference": "4f2f9f67791ba4c8e311fbe44785661af01062d9",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "ext-openssl": "*",
-                "php": ">=5.6",
-                "sendgrid/php-http-client": "~3.10",
-                "starkbank/ecdsa": "0.*"
-            },
-            "replace": {
-                "sendgrid/sendgrid-php": "*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7.9 || ^6.4.3",
-                "squizlabs/php_codesniffer": "3.*",
-                "swaggest/json-diff": "^3.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SendGrid\\Contacts\\": "lib/contacts/",
-                    "SendGrid\\EventWebhook\\": "lib/eventwebhook/",
-                    "SendGrid\\Mail\\": "lib/mail/",
-                    "SendGrid\\Stats\\": "lib/stats/"
-                },
-                "classmap": [
-                    "lib/BaseSendGridClientInterface.php",
-                    "lib/SendGrid.php",
-                    "lib/TwilioEmail.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "This library allows you to quickly and easily send emails through Twilio SendGrid using PHP.",
-            "homepage": "http://github.com/sendgrid/sendgrid-php",
-            "keywords": [
-                "email",
-                "grid",
-                "send",
-                "sendgrid",
-                "twilio sendgrid"
-            ],
-            "time": "2020-07-08T18:49:48+00:00"
-        },
-        {
-            "name": "starkbank/ecdsa",
-            "version": "0.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/starkbank/ecdsa-php.git",
-                "reference": "9369d35ed9019321adb4eb9fd3be21357d527c74"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/starkbank/ecdsa-php/zipball/9369d35ed9019321adb4eb9fd3be21357d527c74",
-                "reference": "9369d35ed9019321adb4eb9fd3be21357d527c74",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/ellipticcurve.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "StarkBank",
-                    "email": "developers@starkbank.com",
-                    "homepage": "https://starkbank.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "fast openSSL-compatible implementation of the Elliptic Curve Digital Signature Algorithm (ECDSA)",
-            "homepage": "https://github.com/starkbank/ecdsa-php",
-            "time": "2020-05-15T15:46:20+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4615,79 +4348,6 @@
             "time": "2019-10-24T08:53:34+00:00"
         },
         {
-            "name": "unicodeveloper/laravel-paystack",
-            "version": "1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/unicodeveloper/laravel-paystack.git",
-                "reference": "533d45b3e7c68e283a2ed71ddd45af1ef7728873"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/unicodeveloper/laravel-paystack/zipball/533d45b3e7c68e283a2ed71ddd45af1ef7728873",
-                "reference": "533d45b3e7c68e283a2ed71ddd45af1ef7728873",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "5.*|6.*",
-                "illuminate/support": "^5.8.15|^6.0|^7.0",
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.3",
-                "php-coveralls/php-coveralls": "^2.0",
-                "phpunit/phpunit": "^8.4|^9.0",
-                "scrutinizer/ocular": "~1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Unicodeveloper\\Paystack\\PaystackServiceProvider"
-                    ],
-                    "aliases": {
-                        "Paystack": "Unicodeveloper\\Paystack\\Facades\\Paystack"
-                    }
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/Support/helpers.php"
-                ],
-                "psr-4": {
-                    "Unicodeveloper\\Paystack\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "unicodeveloper",
-                    "email": "prosperotemuyiwa@gmail.com"
-                },
-                {
-                    "name": "iamfunsho",
-                    "email": "info@devfunsho.com"
-                }
-            ],
-            "description": "A Laravel Package for Paystack",
-            "keywords": [
-                "github",
-                "laravel",
-                "laravel 5",
-                "laravel 6",
-                "open source",
-                "payments",
-                "paystack",
-                "paystack.co",
-                "php",
-                "subscription"
-            ],
-            "time": "2020-05-23T16:38:24+00:00"
-        },
-        {
             "name": "vlucas/phpdotenv",
             "version": "v3.6.6",
             "source": {
@@ -4808,8 +4468,6 @@
                 "yajra"
             ],
             "time": "2020-03-07T02:33:19+00:00"
-=======
-
         }
     ],
     "packages-dev": [
