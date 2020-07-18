@@ -54,6 +54,7 @@ Route::post('payment/{id}', 'PagesController@payment');
 Route::get('benefit', 'PagesController@benefit');
 Route::get('partners', 'PagesController@partners');
 Route::get('how-it-works', 'PagesController@howItWorks');
+Route::get('recommendation-form', 'PagesController@recommendationForm');
 Route::get('milestones', 'PagesController@mileStones');
 Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
