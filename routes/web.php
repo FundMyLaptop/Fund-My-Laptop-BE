@@ -20,7 +20,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/{provider}/update-profile', 'SocialController@callback');
+Route::get('login/{provider}/investee-dashboard', 'SocialController@callback');
 //Route::get('/api/v1/fundeeverification/{id}','FundeeVerificationController@userVerified')->name('fundee-verification-status');
 
 //Route::get('/redirect', 'SocialAuthGoogleController@redirect');
@@ -34,13 +34,17 @@ Route::get('campaigns/manage/{id}', 'RequestController@showCampaign');
 Route::patch('campaigns/{id}', 'RequestController@updateCampaign');
 Route::post('campaigns/{id}', 'RequestController@suspendCampaign');
 Route::get('/featured-request', 'RequestController@fetch_featured_requests');
+
+Route::get('request/{id}', 'PagesController@campaign');
+
+
 Route::get('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
 Route::POST('invest/redirect/{id}/{user}', 'InvestController@redirect')->name('redirect');
+
 Route::get('terms-and-conditions', 'PagesController@termsAndConditions');
 Route::get('why-choose-us', 'PagesController@whyChooseUs');
 Route::get('privacy-policy', 'PagesController@privacyPolicy');
-Route::get('campaign', 'PagesController@campaign');
-Route::get('campaign/{id}', 'RequestController@show');
+Route::get('campaign/{id}', 'RequestController@show')->name('campaign');
 Route::get('career', 'PagesController@career');
 Route::get('album', 'PagesController@album');
 Route::get('faq', 'PagesController@faq');
@@ -49,11 +53,12 @@ Route::get('update-profile', 'PagesController@profile');
 /* Route::get('payment', 'PagesController@payment'); */
 //make payment for a request... where {id} is requestId
 
-Route::get('payment/{id}', 'PagesController@payment');
+Route::get('campaign/{id}/fund', 'PagesController@payment')->name('fund');
 Route::post('payment/{id}', 'PagesController@payment');
 Route::get('benefit', 'PagesController@benefit');
 Route::get('partners', 'PagesController@partners');
 Route::get('how-it-works', 'PagesController@howItWorks');
+Route::get('recommendation-form', 'PagesController@recommendationForm');
 Route::get('milestones', 'PagesController@mileStones');
 Route::get('blog/{id}', 'PagesController@blogRead');
 Route::get('blog', 'PagesController@blog')->name('blog');
@@ -71,6 +76,7 @@ Route::post('complaint-form', 'PagesController@complaintForm');
 Route::get('contact', 'PagesController@contact');
 
 Route::post('process_contact', 'ContactController@store');
+Route::post('newsletter', 'NewletterController@store');
 
 
 
@@ -90,7 +96,7 @@ Route::post('login', 'UserController@login')->name('login');
 //verify account route
 Route::get('verify/{id}', 'UserController@verifyAccount');
 Route::get('sign-up', 'PagesController@sign_up');
-Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
+//Route::post('/{provider}/update-profile/{id}','UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}','UserController@edit');
 Route::post('update-profile/{id}', 'UserController@update')->name('update-profile');
 Route::get('edit-profile/{id}', 'UserController@edit');
