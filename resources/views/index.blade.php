@@ -32,11 +32,11 @@
                     </div>
                     <div class="form-group">
                         <label for="inputState">Target</label>
-                        <select id="inputState" class="form-control" name="amount">
-                            <option selected value="1000">$1000</option>
+                        <input id="inputState" class="form-control" name="amount" placeholder="Amount">
+                            <!-- <option selected value="1000">$1000</option>
                             <option value="20000">$20000</option>
-                            <option value="30000">$30000</option>
-                        </select>
+                            <option value="30000">$30000</option> -->
+                        </input>
                     </div>
                     <!-- date row -->
                     <div class="row">
@@ -50,7 +50,7 @@
                             <input class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
-                    <button type="submit" class="btn-form mx-auto my-4">Start Compaign</button>
+                    <button type="submit" class="btn-form mx-auto my-4">Start Campaign</button>
                 </form>
             </div>
         </div>
