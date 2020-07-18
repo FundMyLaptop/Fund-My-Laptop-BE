@@ -49,7 +49,7 @@
                         <div class="input-group">
                             <span class="input-group-text" id="selectedCurrency">&#x20A6;</span>
                             <input class="form-control form-control-lg form__input" type="number" id="amounta" name="amount"
-                                   placeholder="Enter Amount to Donate" required>
+                                   placeholder="Enter Amount to Donate" max="{{ $request->amount }}" required>
                             <select class="input-group-text" id="chooseCurrency">
                                 <option value="NGN" selected>NGN</option>
                                 <option value="USD">USD</option>
