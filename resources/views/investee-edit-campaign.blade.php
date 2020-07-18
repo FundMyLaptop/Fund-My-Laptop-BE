@@ -8,27 +8,27 @@
 @section('content')
 
     <main class="container-fluid px-0">
-    <div class="top">
-      <ol class="breadcrumb" style="font-size: 23px; background:none;">
-        <li class="breadcrumb-item"><a style="color: black; " href="#">Main Dashboard</a></li>
-        <li class="breadcrumb-item active "><a style="color: blue;" href="#">Edit Campaign</a></li>
-      </ol>
-    </div>
+        <div class="top">
+            <ol class="breadcrumb" style="font-size: 23px; background:none;">
+                <li class="breadcrumb-item"><a style="color: black; " href="#">Main Dashboard</a></li>
+                <li class="breadcrumb-item active "><a style="color: blue;" href="#">Edit Campaign</a></li>
+            </ol>
+        </div>
         <div class="top-image">
             <p class="top-image__text"></p>
         </div>
         <section class="back-wrap">
             <div class="row container-fluid mx-auto main-wrap">
                 <div class="col contact--wrap container-fluid">
-                <div class="contact--wrap-1">
-                    <h2>Campaign Tip</h2>
-                </div>
+                    <div class="contact--wrap-1">
+                        <h2>Campaign Tip</h2>
+                    </div>
 
                     <div class="contact--wrap-2">
                         <div class="py-2 contact-item d-flex align-items-center mb-4 p-2">
-                    <p>By creating a campaign you stand a chance of getting funding for a brand new laptop or get the existing one repaired. <br>
-                    A properly crafted campaign usually increases your chances of getting funds by 70%.
-                    </p>
+                            <p>By creating a campaign you stand a chance of getting funding for a brand new laptop or get the existing one repaired. <br>
+                                A properly crafted campaign usually increases your chances of getting funds by 70%.
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
-    public function __construct()
-    {
-        //allows only authenticated user
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        //allows only authenticated user
+//        $this->middleware('auth');
+//    }
 
     /**
      * Display a listing of the resource.
@@ -105,8 +105,9 @@ class RequestController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeCampaign(Request $request)
-    {
+
+    public function storeCampaign(Request $request){
+
         try {
             $validator = Validator::make(
                 $request->all(),
@@ -196,7 +197,7 @@ class RequestController extends Controller
                 return redirect('/campaigns/edit/' . $id)->withErrors($validator);
             } else {
                 // get authenticated user id
-                // $user_id = Auth::id();
+//        $user_id = Auth::id();
                 $user_id = Auth::user()->id;
                 //fetch the request id from database
                 $update = FundRequest::findOrFail($id);

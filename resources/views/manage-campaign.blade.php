@@ -8,94 +8,72 @@
         .fs-13 {
             font-size: 13px !important;
         }
-
         .fs-14 {
             font-size: 14px !important;
         }
-
         .fs-20 {
             font-size: 20px;
         }
-
         .fw-500 {
             font-weight: 500;
         }
-
         .height-400 {
             height: 400px;
         }
-
         .height-10 {
             height: 10px;
         }
-
         .shadow-sm {
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1) !important;
         }
-
         .shadow-light {
             box-shadow: 0px 3px 20px rgba(162, 14, 14, 0.059);
         }
-
         .shadow-sm-primary {
             z-index: 1;
             box-shadow: 0px 4px 10px #fb3f5ca6;
         }
-
         .border-rounded-30 {
             border-radius: 30px;
         }
-
         .laptop-img {
             object-fit: cover;
         }
-
         .icon {
             width: 12px;
             height: 12px;
         }
-
         .icon-cancel {
             content: url("/img/cancel.svg");
         }
-
         .icon-pen {
             content: url("/img/pen.svg");
         }
-
         .icon-share {
             content: url("/img/share.svg");
         }
-
         .icon-money-bag {
             content: url("/img/money-bag.svg");
         }
-
         .fml-primary-color {
             color: #FB3F5C;
         }
-
         .fml-bg-primary {
             background-color: #FB3F5C;
             color: white;
         }
-
         .fml-bg-secondary {
             background-color: #FFE0E5;
         }
-
         .fml-bg-secondary-2 {
             background-color: #fff0f0;
         }
-
         .fml-bg-secondary-2:hover {
             background-color: #FFE0E5;
         }
-
         .sign {
             font-size: 20px;
         }
-
         .dot {
             content: "";
             height: 5px !important;
@@ -105,16 +83,13 @@
             background-color: #FB3F5C;
             display: inline-block;
         }
-
         @media (max-width: 768px) {
             .width-md-900 {
                 width: 900px !important;
             }
-
             .overflow-x-auto {
                 overflow-x: auto;
             }
-
             .fs-md-14 {
                 font-size: 14px;
             }

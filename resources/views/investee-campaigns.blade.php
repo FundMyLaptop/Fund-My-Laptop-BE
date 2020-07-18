@@ -85,9 +85,9 @@
             @endforelse
         </div>
         @if(method_exists($campaign_requests, 'links'))
-        <div class="d-flex justify-content-end">
-            <span>{{ $campaign_requests->links() }}</span>
-        </div>
-            @endif
+            <div class="d-flex justify-content-end">
+                <span>{{ $campaign_requests->links() }}</span>
+            </div>
+        @endif
     </section>
 @endsection
