@@ -91,9 +91,11 @@ class RequestController extends Controller
     /**
      * Investee create campaign form view
      */
-    public function createCampaign()
+    public function createCampaign(Request $request)
     {
-        return view('investee-create-campaign');
+        $requestInput = $request->all();
+        
+        return view('investee-create-campaign', compact('requestInput'));
     }
 
 

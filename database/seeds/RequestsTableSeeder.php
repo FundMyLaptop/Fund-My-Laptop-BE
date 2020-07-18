@@ -28,8 +28,8 @@ class RequestsTableSeeder extends Seeder
                 'repaymentTimes' => $faker->randomNumber(2),
                 'isFunded' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isSuspended' => $faker->boolean($chanceOfGettingTrue = 50),
-                'isActive' => $faker->boolean($chanceOfGettingTrue = 50),
                 'isFeatured' => $faker->boolean($chanceOfGettingTrue = 50),
+                'isActive' => $faker->boolean($chanceOfGettingTrue = 50),
             ]);
         }
     }

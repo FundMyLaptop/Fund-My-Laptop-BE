@@ -213,7 +213,8 @@ class UserController extends Controller
                 $verified = $findUser->email_verified_at;
                if($verified !== NULL){
                    if(Auth::attempt($credentials)){
-                   return redirect('/investee-dashboard')->with('status', 'Login Successful!');
+                   //return redirect('/investee-dashboard')->with('status', 'Login Successful!');
+                   return redirect()->intended('/investee-dashboard')->with('status', 'Login Successful!');
                    }
             } else {
             $userEmail = $request->get('email');
