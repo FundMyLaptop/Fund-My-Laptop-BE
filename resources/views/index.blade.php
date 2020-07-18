@@ -50,7 +50,7 @@
                             <input class="form-control" type="date"  id="example-date-input">
                         </div>
                     </div>
-                    <button type="submit" class="btn-form mx-auto my-4">Start Compaign</button>
+                    <button type="submit" class="btn-form mx-auto my-4">Start Campaign</button>
                 </form>
             </div>
         </div>
