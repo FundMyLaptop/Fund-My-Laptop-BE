@@ -42,7 +42,11 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\BankAccountController' => $baseDir . '/app/Http/Controllers/BankAccountController.php',
     'App\\Http\\Controllers\\BlogController' => $baseDir . '/app/Http/Controllers/Api/BlogController.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\CommentsController' => $baseDir . '/app/Http/Controllers/CommentsController.php',
+=======
+    'App\\Http\\Controllers\\CommentsController' => $baseDir . '/app/Http/Controllers/Api/CommentsController.php',
+>>>>>>> bab112ca6599ec39181d1ef51bdb644af7335b74
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FavoriteController' => $baseDir . '/app/Http/Controllers/FavoriteController.php',

@@ -9,7 +9,7 @@
     <section class="investee-dashboard-info container-md px-md-0 mt-5">
         <div class="col-md-6 px-0">
             <h1 class="text-fml-primary mb-4 welcome-text">
-                Welcome back, <span class="text-fml-secondary">Chandan</span>
+                Welcome back, <span class="text-fml-secondary">{{ Auth::user()-> firstName  }}</span>
             </h1>
         </div>
         <div class="d-block w-100"></div>

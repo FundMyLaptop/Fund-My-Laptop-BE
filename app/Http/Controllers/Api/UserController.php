@@ -123,7 +123,7 @@ class UserController extends Controller
         $user->sendEmailVerificationNotification();
         $token =  $user->createToken('FundMyLaptop')->accessToken;
         return redirect('signup-success');
-        return response()->json(
+        /* return response()->json(
             [
                 'status' => 'success',
                 'response' => 'Account Created Successfully. Please check your inbox and confirm your email address.',
@@ -138,7 +138,7 @@ class UserController extends Controller
                 'user_id' => $user->id
             ],
             201
-        );
+        ); */
         // return redirect('signup-success');
         // return view('signup-success');
     }

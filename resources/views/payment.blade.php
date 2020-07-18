@@ -23,7 +23,7 @@
                     <!-- <iframe src="" frameborder="0"></iframe> -->
                 </div>
 
-                <p class="my-4" id="creationDate">Created {{date("M d,Y",strtotime($request->created_at))  }}</p>
+                <p class="my-4" id="creationDate">Created {{date("M d, Y",strtotime($request->created_at))  }}</p>
                 <hr>
 
                 <div class="user-info my-4">
@@ -42,18 +42,14 @@
                 <div class="alert alert-danger d-none" style="padding: 0.5rem 1rem;" id="alert" role="alert">
                     <p class="my-0" id="alertMessage"></p>
                 </div>
-                <form class="payment-form d-flex flex-column p-4" action="{{ route('campaign/pay') }}" method="POST" novalidate>
+                <form class="payment-form d-flex flex-column p-4" action="{{ route('campaign/pay') }}" method="POST">
         @csrf
                     <div class="form-group mb-4">
                         <label class="form__label" for="amount">Amount</label>
                         <div class="input-group">
                             <span class="input-group-text" id="selectedCurrency">&#x20A6;</span>
                             <input class="form-control form-control-lg form__input" type="number" id="amounta" name="amount"
-                                   placeholder="Enter Amount to Donate">
-                                   <input  type="hidden" name="request_id"
-                                   value="{{ $request->id }}">
-                                   <input  type="hidden" name="user_id"
-                                   value="{{ $user->id }}">
+                                   placeholder="Enter Amount to Donate" required>
                             <select class="input-group-text" id="chooseCurrency">
                                 <option value="NGN" selected>NGN</option>
                                 <option value="USD">USD</option>
@@ -67,12 +63,12 @@
                     <div class="form-group mb-2">
                         <label class="form__label" for="fullName">Full Name</label>
                         <input class="form-control form-control-lg form__input" type="text" id="fullNamea"
-                               placeholder="Enter your full name" name="fullName" value="{!! $user->firstName !!} {!! $user->lastName !!}">
+                               placeholder="Enter your full name" name="fullName" required value="{!! $user->firstName !!} {!! $user->lastName !!}">
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <div class="form-group mg-4">
-                        <input class="" type="checkbox" id="stayAnonymous">
+                        <input class="" type="checkbox" id="stayAnonymous" name="stayAnonymous">
                         <label class="form__label" for="stayAnonymous">Donate Anonymously</label>
                     </div>
 
