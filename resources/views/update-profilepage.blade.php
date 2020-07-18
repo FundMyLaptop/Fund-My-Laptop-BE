@@ -82,11 +82,11 @@
 					<label>Basic Information</label>
 					<div class="_pfg">
 						<p>Date of Birth</p>
-						<input type="date" name="" class="_pfc" />
+						<input type="date" name="date_of_birth" class="_pfc" />
 					</div>
 					<div class="_pfg">
 						<p>Gender</p>
-						<select name="" class="_pfc">
+						<select name="sex" class="_pfc">
 							<option value="male">Male</option>
 							<option value="female">Female</option>
 						</select>
@@ -95,6 +95,7 @@
 					<div class="_pfg">
 						<p>Bio</p>
 						<textarea
+							name="bio"
 							class="_pfc"
 							rows="8"
 							placeholder="Tell us about yourself"
