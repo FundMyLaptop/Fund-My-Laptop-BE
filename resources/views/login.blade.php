@@ -22,7 +22,7 @@
             </span>
             <hr/>
         </div>
-    <!-- check user for valid or invalid login -->
+        <!-- check user for valid or invalid login -->
          @if (session('status'))
             <p class="alert alert-success">{{ session('status') }}
             </p>

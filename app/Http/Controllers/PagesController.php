@@ -269,8 +269,13 @@ class PagesController extends Controller
     }
 
     public function lend()
-    {
-        return view('list-of-campaigns');
+
+    {  
+     
+        $top_campaigns = FundRequest:: where('isFunded', '1')->orderBy('amount', 'desc')->paginate(3);
+        $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->paginate(6);
+        return view('list-of-campaigns')->with(['topcampaigns' => $top_campaigns])->with(['featuredCampaigns' => $featuredCampaigns]);
+        
     }
 
 }
