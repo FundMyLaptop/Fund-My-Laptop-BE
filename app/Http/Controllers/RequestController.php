@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Request as FundRequest;
 use App\User;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Validator;
 use App\Transaction;
 use Carbon\Carbon;
+=======
+>>>>>>> 93a5a330cb5b7ab816c2884ebfee2f8e84a1babb
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -271,9 +274,13 @@ class RequestController extends Controller
     {
         $request = FundRequest::where('id', $id)->get();
         return view('campaign', compact('request'));
+<<<<<<< HEAD
 
+=======
+         
+>>>>>>> 93a5a330cb5b7ab816c2884ebfee2f8e84a1babb
     }
-
+   
     /**
      * Show the form for editing the specified resource.
      *
