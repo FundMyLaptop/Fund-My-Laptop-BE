@@ -188,13 +188,7 @@
                 </div>
             </div>
         </section>
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-9 offset-4">
-                            {{$allRequests->links()}}
-                    </div>
-            </div>
-    </div>
+        
         <!-- Testimonials section -->
         <section class=" container-fluid testimonials-section mt-md-5
        row

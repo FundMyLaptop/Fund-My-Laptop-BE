@@ -21,9 +21,24 @@ class PagesController extends Controller
             ['isSuspended', '0']
         ])->oldest()->take(3)->get();
 
-        $allRequests = FundRequest::paginate(15);
+        //$allRequests = FundRequest::paginate(15);
+        $allRequests = FundRequest::where([
+            ['isFunded', '0'],
+            ['isSuspended', '0']
+        ])->oldest()->take(15)->get();
+
+        //dd($allRequests);
 
         return view('index',compact('oldRequests','allRequests'));
+
+       $campaign = request()->validate([
+            'name' => 'required',
+            'amount' => 'required',
+            'created_at' => 'required',
+            'updated_at' => 'required'
+        ]);
+
+        FundRequest::create($campaign);
     }
 
     public function request($id){
@@ -42,9 +57,15 @@ class PagesController extends Controller
         return view('privacy-policy');
     }
 
-    public function campaign()
+    public function campaign($id)
     {
-        return view('campaign');
+        $request = FundRequest::find($id);
+
+        $users = User::all()->random(4);
+        //$numbers = rand(2,30);
+        //dd($no);
+
+        return view('campaign',compact('request','users','numbers'));
     }
 
     public function career()
