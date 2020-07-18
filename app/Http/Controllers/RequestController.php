@@ -268,7 +268,6 @@ class RequestController extends Controller
     {
         $request = FundRequest::where('id', $id)->get();
         return view('campaign', compact('request'));
-         
     }
    
     /**
