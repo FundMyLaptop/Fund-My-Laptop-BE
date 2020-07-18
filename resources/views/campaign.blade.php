@@ -17,7 +17,9 @@
             </div>
         </div>
         <div class="row">
+
             <p class="plead_fund">Fund {{ $request->user->firstName }} {{ $request->user->lastName }}’s Laptop Purchase</p>
+
         </div>
         <div class="row deVideoDiv">
             <video width="320" height="240" controls>
@@ -36,24 +38,28 @@
                     <div class="profile_image_container">
                         <img src="../img/profileImage1.png" alt="" />
                     </div>
-                    <p class="laptop_subdetail">{{ $request->user->firstName }} {{ $request->user->lastName }}</p>
+
+                    <p class="laptop_subdetail">{{$request->user->firstName}}</p>
                 </div>
             </div>
             <div class="col-md-6 col-12 anotherSwipe">
-                <p class="title_laptop_detail">Posted on:</p>
-                <p class="laptop_subdetail">{{ date("M d, Y",strtotime($request->created_at)) }}</p>
+                <p class="title_laptop_detail">Posted:</p>
+                <p class="laptop_subdetail">{{$request->created_at->diffForHumans()}}</p>
+
             </div>
         </div>
 
         <div class="row each_detail_row">
             <div class="col-md-6 col-12">
                 <p class="title_laptop_detail">Location:</p>
-                <p class="laptop_subdetail">Lagos, Nigeria</p>
+            <p class="laptop_subdetail">{{$request->location}}</p>
             </div>
 
             <div class="col-md-6 col-12 anotherSwipe">
                 <p class="title_laptop_detail">Occupation</p>
-                <p class="laptop_subdetail">{{ $request->occupation }}</p>
+
+            <p class="laptop_subdetail">{{$request->occupation}}</p>
+
             </div>
         </div>
 
@@ -63,7 +69,9 @@
             <div class="col">
                 <p class="title_laptop_detail">Description</p>
                 <p class="description_detail">
-                    {{ $request->description }}
+
+                   {{$request->description}}
+
                 </p>
             </div>
         </div>
@@ -74,50 +82,29 @@
                 <p class="title_laptop_detail">Recommended by:</p>
             </div>
         </div>
+
         <div class="row recommenders">
+            @foreach ($users as $user)
+
             <div class="col-12 col-md-6">
                 <div class="row profile recommender align-items-center">
                     <div class="profile_image_container">
                         <img src="../img/janePix.png" alt="" />
                     </div>
+
                     <p class="laptop_subdetail">
-                        Jane Doe
+                        {{$user->firstName}}
                     </p>
                     <span class="no_of_recommmendations"
-                    >11 successsful recommendations</span
-                    >
+                    >{{$user->id}} successsful recommendations</span>
+
                 </div>
             </div>
-            <div class="col-md-6 col-12">
-                <div class="row profile recommender align-items-center">
-                    <div class="profile_image_container">
-                        <img src="../img/janetPix.png" alt="" />
-                    </div>
-                    <p class="laptop_subdetail">
-                        Janet Doe
-                    </p>
-                    <span class="no_of_recommmendations"
-                    >7 successsful recommendations</span
-                    >
-                </div>
-            </div>
+
+           @endforeach
+
         </div>
 
-        <div class="row recommenders align-items-center">
-            <div class="col-12 col-md-6">
-                <div class="row profile recommender align-items-center">
-                    <div class="profile_image_container">
-                        <img src="../img/UnleDoePix.png" alt="" />
-                    </div>
-                    <p class="laptop_subdetail">
-                        Uncle Doe
-                    </p>
-                    <span class="no_of_recommmendations"
-                    >6 successsful recommendations</span
-                    >
-                </div>
-            </div>
-        </div>
         <div class="col-12 col-md-6">
             <p class="to_view_recom_details">View recommender details</p>
         </div>
@@ -127,7 +114,9 @@
         <div class="row each_detail_row">
             <div class="col-12 col-md-6">
                 <p class="title_laptop_detail toAdjust">Loan amount:</p>
-                <p class="detail_funding_2">&#x20A6 {{ $request->amount }}</p>
+
+            <p class="detail_funding_2">N {{ number_format($request->amount) }}</p>
+
             </div>
 
             <div class="col-12 col-md-6">

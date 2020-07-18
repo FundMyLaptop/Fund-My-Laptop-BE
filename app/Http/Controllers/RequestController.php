@@ -222,6 +222,7 @@ class RequestController extends Controller
         }
     }
 
+
     /**
      * Investee end a campaign
      * @param $id
@@ -240,6 +241,7 @@ class RequestController extends Controller
             }
         }
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -25,9 +25,37 @@ class PagesController extends Controller
             ['isFunded', '0'],
             ['isSuspended', '0']
         ])->oldest()->take(3)->get();
+
+        //$allRequests = FundRequest::paginate(15);
+        $allRequests = FundRequest::where([
+            ['isFunded', '0'],
+            ['isSuspended', '0']
+        ])->oldest()->take(15)->get();
+
+        //dd($allRequests);
+
+        return view('index',compact('oldRequests','allRequests'));
+
+       $campaign = request()->validate([
+            'name' => 'required',
+            'amount' => 'required',
+            'created_at' => 'required',
+            'updated_at' => 'required'
+        ]);
+
+        FundRequest::create($campaign);
+    }
+
+    public function request($id){
+        //$request = FundRequest::find($id);
+        //dd($request);
+        //return view('details',compact('request'));
+
         $featuredCampaigns = FundRequest::with('user')->where('isFeatured',1)->inRandomOrder()->limit(6)->get();
         return view('index')->with(['oldRequests' => $oldRequests])->with(['featuredCampaigns' => $featuredCampaigns]);
+
     }
+
     public function termsAndConditions()
     {
         return view('terms-and-condition');
@@ -38,9 +66,15 @@ class PagesController extends Controller
         return view('privacy-policy');
     }
 
-    public function campaign()
+    public function campaign($id)
     {
-        return view('campaign');
+        $request = FundRequest::find($id);
+
+        $users = User::all()->random(4);
+        //$numbers = rand(2,30);
+        //dd($no);
+
+        return view('campaign',compact('request','users','numbers'));
     }
 
     public function career()
