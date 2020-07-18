@@ -75,7 +75,7 @@
 
                     <div class="col-lg-4 mb-4">
                         <div class="card ">
-                            <img class="card-img-top" @isset($oldRequest->user->verificaton)src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" @else src="" onerror="this.src='/img/milestone1.jpg';" @endisset alt="Card image cap">
+                            <img class="card-img-top" @isset($oldRequest->user->verificaton)src="{{ ($oldRequest->user->verification->photoURL ) ?? '' }}" @else src="" @endisset onerror="this.src='/img/milestone1.jpg';" alt="Card image cap">
                             <!-- card body -->
                             <div class="card-body">
                                 <h5 class="card-title mb-0">
