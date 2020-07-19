@@ -140,6 +140,7 @@ class RequestController extends Controller
                     'repaymentTimes' => $request->repaymentTimes,
                     'currency' => 1,
                     'amount' => $request->amount,
+                    'location' => 'unavailable',
                     'isFunded' => 0,
                     'isSuspended' => 0,
                     'isActive' => 1,
